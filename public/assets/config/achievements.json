@@ -1,0 +1,53 @@
+{
+  "achievements": [
+    {
+      "id": "ach1",
+      "title": "AWS Solutions Architect Professional",
+      "description": "Earned the highest level AWS certification demonstrating expertise in designing distributed systems.",
+      "date": "Sep 2023",
+      "category": "certification",
+      "organization": "Amazon Web Services",
+      "icon": "bi-award-fill"
+    },
+    {
+      "id": "ach2",
+      "title": "Employee of the Year",
+      "description": "Recognized for outstanding performance and leadership in delivering critical projects.",
+      "date": "Dec 2022",
+      "category": "award",
+      "organization": "Tech Corp Inc."
+    },
+    {
+      "id": "ach3",
+      "title": "Published Technical Article",
+      "description": "Article on microservices architecture featured in major tech publication with 50K+ reads.",
+      "date": "Jun 2022",
+      "category": "recognition",
+      "organization": "Dev.to"
+    },
+    {
+      "id": "ach4",
+      "title": "Hackathon Winner",
+      "description": "First place in company-wide hackathon for innovative AI-powered solution.",
+      "date": "Mar 2022",
+      "category": "award"
+    },
+    {
+      "id": "ach5",
+      "title": "10,000 Users Milestone",
+      "description": "Led team that achieved milestone of 10,000 active users for flagship product.",
+      "date": "Jan 2022",
+      "category": "milestone",
+      "organization": "Tech Corp Inc."
+    },
+    {
+      "id": "ach6",
+      "title": "Google Cloud Certified",
+      "description": "Achieved Professional Cloud Architect certification demonstrating GCP expertise.",
+      "date": "Nov 2021",
+      "category": "certification",
+      "organization": "Google Cloud"
+    }
+  ]
+}
+

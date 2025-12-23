@@ -1,0 +1,39 @@
+.achievement-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  }
+}
+
+.achievement-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.achievement-icon-award {
+    background-color: var(--bs-warning-bg-subtle);
+    color: var(--bs-warning);
+  }
+
+  &.achievement-icon-certification {
+    background-color: var(--bs-success-bg-subtle);
+    color: var(--bs-success);
+  }
+
+  &.achievement-icon-recognition {
+    background-color: var(--bs-primary-bg-subtle);
+    color: var(--bs-primary);
+  }
+
+  &.achievement-icon-milestone {
+    background-color: var(--bs-info-bg-subtle);
+    color: var(--bs-info);
+  }
+}
+

@@ -1,0 +1,10 @@
+{
+  "name": "John Doe",
+  "title": "Senior Software Engineer & Technical Lead",
+  "summary": "Passionate software engineer with 10+ years of experience in building scalable web applications and leading development teams. Specialized in full-stack development, cloud architecture, and agile methodologies. Proven track record of delivering high-quality solutions and mentoring junior developers.",
+  "location": "San Francisco, CA",
+  "yearsOfExperience": 10,
+  "avatar": "https://ui-avatars.com/api/?name=John+Doe&size=200&background=0d6efd&color=fff&bold=true",
+  "tagline": "Building the future, one line of code at a time"
+}
+

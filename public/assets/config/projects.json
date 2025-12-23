@@ -1,0 +1,55 @@
+{
+  "projects": [
+    {
+      "id": "proj1",
+      "name": "E-Commerce Platform",
+      "description": "Built a scalable e-commerce platform handling 100K+ daily transactions with real-time inventory management.",
+      "role": "Technical Lead",
+      "startDate": "Jan 2022",
+      "endDate": null,
+      "technologies": ["Angular", "NestJS", "PostgreSQL", "Redis", "AWS", "Docker"],
+      "highlights": [
+        "Implemented microservices architecture for better scalability",
+        "Integrated payment gateways (Stripe, PayPal)",
+        "Built real-time inventory tracking system",
+        "Achieved 99.9% uptime with automated monitoring"
+      ],
+      "imageUrl": "/assets/images/projects/ecommerce.jpg",
+      "githubUrl": "https://github.com/johndoe/ecommerce",
+      "liveUrl": "https://example-ecommerce.com"
+    },
+    {
+      "id": "proj2",
+      "name": "Healthcare Management System",
+      "description": "Developed a comprehensive healthcare management system for clinics and hospitals.",
+      "role": "Full Stack Developer",
+      "startDate": "Jun 2020",
+      "endDate": "Dec 2021",
+      "technologies": ["React", "Node.js", "MongoDB", "Socket.io", "AWS"],
+      "highlights": [
+        "Built patient portal with appointment scheduling",
+        "Implemented HIPAA-compliant data storage",
+        "Created real-time chat for doctor-patient communication",
+        "Integrated with third-party medical APIs"
+      ],
+      "imageUrl": "/assets/images/projects/healthcare.jpg"
+    },
+    {
+      "id": "proj3",
+      "name": "Social Media Analytics Dashboard",
+      "description": "Created an analytics dashboard for tracking social media metrics across multiple platforms.",
+      "role": "Frontend Developer",
+      "startDate": "Mar 2019",
+      "endDate": "May 2020",
+      "technologies": ["Vue.js", "D3.js", "Python", "Flask", "PostgreSQL"],
+      "highlights": [
+        "Built interactive data visualizations with D3.js",
+        "Integrated with Facebook, Twitter, and Instagram APIs",
+        "Implemented real-time data updates using WebSockets",
+        "Created customizable report generation"
+      ],
+      "githubUrl": "https://github.com/johndoe/social-analytics"
+    }
+  ]
+}
+

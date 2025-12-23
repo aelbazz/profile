@@ -1,0 +1,77 @@
+{
+  "events": [
+    {
+      "id": "evt1",
+      "date": "Jan 2020",
+      "title": "Promoted to Senior Software Engineer",
+      "subtitle": "Tech Corp Inc.",
+      "description": "Promoted to senior role with increased responsibilities in architecture and team leadership.",
+      "type": "work",
+      "icon": "bi-briefcase-fill"
+    },
+    {
+      "id": "evt2",
+      "date": "Sep 2023",
+      "title": "AWS Solutions Architect Professional Certified",
+      "subtitle": "Amazon Web Services",
+      "description": "Achieved the highest level AWS certification demonstrating expertise in complex systems.",
+      "type": "certification",
+      "icon": "bi-patch-check-fill"
+    },
+    {
+      "id": "evt3",
+      "date": "Dec 2022",
+      "title": "Employee of the Year Award",
+      "subtitle": "Tech Corp Inc.",
+      "description": "Recognized for outstanding performance and leadership throughout the year.",
+      "type": "achievement",
+      "icon": "bi-trophy-fill"
+    },
+    {
+      "id": "evt4",
+      "date": "Jan 2022",
+      "title": "Led E-Commerce Platform Launch",
+      "subtitle": "Major Project Milestone",
+      "description": "Successfully led team in launching scalable e-commerce platform serving 100K+ users.",
+      "type": "project",
+      "icon": "bi-rocket-fill"
+    },
+    {
+      "id": "evt5",
+      "date": "Nov 2021",
+      "title": "Google Cloud Professional Architect",
+      "subtitle": "Google Cloud",
+      "description": "Earned Professional Cloud Architect certification for Google Cloud Platform.",
+      "type": "certification",
+      "icon": "bi-patch-check-fill"
+    },
+    {
+      "id": "evt6",
+      "date": "Mar 2017",
+      "title": "Joined Digital Solutions Ltd.",
+      "subtitle": "Full Stack Developer",
+      "description": "Started new role as full stack developer, working on multiple client projects.",
+      "type": "work",
+      "icon": "bi-briefcase-fill"
+    },
+    {
+      "id": "evt7",
+      "date": "Jun 2015",
+      "title": "Started Career as Junior Developer",
+      "subtitle": "StartUp Ventures",
+      "description": "Began professional software development career at a fast-paced startup environment.",
+      "type": "work",
+      "icon": "bi-briefcase-fill"
+    },
+    {
+      "id": "evt8",
+      "date": "May 2015",
+      "title": "Bachelor's Degree in Computer Science",
+      "subtitle": "University of California",
+      "description": "Graduated with honors, specializing in software engineering and distributed systems.",
+      "type": "education",
+      "icon": "bi-mortarboard-fill"
+    }
+  ]
+}
+

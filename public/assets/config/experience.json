@@ -1,0 +1,73 @@
+{
+  "experiences": [
+    {
+      "id": "exp1",
+      "company": "Tech Corp Inc.",
+      "position": "Senior Software Engineer",
+      "location": "San Francisco, CA",
+      "startDate": "Jan 2020",
+      "endDate": null,
+      "isCurrent": true,
+      "description": "Leading development of cloud-native applications and mentoring team members in best practices.",
+      "responsibilities": [
+        "Design and implement scalable microservices architecture",
+        "Lead code reviews and establish coding standards",
+        "Mentor junior developers and conduct technical training sessions",
+        "Collaborate with product managers to define technical requirements",
+        "Optimize application performance and reduce infrastructure costs by 30%"
+      ],
+      "technologies": ["Angular", "Node.js", "AWS", "Docker", "Kubernetes", "MongoDB"],
+      "achievements": [
+        "Reduced application load time by 50% through optimization",
+        "Led migration to microservices architecture serving 1M+ users",
+        "Implemented CI/CD pipeline reducing deployment time by 70%"
+      ]
+    },
+    {
+      "id": "exp2",
+      "company": "Digital Solutions Ltd.",
+      "position": "Full Stack Developer",
+      "location": "New York, NY",
+      "startDate": "Mar 2017",
+      "endDate": "Dec 2019",
+      "isCurrent": false,
+      "description": "Developed and maintained multiple client-facing web applications using modern frameworks.",
+      "responsibilities": [
+        "Built responsive web applications using React and Angular",
+        "Designed RESTful APIs with Node.js and Express",
+        "Implemented database schemas and optimized queries",
+        "Collaborated with UX designers to implement pixel-perfect designs",
+        "Participated in agile ceremonies and sprint planning"
+      ],
+      "technologies": ["React", "Angular", "Node.js", "PostgreSQL", "Redis", "AWS"],
+      "achievements": [
+        "Delivered 15+ projects on time and within budget",
+        "Improved code test coverage from 40% to 85%",
+        "Received Employee of the Year award in 2018"
+      ]
+    },
+    {
+      "id": "exp3",
+      "company": "StartUp Ventures",
+      "position": "Junior Developer",
+      "location": "Austin, TX",
+      "startDate": "Jun 2015",
+      "endDate": "Feb 2017",
+      "isCurrent": false,
+      "description": "Contributed to building the company's core product from ground up.",
+      "responsibilities": [
+        "Developed features for web application using JavaScript and jQuery",
+        "Fixed bugs and improved application stability",
+        "Wrote unit tests and participated in code reviews",
+        "Collaborated with senior developers to learn best practices"
+      ],
+      "technologies": ["JavaScript", "jQuery", "PHP", "MySQL", "Bootstrap"],
+      "achievements": [
+        "Successfully onboarded and became productive within 2 weeks",
+        "Implemented key features that improved user engagement by 25%",
+        "Reduced bug count by 40% through thorough testing"
+      ]
+    }
+  ]
+}
+

@@ -1,0 +1,28 @@
+.skill-item {
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  background-color: var(--bs-body-bg);
+  border: 1px solid var(--bs-border-color);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  }
+
+  h6 {
+    font-weight: 600;
+    color: var(--bs-heading-color);
+  }
+
+  .progress {
+    border-radius: 0.5rem;
+    background-color: var(--bs-secondary-bg);
+
+    .progress-bar {
+      font-weight: 600;
+      font-size: 0.875rem;
+    }
+  }
+}
+

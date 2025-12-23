@@ -1,0 +1,103 @@
+<div class="container py-5">
+  <app-section-header 
+    title="Work Experience"
+    subtitle="My professional journey and career progression"
+    icon="fas fa-briefcase">
+  </app-section-header>
+
+  @if (experience(); as expData) {
+    <div class="accordion" id="experienceAccordion">
+      @for (exp of expData.experiences; track exp.id; let idx = $index) {
+        <div class="accordion-item mb-3 shadow-sm">
+          <h2 class="accordion-header">
+            <button 
+              class="accordion-button" 
+              [class.collapsed]="idx !== 0"
+              type="button" 
+              [attr.data-bs-toggle]="'collapse'"
+              [attr.data-bs-target]="'#collapse' + idx"
+              [attr.aria-expanded]="idx === 0"
+              [attr.aria-controls]="'collapse' + idx">
+              <div class="w-100">
+                <div class="d-flex justify-content-between align-items-start">
+                  <div>
+                    <h5 class="mb-1">{{ exp.position }}</h5>
+                    <h6 class="text-muted mb-0">{{ exp.company }}</h6>
+                  </div>
+                  <div class="text-end">
+                    <small class="text-muted d-block">
+                      {{ exp.startDate }} - {{ exp.endDate || 'Present' }}
+                    </small>
+                    @if (exp.isCurrent) {
+                      <span class="badge bg-success mt-1">Current</span>
+                    }
+                  </div>
+                </div>
+              </div>
+            </button>
+          </h2>
+          <div 
+            [id]="'collapse' + idx" 
+            class="accordion-collapse collapse"
+            [class.show]="idx === 0"
+            [attr.data-bs-parent]="'#experienceAccordion'">
+            <div class="accordion-body">
+              <p class="mb-3">
+                <i class="fas fa-map-marker-alt me-2 text-primary"></i>{{ exp.location }}
+              </p>
+              
+              <p class="lead">{{ exp.description }}</p>
+
+              @if (exp.responsibilities.length > 0) {
+                <h6 class="mt-4 mb-3">
+                  <i class="fas fa-tasks me-2 text-primary"></i>Key Responsibilities
+                </h6>
+                <ul class="list-group list-group-flush mb-3">
+                  @for (responsibility of exp.responsibilities; track responsibility) {
+                    <li class="list-group-item">
+                      <i class="fas fa-check-circle me-2 text-success"></i>
+                      {{ responsibility }}
+                    </li>
+                  }
+                </ul>
+              }
+
+              @if (exp.achievements.length > 0) {
+                <h6 class="mt-4 mb-3">
+                  <i class="fas fa-trophy me-2 text-primary"></i>Key Achievements
+                </h6>
+                <ul class="list-group list-group-flush mb-3">
+                  @for (achievement of exp.achievements; track achievement) {
+                    <li class="list-group-item">
+                      <i class="fas fa-star me-2 text-warning"></i>
+                      {{ achievement }}
+                    </li>
+                  }
+                </ul>
+              }
+
+              @if (exp.technologies.length > 0) {
+                <h6 class="mt-4 mb-3">
+                  <i class="fas fa-cog me-2 text-primary"></i>Technologies Used
+                </h6>
+                <div class="d-flex flex-wrap gap-2">
+                  @for (tech of exp.technologies; track tech) {
+                    <app-badge [text]="tech" variant="info"></app-badge>
+                  }
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  } @else {
+    <div class="text-center py-5">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <p class="mt-3 text-muted">Loading experience data...</p>
+    </div>
+  }
+</div>
+

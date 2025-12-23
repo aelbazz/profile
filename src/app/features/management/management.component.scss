@@ -1,0 +1,27 @@
+.accordion-button {
+  &:not(.collapsed) {
+    background-color: var(--bs-primary-bg-subtle);
+    color: var(--bs-primary);
+  }
+
+  &:focus {
+    box-shadow: none;
+    border-color: var(--bs-primary);
+  }
+}
+
+.accordion-item {
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.5rem !important;
+  overflow: hidden;
+
+  &:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  }
+}
+
+.list-group-item {
+  border: none;
+  padding-left: 0;
+}
+

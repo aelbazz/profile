@@ -1,0 +1,19 @@
+.profile-avatar {
+  border: 5px solid var(--bs-primary);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.card {
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+  }
+}
+
+#profile-export {
+  background: white;
+  padding: 2rem;
+  border-radius: 0.5rem;
+}
+

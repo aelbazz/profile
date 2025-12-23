@@ -1,0 +1,180 @@
+{
+  "categories": [
+    {
+      "category": "Frontend Development",
+      "skills": [
+        {
+          "name": "Angular",
+          "level": 95,
+          "category": "Frontend Development",
+          "yearsOfExperience": 6
+        },
+        {
+          "name": "React",
+          "level": 85,
+          "category": "Frontend Development",
+          "yearsOfExperience": 5
+        },
+        {
+          "name": "TypeScript",
+          "level": 90,
+          "category": "Frontend Development",
+          "yearsOfExperience": 6
+        },
+        {
+          "name": "HTML5/CSS3",
+          "level": 95,
+          "category": "Frontend Development",
+          "yearsOfExperience": 10
+        },
+        {
+          "name": "RxJS",
+          "level": 85,
+          "category": "Frontend Development",
+          "yearsOfExperience": 5
+        },
+        {
+          "name": "Vue.js",
+          "level": 75,
+          "category": "Frontend Development",
+          "yearsOfExperience": 3
+        }
+      ]
+    },
+    {
+      "category": "Backend Development",
+      "skills": [
+        {
+          "name": "Node.js",
+          "level": 90,
+          "category": "Backend Development",
+          "yearsOfExperience": 7
+        },
+        {
+          "name": "NestJS",
+          "level": 85,
+          "category": "Backend Development",
+          "yearsOfExperience": 4
+        },
+        {
+          "name": "Express.js",
+          "level": 90,
+          "category": "Backend Development",
+          "yearsOfExperience": 7
+        },
+        {
+          "name": "Python",
+          "level": 75,
+          "category": "Backend Development",
+          "yearsOfExperience": 4
+        },
+        {
+          "name": "RESTful APIs",
+          "level": 95,
+          "category": "Backend Development",
+          "yearsOfExperience": 8
+        },
+        {
+          "name": "GraphQL",
+          "level": 80,
+          "category": "Backend Development",
+          "yearsOfExperience": 3
+        }
+      ]
+    },
+    {
+      "category": "Databases",
+      "skills": [
+        {
+          "name": "PostgreSQL",
+          "level": 90,
+          "category": "Databases",
+          "yearsOfExperience": 6
+        },
+        {
+          "name": "MongoDB",
+          "level": 85,
+          "category": "Databases",
+          "yearsOfExperience": 5
+        },
+        {
+          "name": "Redis",
+          "level": 80,
+          "category": "Databases",
+          "yearsOfExperience": 4
+        },
+        {
+          "name": "MySQL",
+          "level": 85,
+          "category": "Databases",
+          "yearsOfExperience": 7
+        }
+      ]
+    },
+    {
+      "category": "Cloud & DevOps",
+      "skills": [
+        {
+          "name": "AWS",
+          "level": 90,
+          "category": "Cloud & DevOps",
+          "yearsOfExperience": 5
+        },
+        {
+          "name": "Docker",
+          "level": 90,
+          "category": "Cloud & DevOps",
+          "yearsOfExperience": 5
+        },
+        {
+          "name": "Kubernetes",
+          "level": 80,
+          "category": "Cloud & DevOps",
+          "yearsOfExperience": 3
+        },
+        {
+          "name": "CI/CD",
+          "level": 85,
+          "category": "Cloud & DevOps",
+          "yearsOfExperience": 6
+        },
+        {
+          "name": "Terraform",
+          "level": 75,
+          "category": "Cloud & DevOps",
+          "yearsOfExperience": 2
+        }
+      ]
+    },
+    {
+      "category": "Tools & Methodologies",
+      "skills": [
+        {
+          "name": "Git",
+          "level": 95,
+          "category": "Tools & Methodologies",
+          "yearsOfExperience": 10
+        },
+        {
+          "name": "Agile/Scrum",
+          "level": 90,
+          "category": "Tools & Methodologies",
+          "yearsOfExperience": 8
+        },
+        {
+          "name": "TDD/BDD",
+          "level": 85,
+          "category": "Tools & Methodologies",
+          "yearsOfExperience": 6
+        },
+        {
+          "name": "Microservices",
+          "level": 85,
+          "category": "Tools & Methodologies",
+          "yearsOfExperience": 5
+        }
+      ]
+    }
+  ]
+}
+

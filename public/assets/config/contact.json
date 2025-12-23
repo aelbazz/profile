@@ -1,0 +1,29 @@
+{
+  "email": "john.doe@example.com",
+  "phone": "+1 (555) 123-4567",
+  "whatsapp": "+15551234567",
+  "linkedin": "https://www.linkedin.com/in/johndoe",
+  "socialLinks": [
+    {
+      "platform": "GitHub",
+      "url": "https://github.com/johndoe",
+      "icon": "bi-github"
+    },
+    {
+      "platform": "Twitter",
+      "url": "https://twitter.com/johndoe",
+      "icon": "bi-twitter"
+    },
+    {
+      "platform": "Stack Overflow",
+      "url": "https://stackoverflow.com/users/johndoe",
+      "icon": "bi-stack-overflow"
+    },
+    {
+      "platform": "Medium",
+      "url": "https://medium.com/@johndoe",
+      "icon": "bi-medium"
+    }
+  ]
+}
+
