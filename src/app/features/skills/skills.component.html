@@ -5,7 +5,42 @@
     icon="fas fa-laptop-code">
   </app-section-header>
 
-  @if (skills(); as skillsData) {
+  <!-- Search Section -->
+  <div class="search-section mb-4">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10">
+        <div class="search-input-wrapper">
+          <i class="fas fa-search search-icon"></i>
+          <input
+            type="text"
+            class="form-control form-control-lg search-input"
+            placeholder="Search skills by name or category..."
+            [value]="searchTerm()"
+            (input)="onSearchChange($any($event.target).value)"
+            autocomplete="off">
+          @if (searchTerm()) {
+            <button
+              type="button"
+              class="btn btn-link clear-search-btn"
+              (click)="clearSearch()"
+              aria-label="Clear search">
+              <i class="fas fa-times"></i>
+            </button>
+          }
+        </div>
+        @if (searchTerm() && filteredSkills()?.categories?.length === 0) {
+          <div class="text-center mt-3">
+            <p class="text-muted mb-0">
+              <i class="fas fa-info-circle me-2"></i>
+              No skills found matching "{{ searchTerm() }}"
+            </p>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  @if (filteredSkills(); as skillsData) {
     @for (category of skillsData.categories; track category.category) {
       <div class="mb-5">
         <h4 class="mb-4">
