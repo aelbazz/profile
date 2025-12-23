@@ -57,6 +57,81 @@
   }
 }
 
+.category-filter-section {
+  .filter-label {
+    font-weight: 600;
+    color: var(--bs-heading-color);
+    white-space: nowrap;
+  }
+
+  .category-filter-btn {
+    border: 2px solid var(--bs-border-color);
+    background-color: var(--bs-body-bg);
+    color: var(--bs-body-color);
+    border-radius: 1.5rem;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    white-space: nowrap;
+
+    &:hover {
+      border-color: var(--bs-primary);
+      color: var(--bs-primary);
+      transform: translateY(-2px);
+      box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+    }
+
+    &.active {
+      background-color: var(--bs-primary);
+      border-color: var(--bs-primary);
+      color: white;
+      box-shadow: 0 0.25rem 0.5rem rgba(var(--bs-primary-rgb), 0.3);
+
+      &:hover {
+        background-color: var(--bs-primary);
+        border-color: var(--bs-primary);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 0.375rem 0.75rem rgba(var(--bs-primary-rgb), 0.4);
+      }
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
+    }
+  }
+}
+
+.criteria-alert {
+  .alert {
+    border-radius: 0.75rem;
+  }
+
+  .criteria-group {
+    h6 {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+  }
+
+  .criteria-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+
+    .color-indicator {
+      display: inline-block;
+      width: 1.25rem;
+      height: 1.25rem;
+      border-radius: 0.25rem;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      flex-shrink: 0;
+    }
+  }
+}
+
 .skill-item {
   padding: 1.5rem;
   border-radius: 0.5rem;
@@ -74,6 +149,12 @@
     color: var(--bs-heading-color);
   }
 
+  .skill-level-badge {
+    font-weight: 600;
+    font-size: 0.75rem;
+    padding: 0.35rem 0.75rem;
+  }
+
   .progress {
     border-radius: 0.5rem;
     background-color: var(--bs-secondary-bg);
@@ -81,6 +162,7 @@
     .progress-bar {
       font-weight: 600;
       font-size: 0.875rem;
+      border-radius: 0.5rem;
     }
   }
 }

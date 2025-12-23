@@ -40,6 +40,37 @@
     </div>
   </div>
 
+  <!-- Category Filter Section -->
+  @if (availableCategories().length > 0) {
+    <div class="category-filter-section mb-4">
+      <div class="row justify-content-center">
+        <div class="col-12">
+          <div class="d-flex align-items-center justify-content-center flex-wrap gap-2">
+            <span class="filter-label me-2">
+              <i class="fas fa-filter me-1"></i>Filter by category:
+            </span>
+            <button
+              type="button"
+              class="btn btn-sm category-filter-btn"
+              [class.active]="selectedCategory() === null"
+              (click)="clearCategoryFilter()">
+              <i class="fas fa-th me-1"></i>All Categories
+            </button>
+            @for (category of availableCategories(); track category) {
+              <button
+                type="button"
+                class="btn btn-sm category-filter-btn"
+                [class.active]="selectedCategory() === category"
+                (click)="selectCategory(category)">
+                {{ category }}
+              </button>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+
   @if (filteredSkills(); as skillsData) {
     @for (category of skillsData.categories; track category.category) {
       <div class="mb-5">
@@ -54,14 +85,12 @@
                 <div class="d-flex justify-content-between align-items-center mb-2">
                   <h6 class="mb-0">{{ skill.name }}</h6>
                   <div class="d-flex align-items-center gap-2">
-                    <app-badge 
-                      [text]="skill.level + '%'" 
-                      variant="primary"
-                      [pill]="true">
-                    </app-badge>
-                    @if (skill.yearsOfExperience) {
-                      <span class="badge bg-secondary rounded-pill">
-                        {{ skill.yearsOfExperience }} years
+                    @if (skill.level !== 0) {
+                      <span 
+                        class="badge rounded-pill skill-level-badge"
+                        [style.background-color]="getSkillLevelColor(skill.level)"
+                        [style.color]="shouldUseWhiteText(skill.level) ? 'white' : 'inherit'">
+                        {{ getProficiencyCategory(skill.level) }} - {{ getSkillTierName(skill.level) }}
                       </span>
                     }
                   </div>
@@ -70,13 +99,14 @@
                 <div class="progress" style="height: 25px;">
                   <div 
                     class="progress-bar progress-bar-striped progress-bar-animated"
-                    [class]="getProgressBarClass(skill.level)"
-                    [style.width.%]="skill.level"
+                    [style.background-color]="getSkillLevelColor(skill.level)"
+                    [style.width.%]="getLevelPercentage(skill.level)"
+                    [style.color]="shouldUseWhiteText(skill.level) ? 'white' : 'inherit'"
                     role="progressbar"
                     [attr.aria-valuenow]="skill.level"
                     aria-valuemin="0"
-                    aria-valuemax="100">
-                    {{ skill.level }}%
+                    aria-valuemax="9">
+                    {{ getSkillTierName(skill.level) }}
                   </div>
                 </div>
               </div>

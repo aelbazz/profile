@@ -1,609 +1,636 @@
 {
   "categories": [
     {
-      "category": "Frontend Development",
+      "category": "Leadership & People Management",
       "skills": [
         {
-          "name": "Angular",
-          "level": 8,
-          "proficiency": "Expert",
-          "category": "Frontend Development",
-          "yearsOfExperience": 10,
-          "endorsements": 0
+          "name": "Leadership",
+          "level": 0,
+          "category": "Leadership & People Management",
+          "since": 2025
         },
         {
-          "name": "Angular Material",
-          "level": 4,
-          "proficiency": "Intermediate",
-          "category": "Frontend Development",
-          "yearsOfExperience": 1,
-          "endorsements": 0,
-          "since": 2024
+          "name": "Team Leadership",
+          "level": 0,
+          "category": "Leadership & People Management",
+          "since": 2025
         },
         {
-          "name": "TypeScript",
-          "level": 8,
-          "proficiency": "Expert",
-          "category": "Frontend Development",
-          "yearsOfExperience": 8,
-          "endorsements": 0
+          "name": "Team & People Management",
+          "level": 0,
+          "category": "Leadership & People Management",
+          "since": 2025
+        },
+        {
+          "name": "Mentoring & Coaching",
+          "level": 0,
+          "category": "Leadership & People Management",
+          "since": 2025
+        },
+        {
+          "name": "Accountability & Ownership",
+          "level": 0,
+          "category": "Leadership & People Management",
+          "since": 2025
+        },
+        {
+          "name": "Psychological Safety",
+          "level": 0,
+          "category": "Leadership & People Management",
+          "since": 2025
+        },
+        {
+          "name": "Respect",
+          "level": 0,
+          "category": "Leadership & People Management",
+          "since": 2025
+        },
+        {
+          "name": "Employee Onboarding",
+          "level": 0,
+          "category": "Leadership & People Management",
+          "since": 2025
+        },
+        {
+          "name": "Facilitation of Meetings",
+          "level": 0,
+          "category": "Leadership & People Management",
+          "since": 2025
+        },
+        {
+          "name": "Team Coordination",
+          "level": 0,
+          "category": "Leadership & People Management",
+          "since": 2025
+        }
+      ]
+    },
+    {
+      "category": "Communication & Collaboration",
+      "skills": [
+        {
+          "name": "Communication",
+          "level": 0,
+          "category": "Communication & Collaboration",
+          "since": 2025
+        },
+        {
+          "name": "Leadership Communication",
+          "level": 0,
+          "category": "Communication & Collaboration",
+          "since": 2025
+        },
+        {
+          "name": "Public Speaking",
+          "level": 0,
+          "category": "Communication & Collaboration",
+          "since": 2025
+        },
+        {
+          "name": "Interpersonal Relationships",
+          "level": 0,
+          "category": "Communication & Collaboration",
+          "since": 2025
+        },
+        {
+          "name": "Teamwork & Collaboration",
+          "level": 0,
+          "category": "Communication & Collaboration",
+          "since": 2025
+        },
+        {
+          "name": "Social Perceptiveness",
+          "level": 0,
+          "category": "Communication & Collaboration",
+          "since": 2025
+        },
+        {
+          "name": "Cross-functional Coordination",
+          "level": 0,
+          "category": "Communication & Collaboration",
+          "since": 2025
+        }
+      ]
+    },
+    {
+      "category": "Professional & Cognitive Skills",
+      "skills": [
+        {
+          "name": "Critical Thinking",
+          "level": 0,
+          "category": "Professional & Cognitive Skills",
+          "since": 2025
+        },
+        {
+          "name": "Problem Solving",
+          "level": 0,
+          "category": "Professional & Cognitive Skills",
+          "since": 2025
+        },
+        {
+          "name": "Understanding the Big Picture",
+          "level": 0,
+          "category": "Professional & Cognitive Skills",
+          "since": 2025
+        },
+        {
+          "name": "Focus on Quality",
+          "level": 0,
+          "category": "Professional & Cognitive Skills",
+          "since": 2025
+        },
+        {
+          "name": "Attention to Detail",
+          "level": 0,
+          "category": "Professional & Cognitive Skills",
+          "since": 2025
+        },
+        {
+          "name": "Creativity & Innovation",
+          "level": 0,
+          "category": "Professional & Cognitive Skills",
+          "since": 2025
+        },
+        {
+          "name": "Decision Making",
+          "level": 0,
+          "category": "Professional & Cognitive Skills",
+          "since": 2025
+        },
+        {
+          "name": "Risk Management",
+          "level": 0,
+          "category": "Professional & Cognitive Skills",
+          "since": 2025
+        },
+        {
+          "name": "Continuous Improvement Mindset",
+          "level": 0,
+          "category": "Professional & Cognitive Skills",
+          "since": 2025
+        }
+      ]
+    },
+    {
+      "category": "Project & Delivery Management",
+      "skills": [
+        {
+          "name": "Project Management",
+          "level": 0,
+          "category": "Project & Delivery Management",
+          "since": 2025
+        },
+        {
+          "name": "Agile Coaching & Facilitation",
+          "level": 0,
+          "category": "Project & Delivery Management",
+          "since": 2025
+        },
+        {
+          "name": "Backlog Refinement & Grooming",
+          "level": 0,
+          "category": "Project & Delivery Management",
+          "since": 2025
+        },
+        {
+          "name": "Time Management",
+          "level": 0,
+          "category": "Project & Delivery Management",
+          "since": 2025
+        },
+        {
+          "name": "Organizational Skills",
+          "level": 0,
+          "category": "Project & Delivery Management",
+          "since": 2025
+        },
+        {
+          "name": "Delivery Coordination",
+          "level": 0,
+          "category": "Project & Delivery Management",
+          "since": 2025
+        }
+      ]
+    },
+    {
+      "category": "Methodologies & Frameworks",
+      "skills": [
+        {
+          "name": "Agile Methodology",
+          "level": 0,
+          "category": "Methodologies & Frameworks",
+          "since": 2025
+        },
+        {
+          "name": "SCRUM",
+          "level": 0,
+          "category": "Methodologies & Frameworks",
+          "since": 2025
+        },
+        {
+          "name": "Waterfall",
+          "level": 0,
+          "category": "Methodologies & Frameworks",
+          "since": 2025
+        },
+        {
+          "name": "Design Thinking",
+          "level": 0,
+          "category": "Methodologies & Frameworks",
+          "since": 2025
+        },
+        {
+          "name": "SMACSS (Scalable and Modular Architecture for CSS)",
+          "level": 0,
+          "category": "Methodologies & Frameworks",
+          "since": 2025
+        }
+      ]
+    },
+    {
+      "category": "Software Engineering & Architecture",
+      "skills": [
+        {
+          "name": "Frontend / UI Engineering",
+          "level": 0,
+          "category": "Software Engineering & Architecture",
+          "since": 2025
+        },
+        {
+          "name": "Data Structures",
+          "level": 0,
+          "category": "Software Engineering & Architecture",
+          "since": 2025
+        },
+        {
+          "name": "Algorithms",
+          "level": 0,
+          "category": "Software Engineering & Architecture",
+          "since": 2025
+        },
+        {
+          "name": "RESTful API Design",
+          "level": 0,
+          "category": "Software Engineering & Architecture",
+          "since": 2025
+        },
+        {
+          "name": "RESTful Web Services",
+          "level": 0,
+          "category": "Software Engineering & Architecture",
+          "since": 2025
+        },
+        {
+          "name": "Cross-browser Compatibility",
+          "level": 0,
+          "category": "Software Engineering & Architecture",
+          "since": 2025
+        },
+        {
+          "name": "Automation Scripting",
+          "level": 0,
+          "category": "Software Engineering & Architecture",
+          "since": 2025
+        }
+      ]
+    },
+    {
+      "category": "Frontend Technologies",
+      "skills": [
+        {
+          "name": "HTML 5",
+          "level": 0,
+          "category": "Frontend Technologies",
+          "since": 2025
+        },
+        {
+          "name": "CSS",
+          "level": 0,
+          "category": "Frontend Technologies",
+          "since": 2025
+        },
+        {
+          "name": "Sass",
+          "level": 0,
+          "category": "Frontend Technologies",
+          "since": 2025
+        },
+        {
+          "name": "Bootstrap",
+          "level": 0,
+          "category": "Frontend Technologies",
+          "since": 2025
         },
         {
           "name": "JavaScript",
-          "level": 8,
-          "proficiency": "Expert",
-          "category": "Frontend Development",
-          "yearsOfExperience": 11,
-          "endorsements": 43
+          "level": 0,
+          "category": "Frontend Technologies",
+          "since": 2025
         },
         {
-          "name": "HTML5",
-          "level": 9,
-          "proficiency": "Expert",
-          "category": "Frontend Development",
-          "yearsOfExperience": 11,
-          "endorsements": 48
+          "name": "Angular (Angular 2+)",
+          "level": 0,
+          "category": "Frontend Technologies",
+          "since": 2025
         },
         {
-          "name": "CSS/CSS3",
-          "level": 9,
-          "proficiency": "Expert",
-          "category": "Frontend Development",
-          "yearsOfExperience": 11,
-          "endorsements": 66
+          "name": "TypeScript",
+          "level": 0,
+          "category": "Frontend Technologies",
+          "since": 2025
         },
         {
-          "name": "SASS",
-          "level": 7,
-          "proficiency": "Expert",
-          "category": "Frontend Development",
-          "yearsOfExperience": 8,
-          "endorsements": 13
-        },
-        {
-          "name": "React.js",
-          "level": 4,
-          "proficiency": "Intermediate",
-          "category": "Frontend Development",
-          "yearsOfExperience": 1,
-          "endorsements": 8,
-          "since": 2024
-        },
-        {
-          "name": "Vue.js",
-          "level": 1,
-          "proficiency": "Beginner",
-          "category": "Frontend Development",
-          "yearsOfExperience": 1,
-          "endorsements": 0,
+          "name": "Angular Material",
+          "level": 0,
+          "category": "Frontend Technologies",
           "since": 2024
         },
         {
           "name": "RxJS",
-          "level": 4,
-          "proficiency": "Intermediate",
-          "category": "Frontend Development",
-          "yearsOfExperience": 1,
-          "endorsements": 0,
+          "level": 0,
+          "category": "Frontend Technologies",
           "since": 2024
         },
         {
-          "name": "AngularJS",
-          "level": 7,
-          "proficiency": "Expert",
-          "category": "Frontend Development",
-          "yearsOfExperience": 7,
-          "endorsements": 16
+          "name": "Tailwind CSS",
+          "level": 0,
+          "category": "Frontend Technologies",
+          "since": 2025
         },
         {
-          "name": "jQuery",
-          "level": 7,
-          "proficiency": "Expert",
-          "category": "Frontend Development",
-          "yearsOfExperience": 10,
-          "endorsements": 27
+          "name": "Ngx-Bootstrap",
+          "level": 0,
+          "category": "Frontend Technologies",
+          "since": 2025
         },
         {
-          "name": "Bootstrap",
-          "level": 8,
-          "proficiency": "Expert",
-          "category": "Frontend Development",
-          "yearsOfExperience": 10,
-          "endorsements": 23
+          "name": "React",
+          "level": 0,
+          "category": "Frontend Technologies",
+          "since": 2024
         },
         {
-          "name": "Responsive Web Design",
-          "level": 8,
-          "proficiency": "Expert",
-          "category": "Frontend Development",
-          "yearsOfExperience": 10,
-          "endorsements": 24
-        },
-        {
-          "name": "Front-end Coding",
-          "level": 8,
-          "proficiency": "Expert",
-          "category": "Frontend Development",
-          "yearsOfExperience": 11,
-          "endorsements": 24
-        },
-        {
-          "name": "AJAX",
-          "level": 7,
-          "proficiency": "Expert",
-          "category": "Frontend Development",
-          "yearsOfExperience": 10,
-          "endorsements": 26
-        },
-        {
-          "name": "LitElement",
-          "level": 5,
-          "proficiency": "Intermediate",
-          "category": "Frontend Development",
-          "yearsOfExperience": 3,
-          "endorsements": 0
+          "name": "Vue.js",
+          "level": 0,
+          "category": "Frontend Technologies",
+          "since": 2024
         }
       ]
     },
     {
-      "category": "Backend Development",
+      "category": "Backend, DevOps & Cloud",
       "skills": [
         {
+          "name": "Node.js",
+          "level": 0,
+          "category": "Backend, DevOps & Cloud",
+          "since": 2024
+        },
+        {
           "name": "NestJS",
-          "level": 1,
-          "proficiency": "Beginner",
-          "category": "Backend Development",
-          "yearsOfExperience": 2,
-          "endorsements": 0,
+          "level": 0,
+          "category": "Backend, DevOps & Cloud",
           "since": 2024
         },
         {
           "name": ".NET Core",
-          "level": 1,
-          "proficiency": "Beginner",
-          "category": "Backend Development",
-          "yearsOfExperience": 1,
-          "endorsements": 0,
+          "level": 0,
+          "category": "Backend, DevOps & Cloud",
           "since": 2025
         },
         {
-          "name": "Node.js",
-          "level": 4,
-          "proficiency": "Intermediate",
-          "category": "Backend Development",
-          "yearsOfExperience": 1,
-          "endorsements": 11,
-          "since": 2024
+          "name": "DevOps Management",
+          "level": 0,
+          "category": "Backend, DevOps & Cloud",
+          "since": 2025
         },
         {
-          "name": "REST API",
-          "level": 8,
-          "proficiency": "Expert",
-          "category": "Backend Development",
-          "yearsOfExperience": 10,
-          "endorsements": 2
+          "name": "CI / CD",
+          "level": 0,
+          "category": "Backend, DevOps & Cloud",
+          "since": 2025
         },
         {
-          "name": "ECMAScript",
-          "level": 7,
-          "proficiency": "Expert",
-          "category": "Backend Development",
-          "yearsOfExperience": 8,
-          "endorsements": 13
-        }
-      ]
-    },
-    {
-      "category": "AI & Innovation",
-      "skills": [
-        {
-          "name": "LangChain",
-          "level": 7,
-          "proficiency": "Expert",
-          "category": "AI & Innovation",
-          "yearsOfExperience": 1,
-          "endorsements": 0
-        },
-        {
-          "name": "Cursor AI",
-          "level": 7,
-          "proficiency": "Expert",
-          "category": "AI & Innovation",
-          "yearsOfExperience": 2,
-          "endorsements": 0
-        },
-        {
-          "name": "Flowsie",
-          "level": 7,
-          "proficiency": "Expert",
-          "category": "AI & Innovation",
-          "yearsOfExperience": 1,
-          "endorsements": 0
-        }
-      ]
-    },
-    {
-      "category": "DevOps & Infrastructure",
-      "skills": [
-        {
-          "name": "DevOps",
-          "level": 7,
-          "proficiency": "Expert",
-          "category": "DevOps & Infrastructure",
-          "yearsOfExperience": 5,
-          "endorsements": 0
-        },
-        {
-          "name": "Containerization",
-          "level": 7,
-          "proficiency": "Expert",
-          "category": "DevOps & Infrastructure",
-          "yearsOfExperience": 4,
-          "endorsements": 0
+          "name": "Azure DevOps",
+          "level": 0,
+          "category": "Backend, DevOps & Cloud",
+          "since": 2025
         },
         {
           "name": "Docker",
-          "level": 4,
-          "proficiency": "Intermediate",
-          "category": "DevOps & Infrastructure",
-          "yearsOfExperience": 1,
-          "endorsements": 0,
+          "level": 0,
+          "category": "Backend, DevOps & Cloud",
           "since": 2024
         },
         {
-          "name": "Kubernetes",
-          "level": 1,
-          "proficiency": "Beginner",
-          "category": "DevOps & Infrastructure",
-          "yearsOfExperience": 2,
-          "endorsements": 0,
+          "name": "Kubernetes (K8s)",
+          "level": 0,
+          "category": "Backend, DevOps & Cloud",
           "since": 2024
         },
         {
-          "name": "Git",
-          "level": 8,
-          "proficiency": "Expert",
-          "category": "DevOps & Infrastructure",
-          "yearsOfExperience": 10,
-          "endorsements": 2
+          "name": "Automation Pipelines",
+          "level": 0,
+          "category": "Backend, DevOps & Cloud",
+          "since": 2025
         }
       ]
     },
     {
-      "category": "Developer Tools",
+      "category": "Data & Analytics",
       "skills": [
         {
+          "name": "Data Architecture",
+          "level": 0,
+          "category": "Data & Analytics",
+          "since": 2025
+        },
+        {
+          "name": "Data Analysis",
+          "level": 0,
+          "category": "Data & Analytics",
+          "since": 2025
+        },
+        {
+          "name": "Analytics",
+          "level": 0,
+          "category": "Data & Analytics",
+          "since": 2025
+        },
+        {
+          "name": "Power BI",
+          "level": 0,
+          "category": "Data & Analytics",
+          "since": 2024
+        }
+      ]
+    },
+    {
+      "category": "Tools & Platforms",
+      "skills": [
+        {
+          "name": "npm",
+          "level": 0,
+          "category": "Tools & Platforms",
+          "since": 2025
+        },
+        {
           "name": "Visual Studio Code",
-          "level": 8,
-          "proficiency": "Expert",
-          "category": "Developer Tools",
-          "yearsOfExperience": 2,
-          "endorsements": 0,
+          "level": 0,
+          "category": "Tools & Platforms",
           "since": 2024
         },
         {
           "name": "Google Chrome Developer Tools",
-          "level": 5,
-          "proficiency": "Intermediate",
-          "category": "Developer Tools",
-          "yearsOfExperience": 3,
-          "endorsements": 0,
-          "since": 2024
-        },
-        {
-          "name": "Postman",
-          "level": 5,
-          "proficiency": "Intermediate",
-          "category": "Developer Tools",
-          "yearsOfExperience": 3,
-          "endorsements": 0,
+          "level": 0,
+          "category": "Tools & Platforms",
           "since": 2024
         },
         {
           "name": "Lighthouse",
-          "level": 4,
-          "proficiency": "Intermediate",
-          "category": "Developer Tools",
-          "yearsOfExperience": 3,
-          "endorsements": 0,
-          "since": 2024
-        }
-      ]
-    },
-    {
-      "category": "Design Tools",
-      "skills": [
-        {
-          "name": "Figma DevMode",
-          "level": 7,
-          "proficiency": "Expert",
-          "category": "Design Tools",
-          "yearsOfExperience": 1,
-          "endorsements": 0,
+          "level": 0,
+          "category": "Tools & Platforms",
           "since": 2024
         },
         {
-          "name": "Zeplin",
-          "level": 5,
-          "proficiency": "Intermediate",
-          "category": "Design Tools",
-          "yearsOfExperience": 3,
-          "endorsements": 0,
+          "name": "Postman",
+          "level": 0,
+          "category": "Tools & Platforms",
           "since": 2024
-        },
-        {
-          "name": "Adobe XD",
-          "level": 5,
-          "proficiency": "Intermediate",
-          "category": "Design Tools",
-          "yearsOfExperience": 5,
-          "endorsements": 2
-        },
-        {
-          "name": "Adobe Photoshop",
-          "level": 7,
-          "proficiency": "Expert",
-          "category": "Design Tools",
-          "yearsOfExperience": 9,
-          "endorsements": 2
-        },
-        {
-          "name": "Adobe Design Programs",
-          "level": 7,
-          "proficiency": "Expert",
-          "category": "Design Tools",
-          "yearsOfExperience": 9,
-          "endorsements": 14
-        }
-      ]
-    },
-    {
-      "category": "Tools & Build Systems",
-      "skills": [
-        {
-          "name": "Yarn",
-          "level": 7,
-          "proficiency": "Expert",
-          "category": "Tools & Build Systems",
-          "yearsOfExperience": 6,
-          "endorsements": 6
         },
         {
           "name": "Gulp.js",
-          "level": 4,
-          "proficiency": "Intermediate",
-          "category": "Tools & Build Systems",
-          "yearsOfExperience": 2,
-          "endorsements": 8,
+          "level": 0,
+          "category": "Tools & Platforms",
           "since": 2024
         },
         {
-          "name": "Team Foundation Server (TFS)",
-          "level": 5,
-          "proficiency": "Intermediate",
-          "category": "Tools & Build Systems",
-          "yearsOfExperience": 5,
-          "endorsements": 7
-        }
-      ]
-    },
-    {
-      "category": "Methodologies & Project Management",
-      "skills": [
-        {
-          "name": "Agile",
-          "level": 7,
-          "proficiency": "Expert",
-          "category": "Methodologies & Project Management",
-          "yearsOfExperience": 8,
-          "endorsements": 1
+          "name": "Webpack",
+          "level": 0,
+          "category": "Tools & Platforms",
+          "since": 2025
         },
         {
-          "name": "Scrum",
-          "level": 7,
-          "proficiency": "Expert",
-          "category": "Methodologies & Project Management",
-          "yearsOfExperience": 8,
-          "endorsements": 2
+          "name": "Yarn",
+          "level": 0,
+          "category": "Tools & Platforms",
+          "since": 2025
         },
         {
-          "name": "Project Management",
-          "level": 7,
-          "proficiency": "Expert",
-          "category": "Methodologies & Project Management",
-          "yearsOfExperience": 8,
-          "endorsements": 20
-        }
-      ]
-    },
-    {
-      "category": "Microsoft Platforms",
-      "skills": [
+          "name": "Git",
+          "level": 0,
+          "category": "Tools & Platforms",
+          "since": 2025
+        },
         {
           "name": "Microsoft SharePoint Online",
-          "level": 4,
-          "proficiency": "Intermediate",
-          "category": "Microsoft Platforms",
-          "yearsOfExperience": 1,
-          "endorsements": 0,
+          "level": 0,
+          "category": "Tools & Platforms",
           "since": 2024
         },
         {
           "name": "Microsoft Power Automate",
-          "level": 4,
-          "proficiency": "Intermediate",
-          "category": "Microsoft Platforms",
-          "yearsOfExperience": 1,
-          "endorsements": 0,
+          "level": 0,
+          "category": "Tools & Platforms",
           "since": 2024
         },
         {
           "name": "Power Apps",
-          "level": 1,
-          "proficiency": "Beginner",
-          "category": "Microsoft Platforms",
-          "yearsOfExperience": 3,
-          "endorsements": 0,
+          "level": 0,
+          "category": "Tools & Platforms",
           "since": 2024
         },
         {
-          "name": "Power BI",
-          "level": 1,
-          "proficiency": "Beginner",
-          "category": "Microsoft Platforms",
-          "yearsOfExperience": 1,
-          "endorsements": 0,
+          "name": "Figma Dev Mode",
+          "level": 0,
+          "category": "Tools & Platforms",
           "since": 2024
         },
         {
-          "name": "SharePoint Designer",
-          "level": 5,
-          "proficiency": "Intermediate",
-          "category": "Microsoft Platforms",
-          "yearsOfExperience": 5,
-          "endorsements": 8
+          "name": "Zeplin",
+          "level": 0,
+          "category": "Tools & Platforms",
+          "since": 2024
         }
       ]
     },
     {
-      "category": "CMS & Platforms",
+      "category": "AI & Emerging Technologies",
       "skills": [
         {
-          "name": "WordPress",
-          "level": 7,
-          "proficiency": "Expert",
-          "category": "CMS & Platforms",
-          "yearsOfExperience": 8,
-          "endorsements": 18
+          "name": "AI Prompt Engineering",
+          "level": 0,
+          "category": "AI & Emerging Technologies",
+          "since": 2025
         },
         {
-          "name": "Liferay",
-          "level": 4,
-          "proficiency": "Intermediate",
-          "category": "CMS & Platforms",
-          "yearsOfExperience": 4,
-          "endorsements": 6
+          "name": "Flowise AI",
+          "level": 0,
+          "category": "AI & Emerging Technologies",
+          "since": 2025
         }
       ]
     },
     {
-      "category": "Data Formats & APIs",
+      "category": "Security & Authentication",
       "skills": [
         {
-          "name": "JSON",
-          "level": 8,
-          "proficiency": "Expert",
-          "category": "Data Formats & APIs",
-          "yearsOfExperience": 10,
-          "endorsements": 2
-        },
-        {
-          "name": "JSON & XML",
-          "level": 7,
-          "proficiency": "Expert",
-          "category": "Data Formats & APIs",
-          "yearsOfExperience": 10,
-          "endorsements": 16
-        },
-        {
-          "name": "Web Applications",
-          "level": 8,
-          "proficiency": "Expert",
-          "category": "Data Formats & APIs",
-          "yearsOfExperience": 10,
-          "endorsements": 2
+          "name": "Microsoft Authentication Library (MSAL)",
+          "level": 0,
+          "category": "Security & Authentication",
+          "since": 2025
         }
       ]
     },
     {
-      "category": "Design & UX",
+      "category": "Languages",
       "skills": [
         {
-          "name": "User Interface",
-          "level": 8,
-          "proficiency": "Expert",
-          "category": "Design & UX",
-          "yearsOfExperience": 11,
-          "endorsements": 28
+          "name": "English",
+          "level": 0,
+          "category": "Languages",
+          "since": 2025
+        },
+        {
+          "name": "Arabic",
+          "level": 0,
+          "category": "Languages",
+          "since": 2025
         }
       ]
     },
     {
-      "category": "E-Learning & Content",
+      "category": "Personal Interests & Wellness",
       "skills": [
         {
-          "name": "E-Learning",
-          "level": 7,
-          "proficiency": "Expert",
-          "category": "E-Learning & Content",
-          "yearsOfExperience": 10,
-          "endorsements": 24
+          "name": "Swimming",
+          "level": 0,
+          "category": "Personal Interests & Wellness",
+          "since": 2025
         },
         {
-          "name": "Instructional Design",
-          "level": 7,
-          "proficiency": "Expert",
-          "category": "E-Learning & Content",
-          "yearsOfExperience": 10,
-          "endorsements": 16
+          "name": "Hiking",
+          "level": 0,
+          "category": "Personal Interests & Wellness",
+          "since": 2025
         },
         {
-          "name": "SEO",
-          "level": 5,
-          "proficiency": "Intermediate",
-          "category": "E-Learning & Content",
-          "yearsOfExperience": 8,
-          "endorsements": 2
-        }
-      ]
-    },
-    {
-      "category": "Soft Skills",
-      "skills": [
-        {
-          "name": "Leadership",
-          "level": 7,
-          "proficiency": "Expert",
-          "category": "Soft Skills",
-          "yearsOfExperience": 8,
-          "endorsements": 17
+          "name": "Padel Tennis",
+          "level": 0,
+          "category": "Personal Interests & Wellness",
+          "since": 2025
         },
         {
-          "name": "Management",
-          "level": 7,
-          "proficiency": "Expert",
-          "category": "Soft Skills",
-          "yearsOfExperience": 8,
-          "endorsements": 17
+          "name": "Chess",
+          "level": 0,
+          "category": "Personal Interests & Wellness",
+          "since": 2025
         },
         {
-          "name": "Communication",
-          "level": 8,
-          "proficiency": "Expert",
-          "category": "Soft Skills",
-          "yearsOfExperience": 11,
-          "endorsements": 0
-        },
-        {
-          "name": "Public Speaking",
-          "level": 7,
-          "proficiency": "Expert",
-          "category": "Soft Skills",
-          "yearsOfExperience": 8,
-          "endorsements": 15
-        }
-      ]
-    },
-    {
-      "category": "Architectural Patterns",
-      "skills": [
-        {
-          "name": "SMACSS",
-          "level": 7,
-          "proficiency": "Expert",
-          "category": "Architectural Patterns",
-          "yearsOfExperience": 7,
-          "endorsements": 10
+          "name": "Listening to Audiobooks",
+          "level": 0,
+          "category": "Personal Interests & Wellness",
+          "since": 2025
         }
       ]
     }
