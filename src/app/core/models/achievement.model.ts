@@ -6,6 +6,7 @@ export interface Achievement {
   category: 'award' | 'certification' | 'recognition' | 'milestone';
   organization?: string;
   icon?: string;
+  articleUrl?: string;
 }
 
 export interface AchievementData {

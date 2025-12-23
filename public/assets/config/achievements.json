@@ -2,52 +2,58 @@
   "achievements": [
     {
       "id": "ach1",
-      "title": "AWS Solutions Architect Professional",
-      "description": "Earned the highest level AWS certification demonstrating expertise in designing distributed systems.",
-      "date": "Sep 2023",
+      "title": "NVIDIA: Fundamentals of Machine Learning",
+      "description": "Completed comprehensive course covering core concepts of AI and Machine Learning, including supervised learning, clustering, time series analysis, and GPU-accelerated ML with NVIDIA RAPIDS. Looking forward to applying these concepts in practical, data-driven solutions.",
+      "date": "Sep 2025",
       "category": "certification",
-      "organization": "Amazon Web Services",
+      "organization": "Whizlabs",
       "icon": "bi-award-fill"
     },
     {
-      "id": "ach2",
-      "title": "Employee of the Year",
-      "description": "Recognized for outstanding performance and leadership in delivering critical projects.",
-      "date": "Dec 2022",
-      "category": "award",
-      "organization": "Tech Corp Inc."
-    },
-    {
       "id": "ach3",
-      "title": "Published Technical Article",
-      "description": "Article on microservices architecture featured in major tech publication with 50K+ reads.",
-      "date": "Jun 2022",
+      "title": "iHealth Product Presentation at LEAP 2025",
+      "description": "Proud to be part of the Digital Innovation team at THIQAH, presenting iHealth product at LEAP 2025. Showcased innovative healthcare solution born from our team's collaboration and innovation.",
+      "date": "Feb 2025",
       "category": "recognition",
-      "organization": "Dev.to"
+      "organization": "LEAP 2025",
+      "icon": "bi-presentation-fill"
     },
     {
-      "id": "ach4",
-      "title": "Hackathon Winner",
-      "description": "First place in company-wide hackathon for innovative AI-powered solution.",
-      "date": "Mar 2022",
-      "category": "award"
+      "id": "ach2",
+      "title": "Second Place - Elm Company Hackathon",
+      "description": "Achieved Second Place with Agent X team in Elm Company Hackathon. Presented an integrated AI solution using Nuha LLM, OpenAI LLM, Custom RAG, LangChain, CrewAI, FastAPI, NestJS, Angular, Bootstrap, and Vector Database. The project received deep admiration from senior judges and executive leaders.",
+      "date": "2025",
+      "category": "award",
+      "organization": "Elm Company",
+      "icon": "bi-trophy-fill"
     },
     {
       "id": "ach5",
-      "title": "10,000 Users Milestone",
-      "description": "Led team that achieved milestone of 10,000 active users for flagship product.",
-      "date": "Jan 2022",
-      "category": "milestone",
-      "organization": "Tech Corp Inc."
+      "title": "First Place - THIQAH Hackathon",
+      "description": "Won 1st place at THIQAH Hackathon with an AI-powered voice recognition tool designed to help people with disabilities. A significant achievement towards inclusive technology and accessibility.",
+      "date": "2025",
+      "category": "award",
+      "organization": "THIQAH",
+      "icon": "bi-trophy-fill"
+    },
+    {
+      "id": "ach4",
+      "title": "Published Article: Azure AD SSO Integration in Angular",
+      "description": "Published comprehensive technical article on Medium about integrating Azure Active Directory Single Sign-On (SSO) in Angular applications. Shared expertise to help developers enhance their app's authentication with Azure AD.",
+      "date": "2024",
+      "category": "recognition",
+      "organization": "Medium",
+      "icon": "bi-file-text-fill",
+      "articleUrl": "https://medium.com/@ahmed.elbazz.2010/integrating-azure-active-directory-sso-in-your-angular-application-f8c655b1fa32"
     },
     {
       "id": "ach6",
-      "title": "Google Cloud Certified",
-      "description": "Achieved Professional Cloud Architect certification demonstrating GCP expertise.",
-      "date": "Nov 2021",
-      "category": "certification",
-      "organization": "Google Cloud"
+      "title": "Best Employee of the Year",
+      "description": "Recognized as the best employee at Naseej company for outstanding performance, dedication, and contributions to the team's success.",
+      "date": "2018",
+      "category": "award",
+      "organization": "Naseej AAS",
+      "icon": "bi-star-fill"
     }
   ]
 }
-

@@ -5,7 +5,7 @@
       "skills": [
         {
           "name": "Angular",
-          "level": 95,
+          "level": 8,
           "proficiency": "Expert",
           "category": "Frontend Development",
           "yearsOfExperience": 10,
@@ -13,7 +13,7 @@
         },
         {
           "name": "Angular Material",
-          "level": 75,
+          "level": 4,
           "proficiency": "Intermediate",
           "category": "Frontend Development",
           "yearsOfExperience": 1,
@@ -22,7 +22,7 @@
         },
         {
           "name": "TypeScript",
-          "level": 95,
+          "level": 8,
           "proficiency": "Expert",
           "category": "Frontend Development",
           "yearsOfExperience": 8,
@@ -30,7 +30,7 @@
         },
         {
           "name": "JavaScript",
-          "level": 95,
+          "level": 8,
           "proficiency": "Expert",
           "category": "Frontend Development",
           "yearsOfExperience": 11,
@@ -38,7 +38,7 @@
         },
         {
           "name": "HTML5",
-          "level": 98,
+          "level": 9,
           "proficiency": "Expert",
           "category": "Frontend Development",
           "yearsOfExperience": 11,
@@ -46,7 +46,7 @@
         },
         {
           "name": "CSS/CSS3",
-          "level": 98,
+          "level": 9,
           "proficiency": "Expert",
           "category": "Frontend Development",
           "yearsOfExperience": 11,
@@ -54,7 +54,7 @@
         },
         {
           "name": "SASS",
-          "level": 90,
+          "level": 7,
           "proficiency": "Expert",
           "category": "Frontend Development",
           "yearsOfExperience": 8,
@@ -62,7 +62,7 @@
         },
         {
           "name": "React.js",
-          "level": 75,
+          "level": 4,
           "proficiency": "Intermediate",
           "category": "Frontend Development",
           "yearsOfExperience": 1,
@@ -71,7 +71,7 @@
         },
         {
           "name": "Vue.js",
-          "level": 55,
+          "level": 1,
           "proficiency": "Beginner",
           "category": "Frontend Development",
           "yearsOfExperience": 1,
@@ -80,7 +80,7 @@
         },
         {
           "name": "RxJS",
-          "level": 75,
+          "level": 4,
           "proficiency": "Intermediate",
           "category": "Frontend Development",
           "yearsOfExperience": 1,
@@ -89,7 +89,7 @@
         },
         {
           "name": "AngularJS",
-          "level": 85,
+          "level": 7,
           "proficiency": "Expert",
           "category": "Frontend Development",
           "yearsOfExperience": 7,
@@ -97,7 +97,7 @@
         },
         {
           "name": "jQuery",
-          "level": 90,
+          "level": 7,
           "proficiency": "Expert",
           "category": "Frontend Development",
           "yearsOfExperience": 10,
@@ -105,7 +105,7 @@
         },
         {
           "name": "Bootstrap",
-          "level": 95,
+          "level": 8,
           "proficiency": "Expert",
           "category": "Frontend Development",
           "yearsOfExperience": 10,
@@ -113,7 +113,7 @@
         },
         {
           "name": "Responsive Web Design",
-          "level": 95,
+          "level": 8,
           "proficiency": "Expert",
           "category": "Frontend Development",
           "yearsOfExperience": 10,
@@ -121,7 +121,7 @@
         },
         {
           "name": "Front-end Coding",
-          "level": 95,
+          "level": 8,
           "proficiency": "Expert",
           "category": "Frontend Development",
           "yearsOfExperience": 11,
@@ -129,7 +129,7 @@
         },
         {
           "name": "AJAX",
-          "level": 90,
+          "level": 7,
           "proficiency": "Expert",
           "category": "Frontend Development",
           "yearsOfExperience": 10,
@@ -137,7 +137,7 @@
         },
         {
           "name": "LitElement",
-          "level": 80,
+          "level": 5,
           "proficiency": "Intermediate",
           "category": "Frontend Development",
           "yearsOfExperience": 3,
@@ -150,7 +150,7 @@
       "skills": [
         {
           "name": "NestJS",
-          "level": 60,
+          "level": 1,
           "proficiency": "Beginner",
           "category": "Backend Development",
           "yearsOfExperience": 2,
@@ -159,7 +159,7 @@
         },
         {
           "name": ".NET Core",
-          "level": 55,
+          "level": 1,
           "proficiency": "Beginner",
           "category": "Backend Development",
           "yearsOfExperience": 1,
@@ -168,7 +168,7 @@
         },
         {
           "name": "Node.js",
-          "level": 75,
+          "level": 4,
           "proficiency": "Intermediate",
           "category": "Backend Development",
           "yearsOfExperience": 1,
@@ -177,7 +177,7 @@
         },
         {
           "name": "REST API",
-          "level": 95,
+          "level": 8,
           "proficiency": "Expert",
           "category": "Backend Development",
           "yearsOfExperience": 10,
@@ -185,7 +185,7 @@
         },
         {
           "name": "ECMAScript",
-          "level": 90,
+          "level": 7,
           "proficiency": "Expert",
           "category": "Backend Development",
           "yearsOfExperience": 8,
@@ -198,7 +198,7 @@
       "skills": [
         {
           "name": "LangChain",
-          "level": 85,
+          "level": 7,
           "proficiency": "Expert",
           "category": "AI & Innovation",
           "yearsOfExperience": 1,
@@ -206,7 +206,7 @@
         },
         {
           "name": "Cursor AI",
-          "level": 90,
+          "level": 7,
           "proficiency": "Expert",
           "category": "AI & Innovation",
           "yearsOfExperience": 2,
@@ -214,7 +214,7 @@
         },
         {
           "name": "Flowsie",
-          "level": 85,
+          "level": 7,
           "proficiency": "Expert",
           "category": "AI & Innovation",
           "yearsOfExperience": 1,
@@ -227,7 +227,7 @@
       "skills": [
         {
           "name": "DevOps",
-          "level": 85,
+          "level": 7,
           "proficiency": "Expert",
           "category": "DevOps & Infrastructure",
           "yearsOfExperience": 5,
@@ -235,7 +235,7 @@
         },
         {
           "name": "Containerization",
-          "level": 90,
+          "level": 7,
           "proficiency": "Expert",
           "category": "DevOps & Infrastructure",
           "yearsOfExperience": 4,
@@ -243,7 +243,7 @@
         },
         {
           "name": "Docker",
-          "level": 75,
+          "level": 4,
           "proficiency": "Intermediate",
           "category": "DevOps & Infrastructure",
           "yearsOfExperience": 1,
@@ -252,7 +252,7 @@
         },
         {
           "name": "Kubernetes",
-          "level": 60,
+          "level": 1,
           "proficiency": "Beginner",
           "category": "DevOps & Infrastructure",
           "yearsOfExperience": 2,
@@ -261,7 +261,7 @@
         },
         {
           "name": "Git",
-          "level": 95,
+          "level": 8,
           "proficiency": "Expert",
           "category": "DevOps & Infrastructure",
           "yearsOfExperience": 10,
@@ -274,7 +274,7 @@
       "skills": [
         {
           "name": "Visual Studio Code",
-          "level": 95,
+          "level": 8,
           "proficiency": "Expert",
           "category": "Developer Tools",
           "yearsOfExperience": 2,
@@ -283,7 +283,7 @@
         },
         {
           "name": "Google Chrome Developer Tools",
-          "level": 80,
+          "level": 5,
           "proficiency": "Intermediate",
           "category": "Developer Tools",
           "yearsOfExperience": 3,
@@ -292,7 +292,7 @@
         },
         {
           "name": "Postman",
-          "level": 80,
+          "level": 5,
           "proficiency": "Intermediate",
           "category": "Developer Tools",
           "yearsOfExperience": 3,
@@ -301,7 +301,7 @@
         },
         {
           "name": "Lighthouse",
-          "level": 75,
+          "level": 4,
           "proficiency": "Intermediate",
           "category": "Developer Tools",
           "yearsOfExperience": 3,
@@ -315,7 +315,7 @@
       "skills": [
         {
           "name": "Figma DevMode",
-          "level": 90,
+          "level": 7,
           "proficiency": "Expert",
           "category": "Design Tools",
           "yearsOfExperience": 1,
@@ -324,7 +324,7 @@
         },
         {
           "name": "Zeplin",
-          "level": 80,
+          "level": 5,
           "proficiency": "Intermediate",
           "category": "Design Tools",
           "yearsOfExperience": 3,
@@ -333,7 +333,7 @@
         },
         {
           "name": "Adobe XD",
-          "level": 80,
+          "level": 5,
           "proficiency": "Intermediate",
           "category": "Design Tools",
           "yearsOfExperience": 5,
@@ -341,7 +341,7 @@
         },
         {
           "name": "Adobe Photoshop",
-          "level": 85,
+          "level": 7,
           "proficiency": "Expert",
           "category": "Design Tools",
           "yearsOfExperience": 9,
@@ -349,7 +349,7 @@
         },
         {
           "name": "Adobe Design Programs",
-          "level": 85,
+          "level": 7,
           "proficiency": "Expert",
           "category": "Design Tools",
           "yearsOfExperience": 9,
@@ -362,7 +362,7 @@
       "skills": [
         {
           "name": "Yarn",
-          "level": 90,
+          "level": 7,
           "proficiency": "Expert",
           "category": "Tools & Build Systems",
           "yearsOfExperience": 6,
@@ -370,7 +370,7 @@
         },
         {
           "name": "Gulp.js",
-          "level": 75,
+          "level": 4,
           "proficiency": "Intermediate",
           "category": "Tools & Build Systems",
           "yearsOfExperience": 2,
@@ -379,7 +379,7 @@
         },
         {
           "name": "Team Foundation Server (TFS)",
-          "level": 80,
+          "level": 5,
           "proficiency": "Intermediate",
           "category": "Tools & Build Systems",
           "yearsOfExperience": 5,
@@ -392,7 +392,7 @@
       "skills": [
         {
           "name": "Agile",
-          "level": 90,
+          "level": 7,
           "proficiency": "Expert",
           "category": "Methodologies & Project Management",
           "yearsOfExperience": 8,
@@ -400,7 +400,7 @@
         },
         {
           "name": "Scrum",
-          "level": 90,
+          "level": 7,
           "proficiency": "Expert",
           "category": "Methodologies & Project Management",
           "yearsOfExperience": 8,
@@ -408,7 +408,7 @@
         },
         {
           "name": "Project Management",
-          "level": 85,
+          "level": 7,
           "proficiency": "Expert",
           "category": "Methodologies & Project Management",
           "yearsOfExperience": 8,
@@ -421,7 +421,7 @@
       "skills": [
         {
           "name": "Microsoft SharePoint Online",
-          "level": 75,
+          "level": 4,
           "proficiency": "Intermediate",
           "category": "Microsoft Platforms",
           "yearsOfExperience": 1,
@@ -430,7 +430,7 @@
         },
         {
           "name": "Microsoft Power Automate",
-          "level": 75,
+          "level": 4,
           "proficiency": "Intermediate",
           "category": "Microsoft Platforms",
           "yearsOfExperience": 1,
@@ -439,7 +439,7 @@
         },
         {
           "name": "Power Apps",
-          "level": 60,
+          "level": 1,
           "proficiency": "Beginner",
           "category": "Microsoft Platforms",
           "yearsOfExperience": 3,
@@ -448,7 +448,7 @@
         },
         {
           "name": "Power BI",
-          "level": 55,
+          "level": 1,
           "proficiency": "Beginner",
           "category": "Microsoft Platforms",
           "yearsOfExperience": 1,
@@ -457,7 +457,7 @@
         },
         {
           "name": "SharePoint Designer",
-          "level": 80,
+          "level": 5,
           "proficiency": "Intermediate",
           "category": "Microsoft Platforms",
           "yearsOfExperience": 5,
@@ -470,7 +470,7 @@
       "skills": [
         {
           "name": "WordPress",
-          "level": 85,
+          "level": 7,
           "proficiency": "Expert",
           "category": "CMS & Platforms",
           "yearsOfExperience": 8,
@@ -478,7 +478,7 @@
         },
         {
           "name": "Liferay",
-          "level": 75,
+          "level": 4,
           "proficiency": "Intermediate",
           "category": "CMS & Platforms",
           "yearsOfExperience": 4,
@@ -491,7 +491,7 @@
       "skills": [
         {
           "name": "JSON",
-          "level": 95,
+          "level": 8,
           "proficiency": "Expert",
           "category": "Data Formats & APIs",
           "yearsOfExperience": 10,
@@ -499,7 +499,7 @@
         },
         {
           "name": "JSON & XML",
-          "level": 90,
+          "level": 7,
           "proficiency": "Expert",
           "category": "Data Formats & APIs",
           "yearsOfExperience": 10,
@@ -507,7 +507,7 @@
         },
         {
           "name": "Web Applications",
-          "level": 95,
+          "level": 8,
           "proficiency": "Expert",
           "category": "Data Formats & APIs",
           "yearsOfExperience": 10,
@@ -520,7 +520,7 @@
       "skills": [
         {
           "name": "User Interface",
-          "level": 95,
+          "level": 8,
           "proficiency": "Expert",
           "category": "Design & UX",
           "yearsOfExperience": 11,
@@ -533,7 +533,7 @@
       "skills": [
         {
           "name": "E-Learning",
-          "level": 90,
+          "level": 7,
           "proficiency": "Expert",
           "category": "E-Learning & Content",
           "yearsOfExperience": 10,
@@ -541,7 +541,7 @@
         },
         {
           "name": "Instructional Design",
-          "level": 85,
+          "level": 7,
           "proficiency": "Expert",
           "category": "E-Learning & Content",
           "yearsOfExperience": 10,
@@ -549,7 +549,7 @@
         },
         {
           "name": "SEO",
-          "level": 80,
+          "level": 5,
           "proficiency": "Intermediate",
           "category": "E-Learning & Content",
           "yearsOfExperience": 8,
@@ -562,7 +562,7 @@
       "skills": [
         {
           "name": "Leadership",
-          "level": 90,
+          "level": 7,
           "proficiency": "Expert",
           "category": "Soft Skills",
           "yearsOfExperience": 8,
@@ -570,7 +570,7 @@
         },
         {
           "name": "Management",
-          "level": 85,
+          "level": 7,
           "proficiency": "Expert",
           "category": "Soft Skills",
           "yearsOfExperience": 8,
@@ -578,7 +578,7 @@
         },
         {
           "name": "Communication",
-          "level": 95,
+          "level": 8,
           "proficiency": "Expert",
           "category": "Soft Skills",
           "yearsOfExperience": 11,
@@ -586,7 +586,7 @@
         },
         {
           "name": "Public Speaking",
-          "level": 85,
+          "level": 7,
           "proficiency": "Expert",
           "category": "Soft Skills",
           "yearsOfExperience": 8,
@@ -599,7 +599,7 @@
       "skills": [
         {
           "name": "SMACSS",
-          "level": 90,
+          "level": 7,
           "proficiency": "Expert",
           "category": "Architectural Patterns",
           "yearsOfExperience": 7,
