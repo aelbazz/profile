@@ -6,5 +6,6 @@ export interface Profile {
   yearsOfExperience: number;
   avatar: string;
   tagline: string;
+  linkedin?: string;
 }
 
