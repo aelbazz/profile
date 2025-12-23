@@ -53,6 +53,10 @@
               ],
               "outputHashing": "all"
             },
+            "github-pages": {
+              "baseHref": "/",
+              "outputHashing": "all"
+            },
             "development": {
               "optimization": false,
               "extractLicenses": false,
