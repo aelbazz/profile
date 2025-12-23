@@ -54,7 +54,7 @@
               "outputHashing": "all"
             },
             "github-pages": {
-              "baseHref": "/",
+              "baseHref": "/profile/",
               "outputHashing": "all"
             },
             "development": {
