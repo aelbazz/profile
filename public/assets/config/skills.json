@@ -23,7 +23,7 @@
         },
         {
           "name": "Mentoring & Coaching",
-          "level": 0,
+          "level": 9,
           "category": "Leadership & People Management",
           "since": 2025
         },
@@ -41,7 +41,7 @@
         },
         {
           "name": "Respect",
-          "level": 0,
+          "level": 9,
           "category": "Leadership & People Management",
           "since": 2025
         },
@@ -53,13 +53,13 @@
         },
         {
           "name": "Facilitation of Meetings",
-          "level": 0,
+          "level": 9,
           "category": "Leadership & People Management",
           "since": 2025
         },
         {
           "name": "Team Coordination",
-          "level": 0,
+          "level": 9,
           "category": "Leadership & People Management",
           "since": 2025
         }
@@ -70,7 +70,7 @@
       "skills": [
         {
           "name": "Communication",
-          "level": 0,
+          "level": 9,
           "category": "Communication & Collaboration",
           "since": 2025
         },
@@ -88,19 +88,19 @@
         },
         {
           "name": "Interpersonal Relationships",
-          "level": 0,
+          "level": 9,
           "category": "Communication & Collaboration",
           "since": 2025
         },
         {
           "name": "Teamwork & Collaboration",
-          "level": 0,
+          "level": 9,
           "category": "Communication & Collaboration",
           "since": 2025
         },
         {
           "name": "Social Perceptiveness",
-          "level": 0,
+          "level": 9,
           "category": "Communication & Collaboration",
           "since": 2025
         },
@@ -135,7 +135,7 @@
         },
         {
           "name": "Focus on Quality",
-          "level": 0,
+          "level": 9,
           "category": "Professional & Cognitive Skills",
           "since": 2025
         },
@@ -241,7 +241,7 @@
         },
         {
           "name": "SMACSS (Scalable and Modular Architecture for CSS)",
-          "level": 0,
+          "level": 9,
           "category": "Methodologies & Frameworks",
           "since": 2025
         }
@@ -252,7 +252,7 @@
       "skills": [
         {
           "name": "Frontend / UI Engineering",
-          "level": 0,
+          "level": 9,
           "category": "Software Engineering & Architecture",
           "since": 2025
         },
@@ -299,43 +299,43 @@
       "skills": [
         {
           "name": "HTML 5",
-          "level": 0,
+          "level": 9,
           "category": "Frontend Technologies",
           "since": 2025
         },
         {
           "name": "CSS",
-          "level": 0,
+          "level": 9,
           "category": "Frontend Technologies",
           "since": 2025
         },
         {
           "name": "Sass",
-          "level": 0,
+          "level": 9,
           "category": "Frontend Technologies",
           "since": 2025
         },
         {
           "name": "Bootstrap",
-          "level": 0,
+          "level": 9,
           "category": "Frontend Technologies",
           "since": 2025
         },
         {
           "name": "JavaScript",
-          "level": 0,
+          "level": 9,
           "category": "Frontend Technologies",
           "since": 2025
         },
         {
           "name": "Angular (Angular 2+)",
-          "level": 0,
+          "level": 9,
           "category": "Frontend Technologies",
           "since": 2025
         },
         {
           "name": "TypeScript",
-          "level": 0,
+          "level": 9,
           "category": "Frontend Technologies",
           "since": 2025
         },
@@ -470,13 +470,13 @@
       "skills": [
         {
           "name": "npm",
-          "level": 0,
+          "level": 9,
           "category": "Tools & Platforms",
           "since": 2025
         },
         {
           "name": "Visual Studio Code",
-          "level": 0,
+          "level": 9,
           "category": "Tools & Platforms",
           "since": 2024
         },
@@ -542,7 +542,7 @@
         },
         {
           "name": "Figma Dev Mode",
-          "level": 0,
+          "level": 9,
           "category": "Tools & Platforms",
           "since": 2024
         },
@@ -593,7 +593,7 @@
         },
         {
           "name": "Arabic",
-          "level": 0,
+          "level": 9,
           "category": "Languages",
           "since": 2025
         }
