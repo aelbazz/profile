@@ -37,22 +37,10 @@ export const routes: Routes = [
     title: 'Courses & Trainings'
   },
   {
-    path: 'management',
-    loadComponent: () => 
-      import('./features/management/management.component').then(m => m.ManagementComponent),
-    title: 'Management'
-  },
-  {
     path: 'skills',
     loadComponent: () => 
       import('./features/skills/skills.component').then(m => m.SkillsComponent),
     title: 'Skills'
-  },
-  {
-    path: 'timeline',
-    loadComponent: () => 
-      import('./features/timeline/timeline.component').then(m => m.TimelineComponent),
-    title: 'Timeline'
   },
   {
     path: 'contact',

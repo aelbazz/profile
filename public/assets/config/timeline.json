@@ -2,76 +2,147 @@
   "events": [
     {
       "id": "evt1",
-      "date": "Jan 2020",
-      "title": "Promoted to Senior Software Engineer",
-      "subtitle": "Tech Corp Inc.",
-      "description": "Promoted to senior role with increased responsibilities in architecture and team leadership.",
+      "date": "Jan 2025",
+      "title": "Started Learning .NET Core",
+      "subtitle": "Backend Development Expansion",
+      "description": "Expanding backend development skills by learning .NET Core framework, broadening technology stack expertise.",
+      "type": "education",
+      "icon": "bi-mortarboard-fill"
+    },
+    {
+      "id": "evt2",
+      "date": "Jan 2024",
+      "title": "Promoted to Staff Developer - Digital Innovation Unit",
+      "subtitle": "THIQAH Business Services",
+      "description": "Leading digital innovation initiatives, developing AI-powered solutions using LangChain, NestJS, and Cursor AI. Establishing best practices for AI integration in enterprise applications.",
       "type": "work",
       "icon": "bi-briefcase-fill"
     },
     {
-      "id": "evt2",
-      "date": "Sep 2023",
-      "title": "AWS Solutions Architect Professional Certified",
-      "subtitle": "Amazon Web Services",
-      "description": "Achieved the highest level AWS certification demonstrating expertise in complex systems.",
-      "type": "certification",
-      "icon": "bi-patch-check-fill"
-    },
-    {
       "id": "evt3",
-      "date": "Dec 2022",
-      "title": "Employee of the Year Award",
-      "subtitle": "Tech Corp Inc.",
-      "description": "Recognized for outstanding performance and leadership throughout the year.",
+      "date": "2024",
+      "title": "Published Technical Article on Medium",
+      "subtitle": "Azure Active Directory SSO Integration",
+      "description": "Authored comprehensive guide on 'Integrating Azure Active Directory SSO in Your Angular Application' sharing expertise with the developer community.",
       "type": "achievement",
-      "icon": "bi-trophy-fill"
+      "icon": "bi-file-text-fill"
     },
     {
       "id": "evt4",
-      "date": "Jan 2022",
-      "title": "Led E-Commerce Platform Launch",
-      "subtitle": "Major Project Milestone",
-      "description": "Successfully led team in launching scalable e-commerce platform serving 100K+ users.",
+      "date": "2024",
+      "title": "THIQAH Onboarding System Launch",
+      "subtitle": "Major Project Achievement",
+      "description": "Successfully developed and launched comprehensive onboarding system for THIQAH using Angular, NestJS, and AI-powered features.",
       "type": "project",
       "icon": "bi-rocket-fill"
     },
     {
       "id": "evt5",
-      "date": "Nov 2021",
-      "title": "Google Cloud Professional Architect",
-      "subtitle": "Google Cloud",
-      "description": "Earned Professional Cloud Architect certification for Google Cloud Platform.",
-      "type": "certification",
-      "icon": "bi-patch-check-fill"
+      "date": "2024",
+      "title": "SFDA FASEH Platform Revamp",
+      "subtitle": "Saudi Food and Drug Authority",
+      "description": "Complete modernization of FASEH system for Saudi Food and Drug Authority, improving user experience and system performance.",
+      "type": "project",
+      "icon": "bi-rocket-fill"
     },
     {
       "id": "evt6",
-      "date": "Mar 2017",
-      "title": "Joined Digital Solutions Ltd.",
-      "subtitle": "Full Stack Developer",
-      "description": "Started new role as full stack developer, working on multiple client projects.",
+      "date": "Sep 2022",
+      "title": "Promoted to Staff Developer - Engineering Team",
+      "subtitle": "THIQAH Business Services",
+      "description": "Led engineering initiatives focused on infrastructure, containerization with Docker/Kubernetes, and established DevOps practices and CI/CD pipelines.",
       "type": "work",
       "icon": "bi-briefcase-fill"
     },
     {
       "id": "evt7",
-      "date": "Jun 2015",
-      "title": "Started Career as Junior Developer",
-      "subtitle": "StartUp Ventures",
-      "description": "Began professional software development career at a fast-paced startup environment.",
+      "date": "2022",
+      "title": "Containerization & DevOps Excellence",
+      "subtitle": "Infrastructure Modernization",
+      "description": "Successfully migrated applications to containerized architecture, reducing deployment time through automated CI/CD pipelines.",
+      "type": "achievement",
+      "icon": "bi-trophy-fill"
+    },
+    {
+      "id": "evt8",
+      "date": "Jul 2019",
+      "title": "Joined THIQAH as Senior Frontend Developer",
+      "subtitle": "THIQAH Business Services - Riyadh, Saudi Arabia",
+      "description": "Started journey with THIQAH, building modern web applications using TypeScript and Angular, establishing frontend development standards.",
       "type": "work",
       "icon": "bi-briefcase-fill"
     },
     {
-      "id": "evt8",
+      "id": "evt9",
+      "date": "2019-2024",
+      "title": "Delivered 25+ Government Projects",
+      "subtitle": "SASO, Ministry of Culture, SFDA & More",
+      "description": "Successfully delivered major government platforms including SABER, Abdea, MAZAD, MOWATHIQ, WATHIQ, and many more, serving millions of users.",
+      "type": "achievement",
+      "icon": "bi-trophy-fill"
+    },
+    {
+      "id": "evt10",
+      "date": "Aug 2017",
+      "title": "Promoted to Senior Front-end / UI Developer",
+      "subtitle": "Naseej AAS - Cairo, Egypt",
+      "description": "Promoted to senior role, leading frontend development initiatives and mentoring junior developers. Created polished, user-centric interfaces.",
+      "type": "work",
+      "icon": "bi-briefcase-fill"
+    },
+    {
+      "id": "evt11",
+      "date": "Feb 2017",
+      "title": "Joined Naseej AAS as Front-end Developer",
+      "subtitle": "Naseej Advanced Arab Systems",
+      "description": "Started working with leading provider of integrated knowledge management solutions in the Arab world, focusing on frontend development.",
+      "type": "work",
+      "icon": "bi-briefcase-fill"
+    },
+    {
+      "id": "evt12",
+      "date": "Apr 2016",
+      "title": "Joined RoQaY as Front-end / UI Developer",
+      "subtitle": "Mazaya Integrated Solutions Co. - Mansoura, Egypt",
+      "description": "Focused on creating polished visual compositions and functioning front-end code with attention to user interaction details.",
+      "type": "work",
+      "icon": "bi-briefcase-fill"
+    },
+    {
+      "id": "evt13",
+      "date": "Jul 2015",
+      "title": "Started Professional Career at Deltasoft",
+      "subtitle": "Front-end / UI Developer - Mansoura, Egypt",
+      "description": "Began professional software development career, developing frontend solutions focusing on functionality display and user interface interactions.",
+      "type": "work",
+      "icon": "bi-briefcase-fill"
+    },
+    {
+      "id": "evt14",
+      "date": "Jun 2015",
+      "title": "Completed ITI Training Program",
+      "subtitle": "Information Technology Institute - Team Leader",
+      "description": "Successfully completed intensive training in eLearning Technologies Specialist Track at ITI intake 35, serving as Team Leader.",
+      "type": "education",
+      "icon": "bi-mortarboard-fill"
+    },
+    {
+      "id": "evt15",
       "date": "May 2015",
-      "title": "Bachelor's Degree in Computer Science",
-      "subtitle": "University of California",
-      "description": "Graduated with honors, specializing in software engineering and distributed systems.",
+      "title": "E-Content Developer at Harf IT",
+      "subtitle": "Knowledge Transfer Program (KTP)",
+      "description": "Worked on e-content development projects applying instructional design principles and creating interactive educational content.",
+      "type": "work",
+      "icon": "bi-briefcase-fill"
+    },
+    {
+      "id": "evt16",
+      "date": "Oct 2014",
+      "title": "Started ITI Training Program",
+      "subtitle": "Information Technology Institute - Mansoura Branch",
+      "description": "Began intensive professional training program in e-learning technologies at ITI, selected as Team Leader for eLearning technologies specialist track.",
       "type": "education",
       "icon": "bi-mortarboard-fill"
     }
   ]
 }
-

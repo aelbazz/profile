@@ -17,7 +17,12 @@
                 </div>
                 <div class="flex-grow-1">
                   <h5 class="card-title mb-2">{{ course.title }}</h5>
-                  <h6 class="card-subtitle text-muted mb-0">{{ course.provider }}</h6>
+                  <h6 class="card-subtitle text-muted mb-1">{{ course.provider }}</h6>
+                  @if (course.instructor) {
+                    <p class="text-muted small mb-0">
+                      <i class="fas fa-chalkboard-teacher me-1"></i>By {{ course.instructor }}
+                    </p>
+                  }
                 </div>
               </div>
 
@@ -47,11 +52,18 @@
                 </div>
               }
 
-              @if (course.certificateUrl) {
-                <a [href]="course.certificateUrl" target="_blank" class="btn btn-sm btn-outline-primary">
-                  <i class="fas fa-file-alt me-2"></i>View Certificate
-                </a>
-              }
+              <div class="mt-auto pt-3">
+                @if (course.courseUrl) {
+                  <a [href]="course.courseUrl" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary me-2">
+                    <i class="fas fa-external-link-alt me-2"></i>View Course
+                  </a>
+                }
+                @if (course.certificateUrl) {
+                  <a [href]="course.certificateUrl" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary">
+                    <i class="fas fa-file-alt me-2"></i>View Certificate
+                  </a>
+                }
+              </div>
             </div>
           </div>
         </div>

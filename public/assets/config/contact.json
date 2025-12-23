@@ -1,29 +1,31 @@
 {
-  "email": "john.doe@example.com",
-  "phone": "+1 (555) 123-4567",
-  "whatsapp": "+15551234567",
-  "linkedin": "https://www.linkedin.com/in/johndoe",
+  "email": "ahmed.elbazz.2010@gmail.com",
+  "phone": "+966548926532",
+  "whatsapp": "+966548926532",
+  "linkedin": "https://www.linkedin.com/in/elbazz",
+  "muchskills": "https://app.muchskills.com/user/amahgoub",
+  "location": "Riyadh, Saudi Arabia",
+  "birthday": "June 26",
   "socialLinks": [
     {
-      "platform": "GitHub",
-      "url": "https://github.com/johndoe",
-      "icon": "bi-github"
+      "platform": "LinkedIn",
+      "url": "https://www.linkedin.com/in/elbazz",
+      "icon": "bi-linkedin"
     },
     {
-      "platform": "Twitter",
-      "url": "https://twitter.com/johndoe",
-      "icon": "bi-twitter"
-    },
-    {
-      "platform": "Stack Overflow",
-      "url": "https://stackoverflow.com/users/johndoe",
-      "icon": "bi-stack-overflow"
+      "platform": "MuchSkills",
+      "url": "https://app.muchskills.com/user/amahgoub",
+      "icon": "bi-diagram-3"
     },
     {
       "platform": "Medium",
-      "url": "https://medium.com/@johndoe",
+      "url": "https://medium.com/@ahmed.elbazz.2010",
       "icon": "bi-medium"
+    },
+    {
+      "platform": "GitHub",
+      "url": "https://github.com/elbazz",
+      "icon": "bi-github"
     }
   ]
 }
-

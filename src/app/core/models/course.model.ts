@@ -4,6 +4,9 @@ export interface Course {
   provider: string;
   completionDate: string;
   certificateUrl?: string;
+  courseUrl?: string;
+  level?: string;
+  instructor?: string;
   skills: string[];
   duration?: string;
   description?: string;

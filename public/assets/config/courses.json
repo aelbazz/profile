@@ -2,61 +2,154 @@
   "courses": [
     {
       "id": "course1",
-      "title": "Advanced System Design",
-      "provider": "Educative.io",
-      "completionDate": "Aug 2023",
-      "certificateUrl": "https://example.com/certificate/1",
-      "skills": ["System Design", "Scalability", "Architecture", "Microservices"],
-      "duration": "40 hours",
-      "description": "Comprehensive course covering design patterns, scalability principles, and distributed systems architecture."
+      "title": "Angular Fundamentals",
+      "provider": "Pluralsight",
+      "completionDate": "2020",
+      "level": "Beginner",
+      "duration": "4h 53m",
+      "instructor": "Joe Eames, Jim Cooper",
+      "courseUrl": "https://www.pluralsight.com/courses/fundamentals-angular",
+      "description": "Learn the fundamentals of building applications with Angular, including components, template syntax, routing, services, forms, HTTP communication, modules, and testing.",
+      "skills": [
+        "Angular",
+        "Components",
+        "Template Syntax",
+        "Routing",
+        "Navigation",
+        "Services",
+        "Forms",
+        "HTTP",
+        "Angular Modules",
+        "Testing"
+      ]
     },
     {
       "id": "course2",
-      "title": "AWS Solutions Architect Certification Prep",
-      "provider": "A Cloud Guru",
-      "completionDate": "Jul 2023",
-      "certificateUrl": "https://example.com/certificate/2",
-      "skills": ["AWS", "Cloud Architecture", "DevOps", "Security"],
-      "duration": "60 hours",
-      "description": "In-depth preparation for AWS Solutions Architect Professional certification."
+      "title": "Angular Architecture and Best Practices",
+      "provider": "Pluralsight",
+      "completionDate": "2021",
+      "level": "Intermediate",
+      "duration": "5h 21m",
+      "instructor": "Dan Wahlin",
+      "courseUrl": "https://www.pluralsight.com/courses/angular-architecture-best-practices",
+      "description": "Learn architectural concepts, best practices, and how to solve challenging tasks in Angular. Discover component communication techniques, state management, code organization, and general best practices for building maintainable and scalable Angular applications.",
+      "skills": [
+        "Angular Architecture",
+        "Component Communication",
+        "State Management",
+        "Code Organization",
+        "Best Practices",
+        "Application Architecture",
+        "Maintainability",
+        "Refactoring"
+      ]
     },
     {
       "id": "course3",
-      "title": "Advanced Angular Development",
-      "provider": "Udemy",
-      "completionDate": "Mar 2023",
-      "skills": ["Angular", "RxJS", "State Management", "Testing"],
-      "duration": "30 hours",
-      "description": "Master advanced Angular concepts including reactive programming, performance optimization, and testing strategies."
+      "title": "ChatGPT and Generative AI: The Big Picture",
+      "provider": "Pluralsight",
+      "completionDate": "2024",
+      "level": "Intermediate",
+      "duration": "35m",
+      "instructor": "Amber Israelsen",
+      "courseUrl": "https://www.pluralsight.com/courses/chatgpt-generative-ai-big-picture",
+      "description": "Get a foundational understanding of generative AI and how it works to create human-like responses. Explore ChatGPT capabilities and learn how generative AI can transform how you work, learn, and interact.",
+      "skills": [
+        "ChatGPT",
+        "Generative AI",
+        "Artificial Intelligence",
+        "AI Fundamentals",
+        "Natural Language Processing",
+        "AI Applications"
+      ]
     },
     {
       "id": "course4",
-      "title": "Docker and Kubernetes Mastery",
+      "title": "Angular Best Practices",
       "provider": "Pluralsight",
-      "completionDate": "Jan 2023",
-      "certificateUrl": "https://example.com/certificate/4",
-      "skills": ["Docker", "Kubernetes", "Container Orchestration", "DevOps"],
-      "duration": "25 hours",
-      "description": "Comprehensive training on containerization and orchestration using Docker and Kubernetes."
+      "completionDate": "2023",
+      "level": "Intermediate",
+      "duration": "2h 8m",
+      "instructor": "Jim Cooper",
+      "courseUrl": "https://www.pluralsight.com/courses/angular-best-practices",
+      "description": "Learn key best practices in Angular for building larger, more complex applications. Explore project and folder organization, module organization using Core, shared, and feature modules to avoid maintenance, organizational, and scalability issues.",
+      "skills": [
+        "Angular Best Practices",
+        "Project Organization",
+        "Folder Structure",
+        "Module Organization",
+        "Core Modules",
+        "Shared Modules",
+        "Feature Modules",
+        "Scalability",
+        "Maintainability"
+      ]
     },
     {
       "id": "course5",
-      "title": "Machine Learning Fundamentals",
-      "provider": "Coursera",
-      "completionDate": "Oct 2022",
-      "skills": ["Machine Learning", "Python", "TensorFlow", "Data Science"],
-      "duration": "50 hours",
-      "description": "Introduction to machine learning algorithms, model training, and deployment strategies."
+      "title": "Node.js, Express, MongoDB & More: The Complete Bootcamp",
+      "provider": "Udemy",
+      "completionDate": "2022",
+      "level": "Intermediate",
+      "instructor": "Jonas Schmedtmann",
+      "courseUrl": "https://www.udemy.com/course/nodejs-express-mongodb-bootcamp/",
+      "description": "Master Node.js by building a real-world RESTful API and web app. Learn authentication, Node.js security, payment integration, and more in this comprehensive bootcamp covering Node.js, Express, MongoDB, and modern backend development.",
+      "skills": [
+        "Node.js",
+        "Express",
+        "MongoDB",
+        "RESTful API",
+        "Authentication",
+        "Node.js Security",
+        "Payment Integration",
+        "Backend Development",
+        "Web Applications",
+        "API Development"
+      ]
     },
     {
       "id": "course6",
-      "title": "Leadership and Team Management",
-      "provider": "LinkedIn Learning",
-      "completionDate": "May 2022",
-      "skills": ["Leadership", "Team Management", "Communication", "Mentoring"],
-      "duration": "15 hours",
-      "description": "Developing leadership skills for managing technical teams and driving successful projects."
+      "title": "The Complete JavaScript Course: From Zero to Expert!",
+      "provider": "Udemy",
+      "completionDate": "2021",
+      "level": "Intermediate",
+      "instructor": "Jonas Schmedtmann",
+      "courseUrl": "https://www.udemy.com/course/the-complete-javascript-course/",
+      "description": "Master JavaScript with projects, challenges and theory. A comprehensive modern JavaScript course covering everything from fundamentals to advanced concepts, with hands-on projects and practical challenges.",
+      "skills": [
+        "JavaScript",
+        "ES6+",
+        "Modern JavaScript",
+        "JavaScript Fundamentals",
+        "JavaScript Advanced",
+        "Projects",
+        "Problem Solving",
+        "Web Development",
+        "Programming"
+      ]
+    },
+    {
+      "id": "course7",
+      "title": "Angular - The Complete Guide (2025 Edition)",
+      "provider": "Udemy",
+      "completionDate": "2021",
+      "level": "Intermediate",
+      "instructor": "Maximilian Schwarzmüller",
+      "courseUrl": "https://www.udemy.com/course/the-complete-guide-to-angular-2/",
+      "description": "Master Angular (formerly Angular 2) and build awesome, reactive web apps. A comprehensive guide covering all aspects of Angular development from fundamentals to advanced concepts for building modern web applications.",
+      "skills": [
+        "Angular",
+        "Angular 2+",
+        "Reactive Programming",
+        "Web Applications",
+        "TypeScript",
+        "Components",
+        "Services",
+        "Routing",
+        "Forms",
+        "HTTP",
+        "State Management"
+      ]
     }
   ]
 }
-

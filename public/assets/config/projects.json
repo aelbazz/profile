@@ -2,54 +2,260 @@
   "projects": [
     {
       "id": "proj1",
-      "name": "E-Commerce Platform",
-      "description": "Built a scalable e-commerce platform handling 100K+ daily transactions with real-time inventory management.",
-      "role": "Technical Lead",
-      "startDate": "Jan 2022",
+      "name": "THIQAH Onboarding System",
+      "description": "Comprehensive onboarding system for THIQAH to streamline employee integration and training processes.",
+      "role": "Staff Developer - Digital Innovation",
+      "startDate": "2024",
       "endDate": null,
-      "technologies": ["Angular", "NestJS", "PostgreSQL", "Redis", "AWS", "Docker"],
+      "isCurrent": true,
+      "type": "Enterprise Application",
+      "technologies": ["Angular", "NestJS", "TypeScript", "AI Integration", "LangChain"],
       "highlights": [
-        "Implemented microservices architecture for better scalability",
-        "Integrated payment gateways (Stripe, PayPal)",
-        "Built real-time inventory tracking system",
-        "Achieved 99.9% uptime with automated monitoring"
+        "Built scalable onboarding platform for enterprise use",
+        "Implemented AI-powered features for enhanced user experience",
+        "Designed modern frontend architecture with best practices",
+        "Integrated automated workflows and notifications"
       ],
-      "imageUrl": "/assets/images/projects/ecommerce.jpg",
-      "githubUrl": "https://github.com/johndoe/ecommerce",
-      "liveUrl": "https://example-ecommerce.com"
+      "company": "THIQAH"
     },
     {
       "id": "proj2",
-      "name": "Healthcare Management System",
-      "description": "Developed a comprehensive healthcare management system for clinics and hospitals.",
-      "role": "Full Stack Developer",
-      "startDate": "Jun 2020",
-      "endDate": "Dec 2021",
-      "technologies": ["React", "Node.js", "MongoDB", "Socket.io", "AWS"],
+      "name": "Saudi Food and Drug Authority (SFDA) - FASEH Revamp",
+      "description": "Complete revamp of FASEH system for Saudi Food and Drug Authority to modernize the platform and improve user experience.",
+      "role": "Staff Developer",
+      "startDate": "2024",
+      "endDate": null,
+      "isCurrent": true,
+      "type": "Government Platform",
+      "technologies": ["Angular", "TypeScript", "Responsive Design", "Azure"],
       "highlights": [
-        "Built patient portal with appointment scheduling",
-        "Implemented HIPAA-compliant data storage",
-        "Created real-time chat for doctor-patient communication",
-        "Integrated with third-party medical APIs"
+        "Modernized legacy system with cutting-edge technologies",
+        "Improved system performance and user experience",
+        "Implemented responsive design for multi-device support",
+        "Enhanced security and compliance features"
       ],
-      "imageUrl": "/assets/images/projects/healthcare.jpg"
+      "company": "THIQAH"
     },
     {
       "id": "proj3",
-      "name": "Social Media Analytics Dashboard",
-      "description": "Created an analytics dashboard for tracking social media metrics across multiple platforms.",
-      "role": "Frontend Developer",
-      "startDate": "Mar 2019",
-      "endDate": "May 2020",
-      "technologies": ["Vue.js", "D3.js", "Python", "Flask", "PostgreSQL"],
+      "name": "SASO - SABER",
+      "description": "Saudi Standards, Metrology and Quality Organization (SASO) platform for product conformity assessment.",
+      "role": "Senior Frontend Developer / Staff Developer",
+      "startDate": "2019",
+      "endDate": "2024",
+      "type": "Government Platform",
+      "technologies": ["Angular", "TypeScript", "Design System", "Azure DevOps"],
       "highlights": [
-        "Built interactive data visualizations with D3.js",
-        "Integrated with Facebook, Twitter, and Instagram APIs",
-        "Implemented real-time data updates using WebSockets",
-        "Created customizable report generation"
+        "Built comprehensive product conformity platform",
+        "Implemented reusable component library",
+        "Established frontend architecture guidelines",
+        "Trained and mentored team members"
       ],
-      "githubUrl": "https://github.com/johndoe/social-analytics"
+      "company": "THIQAH"
+    },
+    {
+      "id": "proj4",
+      "name": "Ministry of Culture - Abdea",
+      "description": "Digital platform for the Ministry of Culture's Abdea initiative supporting cultural programs and services.",
+      "role": "Senior Frontend Developer / Staff Developer",
+      "startDate": "2019",
+      "endDate": "2024",
+      "type": "Government Platform",
+      "technologies": ["Angular", "TypeScript", "SASS", "Responsive Design"],
+      "highlights": [
+        "Delivered pixel-perfect UI implementations",
+        "Built accessible and user-friendly interfaces",
+        "Implemented cultural content management features",
+        "Ensured cross-browser compatibility"
+      ],
+      "company": "THIQAH"
+    },
+    {
+      "id": "proj5",
+      "name": "MAZAD (Auction Platform)",
+      "description": "Online auction platform for government assets and services.",
+      "role": "Senior Frontend Developer / Staff Developer",
+      "startDate": "2019",
+      "endDate": "2024",
+      "type": "E-Commerce Platform",
+      "technologies": ["Angular", "TypeScript", "Real-time Features", "Payment Integration"],
+      "highlights": [
+        "Built real-time bidding system",
+        "Implemented secure payment gateway integration",
+        "Created responsive auction interface",
+        "Optimized performance for high concurrent users"
+      ],
+      "company": "THIQAH"
+    },
+    {
+      "id": "proj6",
+      "name": "MOWATHIQ",
+      "description": "Digital documentation and authentication platform for official documents.",
+      "role": "Senior Frontend Developer / Staff Developer",
+      "startDate": "2019",
+      "endDate": "2024",
+      "type": "Government Platform",
+      "technologies": ["Angular", "TypeScript", "Document Management", "Security"],
+      "highlights": [
+        "Implemented secure document management system",
+        "Built authentication and verification workflows",
+        "Created user-friendly document upload interface",
+        "Ensured high security standards and compliance"
+      ],
+      "company": "THIQAH"
+    },
+    {
+      "id": "proj7",
+      "name": "WATHIQ",
+      "description": "Smart documentation and authentication system for government services.",
+      "role": "Senior Frontend Developer / Staff Developer",
+      "startDate": "2019",
+      "endDate": "2024",
+      "type": "Government Platform",
+      "technologies": ["Angular", "TypeScript", "Smart Forms", "API Integration"],
+      "highlights": [
+        "Developed smart form system with validation",
+        "Integrated with multiple government APIs",
+        "Implemented digital signature capabilities",
+        "Optimized user journey and experience"
+      ],
+      "company": "THIQAH"
+    },
+    {
+      "id": "proj8",
+      "name": "Saudi Council of Engineers",
+      "description": "Professional platform for Saudi Council of Engineers managing memberships and services.",
+      "role": "Senior Frontend Developer / Staff Developer",
+      "startDate": "2019",
+      "endDate": "2024",
+      "type": "Professional Portal",
+      "technologies": ["Angular", "TypeScript", "Member Management", "Dashboard"],
+      "highlights": [
+        "Built comprehensive member management system",
+        "Implemented professional certification workflows",
+        "Created interactive dashboards and reports",
+        "Developed continuing education tracking features"
+      ],
+      "company": "THIQAH"
+    },
+    {
+      "id": "proj9",
+      "name": "Business Advisors Aamaly",
+      "description": "Platform connecting businesses with professional advisors for consultancy services.",
+      "role": "Senior Frontend Developer / Staff Developer",
+      "startDate": "2019",
+      "endDate": "2024",
+      "type": "Business Platform",
+      "technologies": ["Angular", "TypeScript", "Matching System", "Communication"],
+      "highlights": [
+        "Developed advisor-client matching system",
+        "Built communication and collaboration features",
+        "Implemented booking and scheduling system",
+        "Created rating and review functionality"
+      ],
+      "company": "THIQAH"
+    },
+    {
+      "id": "proj10",
+      "name": "MERAS (Heritage Platform)",
+      "description": "Digital platform for preserving and showcasing Saudi cultural heritage.",
+      "role": "Senior Frontend Developer / Staff Developer",
+      "startDate": "2019",
+      "endDate": "2024",
+      "type": "Cultural Platform",
+      "technologies": ["Angular", "TypeScript", "Media Management", "Interactive Maps"],
+      "highlights": [
+        "Built interactive heritage exploration interface",
+        "Implemented multimedia content management",
+        "Created map-based navigation system",
+        "Developed multilingual support"
+      ],
+      "company": "THIQAH"
+    },
+    {
+      "id": "proj11",
+      "name": "VSC Maintenance Centers Classification",
+      "description": "Classification and management system for vehicle service center maintenance operations.",
+      "role": "Senior Frontend Developer / Staff Developer",
+      "startDate": "2019",
+      "endDate": "2024",
+      "type": "Management System",
+      "technologies": ["Angular", "TypeScript", "Data Visualization", "Reporting"],
+      "highlights": [
+        "Built classification and rating system",
+        "Implemented comprehensive reporting features",
+        "Created data visualization dashboards",
+        "Developed quality assurance tracking"
+      ],
+      "company": "THIQAH"
+    },
+    {
+      "id": "proj12",
+      "name": "Payment Gateway",
+      "description": "Secure payment gateway integration for multiple government platforms.",
+      "role": "Senior Frontend Developer / Staff Developer",
+      "startDate": "2019",
+      "endDate": "2024",
+      "type": "Payment System",
+      "technologies": ["Angular", "TypeScript", "Payment APIs", "Security"],
+      "highlights": [
+        "Integrated multiple payment providers",
+        "Implemented secure payment flows",
+        "Built transaction management interface",
+        "Ensured PCI compliance standards"
+      ],
+      "company": "THIQAH"
+    },
+    {
+      "id": "proj13",
+      "name": "Companies Contracts Management",
+      "description": "Enterprise contract management system for companies and government entities.",
+      "role": "Senior Frontend Developer / Staff Developer",
+      "startDate": "2019",
+      "endDate": "2024",
+      "type": "Enterprise System",
+      "technologies": ["Angular", "TypeScript", "Document Management", "Workflow"],
+      "highlights": [
+        "Built contract lifecycle management system",
+        "Implemented approval workflows",
+        "Created document versioning system",
+        "Developed notification and reminder features"
+      ],
+      "company": "THIQAH"
+    },
+    {
+      "id": "proj14",
+      "name": "Commercial Registration",
+      "description": "Digital platform for commercial registration and business licensing services.",
+      "role": "Senior Frontend Developer / Staff Developer",
+      "startDate": "2019",
+      "endDate": "2024",
+      "type": "Government Platform",
+      "technologies": ["Angular", "TypeScript", "Forms", "Integration"],
+      "highlights": [
+        "Streamlined registration process",
+        "Built smart form system with validation",
+        "Integrated with government databases",
+        "Implemented real-time status tracking"
+      ],
+      "company": "THIQAH"
+    },
+    {
+      "id": "proj15",
+      "name": "Integrating Azure Active Directory SSO in Your Angular Application",
+      "description": "A comprehensive guide on implementing Azure Active Directory Single Sign-On (SSO) in Angular applications, covering authentication flows, configuration, and best practices.",
+      "role": "Author",
+      "startDate": "2024",
+      "endDate": null,
+      "type": "Article",
+      "technologies": ["Angular", "Azure Active Directory", "SSO", "Authentication", "TypeScript"],
+      "highlights": [
+        "Detailed step-by-step integration guide",
+        "Best practices for Azure AD configuration",
+        "Real-world implementation examples",
+        "Security considerations and troubleshooting"
+      ],
+      "liveUrl": "https://medium.com/@ahmed.elbazz.2010/integrating-azure-active-directory-sso-in-your-angular-application-f8c655b1fa32"
     }
   ]
 }
-

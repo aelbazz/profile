@@ -19,9 +19,7 @@ export class AppComponent {
     { path: '/projects', label: 'Projects', icon: 'fas fa-folder' },
     { path: '/achievements', label: 'Achievements', icon: 'fas fa-trophy' },
     { path: '/courses', label: 'Courses', icon: 'fas fa-book' },
-    { path: '/management', label: 'Management', icon: 'fas fa-users' },
     { path: '/skills', label: 'Skills', icon: 'fas fa-code' },
-    { path: '/timeline', label: 'Timeline', icon: 'fas fa-history' },
     { path: '/contact', label: 'Contact', icon: 'fas fa-envelope' }
   ];
 
