@@ -52,6 +52,13 @@
       <div class="col-md-6 text-center text-md-end">
         <p class="mb-0">
           Built with <i class="fas fa-heart text-danger"></i> using Angular {{ getAngularVersion() }}
+          @if (profile(); as profileData) {
+            <span class="mx-2">|</span>
+            <span>Author: </span>
+            <a [href]="linkedinUrl()" target="_blank" class="text-white text-decoration-none" title="LinkedIn Profile">
+              <i class="fab fa-linkedin me-1"></i>{{ authorName() }}
+            </a>
+          }
         </p>
       </div>
     </div>

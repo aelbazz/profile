@@ -1,13 +1,13 @@
 import { Component, OnInit, ChangeDetectionStrategy, inject, signal, computed } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ConfigDataService } from '../../core/services';
-import { SectionHeaderComponent, BadgeComponent } from '../../shared/components';
+import { SectionHeaderComponent } from '../../shared/components';
 import { SkillData } from '../../core/models';
 
 @Component({
   selector: 'app-skills',
   standalone: true,
-  imports: [SectionHeaderComponent, BadgeComponent, FormsModule],
+  imports: [SectionHeaderComponent, FormsModule],
   templateUrl: './skills.component.html',
   styleUrls: ['./skills.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

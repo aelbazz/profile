@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "myProfile": {
+    "profile": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -42,8 +42,8 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "1MB",
+                  "maximumError": "1.5MB"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -69,10 +69,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "myProfile:build:production"
+              "buildTarget": "profile:build:production"
             },
             "development": {
-              "buildTarget": "myProfile:build:development"
+              "buildTarget": "profile:build:development"
             }
           },
           "defaultConfiguration": "development"

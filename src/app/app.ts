@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, computed } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { VERSION } from '@angular/core';
+import { ConfigDataService } from './core/services';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import { VERSION } from '@angular/core';
   templateUrl: './app.html',
   styleUrls: ['./app.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Professional Portfolio';
   currentYear = new Date().getFullYear();
   
@@ -22,6 +23,16 @@ export class AppComponent {
     { path: '/skills', label: 'Skills', icon: 'fas fa-code' },
     { path: '/contact', label: 'Contact', icon: 'fas fa-envelope' }
   ];
+
+  readonly profile = computed(() => this.configService.profile());
+  readonly authorName = computed(() => this.profile()?.name || 'Author');
+  readonly linkedinUrl = computed(() => this.profile()?.linkedin || '#');
+
+  constructor(private configService: ConfigDataService) {}
+
+  ngOnInit(): void {
+    this.configService.loadProfile();
+  }
 
   getAngularVersion(): string {
     return VERSION.full;
