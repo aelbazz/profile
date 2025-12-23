@@ -1,0 +1,99 @@
+{
+  "responsibilities": [
+    {
+      "id": "mgmt1",
+      "level": "high",
+      "title": "Technical Lead - Engineering Department",
+      "organization": "Tech Corp Inc.",
+      "startDate": "Jan 2022",
+      "endDate": null,
+      "isCurrent": true,
+      "teamSize": 12,
+      "description": "Leading the engineering department with responsibility for technical strategy, team development, and delivery of multiple high-impact projects.",
+      "keyResponsibilities": [
+        "Define technical vision and roadmap for the engineering team",
+        "Manage and mentor team of 12 engineers across 3 product teams",
+        "Establish coding standards and development best practices",
+        "Coordinate with product management and stakeholders on priorities",
+        "Conduct performance reviews and career development planning",
+        "Drive adoption of new technologies and methodologies",
+        "Manage technical debt and ensure code quality"
+      ],
+      "achievements": [
+        "Increased team velocity by 40% through process improvements",
+        "Reduced production incidents by 60% through better practices",
+        "Successfully hired and onboarded 5 senior engineers",
+        "Launched 3 major product features ahead of schedule"
+      ]
+    },
+    {
+      "id": "mgmt2",
+      "level": "high",
+      "title": "Architecture Committee Member",
+      "organization": "Tech Corp Inc.",
+      "startDate": "Jun 2021",
+      "endDate": null,
+      "isCurrent": true,
+      "description": "Contributing to company-wide architectural decisions and standards as part of the technical architecture committee.",
+      "keyResponsibilities": [
+        "Review and approve architectural proposals for major initiatives",
+        "Establish company-wide technical standards and guidelines",
+        "Evaluate new technologies and recommend adoption strategies",
+        "Mentor architects across different teams",
+        "Ensure alignment with security and compliance requirements"
+      ],
+      "achievements": [
+        "Led migration strategy to cloud-native architecture",
+        "Established microservices design patterns used across company",
+        "Reduced infrastructure costs by 35% through optimization"
+      ]
+    },
+    {
+      "id": "mgmt3",
+      "level": "low",
+      "title": "Scrum Master - Product Team",
+      "organization": "Digital Solutions Ltd.",
+      "startDate": "Jan 2019",
+      "endDate": "Dec 2019",
+      "isCurrent": false,
+      "teamSize": 7,
+      "description": "Facilitated agile processes and removed impediments for a cross-functional product team.",
+      "keyResponsibilities": [
+        "Facilitate daily standups, sprint planning, and retrospectives",
+        "Remove blockers and impediments for the team",
+        "Track and report on team velocity and sprint progress",
+        "Coach team members on agile best practices",
+        "Coordinate with product owner on backlog prioritization"
+      ],
+      "achievements": [
+        "Improved sprint completion rate from 60% to 90%",
+        "Reduced average story cycle time by 30%",
+        "Increased team satisfaction scores by 25%"
+      ]
+    },
+    {
+      "id": "mgmt4",
+      "level": "low",
+      "title": "Code Review Lead",
+      "organization": "Digital Solutions Ltd.",
+      "startDate": "Jun 2018",
+      "endDate": "Dec 2019",
+      "isCurrent": false,
+      "teamSize": 15,
+      "description": "Coordinated code review processes and ensured code quality standards across development teams.",
+      "keyResponsibilities": [
+        "Establish code review guidelines and best practices",
+        "Train developers on effective code review techniques",
+        "Monitor code review metrics and identify areas for improvement",
+        "Resolve conflicts and escalations in code reviews",
+        "Maintain code quality standards and documentation"
+      ],
+      "achievements": [
+        "Reduced average review time from 3 days to 8 hours",
+        "Increased code coverage from 45% to 80%",
+        "Decreased production bugs by 50%"
+      ]
+    }
+  ]
+}
+
