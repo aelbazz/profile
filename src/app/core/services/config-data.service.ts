@@ -18,7 +18,7 @@ import { of } from 'rxjs';
   providedIn: 'root'
 })
 export class ConfigDataService {
-  private readonly baseUrl = '/assets/config';
+  private readonly baseUrl = 'assets/config';
 
   // Signals for each data type
   private profileSignal = signal<Profile | null>(null);
