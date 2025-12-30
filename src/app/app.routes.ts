@@ -3,14 +3,14 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: '/profile',
-    pathMatch: 'full'
-  },
-  {
-    path: 'profile',
     loadComponent: () => 
       import('./features/profile/profile.component').then(m => m.ProfileComponent),
     title: 'Profile'
+  },
+  {
+    path: 'profile',
+    redirectTo: '',
+    pathMatch: 'full'
   },
   {
     path: 'experience',
@@ -50,6 +50,6 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '/profile'
+    redirectTo: ''
   }
 ];
