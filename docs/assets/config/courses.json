@@ -1,6 +1,60 @@
 {
   "courses": [
     {
+      "id": "edu1",
+      "title": "Diploma in Computer Science",
+      "provider": "Mansoura University, Faculty of Specific Education",
+      "completionDate": "2016",
+      "startDate": "2014",
+      "level": "Diploma",
+      "description": "Advanced diploma program in Computer Science covering software development, web technologies, programming, and computer applications.",
+      "skills": [
+        "Computer Science",
+        "Software Development",
+        "Web Technologies",
+        "Programming",
+        "Computer Applications"
+      ]
+    },
+    {
+      "id": "edu2",
+      "title": "Information Technology Institute (ITI) - Professional Training Program",
+      "provider": "Information Technology Institute (ITI), Egypt",
+      "completionDate": "2015",
+      "startDate": "2014",
+      "level": "Professional Certification",
+      "duration": "9 Months",
+      "grade": "Very Good",
+      "description": "Intensive 9-month professional training program bridging academic knowledge with ICT market needs. Selective scholarship program with hands-on projects and industry-aligned tracks in eLearning Technologies. Served as Team Leader for the eLearning Track.",
+      "skills": [
+        "E-Learning Technologies",
+        "Web Development",
+        "Instructional Design",
+        "Content Development",
+        "LMS Administration",
+        "Team Leadership",
+        "Project Management"
+      ]
+    },
+    {
+      "id": "edu3",
+      "title": "Bachelor of Specific Education - Computer Department",
+      "provider": "Mansoura University, Egypt",
+      "completionDate": "2013",
+      "startDate": "2009",
+      "level": "Bachelor's Degree",
+      "grade": "Good",
+      "description": "Bachelor's degree in Specific Education with specialization in Computer Department, covering educational technology, computer science fundamentals, and instructional methodologies.",
+      "skills": [
+        "Computer Science",
+        "Educational Technology",
+        "Instructional Design",
+        "Web Development",
+        "Programming",
+        "Teaching Methodologies"
+      ]
+    },
+    {
       "id": "course24",
       "title": "NVIDIA: Fundamentals of Machine Learning",
       "provider": "Whizlabs",

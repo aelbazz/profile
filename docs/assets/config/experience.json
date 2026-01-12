@@ -3,80 +3,84 @@
     {
       "id": "exp1",
       "company": "THIQAH",
-      "companyFullName": "THIQAH Business Services",
+      "companyFullName": "THIQAH Business Services Co.",
       "companyLogo": "https://thiqah.sa/images/logo.png",
       "companyWebsite": "https://thiqah.sa/en/",
       "companyDescription": "THIQAH is a Saudi company specializing in smart solutions and creative services. Established in 2012, it has partnered with over 100 strategic partners and developed more than 60 smart technical projects, serving over 10 million users in approximately 26 countries. Recognized as one of Asia's top workplaces for 2024.",
-      "position": "Staff Developer – Digital Innovation Unit, Technology Development",
+      "position": "Staff Developer – Digital Innovation Unit",
       "location": "Riyadh, Saudi Arabia",
       "startDate": "Jan 2024",
       "endDate": null,
       "isCurrent": true,
-      "description": "Leading digital innovation initiatives and developing cutting-edge solutions using AI and modern technologies.",
+      "description": "Leading initiatives bridging development and R&D teams, including establishing the AI Integration & Adoption Unit.",
       "responsibilities": [
-        "Developing AI-powered applications using LangChain and advanced language models",
-        "Building scalable backend services with NestJS",
-        "Implementing workflow automation solutions with Flowsie",
-        "Leveraging Cursor AI for enhanced development productivity",
-        "Leading technical innovation in digital transformation projects"
+        "Led initiatives bridging development and R&D teams, including establishing the AI Integration & Adoption Unit",
+        "Transformed concepts into MVPs for iHealth, Quality Mate, and Business AI",
+        "Integrated AI agents and automated processes across digital initiatives",
+        "Provided strategic guidance and technical support to product engineering teams",
+        "Enhanced development workflows and improved SharePoint portal for AI-driven initiatives"
       ],
-      "technologies": ["Cursor AI", "Flowsie", "LangChain", "NestJS", "TypeScript"],
+      "technologies": ["Cursor AI", "Flowise AI", "Ollama", "Generative AI", "LangChain", "NestJS", "TypeScript", "Angular"],
       "achievements": [
-        "Successfully delivered innovative AI-driven solutions",
-        "Established best practices for AI integration in enterprise applications",
-        "Led digital innovation initiatives across multiple projects"
+        "First Place, THIQAH Hackathon (2023): AI-powered voice recognition tool for accessibility",
+        "Second Place, Elm Company Hackathon (2025): Integrated AI solution using Nuha LLM, OpenAI LLM, LangChain, CrewAI, FastAPI, NestJS, Angular",
+        "iHealth Product Presentation at LEAP 2025: Showcased innovative healthcare solution",
+        "Successfully delivered multiple AI-driven MVPs",
+        "Established AI Integration & Adoption Unit"
       ]
     },
     {
       "id": "exp2",
       "company": "THIQAH",
-      "companyFullName": "THIQAH Business Services",
+      "companyFullName": "THIQAH Business Services Co.",
       "companyLogo": "https://thiqah.sa/images/logo.png",
       "companyWebsite": "https://thiqah.sa/en/",
       "companyDescription": "THIQAH is a Saudi company specializing in smart solutions and creative services. Established in 2012, it has partnered with over 100 strategic partners and developed more than 60 smart technical projects, serving over 10 million users in approximately 26 countries.",
-      "position": "Staff Developer – Engineering Team, Technology Development",
+      "position": "Staff Developer – Engineering Team",
       "location": "Riyadh, Saudi Arabia",
       "startDate": "Sep 2022",
       "endDate": "Dec 2023",
       "isCurrent": false,
-      "description": "Led engineering initiatives focused on infrastructure, containerization, and DevOps practices.",
+      "description": "Supported CI/CD, containerization, and DevOps practices across enterprise platforms.",
       "responsibilities": [
-        "Architected and implemented containerized solutions using Docker and Kubernetes",
-        "Established DevOps practices and CI/CD pipelines",
-        "Developed scalable applications using TypeScript",
-        "Mentored team members on modern development practices",
-        "Optimized infrastructure for high availability and performance"
+        "Supported CI/CD, containerization, and DevOps practices across enterprise platforms",
+        "Contributed to backend and frontend integration using TypeScript, NestJS, ABP Framework",
+        "Implemented security solutions using Keycloak and Vault",
+        "Established DevOps practices and automated deployment pipelines",
+        "Mentored team members on modern development practices"
       ],
-      "technologies": ["DevOps", "TypeScript", "Containerization", "Docker", "Kubernetes", "CI/CD"],
+      "technologies": ["TypeScript", "NestJS", "ABP Framework", "Keycloak", "Vault", "CI/CD", "ArgoCD", "Docker", "Kubernetes", "DevOps"],
       "achievements": [
-        "Successfully migrated applications to containerized architecture",
-        "Reduced deployment time through automated CI/CD pipelines",
-        "Improved system reliability and scalability"
+        "Successfully implemented enterprise-grade CI/CD pipelines",
+        "Integrated security and secrets management solutions",
+        "Improved deployment efficiency and system reliability"
       ]
     },
     {
       "id": "exp3",
       "company": "THIQAH",
-      "companyFullName": "THIQAH Business Services",
+      "companyFullName": "THIQAH Business Services Co.",
       "companyLogo": "https://thiqah.sa/images/logo.png",
       "companyWebsite": "https://thiqah.sa/en/",
       "companyDescription": "THIQAH is a Saudi company specializing in smart solutions and creative services. Established in 2012, it has partnered with over 100 strategic partners and developed more than 60 smart technical projects, serving over 10 million users in approximately 26 countries.",
-      "position": "Senior Frontend Developer - Product Engineers, Technology Development",
+      "position": "Senior Frontend Developer – Product Engineers",
       "location": "Riyadh, Saudi Arabia",
       "startDate": "Jul 2019",
       "endDate": "Sep 2022",
       "isCurrent": false,
-      "description": "Developed high-quality frontend solutions and established frontend development standards for product engineering team.",
+      "description": "Delivered high-quality Angular solutions and reusable design system components.",
       "responsibilities": [
+        "Delivered high-quality Angular solutions and reusable design system components",
+        "Mentored team members and promoted frontend best practices",
+        "Guided frontend architecture design and implementation",
         "Built modern web applications using TypeScript and Angular",
         "Implemented responsive and accessible user interfaces",
-        "Collaborated with UX designers to create seamless user experiences",
-        "Conducted code reviews and established frontend coding standards",
-        "Optimized application performance and bundle sizes"
+        "Conducted code reviews and established frontend coding standards"
       ],
-      "technologies": ["TypeScript", "Angular", "HTML5", "CSS3", "SASS", "RxJS"],
+      "technologies": ["TypeScript", "Angular", "HTML5", "CSS3", "SASS", "SMACSS", "Bootstrap", "RxJS", "JSON", "XML", "REST API"],
       "achievements": [
-        "Delivered multiple high-impact product features",
+        "Delivered multiple high-impact product features for government platforms",
+        "Established design system and reusable component library",
         "Improved frontend code quality through comprehensive reviews",
         "Mentored junior developers in modern frontend practices"
       ]
@@ -88,13 +92,14 @@
       "companyLogo": "/assets/images/companies/naseej-logo.png",
       "companyWebsite": "https://www.naseej.com",
       "companyDescription": "Naseej is a leading provider of integrated knowledge management solutions and digital transformation services in the Arab world, specializing in education, library management, and enterprise solutions.",
-      "position": "Senior Front-end / UI Developer",
-      "location": "Cairo Governorate, Egypt",
+      "position": "Senior Frontend / UI Developer",
+      "location": "Cairo, Egypt",
       "startDate": "Aug 2017",
       "endDate": "Jun 2019",
       "isCurrent": false,
-      "description": "Led frontend development initiatives and created polished, user-centric interfaces.",
+      "description": "Developed enterprise web applications and optimized UI workflows.",
       "responsibilities": [
+        "Developed enterprise web applications and optimized UI workflows",
         "Designed and implemented responsive web interfaces",
         "Developed reusable UI components and design systems",
         "Collaborated with cross-functional teams to deliver pixel-perfect designs",
@@ -103,6 +108,7 @@
       ],
       "technologies": ["JavaScript", "Angular", "jQuery", "HTML5", "CSS3", "Bootstrap", "SASS"],
       "achievements": [
+        "Best Employee of the Year (2018) at Naseej company",
         "Successfully delivered multiple client projects on time",
         "Improved UI consistency through component library",
         "Enhanced user satisfaction through improved interface design"
@@ -135,17 +141,17 @@
     },
     {
       "id": "exp6",
-      "company": "RoQaY",
-      "companyFullName": "RoQaY - Mazaya Integrated Solutions Co.",
+      "company": "Roqay",
+      "companyFullName": "Roqay - Mazaya Integrated Solutions Co.",
       "companyLogo": "/assets/images/companies/roqay-logo.png",
       "companyWebsite": "",
       "companyDescription": "Mazaya Integrated Solutions Company providing employment and recruitment services with focus on digital solutions and business services.",
-      "position": "Front-end / UI Developer",
+      "position": "Frontend Developer",
       "location": "Mansoura, Egypt",
       "startDate": "Apr 2016",
       "endDate": "Jan 2017",
       "isCurrent": false,
-      "description": "Focused on creating polished visual compositions and functioning front-end code with attention to user interaction details.",
+      "description": "Focused on polished production-quality interfaces.",
       "responsibilities": [
         "Produced visual compositions and functioning frontend code",
         "Implemented fine-tuned user interface interactions",
@@ -165,12 +171,12 @@
       "companyLogo": "/assets/images/companies/deltasoft-logo.png",
       "companyWebsite": "",
       "companyDescription": "Software development company based in Mansoura, Egypt, specializing in web development and digital solutions.",
-      "position": "Front-end / UI Developer",
+      "position": "Frontend Developer",
       "location": "Mansoura, Egypt",
       "startDate": "Jul 2015",
       "endDate": "Mar 2016",
       "isCurrent": false,
-      "description": "Developed frontend solutions focusing on functionality display and user interface interactions.",
+      "description": "Delivered interactive and responsive web interfaces.",
       "responsibilities": [
         "Developed responsive web interfaces",
         "Implemented frontend functionality using JavaScript",
@@ -213,23 +219,24 @@
       "companyLogo": "/assets/images/companies/iti-logo.png",
       "companyWebsite": "https://www.iti.gov.eg",
       "companyDescription": "Information Technology Institute (ITI) is Egypt's leading technology training institute, established in 1993 under the Ministry of Communications and Information Technology. ITI provides intensive professional training programs in software development, e-learning, and emerging technologies.",
-      "position": "Trainee - eLearning Technologies Specialist Track",
+      "position": "Trainee & Team Leader, eLearning Track",
       "location": "Mansoura, Egypt",
       "startDate": "Oct 2014",
       "endDate": "Jun 2015",
       "isCurrent": false,
-      "description": "Intensive training program in e-learning technologies, serving as Team Leader for the eLearning technologies specialist track.",
+      "description": "Intensive 9-month training program, leading instructional design and content development projects as Team Leader.",
       "responsibilities": [
-        "Led team of trainees as Team Leader",
+        "Led team of trainees as Team Leader for eLearning technologies specialist track",
         "Developed e-content and instructional design skills",
         "Learned modern web development technologies",
-        "Applied instructional design methodologies"
+        "Applied instructional design methodologies",
+        "Led instructional design and content development projects"
       ],
-      "technologies": ["HTML5", "CSS3", "JavaScript", "E-Learning Tools", "Instructional Design"],
+      "technologies": ["HTML5", "CSS3", "JavaScript", "E-Learning Tools", "Instructional Design", "LMS"],
       "achievements": [
-        "Successfully completed ITI intake 35 training program",
+        "Successfully completed ITI intake 35 training program with Very Good grade",
         "Led team as Team Leader",
-        "Gained comprehensive e-learning development skills"
+        "Gained comprehensive e-learning development skills through hands-on projects"
       ]
     }
   ]

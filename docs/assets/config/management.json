@@ -3,97 +3,73 @@
     {
       "id": "mgmt1",
       "level": "high",
-      "title": "Technical Lead - Engineering Department",
-      "organization": "Tech Corp Inc.",
-      "startDate": "Jan 2022",
+      "title": "Staff Developer - Digital Innovation Unit",
+      "organization": "THIQAH Business Services Co.",
+      "startDate": "Jan 2024",
       "endDate": null,
       "isCurrent": true,
-      "teamSize": 12,
-      "description": "Leading the engineering department with responsibility for technical strategy, team development, and delivery of multiple high-impact projects.",
+      "description": "Leading initiatives bridging development and R&D teams, including establishing the AI Integration & Adoption Unit. Providing strategic guidance and technical support to product engineering teams.",
       "keyResponsibilities": [
-        "Define technical vision and roadmap for the engineering team",
-        "Manage and mentor team of 12 engineers across 3 product teams",
-        "Establish coding standards and development best practices",
-        "Coordinate with product management and stakeholders on priorities",
-        "Conduct performance reviews and career development planning",
-        "Drive adoption of new technologies and methodologies",
-        "Manage technical debt and ensure code quality"
+        "Established AI Integration & Adoption Unit",
+        "Led initiatives bridging development and R&D teams",
+        "Transformed concepts into MVPs (iHealth, Quality Mate, Business AI)",
+        "Provided strategic guidance to product engineering teams",
+        "Enhanced development workflows and processes",
+        "Integrated AI agents and automated processes"
       ],
       "achievements": [
-        "Increased team velocity by 40% through process improvements",
-        "Reduced production incidents by 60% through better practices",
-        "Successfully hired and onboarded 5 senior engineers",
-        "Launched 3 major product features ahead of schedule"
+        "First Place, THIQAH Hackathon (2023)",
+        "Second Place, Elm Company Hackathon (2025)",
+        "iHealth Product Presentation at LEAP 2025",
+        "Successfully established AI Integration & Adoption Unit",
+        "Delivered multiple AI-driven MVPs"
       ]
     },
     {
       "id": "mgmt2",
       "level": "high",
-      "title": "Architecture Committee Member",
-      "organization": "Tech Corp Inc.",
-      "startDate": "Jun 2021",
+      "title": "Technical Leadership - Frontend Architecture",
+      "organization": "THIQAH Business Services Co.",
+      "startDate": "Jul 2019",
       "endDate": null,
       "isCurrent": true,
-      "description": "Contributing to company-wide architectural decisions and standards as part of the technical architecture committee.",
+      "description": "Leading frontend architecture design and establishing best practices across product engineering teams. Mentoring developers and promoting quality standards.",
       "keyResponsibilities": [
-        "Review and approve architectural proposals for major initiatives",
-        "Establish company-wide technical standards and guidelines",
-        "Evaluate new technologies and recommend adoption strategies",
-        "Mentor architects across different teams",
-        "Ensure alignment with security and compliance requirements"
+        "Guided frontend architecture design and implementation",
+        "Established frontend development standards and best practices",
+        "Mentored team members on modern development practices",
+        "Conducted code reviews and quality assessments",
+        "Developed reusable design system components",
+        "Led technical decision-making for frontend technologies"
       ],
       "achievements": [
-        "Led migration strategy to cloud-native architecture",
-        "Established microservices design patterns used across company",
-        "Reduced infrastructure costs by 35% through optimization"
+        "Delivered 25+ large-scale government projects",
+        "Established design system and component library",
+        "Improved code quality through mentorship",
+        "Successfully trained and mentored multiple developers"
       ]
     },
     {
       "id": "mgmt3",
-      "level": "low",
-      "title": "Scrum Master - Product Team",
-      "organization": "Digital Solutions Ltd.",
-      "startDate": "Jan 2019",
-      "endDate": "Dec 2019",
+      "level": "medium",
+      "title": "Team Leader - ITI eLearning Track",
+      "organization": "Information Technology Institute (ITI)",
+      "startDate": "Oct 2014",
+      "endDate": "Jun 2015",
       "isCurrent": false,
-      "teamSize": 7,
-      "description": "Facilitated agile processes and removed impediments for a cross-functional product team.",
+      "description": "Led team of trainees in eLearning Technologies Specialist Track during intensive 9-month training program.",
       "keyResponsibilities": [
-        "Facilitate daily standups, sprint planning, and retrospectives",
-        "Remove blockers and impediments for the team",
-        "Track and report on team velocity and sprint progress",
-        "Coach team members on agile best practices",
-        "Coordinate with product owner on backlog prioritization"
+        "Led team of trainees as Team Leader",
+        "Coordinated instructional design and content development projects",
+        "Facilitated team collaboration and project execution",
+        "Applied instructional design methodologies",
+        "Managed project timelines and deliverables"
       ],
       "achievements": [
-        "Improved sprint completion rate from 60% to 90%",
-        "Reduced average story cycle time by 30%",
-        "Increased team satisfaction scores by 25%"
-      ]
-    },
-    {
-      "id": "mgmt4",
-      "level": "low",
-      "title": "Code Review Lead",
-      "organization": "Digital Solutions Ltd.",
-      "startDate": "Jun 2018",
-      "endDate": "Dec 2019",
-      "isCurrent": false,
-      "teamSize": 15,
-      "description": "Coordinated code review processes and ensured code quality standards across development teams.",
-      "keyResponsibilities": [
-        "Establish code review guidelines and best practices",
-        "Train developers on effective code review techniques",
-        "Monitor code review metrics and identify areas for improvement",
-        "Resolve conflicts and escalations in code reviews",
-        "Maintain code quality standards and documentation"
-      ],
-      "achievements": [
-        "Reduced average review time from 3 days to 8 hours",
-        "Increased code coverage from 45% to 80%",
-        "Decreased production bugs by 50%"
+        "Successfully completed training program with Very Good grade",
+        "Led team to successful project completions",
+        "Gained comprehensive e-learning development skills"
       ]
     }
   ]
 }
-
