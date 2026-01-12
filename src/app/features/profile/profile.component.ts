@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, inject, signal, computed } from '@angular/core';
+import { Location } from '@angular/common';
 import { ConfigDataService, PdfExportService, FileDownloadService } from '../../core/services';
 import { Achievement, SkillData } from '../../core/models';
 
@@ -14,8 +15,20 @@ export class ProfileComponent implements OnInit {
   private readonly configService = inject(ConfigDataService);
   private readonly pdfService = inject(PdfExportService);
   private readonly fileDownloadService = inject(FileDownloadService);
+  private readonly location = inject(Location);
 
   readonly profile = this.configService.profile;
+  
+  /**
+   * Get the avatar URL with proper base href handling
+   */
+  readonly avatarUrl = computed(() => {
+    const profileData = this.profile();
+    const avatarPath = profileData?.avatar || '/assets/images/default-avatar.png';
+    // Remove leading slash if present, Location.prepareExternalUrl will add it
+    const normalizedPath = avatarPath.startsWith('/') ? avatarPath.substring(1) : avatarPath;
+    return this.location.prepareExternalUrl(normalizedPath);
+  });
   readonly skills = this.configService.skills;
   readonly experience = this.configService.experience;
   readonly achievements = this.configService.achievements;
@@ -82,7 +95,7 @@ export class ProfileComponent implements OnInit {
     this.fileDownloadService.downloadCV();
   }
 
-  getAchievementIcon(category: string): string {
+  public getAchievementIcon(category: string): string {
     const iconMap: Record<string, string> = {
       'award': 'fas fa-trophy',
       'certification': 'fas fa-certificate',
@@ -92,7 +105,7 @@ export class ProfileComponent implements OnInit {
     return iconMap[category] || 'fas fa-award';
   }
 
-  getCategoryLabel(category: string): string {
+  public getCategoryLabel(category: string): string {
     const labelMap: Record<string, string> = {
       'award': 'Award',
       'certification': 'Certification',
@@ -102,14 +115,14 @@ export class ProfileComponent implements OnInit {
     return labelMap[category] || category;
   }
 
-  getAchievementsByCategory(achievements: Achievement[], category: string): Achievement[] {
+  public getAchievementsByCategory(achievements: Achievement[], category: string): Achievement[] {
     return achievements.filter(a => a.category === category);
   }
 
   /**
    * Gets the skill level category (beginner, intermediate, expert)
    */
-  getSkillLevelCategory(level: number): 'beginner' | 'intermediate' | 'strong' {
+  public getSkillLevelCategory(level: number): 'beginner' | 'intermediate' | 'strong' {
     if (level >= 1 && level <= 3) return 'beginner';
     if (level >= 4 && level <= 6) return 'intermediate';
     if (level >= 7 && level <= 9) return 'strong';
@@ -119,7 +132,7 @@ export class ProfileComponent implements OnInit {
   /**
    * Gets the skill level label
    */
-  getSkillLevelLabel(level: number): string {
+  public getSkillLevelLabel(level: number): string {
     if (level >= 1 && level <= 3) return 'Beginner';
     if (level >= 4 && level <= 6) return 'Intermediate';
     if (level >= 7 && level <= 9) return 'Expert';
@@ -129,7 +142,7 @@ export class ProfileComponent implements OnInit {
   /**
    * Checks if a category is a technical section
    */
-  isTechnicalCategory(category: string): boolean {
+  private isTechnicalCategory(category: string): boolean {
     const technicalCategories = [
       'Methodologies & Frameworks',
       'Software Engineering & Architecture',
