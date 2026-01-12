@@ -60,6 +60,16 @@ export class SkillsComponent implements OnInit {
       skills: [...cat.skills].sort((a, b) => b.level - a.level)
     }));
 
+    // Sort categories: technical sections first, then others
+    filtered = filtered.sort((a, b) => {
+      const aIsTechnical = this.isTechnicalCategory(a.category);
+      const bIsTechnical = this.isTechnicalCategory(b.category);
+      
+      if (aIsTechnical && !bIsTechnical) return -1;
+      if (!aIsTechnical && bIsTechnical) return 1;
+      return 0; // Keep original order within same group
+    });
+
     return {
       categories: filtered
     };
@@ -163,6 +173,23 @@ export class SkillsComponent implements OnInit {
   shouldUseWhiteText(level: number): boolean {
     // Expert levels (7-9) use dark colors, need white text
     return level >= 7 && level <= 9;
+  }
+
+  /**
+   * Checks if a category is a technical section
+   */
+  isTechnicalCategory(category: string): boolean {
+    const technicalCategories = [
+      'Methodologies & Frameworks',
+      'Software Engineering & Architecture',
+      'Frontend Technologies',
+      'Backend, DevOps & Cloud',
+      'Data & Analytics',
+      'Tools & Platforms',
+      'AI & Emerging Technologies',
+      'Security & Authentication'
+    ];
+    return technicalCategories.includes(category);
   }
 
   /**

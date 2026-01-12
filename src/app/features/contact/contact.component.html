@@ -23,43 +23,49 @@
       <div class="quick-actions-section">
         <div class="row g-4">
           <div class="col-lg-3 col-md-6">
-            <button (click)="downloadCV()" class="action-card action-card-download glass-card">
-              <div class="action-icon">
-                <i class="fas fa-file-pdf"></i>
-              </div>
-              <h5 class="action-title">Download CV</h5>
-              <p class="action-description">Get my latest resume</p>
-            </button>
+            <app-action-card
+              type="button"
+              variant="download"
+              icon="fas fa-file-pdf"
+              title="Download CV"
+              description="Get my latest resume"
+              (clicked)="downloadCV()">
+            </app-action-card>
           </div>
           
           <div class="col-lg-3 col-md-6">
-            <a [href]="getMailtoLink(contactData.email)" class="action-card action-card-email glass-card">
-              <div class="action-icon">
-                <i class="fas fa-envelope"></i>
-              </div>
-              <h5 class="action-title">Send Email</h5>
-              <p class="action-description">Drop me a message</p>
-            </a>
+            <app-action-card
+              type="link"
+              variant="email"
+              icon="fas fa-envelope"
+              title="Send Email"
+              description="Drop me a message"
+              [href]="getMailtoLink(contactData.email)">
+            </app-action-card>
           </div>
           
           <div class="col-lg-3 col-md-6">
-            <a [href]="getWhatsAppLink(contactData.whatsapp)" target="_blank" class="action-card action-card-whatsapp glass-card">
-              <div class="action-icon">
-                <i class="fab fa-whatsapp"></i>
-              </div>
-              <h5 class="action-title">WhatsApp</h5>
-              <p class="action-description">Chat instantly</p>
-            </a>
+            <app-action-card
+              type="link"
+              variant="whatsapp"
+              icon="fab fa-whatsapp"
+              title="WhatsApp"
+              description="Chat instantly"
+              [href]="getWhatsAppLink(contactData.whatsapp)"
+              target="_blank">
+            </app-action-card>
           </div>
           
           <div class="col-lg-3 col-md-6">
-            <a [href]="contactData.linkedin" target="_blank" class="action-card action-card-linkedin glass-card">
-              <div class="action-icon">
-                <i class="fab fa-linkedin"></i>
-              </div>
-              <h5 class="action-title">LinkedIn</h5>
-              <p class="action-description">Professional network</p>
-            </a>
+            <app-action-card
+              type="link"
+              variant="linkedin"
+              icon="fab fa-linkedin"
+              title="LinkedIn"
+              description="Professional network"
+              [href]="contactData.linkedin"
+              target="_blank">
+            </app-action-card>
           </div>
         </div>
       </div>

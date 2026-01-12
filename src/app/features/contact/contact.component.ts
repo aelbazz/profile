@@ -1,16 +1,18 @@
 import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
-import { ConfigDataService } from '../../core/services';
+import { ConfigDataService, FileDownloadService } from '../../core/services';
+import { ActionCardComponent } from '../../shared/components';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [],
+  imports: [ActionCardComponent],
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContactComponent implements OnInit {
   private readonly configService = inject(ConfigDataService);
+  private readonly fileDownloadService = inject(FileDownloadService);
   
   readonly contact = this.configService.contact;
 
@@ -28,12 +30,7 @@ export class ContactComponent implements OnInit {
   }
 
   downloadCV(): void {
-    const link = document.createElement('a');
-    link.href = '/assets/files/Ahmed-Albaz-Frontend-staff-Engineer-Jan-2026.pdf';
-    link.download = 'Ahmed-Albaz-Frontend-staff-Engineer-Jan-2026.pdf';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    this.fileDownloadService.downloadCV();
   }
 
   getSocialIcon(platform: string): string {

@@ -121,7 +121,7 @@
   }
 
   <!-- Skills Section -->
-  @if (skills(); as skillsData) {
+  @if (sortedSkills(); as skillsData) {
     <div class="timeline-section">
       <div class="section-header-timeline">
         <div class="section-icon-wrapper">
@@ -138,12 +138,13 @@
               </h4>
               <div class="skills-grid">
                 @for (skill of category.skills; track skill.name) {
-                  <div class="skill-item">
+                  <div class="skill-item" [class.no-level]="skill.level === 0">
                     <div class="skill-name">{{ skill.name }}</div>
-                    <div class="skill-level-bar">
-                      <div class="skill-level-fill" [style.width.%]="skill.level"></div>
-                    </div>
-                    <div class="skill-percentage">{{ skill.level }}%</div>
+                    @if (skill.level !== 0) {
+                      <div class="skill-level-badge" [class]="'level-' + getSkillLevelCategory(skill.level)">
+                        {{ getSkillLevelLabel(skill.level) }}
+                      </div>
+                    }
                   </div>
                 }
               </div>

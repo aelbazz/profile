@@ -26,6 +26,7 @@
     transition: all 0.3s ease;
     background: rgba(255, 255, 255, 0.8);
     backdrop-filter: blur(10px);
+    color: var(--bs-body-color);
     
     &:focus {
       outline: none;
@@ -36,6 +37,20 @@
     
     &::placeholder {
       color: #a0aec0;
+    }
+    
+    @media (prefers-color-scheme: dark) {
+      background: rgba(30, 30, 30, 0.8);
+      border-color: rgba(102, 126, 234, 0.3);
+      
+      &:focus {
+        background: rgba(30, 30, 30, 0.95);
+        box-shadow: 0 4px 16px rgba(102, 126, 234, 0.25);
+      }
+      
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.5);
+      }
     }
   }
   
@@ -83,6 +98,16 @@
     box-shadow: 0 4px 16px rgba(102, 126, 234, 0.1);
     transform: translateY(-2px);
   }
+  
+  @media (prefers-color-scheme: dark) {
+    background: rgba(30, 30, 30, 0.95);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    border-color: rgba(102, 126, 234, 0.2);
+    
+    &:hover {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    }
+  }
 }
 
 .category-header {
@@ -92,6 +117,10 @@
   margin-bottom: 1.5rem;
   padding-bottom: 1rem;
   border-bottom: 2px solid rgba(102, 126, 234, 0.1);
+  
+  @media (prefers-color-scheme: dark) {
+    border-bottom-color: rgba(102, 126, 234, 0.2);
+  }
 }
 
 .category-icon {
@@ -111,7 +140,7 @@
 .category-name {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #2d3748;
+  color: var(--bs-heading-color);
   margin: 0;
   flex: 1;
 }
@@ -143,7 +172,7 @@
   border-radius: 10px;
   font-size: 0.9rem;
   font-weight: 600;
-  color: #2d3748;
+  color: var(--bs-heading-color);
   transition: all 0.3s ease;
   cursor: default;
   
@@ -153,14 +182,42 @@
     
     .skill-tag-name::after {
       content: " • " attr(data-level);
-      color: #718096;
+      color: var(--bs-body-color);
       font-size: 0.8rem;
       font-weight: 500;
+      opacity: 0.7;
     }
   }
   
-  // Starting/Learning (0-3)
+  // No rank (level 0)
   &.level-0,
+  &.no-rank {
+    border-color: #e2e8f0;
+    background: #f7fafc;
+    color: var(--bs-body-color);
+    opacity: 0.7;
+    
+    .skill-tag-indicator {
+      display: none;
+    }
+    
+    &:hover .skill-tag-name::after {
+      display: none;
+    }
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+    
+    &.level-0,
+    &.no-rank {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+  }
+  
+  // Starting/Learning (1-3)
   &.level-1,
   &.level-2,
   &.level-3 {
@@ -227,7 +284,7 @@
 .legend-title {
   font-size: 1rem;
   font-weight: 600;
-  color: #4a5568;
+  color: var(--bs-body-color);
   display: flex;
   align-items: center;
 }
@@ -243,7 +300,7 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 0.9rem;
-  color: #4a5568;
+  color: var(--bs-body-color);
   font-weight: 500;
 }
 
@@ -291,13 +348,13 @@
   h4 {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #2d3748;
+    color: var(--bs-heading-color);
     margin-bottom: 0.5rem;
   }
   
   p {
     font-size: 1rem;
-    color: #718096;
+    color: var(--bs-body-color);
     margin: 0;
   }
 }
@@ -317,10 +374,11 @@
   
   p {
     font-size: 1rem;
-    color: #718096;
+    color: var(--bs-body-color);
     margin: 0;
   }
 }
+
 
 // Responsive Design
 @media (max-width: 992px) {

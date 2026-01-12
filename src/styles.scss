@@ -105,6 +105,10 @@ a {
     height: auto;
     display: block;
   }
+  
+  @media (prefers-color-scheme: dark) {
+    background: linear-gradient(135deg, rgba(30, 30, 30, 0.95) 0%, rgba(26, 26, 26, 0.95) 100%);
+  }
 }
 
 /* Responsive Images */

@@ -18,6 +18,14 @@
   &:hover {
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
   }
+  
+  @media (prefers-color-scheme: dark) {
+    border-color: var(--bs-border-color);
+    
+    &:hover {
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.4) !important;
+    }
+  }
 }
 
 .list-group-item {

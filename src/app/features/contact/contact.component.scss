@@ -84,9 +84,13 @@
   margin-top: -3rem;
   position: relative;
   z-index: 10;
+  
+  @media (prefers-color-scheme: dark) {
+    background: var(--bs-body-bg);
+  }
 }
 
-// Glass Card Effect
+// Glass Card Effect (used by contact-info-card, social-card, cta-banner)
 .glass-card {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
@@ -95,10 +99,21 @@
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.2);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--bs-body-color);
   
   &:hover {
     transform: translateY(-8px);
     box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    background: rgba(30, 30, 30, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    
+    &:hover {
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+    }
   }
 }
 
@@ -106,87 +121,6 @@
 .quick-actions-section {
   margin-bottom: 5rem;
   transform: translateY(-4rem);
-}
-
-.action-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 2.5rem 1.5rem;
-  text-decoration: none;
-  color: inherit;
-  border: none;
-  width: 100%;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 5px;
-    background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-    transform: scaleX(0);
-    transition: transform 0.4s ease;
-  }
-  
-  &:hover::before {
-    transform: scaleX(1);
-  }
-}
-
-.action-icon {
-  width: 80px;
-  height: 80px;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
-  transition: all 0.4s ease;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-.action-card-download .action-icon {
-  background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
-  color: white;
-}
-
-.action-card-email .action-icon {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-}
-
-.action-card-whatsapp .action-icon {
-  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-  color: white;
-}
-
-.action-card-linkedin .action-icon {
-  background: linear-gradient(135deg, #0077B5 0%, #00A0DC 100%);
-  color: white;
-}
-
-.action-card:hover .action-icon {
-  transform: scale(1.1) rotateZ(5deg);
-}
-
-.action-title {
-  font-size: 1.25rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-  color: #2d3748;
-}
-
-.action-description {
-  color: #718096;
-  margin: 0;
-  font-size: 0.95rem;
 }
 
 // Section Headers
@@ -206,7 +140,7 @@
 }
 
 .section-subtitle-modern {
-  color: #718096;
+  color: var(--bs-body-color);
   font-size: 1.1rem;
   margin: 0;
 }
@@ -261,7 +195,7 @@
   font-size: 1.25rem;
   font-weight: 700;
   margin-bottom: 0.75rem;
-  color: #2d3748;
+  color: var(--bs-heading-color);
 }
 
 .contact-info-value {
@@ -280,7 +214,7 @@
 }
 
 .contact-info-hint {
-  color: #718096;
+  color: var(--bs-body-color);
   font-size: 0.9rem;
   margin: 0;
 }
@@ -362,7 +296,7 @@
   flex: 1;
   font-size: 1.1rem;
   font-weight: 700;
-  color: #2d3748;
+  color: var(--bs-heading-color);
   margin: 0;
 }
 
@@ -411,11 +345,11 @@
   font-size: 1.75rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
-  color: #2d3748;
+  color: var(--bs-heading-color);
 }
 
 .cta-description {
-  color: #4a5568;
+  color: var(--bs-body-color);
   margin: 0;
   line-height: 1.7;
 }
