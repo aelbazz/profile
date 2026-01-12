@@ -1,11 +1,11 @@
 import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
 import { ConfigDataService } from '../../core/services';
-import { SectionHeaderComponent, CardComponent, BadgeComponent } from '../../shared/components';
+import { PageHeaderComponent } from '../../shared/components';
 
 @Component({
   selector: 'app-courses',
   standalone: true,
-  imports: [SectionHeaderComponent, BadgeComponent],
+  imports: [PageHeaderComponent],
   templateUrl: './courses.component.html',
   styleUrls: ['./courses.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

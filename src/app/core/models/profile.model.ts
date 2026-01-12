@@ -7,5 +7,6 @@ export interface Profile {
   avatar: string;
   tagline: string;
   linkedin?: string;
+  birthday?: string;
 }
 

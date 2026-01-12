@@ -99,6 +99,35 @@ a {
   overflow: hidden;
   border: 1px solid var(--bs-border-color);
   background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+/* Responsive Images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Better focus indicators */
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid #667eea;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Improved link styles */
+a {
+  color: #667eea;
+  
+  &:hover {
+    color: #5568d3;
+  }
 }
 
 /* Button Enhancements */
@@ -146,9 +175,41 @@ html {
   width: 3rem;
   height: 3rem;
   border-width: 0.3rem;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Loading State Container */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  padding: 3rem;
+  
+  .spinner-border {
+    margin-bottom: 1rem;
+  }
+  
+  p {
+    color: #718096;
+    font-weight: 500;
+  }
 }
 
 /* Responsive Typography */
+@media (max-width: 1200px) {
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
 @media (max-width: 768px) {
   body {
     font-size: 0.95rem;
@@ -164,6 +225,33 @@ html {
   
   h3 {
     font-size: 1.5rem;
+  }
+  
+  h4 {
+    font-size: 1.25rem;
+  }
+  
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  body {
+    font-size: 0.9rem;
+  }
+  
+  h1 {
+    font-size: 1.75rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  h3 {
+    font-size: 1.25rem;
   }
 }
 
@@ -200,6 +288,43 @@ html {
 
 .fade-in {
   animation: fadeIn 0.6s ease-out;
+}
+
+/* Improve touch targets for mobile */
+@media (max-width: 768px) {
+  button, 
+  a.btn,
+  .btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  input,
+  select,
+  textarea {
+    font-size: 16px !important; /* Prevent zoom on iOS */
+  }
+}
+
+/* Prevent horizontal scroll on mobile */
+body {
+  overflow-x: hidden;
+}
+
+/* Better spacing on mobile */
+@media (max-width: 768px) {
+  .py-5 {
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+  
+  .mb-5 {
+    margin-bottom: 2.5rem !important;
+  }
+  
+  .mt-5 {
+    margin-top: 2.5rem !important;
+  }
 }
 
 /* Focus Styles for Accessibility */

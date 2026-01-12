@@ -1,11 +1,11 @@
 import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
 import { ConfigDataService } from '../../core/services';
-import { SectionHeaderComponent, CardComponent, BadgeComponent } from '../../shared/components';
+import { PageHeaderComponent } from '../../shared/components';
 
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [SectionHeaderComponent, CardComponent, BadgeComponent],
+  imports: [PageHeaderComponent],
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

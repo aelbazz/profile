@@ -1,11 +1,11 @@
 import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
 import { ConfigDataService } from '../../core/services';
-import { SectionHeaderComponent, BadgeComponent } from '../../shared/components';
+import { PageHeaderComponent } from '../../shared/components';
 
 @Component({
   selector: 'app-experience',
   standalone: true,
-  imports: [SectionHeaderComponent, BadgeComponent],
+  imports: [PageHeaderComponent],
   templateUrl: './experience.component.html',
   styleUrls: ['./experience.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

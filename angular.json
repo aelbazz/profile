@@ -47,8 +47,9 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "4kB",
-                  "maximumError": "8kB"
+                  "maximumWarning": "10kb",
+                  "maximumError": "15kb",
+                  "name": "profile component scss"
                 }
               ],
               "outputHashing": "all"

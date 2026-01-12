@@ -1,71 +1,74 @@
 <div class="container py-5">
-  <app-section-header 
-    title="Courses & Trainings"
+  <app-page-header 
+    title="Courses & Trainings" 
     subtitle="Continuous learning and professional development"
-    icon="fas fa-book">
-  </app-section-header>
+    icon="fas fa-book" />
 
   @if (courses(); as courseData) {
-    <div class="row">
+    <div class="courses-grid">
       @for (course of courseData.courses; track course.id) {
-        <div class="col-lg-4 col-md-6 mb-4">
-          <div class="card h-100 course-card">
-            <div class="card-body d-flex flex-column">
-              <div class="d-flex align-items-start mb-3">
-                <div class="course-icon me-3">
-                  <i class="fas fa-graduation-cap fs-2"></i>
-                </div>
-                <div class="flex-grow-1">
-                  <h5 class="card-title mb-2">{{ course.title }}</h5>
-                  <h6 class="card-subtitle text-muted mb-1">{{ course.provider }}</h6>
-                  @if (course.instructor) {
-                    <p class="text-muted small mb-0">
-                      <i class="fas fa-chalkboard-teacher me-1"></i>By {{ course.instructor }}
-                    </p>
-                  }
-                </div>
-              </div>
-
-              @if (course.description) {
-                <p class="card-text flex-grow-1">{{ course.description }}</p>
-              }
-
-              <div class="mb-3">
-                <p class="text-muted small mb-2">
-                  <i class="fas fa-calendar-check me-2"></i>Completed: {{ course.completionDate }}
-                </p>
-                @if (course.duration) {
-                  <p class="text-muted small mb-0">
-                    <i class="fas fa-clock me-2"></i>Duration: {{ course.duration }}
-                  </p>
-                }
-              </div>
-
-              @if (course.skills.length > 0) {
-                <div class="mb-3">
-                  <h6 class="small text-muted mb-2">Skills Acquired:</h6>
-                  <div class="d-flex flex-wrap gap-1">
-                    @for (skill of course.skills; track skill) {
-                      <app-badge [text]="skill" variant="info" [pill]="true"></app-badge>
-                    }
-                  </div>
-                </div>
-              }
-
-              <div class="mt-auto pt-3">
-                @if (course.courseUrl) {
-                  <a [href]="course.courseUrl" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary me-2">
-                    <i class="fas fa-external-link-alt me-2"></i>View Course
-                  </a>
-                }
-                @if (course.certificateUrl) {
-                  <a [href]="course.certificateUrl" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-primary">
-                    <i class="fas fa-file-alt me-2"></i>View Certificate
-                  </a>
+        <div class="course-card">
+          <div class="card-header">
+            <div class="course-icon">
+              <i class="fas fa-graduation-cap"></i>
+            </div>
+            <div class="course-header-info">
+              <h3 class="course-title">{{ course.title }}</h3>
+              <div class="course-provider">{{ course.provider }}</div>
+            </div>
+          </div>
+          
+          @if (course.instructor) {
+            <div class="instructor-info">
+              <i class="fas fa-chalkboard-teacher"></i>
+              <span>Instructor: {{ course.instructor }}</span>
+            </div>
+          }
+          
+          @if (course.description) {
+            <p class="course-description">{{ course.description }}</p>
+          }
+          
+          <div class="course-meta">
+            <span class="meta-item">
+              <i class="fas fa-calendar-check"></i>
+              {{ course.completionDate }}
+            </span>
+            @if (course.duration) {
+              <span class="meta-item">
+                <i class="fas fa-clock"></i>
+                {{ course.duration }}
+              </span>
+            }
+          </div>
+          
+          @if (course.skills && course.skills.length > 0) {
+            <div class="section">
+              <h6 class="section-title">Skills Acquired</h6>
+              <div class="skills-list">
+                @for (skill of course.skills; track skill) {
+                  <span class="skill-badge">{{ skill }}</span>
                 }
               </div>
             </div>
-          </div>
+          }
+          
+          @if (course.courseUrl || course.certificateUrl) {
+            <div class="course-actions">
+              @if (course.courseUrl) {
+                <a [href]="course.courseUrl" target="_blank" rel="noopener noreferrer" class="action-link primary">
+                  <i class="fas fa-external-link-alt"></i>
+                  View Course
+                </a>
+              }
+              @if (course.certificateUrl) {
+                <a [href]="course.certificateUrl" target="_blank" rel="noopener noreferrer" class="action-link">
+                  <i class="fas fa-file-alt"></i>
+                  Certificate
+                </a>
+              }
+            </div>
+          }
         </div>
       }
     </div>

@@ -1,13 +1,13 @@
 import { Component, OnInit, ChangeDetectionStrategy, inject, signal, computed } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ConfigDataService } from '../../core/services';
-import { SectionHeaderComponent } from '../../shared/components';
+import { PageHeaderComponent } from '../../shared/components';
 import { SkillData } from '../../core/models';
 
 @Component({
   selector: 'app-skills',
   standalone: true,
-  imports: [SectionHeaderComponent, FormsModule],
+  imports: [PageHeaderComponent, FormsModule],
   templateUrl: './skills.component.html',
   styleUrls: ['./skills.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -163,6 +163,30 @@ export class SkillsComponent implements OnInit {
   shouldUseWhiteText(level: number): boolean {
     // Expert levels (7-9) use dark colors, need white text
     return level >= 7 && level <= 9;
+  }
+
+  /**
+   * Gets the appropriate icon for each skill category
+   */
+  getCategoryIcon(category: string): string {
+    const iconMap: Record<string, string> = {
+      'Leadership & People Management': 'fas fa-users-cog',
+      'Communication & Collaboration': 'fas fa-comments',
+      'Professional & Cognitive Skills': 'fas fa-brain',
+      'Project & Delivery Management': 'fas fa-tasks',
+      'Methodologies & Frameworks': 'fas fa-project-diagram',
+      'Software Engineering & Architecture': 'fas fa-sitemap',
+      'Frontend Technologies': 'fas fa-palette',
+      'Backend, DevOps & Cloud': 'fas fa-server',
+      'Data & Analytics': 'fas fa-chart-line',
+      'Tools & Platforms': 'fas fa-tools',
+      'AI & Emerging Technologies': 'fas fa-robot',
+      'Security & Authentication': 'fas fa-shield-alt',
+      'Languages': 'fas fa-language',
+      'Personal Interests & Wellness': 'fas fa-heart'
+    };
+    
+    return iconMap[category] || 'fas fa-code';
   }
 }
 

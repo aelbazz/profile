@@ -1,12 +1,11 @@
 import { Component, OnInit, ChangeDetectionStrategy, inject, signal } from '@angular/core';
 import { ConfigDataService, PdfExportService } from '../../core/services';
-import { SectionHeaderComponent } from '../../shared/components';
-import { BadgeComponent } from '../../shared/components';
+import { Achievement } from '../../core/models';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [SectionHeaderComponent, BadgeComponent],
+  imports: [],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -40,6 +39,39 @@ export class ProfileComponent implements OnInit {
     } finally {
       this.isExporting.set(false);
     }
+  }
+
+  downloadCV(): void {
+    const link = document.createElement('a');
+    link.href = '/assets/files/Ahmed-Albaz-Frontend-staff-Engineer-Jan-2026.pdf';
+    link.download = 'Ahmed-Albaz-Frontend-staff-Engineer-Jan-2026.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  getAchievementIcon(category: string): string {
+    const iconMap: Record<string, string> = {
+      'award': 'fas fa-trophy',
+      'certification': 'fas fa-certificate',
+      'recognition': 'fas fa-star',
+      'milestone': 'fas fa-flag-checkered'
+    };
+    return iconMap[category] || 'fas fa-award';
+  }
+
+  getCategoryLabel(category: string): string {
+    const labelMap: Record<string, string> = {
+      'award': 'Award',
+      'certification': 'Certification',
+      'recognition': 'Recognition',
+      'milestone': 'Milestone'
+    };
+    return labelMap[category] || category;
+  }
+
+  getAchievementsByCategory(achievements: Achievement[], category: string): Achievement[] {
+    return achievements.filter(a => a.category === category);
   }
 }
 

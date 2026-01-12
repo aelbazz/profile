@@ -1,155 +1,296 @@
-<div class="container py-5">
-  <div class="row mb-4">
-    <div class="col-12">
-      <div class="d-flex justify-content-between align-items-center">
-        <app-section-header 
-          title="Professional Profile"
-          subtitle="Overview of my experience and expertise"
-          icon="fas fa-id-badge">
-        </app-section-header>
-        <button 
-          class="btn btn-primary"
-          (click)="exportToPdf()"
-          [disabled]="isExporting()">
-          @if (isExporting()) {
-            <span class="spinner-border spinner-border-sm me-2"></span>
-            Exporting...
-          } @else {
-            <i class="fas fa-file-pdf me-2"></i>
-            Export to PDF
-          }
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <div id="profile-export">
+<!-- Hero Section with Gradient Background -->
+<div class="hero-section">
+  <div class="hero-overlay"></div>
+  <div class="container position-relative">
     @if (profile(); as profileData) {
-      <div class="row mb-5">
-        <div class="col-md-4 text-center mb-4">
-          <img 
-            [src]="profileData.avatar || '/assets/images/default-avatar.png'" 
-            alt="Profile Picture" 
-            class="rounded-circle img-fluid profile-avatar mb-3"
-            style="width: 200px; height: 200px; object-fit: cover;">
-          <h2 class="mb-1">{{ profileData.name }}</h2>
-          <p class="text-muted mb-2">{{ profileData.title }}</p>
-          <p class="text-muted">
-            <i class="fas fa-map-marker-alt me-2"></i>{{ profileData.location }}
-          </p>
-          <div class="badge bg-primary fs-6 px-3 py-2">
-            {{ profileData.yearsOfExperience }}+ Years Experience
+      <div class="row align-items-center min-vh-75">
+        <div class="col-lg-4 text-center mb-4 mb-lg-0">
+          <div class="profile-avatar-wrapper">
+            <img 
+              [src]="profileData.avatar || '/assets/images/default-avatar.png'" 
+              alt="Profile Picture" 
+              class="profile-avatar-hero">
+            <div class="avatar-ring"></div>
           </div>
         </div>
-
-        <div class="col-md-8">
-          <div class="card shadow-sm">
-            <div class="card-body">
-              <h4 class="card-title mb-3">
-                <i class="fas fa-quote-left me-2 text-primary"></i>{{ profileData.tagline }}
-              </h4>
-              <p class="card-text lead">{{ profileData.summary }}</p>
+        
+        <div class="col-lg-8">
+          <div class="hero-content">
+            <div class="badge bg-light text-primary px-4 py-2 mb-3 hero-badge">
+              <i class="fas fa-star me-2"></i>{{ profileData.yearsOfExperience }}+ Years Experience
+            </div>
+            <h1 class="display-3 fw-bold mb-3 text-white hero-title">{{ profileData.name }}</h1>
+            <h2 class="h3 mb-4 text-white-50 hero-subtitle">{{ profileData.title }}</h2>
+            <p class="lead mb-4 text-white hero-tagline">
+              <i class="fas fa-quote-left me-2"></i>{{ profileData.tagline }}
+            </p>
+            <div class="d-flex flex-wrap gap-3 mb-4">
+              <div class="hero-info-item">
+                <i class="fas fa-map-marker-alt me-2"></i>{{ profileData.location }}
+              </div>
+              <div class="hero-info-item">
+                <i class="fas fa-birthday-cake me-2"></i>{{ profileData.birthday }}
+              </div>
+            </div>
+            <div class="d-flex flex-wrap gap-3">
+              <button 
+                class="btn btn-light btn-lg shadow-lg"
+                (click)="downloadCV()">
+                <i class="fas fa-download me-2"></i>
+                Download CV
+              </button>
+              <button 
+                class="btn btn-outline-light btn-lg"
+                (click)="exportToPdf()"
+                [disabled]="isExporting()">
+                @if (isExporting()) {
+                  <span class="spinner-border spinner-border-sm me-2"></span>
+                  Exporting...
+                } @else {
+                  <i class="fas fa-file-pdf me-2"></i>
+                  Export Profile
+                }
+              </button>
+              <a 
+                [href]="profileData.linkedin" 
+                target="_blank"
+                class="btn btn-info btn-lg text-white">
+                <i class="fab fa-linkedin me-2"></i>
+                Connect
+              </a>
             </div>
           </div>
         </div>
       </div>
     }
+  </div>
+</div>
 
-    @if (skills(); as skillsData) {
-      <div class="row mb-5">
-        <div class="col-12">
-          <h3 class="mb-4">
-            <i class="fas fa-code me-2 text-primary"></i>Core Skills
-          </h3>
-          @for (category of skillsData.categories; track category.category) {
-            <div class="mb-4">
-              <h5 class="text-muted mb-3">{{ category.category }}</h5>
-              <div class="d-flex flex-wrap gap-2">
-                @for (skill of category.skills; track skill.name) {
-                  <app-badge 
-                    [text]="skill.name + ' (' + skill.level + '%)'" 
-                    variant="primary"
-                    [pill]="true">
-                  </app-badge>
+<!-- Timeline Content -->
+<div class="container py-5" id="profile-export">
+  <!-- About Section -->
+  @if (profile(); as profileData) {
+    <div class="timeline-section">
+      <div class="section-header-timeline">
+        <div class="section-icon-wrapper">
+          <i class="fas fa-user-circle section-icon"></i>
+        </div>
+        <h2 class="section-title">About Me</h2>
+      </div>
+      <div class="timeline-card glass-card">
+        <p class="lead mb-0">{{ profileData.summary }}</p>
+      </div>
+    </div>
+  }
+
+  <!-- Experience Timeline -->
+  @if (experience(); as expData) {
+    <div class="timeline-section">
+      <div class="section-header-timeline">
+        <div class="section-icon-wrapper">
+          <i class="fas fa-briefcase section-icon"></i>
+        </div>
+        <h2 class="section-title">Professional Journey</h2>
+      </div>
+      <div class="vertical-timeline">
+        @for (exp of expData.experiences; track exp.id; let idx = $index) {
+          <div class="timeline-item-modern" [class.timeline-item-alternate]="idx % 2 !== 0">
+            <div class="timeline-connector"></div>
+            <div class="timeline-marker-modern">
+              <i class="fas fa-briefcase"></i>
+            </div>
+            <div class="timeline-content-modern glass-card">
+              <div class="timeline-date-badge">
+                {{ exp.startDate }} - {{ exp.endDate || 'Present' }}
+              </div>
+              <h4 class="timeline-content-title">{{ exp.position }}</h4>
+              <h5 class="timeline-content-company">
+                <i class="fas fa-building me-2"></i>{{ exp.company }}
+              </h5>
+              <p class="timeline-content-description">{{ exp.description }}</p>
+              <div class="timeline-tech-stack">
+                @for (tech of exp.technologies; track tech) {
+                  <span class="tech-badge">{{ tech }}</span>
                 }
               </div>
             </div>
-          }
-        </div>
+          </div>
+        }
       </div>
-    }
+    </div>
+  }
 
-    @if (experience(); as expData) {
-      <div class="row mb-5">
-        <div class="col-12">
-          <h3 class="mb-4">
-            <i class="fas fa-briefcase me-2 text-primary"></i>Recent Experience
-          </h3>
-          @for (exp of expData.experiences.slice(0, 3); track exp.id) {
-            <div class="card mb-3 shadow-sm">
-              <div class="card-body">
-                <h5 class="card-title">{{ exp.position }}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">
-                  {{ exp.company }} • {{ exp.startDate }} - {{ exp.endDate || 'Present' }}
-                </h6>
-                <p class="card-text">{{ exp.description }}</p>
-                <div class="d-flex flex-wrap gap-2">
-                  @for (tech of exp.technologies; track tech) {
-                    <app-badge [text]="tech" variant="secondary"></app-badge>
-                  }
-                </div>
+  <!-- Skills Section -->
+  @if (skills(); as skillsData) {
+    <div class="timeline-section">
+      <div class="section-header-timeline">
+        <div class="section-icon-wrapper">
+          <i class="fas fa-code section-icon"></i>
+        </div>
+        <h2 class="section-title">Technical Expertise</h2>
+      </div>
+      <div class="row g-4">
+        @for (category of skillsData.categories; track category.category) {
+          <div class="col-lg-6">
+            <div class="skill-category-card glass-card">
+              <h4 class="skill-category-title">
+                <i class="fas fa-layer-group me-2"></i>{{ category.category }}
+              </h4>
+              <div class="skills-grid">
+                @for (skill of category.skills; track skill.name) {
+                  <div class="skill-item">
+                    <div class="skill-name">{{ skill.name }}</div>
+                    <div class="skill-level-bar">
+                      <div class="skill-level-fill" [style.width.%]="skill.level"></div>
+                    </div>
+                    <div class="skill-percentage">{{ skill.level }}%</div>
+                  </div>
+                }
               </div>
             </div>
-          }
-        </div>
+          </div>
+        }
       </div>
-    }
+    </div>
+  }
 
-    @if (achievements(); as achievementData) {
-      <div class="row mb-5">
-        <div class="col-12">
-          <h3 class="mb-4">
-            <i class="fas fa-trophy me-2 text-primary"></i>Key Achievements
-          </h3>
-          <div class="row">
-            @for (achievement of achievementData.achievements.slice(0, 6); track achievement.id) {
-              <div class="col-md-6 mb-3">
-                <div class="card h-100 shadow-sm">
-                  <div class="card-body">
-                    <h6 class="card-title">{{ achievement.title }}</h6>
-                    <p class="card-text text-muted small">{{ achievement.description }}</p>
-                    <small class="text-muted">{{ achievement.date }}</small>
-                  </div>
+  <!-- Projects Section -->
+  @if (projects(); as projectData) {
+    <div class="timeline-section">
+      <div class="section-header-timeline">
+        <div class="section-icon-wrapper">
+          <i class="fas fa-folder-open section-icon"></i>
+        </div>
+        <h2 class="section-title">Featured Projects</h2>
+      </div>
+      <div class="row g-4">
+        @for (project of projectData.projects; track project.id) {
+          <div class="col-md-6 col-lg-4">
+            <div class="project-card glass-card">
+              <div class="project-icon">
+                <i class="fas fa-rocket"></i>
+              </div>
+              <h4 class="project-title">{{ project.name }}</h4>
+              <div class="project-role">{{ project.role }}</div>
+              <p class="project-description">{{ project.description }}</p>
+              @if (project.technologies) {
+                <div class="project-tech">
+                  @for (tech of project.technologies.slice(0, 4); track tech) {
+                    <span class="tech-badge-small">{{ tech }}</span>
+                  }
+                </div>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  }
+
+  <!-- Achievements Section -->
+  @if (achievements(); as achievementData) {
+    <div class="timeline-section">
+      <div class="section-header-timeline">
+        <div class="section-icon-wrapper">
+          <i class="fas fa-trophy section-icon"></i>
+        </div>
+        <h2 class="section-title">Key Achievements</h2>
+      </div>
+      
+      <!-- Achievement Timeline -->
+      <div class="achievements-timeline">
+        @for (achievement of achievementData.achievements; track achievement.id; let idx = $index) {
+          <div class="achievement-timeline-item" [attr.data-category]="achievement.category">
+            <div class="achievement-timeline-marker" [class]="'marker-' + achievement.category">
+              <i [class]="getAchievementIcon(achievement.category)"></i>
+            </div>
+            
+            <div class="achievement-timeline-content glass-card">
+              <!-- Category Badge -->
+              <div class="achievement-category-badge" [class]="'badge-' + achievement.category">
+                {{ getCategoryLabel(achievement.category) }}
+              </div>
+              
+              <!-- Achievement Header -->
+              <div class="achievement-header">
+                <div class="achievement-main">
+                  <h4 class="achievement-timeline-title">{{ achievement.title }}</h4>
+                  @if (achievement.organization) {
+                    <div class="achievement-organization">
+                      <i class="fas fa-building me-2"></i>{{ achievement.organization }}
+                    </div>
+                  }
+                </div>
+                <div class="achievement-date-badge">
+                  <i class="fas fa-calendar-alt me-2"></i>{{ achievement.date }}
                 </div>
               </div>
-            }
+              
+              <!-- Achievement Body -->
+              <p class="achievement-timeline-description">{{ achievement.description }}</p>
+              
+              <!-- Achievement Footer -->
+              <div class="achievement-footer">
+                <div class="achievement-category-icon" [class]="'category-icon-' + achievement.category">
+                  <i [class]="getAchievementIcon(achievement.category)"></i>
+                </div>
+                @if (achievement.articleUrl) {
+                  <a [href]="achievement.articleUrl" target="_blank" class="achievement-link">
+                    <i class="fas fa-external-link-alt me-2"></i>Read Article
+                  </a>
+                }
+              </div>
+              
+              <!-- Decorative Corner -->
+              <div class="achievement-corner-decoration" [class]="'corner-' + achievement.category"></div>
+            </div>
+          </div>
+        }
+      </div>
+      
+      <!-- Achievement Stats -->
+      <div class="achievement-stats glass-card">
+        <div class="stat-item">
+          <div class="stat-icon stat-icon-award">
+            <i class="fas fa-trophy"></i>
+          </div>
+          <div class="stat-content">
+            <div class="stat-value">{{ getAchievementsByCategory(achievementData.achievements, 'award').length }}</div>
+            <div class="stat-label">Awards</div>
+          </div>
+        </div>
+        
+        <div class="stat-item">
+          <div class="stat-icon stat-icon-certification">
+            <i class="fas fa-certificate"></i>
+          </div>
+          <div class="stat-content">
+            <div class="stat-value">{{ getAchievementsByCategory(achievementData.achievements, 'certification').length }}</div>
+            <div class="stat-label">Certifications</div>
+          </div>
+        </div>
+        
+        <div class="stat-item">
+          <div class="stat-icon stat-icon-recognition">
+            <i class="fas fa-star"></i>
+          </div>
+          <div class="stat-content">
+            <div class="stat-value">{{ getAchievementsByCategory(achievementData.achievements, 'recognition').length }}</div>
+            <div class="stat-label">Recognition</div>
+          </div>
+        </div>
+        
+        <div class="stat-item">
+          <div class="stat-icon stat-icon-total">
+            <i class="fas fa-award"></i>
+          </div>
+          <div class="stat-content">
+            <div class="stat-value">{{ achievementData.achievements.length }}</div>
+            <div class="stat-label">Total Achievements</div>
           </div>
         </div>
       </div>
-    }
-
-    @if (projects(); as projectData) {
-      <div class="row mb-5">
-        <div class="col-12">
-          <h3 class="mb-4">
-            <i class="fas fa-folder me-2 text-primary"></i>Featured Projects
-          </h3>
-          <div class="row">
-            @for (project of projectData.projects.slice(0, 3); track project.id) {
-              <div class="col-md-4 mb-3">
-                <div class="card h-100 shadow-sm">
-                  <div class="card-body">
-                    <h6 class="card-title">{{ project.name }}</h6>
-                    <p class="text-muted small mb-2">{{ project.role }}</p>
-                    <p class="card-text small">{{ project.description }}</p>
-                  </div>
-                </div>
-              </div>
-            }
-          </div>
-        </div>
-      </div>
-    }
-  </div>
+    </div>
+  }
 </div>
 

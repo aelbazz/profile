@@ -1,60 +1,65 @@
 <div class="container py-5">
-  <app-section-header 
-    title="Projects"
+  <app-page-header 
+    title="Projects" 
     subtitle="Showcase of my work and contributions"
-    icon="fas fa-folder">
-  </app-section-header>
+    icon="fas fa-folder-open" />
 
   @if (projects(); as projectData) {
-    <div class="row">
+    <div class="projects-grid">
       @for (project of projectData.projects; track project.id) {
-        <div class="col-lg-4 col-md-6 mb-4">
-          <app-card 
-            [title]="project.name"
-            [subtitle]="project.role"
-            [imageUrl]="project.imageUrl"
-            variant="elevated">
-            <p class="card-text mb-3">{{ project.description }}</p>
-            
-            <p class="text-muted small mb-2">
-              <i class="fas fa-calendar-alt me-2"></i>
+        <div class="project-card">
+          <div class="card-header">
+            <h3 class="project-title">{{ project.name }}</h3>
+            <div class="project-role">{{ project.role }}</div>
+          </div>
+          
+          <p class="project-description">{{ project.description }}</p>
+          
+          <div class="project-meta">
+            <span class="meta-item">
+              <i class="fas fa-calendar-alt"></i>
               {{ project.startDate }} - {{ project.endDate || 'Ongoing' }}
-            </p>
-
-            @if (project.highlights.length > 0) {
-              <div class="mb-3">
-                <h6 class="small text-muted mb-2">Highlights:</h6>
-                <ul class="small mb-0 ps-3">
-                  @for (highlight of project.highlights.slice(0, 3); track highlight) {
-                    <li>{{ highlight }}</li>
-                  }
-                </ul>
+            </span>
+          </div>
+          
+          @if (project.highlights && project.highlights.length > 0) {
+            <div class="section">
+              <h6 class="section-title">Key Highlights</h6>
+              <ul class="simple-list">
+                @for (highlight of project.highlights; track highlight) {
+                  <li>{{ highlight }}</li>
+                }
+              </ul>
+            </div>
+          }
+          
+          @if (project.technologies && project.technologies.length > 0) {
+            <div class="section">
+              <h6 class="section-title">Technologies</h6>
+              <div class="tech-list">
+                @for (tech of project.technologies; track tech) {
+                  <span class="tech-badge">{{ tech }}</span>
+                }
               </div>
-            }
-
-            @if (project.technologies.length > 0) {
-              <div class="mb-3">
-                <div class="d-flex flex-wrap gap-1">
-                  @for (tech of project.technologies; track tech) {
-                    <app-badge [text]="tech" variant="secondary"></app-badge>
-                  }
-                </div>
-              </div>
-            }
-
-            <div class="d-flex gap-2">
+            </div>
+          }
+          
+          @if (project.githubUrl || project.liveUrl) {
+            <div class="project-links">
               @if (project.githubUrl) {
-                <a [href]="project.githubUrl" target="_blank" class="btn btn-sm btn-outline-dark">
-                  <i class="fab fa-github me-1"></i>GitHub
+                <a [href]="project.githubUrl" target="_blank" class="project-link">
+                  <i class="fab fa-github"></i>
+                  View Code
                 </a>
               }
               @if (project.liveUrl) {
-                <a [href]="project.liveUrl" target="_blank" class="btn btn-sm btn-outline-primary">
-                  <i class="fas fa-external-link-alt me-1"></i>Live Demo
+                <a [href]="project.liveUrl" target="_blank" class="project-link primary">
+                  <i class="fas fa-external-link-alt"></i>
+                  Live Demo
                 </a>
               }
             </div>
-          </app-card>
+          }
         </div>
       }
     </div>
