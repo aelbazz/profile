@@ -7,9 +7,17 @@
   @if (projects(); as projectData) {
     <div class="projects-grid">
       @for (project of projectData.projects; track project.id) {
-        <div class="project-card">
+        <div class="project-card" [class.strategic-initiative]="project.isStrategicInitiative">
           <div class="card-header">
-            <h3 class="project-title">{{ project.name }}</h3>
+            <div class="title-row">
+              <h3 class="project-title">{{ project.name }}</h3>
+              @if (project.isStrategicInitiative) {
+                <span class="strategic-badge">
+                  <i class="fas fa-star"></i>
+                  Strategic Initiative
+                </span>
+              }
+            </div>
             <div class="project-role">{{ project.role }}</div>
           </div>
           

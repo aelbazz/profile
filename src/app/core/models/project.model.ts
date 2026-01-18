@@ -10,6 +10,7 @@ export interface Project {
   imageUrl?: string;
   githubUrl?: string;
   liveUrl?: string;
+  isStrategicInitiative?: boolean;
 }
 
 export interface ProjectData {

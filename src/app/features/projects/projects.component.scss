@@ -43,11 +43,67 @@
   }
 }
 
+.title-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+
 .project-title {
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--bs-heading-color);
-  margin-bottom: 0.5rem;
+  margin: 0;
+  flex: 1;
+  min-width: 200px;
+}
+
+// Strategic Initiative Badge
+.strategic-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  animation: pulse 2s ease-in-out infinite;
+  
+  i {
+    font-size: 0.7rem;
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+    }
+    50% {
+      box-shadow: 0 2px 12px rgba(102, 126, 234, 0.5);
+    }
+  }
+}
+
+// Strategic Initiative Card Styling
+.project-card.strategic-initiative {
+  border-left-color: #764ba2;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.02) 0%, rgba(118, 75, 162, 0.02) 100%);
+  
+  @media (prefers-color-scheme: dark) {
+    background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+  }
+  
+  &:hover {
+    box-shadow: 0 4px 16px rgba(118, 75, 162, 0.25);
+  }
 }
 
 .project-role {
@@ -213,6 +269,16 @@
   
   .project-card {
     padding: 1.5rem;
+  }
+  
+  .title-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .strategic-badge {
+    font-size: 0.7rem;
+    padding: 0.35rem 0.85rem;
   }
   
   .project-links {
