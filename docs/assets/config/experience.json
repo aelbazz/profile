@@ -12,13 +12,18 @@
       "startDate": "Jan 2024",
       "endDate": null,
       "isCurrent": true,
-      "description": "Leading initiatives bridging development and R&D teams, including establishing the AI Integration & Adoption Unit.",
+      "description": "Member of the Technology Development leadership group, leading cross-functional engineering teams and driving strategic digital innovation initiatives.",
       "responsibilities": [
-        "Led initiatives bridging development and R&D teams, including establishing the AI Integration & Adoption Unit",
-        "Transformed concepts into MVPs for iHealth, Quality Mate, and Business AI",
-        "Integrated AI agents and automated processes across digital initiatives",
-        "Provided strategic guidance and technical support to product engineering teams",
-        "Enhanced development workflows and improved SharePoint portal for AI-driven initiatives"
+        "Member of the Technology Development leadership group, contributing to technical strategy, departmental planning, and execution of OKRs across development teams",
+        "Lead and mentor a cross-functional team of 5 engineers, ensuring high-quality delivery, technical excellence, and alignment with business and product goals",
+        "Act as Frontend Technical Owner for key innovation projects, defining frontend architecture, Angular standards, and UI scalability strategies",
+        "Oversee and drive end-to-end delivery of multiple strategic products, from ideation and PoC to MVP and production readiness",
+        "Lead and execute new digital and AI-driven initiatives, aligning innovation efforts with organizational and product roadmaps",
+        "Contribute to establishing development standards, architectural guidelines, and technology stacks across frontend and full-stack domains",
+        "Founded and led the AI Integration & Adoption Unit, responsible for enabling AI capabilities within products and aligning development teams with AI and R&D initiatives",
+        "Translate ideas into Proofs of Concept (PoCs) and scalable MVPs, accelerating experimentation and reducing time-to-market",
+        "Led the frontend and technical delivery of products including iHealth, Quality Mate, and Business AI, integrating AI agents, automating workflows, and ensuring maintainable, scalable UI architectures",
+        "Provide strategic technical guidance and hands-on support to product engineering teams across frontend, backend, and AI integration"
       ],
       "technologies": ["Cursor AI", "Flowise AI", "Ollama", "Generative AI", "LangChain", "NestJS", "TypeScript", "Angular"],
       "achievements": [
