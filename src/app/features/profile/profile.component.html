@@ -138,33 +138,34 @@
 
   <!-- Skills Section -->
   @if (sortedSkills(); as skillsData) {
-    <div class="timeline-section">
+    <div class="timeline-section skills-section-home">
       <div class="section-header-timeline">
         <div class="section-icon-wrapper">
           <i class="fas fa-code section-icon"></i>
         </div>
         <h2 class="section-title">Technical Expertise</h2>
       </div>
-      <div class="row g-4">
+      <div class="skills-cards-row">
         @for (category of skillsData.categories; track category.category) {
-          <div class="col-lg-6">
-            <div class="skill-category-card glass-card">
-              <h4 class="skill-category-title">
-                <i class="fas fa-layer-group me-2"></i>{{ category.category }}
-              </h4>
-              <div class="skills-grid">
-                @for (skill of category.skills; track skill.name) {
-                  <div class="skill-item" [class.no-level]="skill.level === 0">
-                    <div class="skill-name"><i [class]="getSkillIcon(skill, category.category) + ' skill-icon me-2'"></i>{{ skill.name }}</div>
-                    @if (skill.level !== 0) {
-                      <div class="skill-level-badge" [class]="'level-' + getSkillLevelCategory(skill.level)">
-                        {{ getSkillLevelLabel(skill.level) }}
-                      </div>
-                    }
-                  </div>
-                }
-              </div>
+          <div class="skill-category-card glass-card">
+            <h4 class="skill-category-title">
+              <i class="fas fa-layer-group me-2"></i>{{ category.category }}
+            </h4>
+            <div class="skills-grid">
+              @for (skill of category.skills.slice(0, 6); track skill.name) {
+                <div class="skill-item" [class.no-level]="skill.level === 0">
+                  <div class="skill-name"><i [class]="getSkillIcon(skill, category.category) + ' skill-icon me-2'"></i>{{ skill.name }}</div>
+                  @if (skill.level !== 0) {
+                    <div class="skill-level-badge" [class]="'level-' + getSkillLevelCategory(skill.level)">
+                      {{ getSkillLevelLabel(skill.level) }}
+                    </div>
+                  }
+                </div>
+              }
             </div>
+            @if (category.skills.length > 6) {
+              <a routerLink="/skills" class="skill-card-view-all">{{ category.skills.length - 6 }} more in Skills <i class="fas fa-arrow-right ms-1"></i></a>
+            }
           </div>
         }
       </div>
