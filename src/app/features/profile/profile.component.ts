@@ -1,12 +1,13 @@
 import { Component, OnInit, ChangeDetectionStrategy, inject, signal, computed } from '@angular/core';
 import { Location } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { ConfigDataService, PdfExportService, FileDownloadService } from '../../core/services';
 import { Achievement, SkillData } from '../../core/models';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

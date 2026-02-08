@@ -5,31 +5,19 @@
       "skills": [
         {
           "name": "Leadership",
-          "level": 9,
+          "level": 0,
           "category": "Leadership & People Management",
           "since": 2017
-        },
-        {
-          "name": "Team Leadership",
-          "level": 9,
-          "category": "Leadership & People Management",
-          "since": 2017
-        },
-        {
-          "name": "Mentorship",
-          "level": 9,
-          "category": "Leadership & People Management",
-          "since": 2017
-        },
+        },  
         {
           "name": "Mentoring & Coaching",
-          "level": 9,
+          "level": 0,
           "category": "Leadership & People Management",
           "since": 2017
         },
         {
           "name": "Accountability & Ownership",
-          "level": 9,
+          "level": 0,
           "category": "Leadership & People Management",
           "since": 2019
         },
@@ -41,7 +29,7 @@
         },
         {
           "name": "Respect",
-          "level": 9,
+          "level": 0,
           "category": "Leadership & People Management",
           "since": 2012
         },
@@ -53,13 +41,13 @@
         },
         {
           "name": "Facilitation of Meetings",
-          "level": 9,
+          "level": 0,
           "category": "Leadership & People Management",
           "since": 2019
         },
         {
           "name": "Team Coordination",
-          "level": 9,
+          "level": 0,
           "category": "Leadership & People Management",
           "since": 2019
         }
@@ -70,13 +58,13 @@
       "skills": [
         {
           "name": "Communication",
-          "level": 9,
+          "level": 0,
           "category": "Communication & Collaboration",
           "since": 2012
         },
         {
           "name": "Leadership Communication",
-          "level": 9,
+          "level": 0,
           "category": "Communication & Collaboration",
           "since": 2017
         },
@@ -88,31 +76,31 @@
         },
         {
           "name": "Interpersonal Relationships",
-          "level": 9,
+          "level": 0,
           "category": "Communication & Collaboration",
           "since": 2012
         },
         {
           "name": "Teamwork & Collaboration",
-          "level": 9,
+          "level": 0,
           "category": "Communication & Collaboration",
           "since": 2012
         },
         {
           "name": "Collaboration",
-          "level": 9,
+          "level": 0,
           "category": "Communication & Collaboration",
           "since": 2012
         },
         {
           "name": "Social Perceptiveness",
-          "level": 9,
+          "level": 0,
           "category": "Communication & Collaboration",
           "since": 2015
         },
         {
           "name": "Cross-functional Coordination",
-          "level": 9,
+          "level": 0,
           "category": "Communication & Collaboration",
           "since": 2019
         }
@@ -123,49 +111,49 @@
       "skills": [
         {
           "name": "Critical Thinking",
-          "level": 9,
+          "level": 0,
           "category": "Professional & Cognitive Skills",
           "since": 2015
         },
         {
           "name": "Problem Solving",
-          "level": 9,
+          "level": 0,
           "category": "Professional & Cognitive Skills",
           "since": 2015
         },
         {
           "name": "Problem-Solving",
-          "level": 9,
+          "level": 0,
           "category": "Professional & Cognitive Skills",
           "since": 2015
         },
         {
           "name": "Understanding the Big Picture",
-          "level": 9,
+          "level": 0,
           "category": "Professional & Cognitive Skills",
           "since": 2019
         },
         {
           "name": "Focus on Quality",
-          "level": 9,
+          "level": 0,
           "category": "Professional & Cognitive Skills",
           "since": 2015
         },
         {
           "name": "Attention to Detail",
-          "level": 9,
+          "level": 0,
           "category": "Professional & Cognitive Skills",
           "since": 2015
         },
         {
           "name": "Creativity & Innovation",
-          "level": 9,
+          "level": 0,
           "category": "Professional & Cognitive Skills",
           "since": 2019
         },
         {
           "name": "Decision Making",
-          "level": 9,
+          "level": 0,
           "category": "Professional & Cognitive Skills",
           "since": 2019
         },
@@ -177,7 +165,7 @@
         },
         {
           "name": "Continuous Improvement Mindset",
-          "level": 9,
+          "level": 0,
           "category": "Professional & Cognitive Skills",
           "since": 2019
         }
@@ -253,7 +241,7 @@
         },
         {
           "name": "Design Thinking",
-          "level": 0,
+          "level": 6,
           "category": "Methodologies & Frameworks",
           "since": 2020
         },
@@ -282,13 +270,13 @@
         },
         {
           "name": "Data Structures",
-          "level": 0,
+          "level": 6,
           "category": "Software Engineering & Architecture",
           "since": 2014
         },
         {
           "name": "Algorithms",
-          "level": 0,
+          "level": 7,
           "category": "Software Engineering & Architecture",
           "since": 2014
         },
@@ -324,13 +312,13 @@
         },
         {
           "name": "PWA (Progressive Web Apps)",
-          "level": 0,
+          "level": 6,
           "category": "Software Engineering & Architecture",
           "since": 2020
         },
         {
           "name": "LitElement",
-          "level": 0,
+          "level": 3,
           "category": "Software Engineering & Architecture",
           "since": 2021
         },
@@ -339,13 +327,8 @@
           "level": 9,
           "category": "Software Engineering & Architecture",
           "since": 2015
-        },
-        {
-          "name": "Automation Scripting",
-          "level": 0,
-          "category": "Software Engineering & Architecture",
-          "since": 2022
         }
+       
       ]
     },
     {
@@ -407,7 +390,7 @@
         },
         {
           "name": "Tailwind CSS",
-          "level": 0,
+          "level": 3,
           "category": "Frontend Technologies",
           "since": 2023
         },
@@ -419,13 +402,13 @@
         },
         {
           "name": "React",
-          "level": 0,
+          "level": 3,
           "category": "Frontend Technologies",
           "since": 2016
         },
         {
           "name": "Vue.js",
-          "level": 0,
+          "level": 3,
           "category": "Frontend Technologies",
           "since": 2020
         }
@@ -448,25 +431,25 @@
         },
         {
           "name": "Express",
-          "level": 0,
+          "level": 3,
           "category": "Backend, DevOps & Cloud",
           "since": 2022
         },
         {
           "name": ".NET Core",
-          "level": 0,
+          "level": 3,
           "category": "Backend, DevOps & Cloud",
           "since": 2025
         },
         {
           "name": "ABP Framework",
-          "level": 0,
+          "level": 6,
           "category": "Backend, DevOps & Cloud",
           "since": 2022
         },
         {
           "name": "DevOps Management",
-          "level": 0,
+          "level": 6,
           "category": "Backend, DevOps & Cloud",
           "since": 2022
         },
@@ -478,13 +461,13 @@
         },
         {
           "name": "ArgoCD",
-          "level": 0,
+          "level": 6,
           "category": "Backend, DevOps & Cloud",
           "since": 2022
         },
         {
           "name": "Azure DevOps",
-          "level": 0,
+          "level": 6,
           "category": "Backend, DevOps & Cloud",
           "since": 2025
         },
@@ -496,7 +479,7 @@
         },
         {
           "name": "Kubernetes (K8s)",
-          "level": 0,
+          "level": 6,
           "category": "Backend, DevOps & Cloud",
           "since": 2022
         },
@@ -508,19 +491,19 @@
         },
         {
           "name": "Vault",
-          "level": 0,
+          "level": 6,
           "category": "Backend, DevOps & Cloud",
           "since": 2022
         },
         {
           "name": "Keycloak",
-          "level": 0,
+          "level": 6,
           "category": "Backend, DevOps & Cloud",
           "since": 2022
         },
         {
           "name": "Automation Pipelines",
-          "level": 0,
+          "level": 6,
           "category": "Backend, DevOps & Cloud",
           "since": 2022
         }
@@ -531,25 +514,25 @@
       "skills": [
         {
           "name": "Data Architecture",
-          "level": 0,
+          "level": 3,
           "category": "Data & Analytics",
           "since": 2025
         },
         {
           "name": "Data Analysis",
-          "level": 0,
+          "level": 3,
           "category": "Data & Analytics",
           "since": 2025
         },
         {
           "name": "Analytics",
-          "level": 0,
+          "level": 3,
           "category": "Data & Analytics",
           "since": 2025
         },
         {
           "name": "Power BI",
-          "level": 0,
+          "level": 3,
           "category": "Data & Analytics",
           "since": 2024
         }
@@ -584,7 +567,7 @@
         },
         {
           "name": "Lighthouse",
-          "level": 0,
+          "level": 6,
           "category": "Tools & Platforms",
           "since": 2020
         },
@@ -596,19 +579,19 @@
         },
         {
           "name": "Gulp.js",
-          "level": 0,
+          "level": 6,
           "category": "Tools & Platforms",
           "since": 2016
         },
         {
           "name": "Webpack",
-          "level": 0,
+          "level": 6,
           "category": "Tools & Platforms",
           "since": 2018
         },
         {
           "name": "Yarn",
-          "level": 0,
+          "level": 6,
           "category": "Tools & Platforms",
           "since": 2020
         },
@@ -620,25 +603,25 @@
         },
         {
           "name": "TFS",
-          "level": 0,
+          "level": 6,
           "category": "Tools & Platforms",
           "since": 2017
         },
         {
           "name": "Microsoft SharePoint Online",
-          "level": 0,
+          "level": 6,
           "category": "Tools & Platforms",
           "since": 2024
         },
         {
           "name": "Microsoft Power Automate",
-          "level": 0,
+          "level": 6,
           "category": "Tools & Platforms",
           "since": 2024
         },
         {
           "name": "Power Apps",
-          "level": 0,
+          "level": 6,
           "category": "Tools & Platforms",
           "since": 2024
         },
@@ -650,19 +633,19 @@
         },
         {
           "name": "Adobe XD",
-          "level": 0,
+          "level": 6,
           "category": "Tools & Platforms",
           "since": 2019
         },
         {
           "name": "Photoshop",
-          "level": 0,
+          "level": 6,
           "category": "Tools & Platforms",
           "since": 2012
         },
         {
           "name": "Zeplin",
-          "level": 0,
+          "level": 6,
           "category": "Tools & Platforms",
           "since": 2020
         }
@@ -691,31 +674,31 @@
         },
         {
           "name": "Ollama",
-          "level": 0,
+          "level": 3,
           "category": "AI & Emerging Technologies",
           "since": 2024
         },
         {
           "name": "LangChain",
-          "level": 9,
+          "level": 3,
           "category": "AI & Emerging Technologies",
           "since": 2024
         },
         {
           "name": "CrewAI",
-          "level": 0,
+          "level": 3,
           "category": "AI & Emerging Technologies",
           "since": 2025
         },
         {
           "name": "Machine Learning Fundamentals",
-          "level": 0,
+          "level": 3,
           "category": "AI & Emerging Technologies",
           "since": 2025
         },
         {
           "name": "FastAPI",
-          "level": 0,
+          "level": 3,
           "category": "AI & Emerging Technologies",
           "since": 2025
         }
@@ -726,7 +709,7 @@
       "skills": [
         {
           "name": "Microsoft Authentication Library (MSAL)",
-          "level": 0,
+          "level": 3,
           "category": "Security & Authentication",
           "since": 2025
         }
@@ -743,7 +726,7 @@
         },
         {
           "name": "Arabic",
-          "level": 9,
+          "level": 0,
           "category": "Languages",
           "since": 2025
         }

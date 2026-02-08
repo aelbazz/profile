@@ -113,6 +113,9 @@
                   <span class="tech-badge">{{ tech }}</span>
                 }
               </div>
+              <a [routerLink]="['/experience']" [fragment]="'exp-' + exp.id" class="btn-see-details">
+                See details <i class="fas fa-arrow-right ms-2"></i>
+              </a>
             </div>
           </div>
         }

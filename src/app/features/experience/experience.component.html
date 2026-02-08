@@ -1,34 +1,35 @@
 <div class="container py-5">
-  <app-page-header 
-    title="Work Experience" 
+  <app-page-header
+    title="Work Experience"
     subtitle="13+ years of professional journey"
     icon="fas fa-briefcase" />
-
 
   @if (experience(); as expData) {
     <div class="experience-list">
       @for (exp of expData.experiences; track exp.id) {
-        <div class="experience-card">
+        <article
+          class="timeline-content-modern glass-card experience-card-modern"
+          [id]="'exp-' + exp.id">
           @if (exp.isCurrent) {
             <div class="current-badge">
               <i class="fas fa-circle"></i> Current
             </div>
           }
-          
-          <div class="card-header">
-            <div class="position-info">
-              <h3 class="position-title">{{ exp.position }}</h3>
-              <div class="company-name">{{ exp.company }}</div>
-            </div>
-            
-            <div class="duration-info">
-              <div class="date-range">{{ exp.startDate }} - {{ exp.endDate || 'Present' }}</div>
-              <div class="location">{{ exp.location }}</div>
-            </div>
+
+          <div class="timeline-date-badge">
+            {{ exp.startDate }} - {{ exp.endDate || 'Present' }}
           </div>
-          
-          <p class="description">{{ exp.description }}</p>
-          
+          <h3 class="timeline-content-title">{{ exp.position }}</h3>
+          <h4 class="timeline-content-company">
+            <i class="fas fa-building me-2"></i>{{ exp.company }}
+          </h4>
+          @if (exp.location) {
+            <div class="timeline-content-location">
+              <i class="fas fa-map-marker-alt me-2"></i>{{ exp.location }}
+            </div>
+          }
+          <p class="timeline-content-description">{{ exp.description }}</p>
+
           @if (exp.responsibilities && exp.responsibilities.length > 0) {
             <div class="section">
               <h6 class="section-title">Key Responsibilities</h6>
@@ -39,7 +40,7 @@
               </ul>
             </div>
           }
-          
+
           @if (exp.achievements && exp.achievements.length > 0) {
             <div class="section">
               <h6 class="section-title">Achievements</h6>
@@ -50,18 +51,15 @@
               </ul>
             </div>
           }
-          
+
           @if (exp.technologies && exp.technologies.length > 0) {
-            <div class="section">
-              <h6 class="section-title">Technologies</h6>
-              <div class="tech-list">
-                @for (tech of exp.technologies; track tech) {
-                  <span class="tech-badge">{{ tech }}</span>
-                }
-              </div>
+            <div class="timeline-tech-stack">
+              @for (tech of exp.technologies; track tech) {
+                <span class="tech-badge">{{ tech }}</span>
+              }
             </div>
           }
-        </div>
+        </article>
       }
     </div>
   } @else {
@@ -73,4 +71,3 @@
     </div>
   }
 </div>
-
