@@ -1,8 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy, inject, signal, computed } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ConfigDataService } from '../../core/services';
+import { ConfigDataService, SkillIconService } from '../../core/services';
 import { PageHeaderComponent } from '../../shared/components';
-import { SkillData } from '../../core/models';
+import { Skill, SkillData } from '../../core/models';
 
 @Component({
   selector: 'app-skills',
@@ -14,7 +14,8 @@ import { SkillData } from '../../core/models';
 })
 export class SkillsComponent implements OnInit {
   private readonly configService = inject(ConfigDataService);
-  
+  private readonly skillIconService = inject(SkillIconService);
+
   readonly skills = this.configService.skills;
   readonly searchTerm = signal<string>('');
   readonly selectedCategory = signal<string | null>(null);
@@ -190,6 +191,10 @@ export class SkillsComponent implements OnInit {
       'Security & Authentication'
     ];
     return technicalCategories.includes(category);
+  }
+
+  getSkillIcon(skill: Skill, category: string): string {
+    return this.skillIconService.getSkillIcon(skill, category);
   }
 
   /**

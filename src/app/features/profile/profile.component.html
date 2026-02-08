@@ -155,7 +155,7 @@
               <div class="skills-grid">
                 @for (skill of category.skills; track skill.name) {
                   <div class="skill-item" [class.no-level]="skill.level === 0">
-                    <div class="skill-name"><i class="fas fa-check skill-icon me-2"></i>{{ skill.name }}</div>
+                    <div class="skill-name"><i [class]="getSkillIcon(skill, category.category) + ' skill-icon me-2'"></i>{{ skill.name }}</div>
                     @if (skill.level !== 0) {
                       <div class="skill-level-badge" [class]="'level-' + getSkillLevelCategory(skill.level)">
                         {{ getSkillLevelLabel(skill.level) }}

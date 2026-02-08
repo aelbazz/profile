@@ -1,8 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy, inject, signal, computed } from '@angular/core';
 import { Location } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { ConfigDataService, PdfExportService, FileDownloadService } from '../../core/services';
-import { Achievement, SkillData } from '../../core/models';
+import { ConfigDataService, PdfExportService, FileDownloadService, SkillIconService } from '../../core/services';
+import { Achievement, Skill, SkillData } from '../../core/models';
 
 @Component({
   selector: 'app-profile',
@@ -17,6 +17,7 @@ export class ProfileComponent implements OnInit {
   private readonly pdfService = inject(PdfExportService);
   private readonly fileDownloadService = inject(FileDownloadService);
   private readonly location = inject(Location);
+  private readonly skillIconService = inject(SkillIconService);
 
   readonly profile = this.configService.profile;
   
@@ -123,6 +124,10 @@ export class ProfileComponent implements OnInit {
   /**
    * Gets the skill level category (beginner, intermediate, expert)
    */
+  getSkillIcon(skill: Skill, category: string): string {
+    return this.skillIconService.getSkillIcon(skill, category);
+  }
+
   public getSkillLevelCategory(level: number): 'beginner' | 'intermediate' | 'strong' {
     if (level >= 1 && level <= 3) return 'beginner';
     if (level >= 4 && level <= 6) return 'intermediate';

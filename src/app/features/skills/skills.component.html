@@ -55,7 +55,7 @@
                   [class]="'level-' + skill.level"
                   [class.no-rank]="skill.level === 0"
                   [attr.data-level]="skill.level === 0 ? null : getSkillTierName(skill.level)">
-                  <i class="fas fa-check skill-tag-icon me-2"></i>
+                  <i [class]="getSkillIcon(skill, category.category) + ' skill-tag-icon me-2'"></i>
                   <span class="skill-tag-name">{{ skill.name }}</span>
                   @if (skill.level !== 0) {
                     <span class="skill-tag-indicator"></span>
