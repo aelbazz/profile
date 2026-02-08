@@ -122,6 +122,15 @@ export class ProfileComponent implements OnInit {
   }
 
   /**
+   * Resolves an asset path with the correct base href (e.g. /profile in production at aelbazz.github.io/profile).
+   */
+  getAssetUrl(path: string): string {
+    if (!path) return '';
+    const normalizedPath = path.startsWith('/') ? path.substring(1) : path;
+    return this.location.prepareExternalUrl(normalizedPath);
+  }
+
+  /**
    * Gets the skill level category (beginner, intermediate, expert)
    */
   getSkillIcon(skill: Skill, category: string): string {

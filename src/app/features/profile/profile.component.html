@@ -102,7 +102,7 @@
             <div class="timeline-content-modern glass-card exp-card-linkedin">
               <div class="exp-card-header">
                 @if (exp.companyLogo) {
-                  <img [src]="exp.companyLogo" [alt]="exp.company + ' logo'" class="company-logo" />
+                  <img [src]="getAssetUrl(exp.companyLogo)" [alt]="exp.company + ' logo'" class="company-logo" />
                 }
                 <div class="exp-header-main">
                   <h4 class="timeline-content-title">{{ exp.position }}</h4>
