@@ -179,14 +179,6 @@
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    
-    .skill-tag-name::after {
-      content: " • " attr(data-level);
-      color: var(--bs-body-color);
-      font-size: 0.8rem;
-      font-weight: 500;
-      opacity: 0.7;
-    }
   }
   
   // No rank (level 0)
@@ -198,10 +190,6 @@
     opacity: 0.7;
     
     .skill-tag-indicator {
-      display: none;
-    }
-    
-    &:hover .skill-tag-name::after {
       display: none;
     }
   }

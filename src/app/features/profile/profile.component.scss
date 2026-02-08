@@ -440,34 +440,6 @@
   opacity: 0.9;
 }
 
-.skill-level-badge {
-  padding: 0.35rem 0.75rem;
-  border-radius: 12px;
-  font-size: 0.7rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.4px;
-  white-space: nowrap;
-
-  &.level-beginner {
-    background: #fffbeb;
-    color: #d97706;
-    border: 1px solid #fbbf24;
-  }
-
-  &.level-intermediate {
-    background: #ecfdf5;
-    color: #059669;
-    border: 1px solid #34d399;
-  }
-
-  &.level-strong {
-    background: #eef2ff;
-    color: #4338ca;
-    border: 1px solid #667eea;
-  }
-}
-
 .skill-card-view-all {
   display: inline-flex;
   align-items: center;

@@ -53,8 +53,7 @@
                 <div 
                   class="skill-tag"
                   [class]="'level-' + skill.level"
-                  [class.no-rank]="skill.level === 0"
-                  [attr.data-level]="skill.level === 0 ? null : getSkillTierName(skill.level)">
+                  [class.no-rank]="skill.level === 0">
                   <i [class]="getSkillIcon(skill, category.category) + ' skill-tag-icon me-2'"></i>
                   <span class="skill-tag-name">{{ skill.name }}</span>
                   @if (skill.level !== 0) {
