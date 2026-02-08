@@ -368,9 +368,17 @@
 }
 
 .skill-name {
+  display: flex;
+  align-items: center;
   font-weight: 600;
   color: var(--bs-heading-color);
   flex: 1;
+}
+
+.skill-icon {
+  font-size: 0.75rem;
+  color: #667eea;
+  flex-shrink: 0;
 }
 
 .skill-level-badge {
