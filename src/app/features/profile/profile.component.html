@@ -105,7 +105,12 @@
               </div>
               <h4 class="timeline-content-title">{{ exp.position }}</h4>
               <h5 class="timeline-content-company">
-                <i class="fas fa-building me-2"></i>{{ exp.company }}
+                <i class="fas fa-building me-2"></i>
+                @if (exp.companyWebsite) {
+                  <a [href]="exp.companyWebsite" target="_blank" rel="noopener noreferrer" class="company-link">{{ exp.company }}</a>
+                } @else {
+                  {{ exp.company }}
+                }
               </h5>
               <p class="timeline-content-description">{{ exp.description }}</p>
               <div class="timeline-tech-stack">
