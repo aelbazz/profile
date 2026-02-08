@@ -55,31 +55,67 @@
   }
 }
 
-// Timeline-style elements (matches profile)
-.timeline-date-badge {
-  display: inline-block;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  padding: 0.5rem 1.5rem;
-  border-radius: 50px;
-  font-weight: 600;
-  font-size: 0.9rem;
+// LinkedIn-style experience card
+.exp-card-linkedin .exp-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
   margin-bottom: 1rem;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+.exp-card-linkedin .company-logo {
+  width: 64px;
+  height: 64px;
+  min-width: 64px;
+  object-fit: contain;
+  border-radius: 8px;
+  flex-shrink: 0;
+  background: rgba(102, 126, 234, 0.06);
+}
+
+.exp-card-linkedin .exp-header-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.exp-card-linkedin .exp-date-range {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--bs-secondary-color);
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+
+  i {
+    color: #667eea;
+    font-size: 0.9rem;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    border-top-color: rgba(255, 255, 255, 0.08);
+  }
 }
 
 .timeline-content-title {
-  font-size: 1.75rem;
+  font-size: 1.35rem;
   font-weight: 700;
-  margin-bottom: 0.5rem;
+  margin: 0 0 0.25rem 0;
   color: var(--bs-heading-color);
 }
 
 .timeline-content-company {
-  font-size: 1.25rem;
+  margin-bottom: 0;
+}
+
+.company-name {
+  font-size: 1rem;
   color: #667eea;
-  margin-bottom: 0.5rem;
   font-weight: 600;
+  margin: 0;
+  display: flex;
+  align-items: center;
 
   .company-link {
     color: inherit;
@@ -93,10 +129,10 @@
 }
 
 .timeline-content-location {
-  font-size: 0.95rem;
+  font-size: 0.875rem;
   color: var(--bs-body-color);
   opacity: 0.9;
-  margin-bottom: 1rem;
+  margin: 0.25rem 0 0 0;
 }
 
 .timeline-content-description {
@@ -182,7 +218,17 @@
     font-size: 0.75rem;
   }
 
+  .exp-card-linkedin .exp-card-header {
+    flex-wrap: wrap;
+  }
+
   .timeline-content-title {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
+  }
+
+  .exp-card-linkedin .company-logo {
+    width: 56px;
+    height: 56px;
+    min-width: 56px;
   }
 }

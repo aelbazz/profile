@@ -21,7 +21,7 @@ export class AppComponent implements OnInit, OnDestroy {
   
   // Main navigation items - streamlined for better UX
   navItems = [
-    { path: '/profile', label: 'About', icon: 'fas fa-user' },
+    { path: '/profile', label: 'Home', icon: 'fas fa-user' },
     { path: '/experience', label: 'Experience', icon: 'fas fa-briefcase' },
     { path: '/projects', label: 'Projects', icon: 'fas fa-folder-open' },
     { path: '/skills', label: 'Skills', icon: 'fas fa-code' },
