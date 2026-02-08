@@ -1,6 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, inject, computed } from '@angular/core';
 import { ConfigDataService, FileDownloadService } from '../../core/services';
 import { ActionCardComponent } from '../../shared/components';
+
+/** Platforms already shown in Quick Actions – hide from Social section to avoid repetition */
+const QUICK_ACTION_PLATFORMS = new Set(['LinkedIn']);
 
 @Component({
   selector: 'app-contact',
@@ -13,8 +16,15 @@ import { ActionCardComponent } from '../../shared/components';
 export class ContactComponent implements OnInit {
   private readonly configService = inject(ConfigDataService);
   private readonly fileDownloadService = inject(FileDownloadService);
-  
+
   readonly contact = this.configService.contact;
+
+  /** Social links excluding those already in Quick Actions */
+  readonly socialLinksFiltered = computed(() => {
+    const data = this.contact();
+    if (!data?.socialLinks?.length) return [];
+    return data.socialLinks.filter(s => !QUICK_ACTION_PLATFORMS.has(s.platform));
+  });
 
   ngOnInit(): void {
     this.configService.loadContact();

@@ -70,80 +70,22 @@
         </div>
       </div>
 
-      <!-- Contact Information Grid -->
-      <div class="contact-info-section">
-        <div class="section-header-modern">
-          <h2 class="section-title-modern">Contact Information</h2>
-          <p class="section-subtitle-modern">Choose your preferred way to reach out</p>
-        </div>
-        
-        <div class="row g-4">
-          <!-- Email Card -->
-          <div class="col-lg-6">
-            <div class="contact-info-card glass-card">
-              <div class="contact-info-icon email-icon">
-                <i class="fas fa-envelope"></i>
-              </div>
-              <div class="contact-info-content">
-                <h4 class="contact-info-title">Email Address</h4>
-                <a [href]="getMailtoLink(contactData.email)" class="contact-info-value">
-                  {{ contactData.email }}
-                </a>
-                <p class="contact-info-hint">Best for detailed inquiries</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Phone Card -->
-          <div class="col-lg-6">
-            <div class="contact-info-card glass-card">
-              <div class="contact-info-icon phone-icon">
-                <i class="fas fa-phone-alt"></i>
-              </div>
-              <div class="contact-info-content">
-                <h4 class="contact-info-title">Phone Number</h4>
-                <a [href]="'tel:' + contactData.phone" class="contact-info-value">
-                  {{ contactData.phone }}
-                </a>
-                <p class="contact-info-hint">Available during business hours</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- WhatsApp Card -->
-          <div class="col-lg-6">
-            <div class="contact-info-card glass-card">
-              <div class="contact-info-icon whatsapp-icon">
-                <i class="fab fa-whatsapp"></i>
-              </div>
-              <div class="contact-info-content">
-                <h4 class="contact-info-title">WhatsApp</h4>
-                <a [href]="getWhatsAppLink(contactData.whatsapp)" target="_blank" class="contact-info-value">
-                  {{ contactData.whatsapp }}
-                </a>
-                <p class="contact-info-hint">Quick responses guaranteed</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Location Card -->
-          <div class="col-lg-6">
-            <div class="contact-info-card glass-card">
-              <div class="contact-info-icon location-icon">
-                <i class="fas fa-map-marker-alt"></i>
-              </div>
-              <div class="contact-info-content">
-                <h4 class="contact-info-title">Location</h4>
-                <div class="contact-info-value">{{ contactData.location }}</div>
-                <p class="contact-info-hint">{{ contactData.birthday }}</p>
-              </div>
-            </div>
+      <!-- Additional details (phone & location only – email/WhatsApp/LinkedIn are in Quick Actions) -->
+      <div class="contact-details-compact">
+        <div class="contact-details-card glass-card">
+          <a [href]="'tel:' + contactData.phone" class="contact-detail-item">
+            <i class="fas fa-phone-alt"></i>
+            <span>{{ contactData.phone }}</span>
+          </a>
+          <div class="contact-detail-item">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>{{ contactData.location }}</span>
           </div>
         </div>
       </div>
 
-      <!-- Social Media Section -->
-      @if (contactData.socialLinks.length > 0) {
+      <!-- Social Media (excluding LinkedIn – already in Quick Actions) -->
+      @if (socialLinksFiltered().length > 0) {
         <div class="social-section">
           <div class="section-header-modern">
             <h2 class="section-title-modern">Connect on Social Media</h2>
@@ -151,7 +93,7 @@
           </div>
           
           <div class="social-grid">
-            @for (social of contactData.socialLinks; track social.platform) {
+            @for (social of socialLinksFiltered(); track social.platform) {
               <a 
                 [href]="social.url" 
                 target="_blank" 
@@ -172,25 +114,17 @@
         </div>
       }
 
-      <!-- Call to Action Banner -->
+      <!-- Call to Action -->
       <div class="cta-banner glass-card">
         <div class="cta-content">
-          <div class="cta-icon">
-            <i class="fas fa-comments"></i>
-          </div>
           <div class="cta-text">
             <h3 class="cta-title">Ready to start a conversation?</h3>
-            <p class="cta-description">
-              Whether you have a project in mind, want to collaborate, or just want to say hi, 
-              I'd love to hear from you. Let's create something amazing together!
-            </p>
+            <p class="cta-description">Let's create something amazing together.</p>
           </div>
-          <div class="cta-actions">
-            <a [href]="getMailtoLink(contactData.email)" class="btn btn-gradient btn-lg">
-              <i class="fas fa-envelope me-2"></i>
-              Get in Touch
-            </a>
-          </div>
+          <a [href]="getMailtoLink(contactData.email)" class="btn btn-gradient btn-lg">
+            <i class="fas fa-envelope me-2"></i>
+            Get in Touch
+          </a>
         </div>
       </div>
     </div>
