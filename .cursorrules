@@ -50,7 +50,7 @@
 - Keep OnPush change detection
 - Follow 4-file component structure (.ts, .html, .scss, .spec.ts)
 - Use Font Awesome icons (not Bootstrap Icons)
-- Load all data from JSON files in `public/assets/config/`
+- Load all data from JSON files in `public/assets/data/`
 
 ### Code Quality
 - Write production-ready code
