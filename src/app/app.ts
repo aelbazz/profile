@@ -1,6 +1,5 @@
-import { Component, OnInit, OnDestroy, computed, HostListener, signal, effect } from '@angular/core';
+import { Component, OnInit, OnDestroy, computed, HostListener, signal } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
-import { Title } from '@angular/platform-browser';
 import { VERSION } from '@angular/core';
 import { ConfigDataService } from './core/services';
 
@@ -19,8 +18,6 @@ export class AppComponent implements OnInit, OnDestroy {
   showInProgressBanner = signal(true);
   
   private readonly IN_PROGRESS_BANNER_KEY = 'hideInProgressBanner';
-  private titleRotationInterval?: ReturnType<typeof setInterval>;
-  private currentTitleIndex = 0;
   
   // Main navigation items - streamlined for better UX
   navItems = [
@@ -41,59 +38,14 @@ export class AppComponent implements OnInit, OnDestroy {
   readonly authorName = computed(() => this.profile()?.name || 'Author');
   readonly linkedinUrl = computed(() => this.profile()?.linkedin || '#');
 
-  constructor(
-    private configService: ConfigDataService,
-    private titleService: Title
-  ) {
-    // Update title when profile data is loaded
-    effect(() => {
-      const profileData = this.profile();
-      if (profileData) {
-        this.startTitleRotation();
-      }
-    });
-  }
+  constructor(private configService: ConfigDataService) {}
 
   ngOnInit(): void {
     this.configService.loadProfile();
     this.checkInProgressBannerState();
   }
 
-  ngOnDestroy(): void {
-    if (this.titleRotationInterval) {
-      clearInterval(this.titleRotationInterval);
-    }
-  }
-
-  /**
-   * Start rotating the page title to showcase name and different positions
-   */
-  private startTitleRotation(): void {
-    const profileData = this.profile();
-    if (!profileData) return;
-
-    const name = profileData.name;
-    const titleVariations = [
-      `${name} | Staff Engineer`,
-      `${name} | Frontend Technical Lead`,
-      `${name} | Full-Stack Developer`,
-      `${name} | AI-Enabled Solutions`,
-      `${name} | 13+ Years Experience`,
-      `${name} | Angular Expert`,
-      `${name} | Product-Oriented Engineering`,
-      `💼 ${name} - Available for Opportunities`,
-      `🚀 ${name} - Building the Future`
-    ];
-
-    // Set initial title
-    this.titleService.setTitle(titleVariations[0]);
-
-    // Rotate title every 3 seconds
-    this.titleRotationInterval = setInterval(() => {
-      this.currentTitleIndex = (this.currentTitleIndex + 1) % titleVariations.length;
-      this.titleService.setTitle(titleVariations[this.currentTitleIndex]);
-    }, 3000);
-  }
+  ngOnDestroy(): void {}
 
   /**
    * Check if the user has previously dismissed the in-progress banner

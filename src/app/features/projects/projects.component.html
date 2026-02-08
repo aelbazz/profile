@@ -6,8 +6,8 @@
 
   @if (projects(); as projectData) {
     <div class="projects-grid">
-      @for (project of projectData.projects; track project.id) {
-        <div class="project-card" [class.strategic-initiative]="project.isStrategicInitiative">
+        @for (project of projectData.projects; track project.id) {
+        <div class="project-card" [class.strategic-initiative]="project.isStrategicInitiative" [id]="'project-' + project.id">
           <div class="card-header">
             <div class="title-row">
               <h3 class="project-title">{{ project.name }}</h3>
