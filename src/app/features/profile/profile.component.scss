@@ -237,8 +237,14 @@
   }
 }
 
-.timeline-content-modern {
+// Place experience card in timeline grid (host is app-experience-card; content has .timeline-content-modern)
+.timeline-item-modern > app-experience-card {
   grid-column: 3;
+}
+
+.timeline-item-alternate > app-experience-card {
+  grid-column: 1;
+  grid-row: 1;
 }
 
 // LinkedIn-style experience card

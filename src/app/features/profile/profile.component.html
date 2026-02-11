@@ -99,37 +99,14 @@
             <div class="timeline-marker-modern">
               <i class="fas fa-briefcase"></i>
             </div>
-            <div class="timeline-content-modern glass-card exp-card-linkedin">
-              <div class="exp-card-header">
-                @if (exp.companyLogo) {
-                  <img [src]="getAssetUrl(exp.companyLogo)" [alt]="exp.company + ' logo'" class="company-logo" />
-                }
-                <div class="exp-header-main">
-                  <h4 class="timeline-content-title">{{ exp.position }}</h4>
-                  <div class="timeline-content-company">
-                    <h5 class="company-name">
-                      @if (exp.companyWebsite) {
-                        <a [href]="exp.companyWebsite" target="_blank" rel="noopener noreferrer" class="company-link">{{ exp.company }}</a>
-                      } @else {
-                        {{ exp.company }}
-                      }
-                    </h5>
-                  </div>
-                </div>
-              </div>
-              <div class="exp-date-range">
-                <i class="fas fa-calendar-alt me-2"></i>{{ exp.startDate }} - {{ exp.endDate || 'Present' }}
-              </div>
-              <p class="timeline-content-description">{{ exp.description }}</p>
-              <div class="timeline-tech-stack">
-                @for (tech of exp.technologies; track tech) {
-                  <span class="tech-badge">{{ tech }}</span>
-                }
-              </div>
-              <a [routerLink]="['/experience']" [fragment]="'exp-' + exp.id" class="btn-see-details">
-                See details <i class="fas fa-arrow-right ms-2"></i>
-              </a>
-            </div>
+            <app-experience-card
+              [experience]="exp"
+              [cardId]="'exp-' + exp.id"
+              [showResponsibilities]="false"
+              [showAchievements]="false"
+              [showDetailsLink]="true"
+              [detailsLink]="['/experience']">
+            </app-experience-card>
           </div>
         }
       </div>

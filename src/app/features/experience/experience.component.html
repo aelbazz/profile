@@ -7,72 +7,13 @@
   @if (experience(); as expData) {
     <div class="experience-list">
       @for (exp of expData.experiences; track exp.id) {
-        <article
-          class="timeline-content-modern glass-card experience-card-modern exp-card-linkedin"
-          [id]="'exp-' + exp.id">
-          @if (exp.isCurrent) {
-            <div class="current-badge">
-              <i class="fas fa-circle"></i> Current
-            </div>
-          }
-
-          <div class="exp-card-header">
-            @if (exp.companyLogo) {
-              <img [src]="getAssetUrl(exp.companyLogo)" [alt]="exp.company + ' logo'" class="company-logo" />
-            }
-            <div class="exp-header-main">
-              <h3 class="timeline-content-title">{{ exp.position }}</h3>
-              <div class="timeline-content-company">
-                <h4 class="company-name">
-                  @if (exp.companyWebsite) {
-                    <a [href]="exp.companyWebsite" target="_blank" rel="noopener noreferrer" class="company-link">{{ exp.company }}</a>
-                  } @else {
-                    {{ exp.company }}
-                  }
-                </h4>
-              </div>
-              @if (exp.location) {
-                <div class="timeline-content-location">
-                  <i class="fas fa-map-marker-alt me-2"></i>{{ exp.location }}
-                </div>
-              }
-            </div>
-          </div>
-          <div class="exp-date-range">
-            <i class="fas fa-calendar-alt me-2"></i>{{ exp.startDate }} - {{ exp.endDate || 'Present' }}
-          </div>
-          <p class="timeline-content-description">{{ exp.description }}</p>
-
-          @if (exp.responsibilities && exp.responsibilities.length > 0) {
-            <div class="section">
-              <h6 class="section-title">Key Responsibilities</h6>
-              <ul class="simple-list">
-                @for (responsibility of exp.responsibilities; track responsibility) {
-                  <li>{{ responsibility }}</li>
-                }
-              </ul>
-            </div>
-          }
-
-          @if (exp.achievements && exp.achievements.length > 0) {
-            <div class="section">
-              <h6 class="section-title">Achievements</h6>
-              <ul class="simple-list">
-                @for (achievement of exp.achievements; track achievement) {
-                  <li>{{ achievement }}</li>
-                }
-              </ul>
-            </div>
-          }
-
-          @if (exp.technologies && exp.technologies.length > 0) {
-            <div class="timeline-tech-stack">
-              @for (tech of exp.technologies; track tech) {
-                <span class="tech-badge">{{ tech }}</span>
-              }
-            </div>
-          }
-        </article>
+        <app-experience-card
+          [experience]="exp"
+          [cardId]="'exp-' + exp.id"
+          [showResponsibilities]="true"
+          [showAchievements]="true"
+          [showDetailsLink]="false">
+        </app-experience-card>
       }
     </div>
   } @else {
