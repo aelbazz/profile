@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
+import { Location } from '@angular/common';
 import { ConfigDataService } from '../../core/services';
 import { PageHeaderComponent } from '../../shared/components';
 
@@ -12,11 +13,21 @@ import { PageHeaderComponent } from '../../shared/components';
 })
 export class ExperienceComponent implements OnInit {
   private readonly configService = inject(ConfigDataService);
+  private readonly location = inject(Location);
   
   readonly experience = this.configService.experience;
 
   ngOnInit(): void {
     this.configService.loadExperience();
+  }
+
+  /**
+   * Resolves an asset path with the correct base href (e.g. /profile in production at aelbazz.github.io/profile).
+   */
+  getAssetUrl(path: string): string {
+    if (!path) return '';
+    const normalizedPath = path.startsWith('/') ? path.substring(1) : path;
+    return this.location.prepareExternalUrl(normalizedPath);
   }
 }
 

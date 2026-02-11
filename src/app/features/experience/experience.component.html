@@ -18,7 +18,7 @@
 
           <div class="exp-card-header">
             @if (exp.companyLogo) {
-              <img [src]="exp.companyLogo" [alt]="exp.company + ' logo'" class="company-logo" />
+              <img [src]="getAssetUrl(exp.companyLogo)" [alt]="exp.company + ' logo'" class="company-logo" />
             }
             <div class="exp-header-main">
               <h3 class="timeline-content-title">{{ exp.position }}</h3>
