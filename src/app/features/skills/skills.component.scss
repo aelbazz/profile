@@ -203,6 +203,18 @@
       background: rgba(255, 255, 255, 0.03);
       border-color: rgba(255, 255, 255, 0.08);
     }
+    
+    // Improve text contrast for Beginner & Intermediate levels in dark mode
+    &.level-1,
+    &.level-2,
+    &.level-3,
+    &.level-4,
+    &.level-5,
+    &.level-6 {
+      .skill-tag-name {
+        color: #1f2933;
+      }
+    }
   }
   
   // Starting/Learning (1-3)

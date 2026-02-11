@@ -114,7 +114,7 @@ export class SkillIconService {
     'Problem-Solving': 'fas fa-lightbulb',
     'REST API': 'fas fa-plug',
     'RESTful API Design': 'fas fa-plug',
-    'JSON': 'fas fa-braces',
+    'JSON': 'fas fa-code',
     'XML': 'fas fa-code',
     'Cross-browser Compatibility': 'fab fa-chrome',
     'Data Structures': 'fas fa-database',

@@ -257,6 +257,10 @@
   border-radius: 8px;
   flex-shrink: 0;
   background: rgba(102, 126, 234, 0.06);
+
+  @media (prefers-color-scheme: dark) {
+    background: rgba(102, 126, 234, 0.18);
+  }
 }
 
 .exp-card-linkedin .exp-header-main {
@@ -269,7 +273,7 @@
   align-items: center;
   gap: 0.5rem;
   font-size: 0.875rem;
-  color: var(--bs-secondary-color);
+  color: var(--bs-body-color);
   margin-top: 0.75rem;
   padding-top: 0.75rem;
   border-top: 1px solid rgba(0, 0, 0, 0.06);
@@ -280,6 +284,7 @@
   }
 
   @media (prefers-color-scheme: dark) {
+    color: var(--bs-body-color);
     border-top-color: rgba(255, 255, 255, 0.08);
   }
 }

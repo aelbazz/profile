@@ -7,7 +7,7 @@
       "companyLogo": "/assets/images/logos/thiqah.jpeg",
       "companyWebsite": "https://thiqah.sa/en/",
       "companyDescription": "THIQAH is a Saudi company specializing in smart solutions and creative services. Established in 2012, it has partnered with over 100 strategic partners and developed more than 60 smart technical projects, serving over 10 million users in approximately 26 countries. Recognized as one of Asia's top workplaces for 2024.",
-      "position": "Staff Developer – Digital Innovation Unit",
+      "position": "Staff Developer – Digital Innovation Unit, DevFusion Dep.",
       "location": "Riyadh, Saudi Arabia",
       "startDate": "Jan 2024",
       "endDate": null,
@@ -25,7 +25,7 @@
         "Led the frontend and technical delivery of products including iHealth, Quality Mate, and Business AI, integrating AI agents, automating workflows, and ensuring maintainable, scalable UI architectures",
         "Provide strategic technical guidance and hands-on support to product engineering teams across frontend, backend, and AI integration"
       ],
-      "technologies": ["Cursor AI", "Flowise AI", "Ollama", "Generative AI", "LangChain", "NestJS", "TypeScript", "Angular"],
+      "technologies": ["Cursor AI", "Flowise AI", "Ollama", "Generative AI",    "NestJS", "TypeScript", "Angular"],
       "achievements": [
         "First Place, THIQAH Hackathon (2023): AI-powered voice recognition tool for accessibility",
         "Second Place, Elm Company Hackathon (2025): Integrated AI solution using Nuha LLM, OpenAI LLM, LangChain, CrewAI, FastAPI, NestJS, Angular",
@@ -41,24 +41,29 @@
       "companyLogo": "/assets/images/logos/thiqah.jpeg",
       "companyWebsite": "https://thiqah.sa/en/",
       "companyDescription": "THIQAH is a Saudi company specializing in smart solutions and creative services. Established in 2012, it has partnered with over 100 strategic partners and developed more than 60 smart technical projects, serving over 10 million users in approximately 26 countries.",
-      "position": "Staff Developer – Engineering Team",
+      "position": "Staff Developer – Frontend Unit, Engineering Team",
       "location": "Riyadh, Saudi Arabia",
       "startDate": "Sep 2022",
       "endDate": "Dec 2023",
       "isCurrent": false,
-      "description": "Supported CI/CD, containerization, and DevOps practices across enterprise platforms.",
+      "description": "Led frontend architecture for enterprise Angular applications, ensuring scalable, performant, and well-structured frontends while mentoring engineers and aligning UI delivery with product goals.",
       "responsibilities": [
-        "Supported CI/CD, containerization, and DevOps practices across enterprise platforms",
-        "Contributed to backend and frontend integration using TypeScript, NestJS, ABP Framework",
-        "Implemented security solutions using Keycloak and Vault",
-        "Established DevOps practices and automated deployment pipelines",
-        "Mentored team members on modern development practices"
+        "Led frontend architecture for enterprise Angular projects, ensuring scalability, performance, and clean structure",
+        "Designed and maintained modular frontend structures aligned with product and business goals",
+        "Built and maintained reusable components and shared libraries to standardize UI development across teams",
+        "Maintained and upgraded frontend technologies, improving code quality and long-term maintainability",
+        "Provided technical guidance and hands-on support to frontend developers",
+        "Trained and mentored frontend engineers on architecture principles, best practices, and modern Angular patterns",
+        "Participated in technical interviews and evaluated candidates for frontend roles",
+        "Contributed to backend–frontend integration using TypeScript, NestJS, and ABP Framework",
+        "Supported CI/CD, containerization, and DevOps practices as part of the overall engineering process"
       ],
       "technologies": ["TypeScript", "NestJS", "ABP Framework", "Keycloak", "Vault", "CI/CD", "ArgoCD", "Docker", "Kubernetes", "DevOps"],
       "achievements": [
-        "Successfully implemented enterprise-grade CI/CD pipelines",
-        "Integrated security and secrets management solutions",
-        "Improved deployment efficiency and system reliability"
+        "Improved frontend scalability and consistency through reusable components and structured architecture",
+        "Elevated frontend code quality and team standards across projects",
+        "Strengthened team capability through mentorship and structured technical guidance",
+        "Established a scalable Design System and reusable frontend packages that standardized UI development, improved code consistency, and significantly reduced time-to-delivery."
       ]
     },
     {
@@ -151,7 +156,7 @@
       "companyLogo": "/assets/images/logos/Mazaya.png",
       "companyWebsite": "https://mazayasolutions.com/",
       "companyDescription": "Mazaya Integrated Solutions Company providing employment and recruitment services with focus on digital solutions and business services.",
-      "position": "Frontend Developer",
+      "position": "E-Content / Frontend Developer",
       "location": "Mansoura, Egypt",
       "startDate": "Apr 2016",
       "endDate": "Jan 2017",
@@ -176,7 +181,7 @@
       "companyLogo": "/assets/images/logos/edeltasoft.svg",
       "companyWebsite": "https://www.edeltasoft.com/",
       "companyDescription": "Software development company based in Mansoura, Egypt, specializing in web development and digital solutions.",
-      "position": "Frontend Developer",
+      "position": "E-Content / Frontend Developer",
       "location": "Mansoura, Egypt",
       "startDate": "Jul 2015",
       "endDate": "Mar 2016",
