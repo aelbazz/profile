@@ -1,5 +1,4 @@
-import { Injectable, signal, computed, inject, WritableSignal } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Injectable, signal, computed, inject } from '@angular/core';
 import {
   Profile,
   ExperienceData,
@@ -13,8 +12,9 @@ import {
 } from '../models';
 import { catchError, finalize, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { ProfileApiService } from './profile-api.service';
 
-/** Identifies a single JSON data file; also the cache key. */
+/** Identifies a section of the profile. Kept for the per-section error API. */
 export type DataKey =
   | 'profile'
   | 'experience'
@@ -26,14 +26,22 @@ export type DataKey =
   | 'timeline'
   | 'contact';
 
+/**
+ * Backing store for every profile section.
+ *
+ * Data now comes from the backend rather than nine static JSON files: one call to
+ * GET /api/v1/public/profile populates all nine signals. The public surface is unchanged -
+ * same signals, same loadX() methods, same error signals - so no component needed editing.
+ *
+ * Because a single request feeds everything, the per-section error signals all reflect that
+ * one request. That is deliberate: a partial failure is no longer possible.
+ */
 @Injectable({
   providedIn: 'root'
 })
 export class ConfigDataService {
-  private readonly http = inject(HttpClient);
-  private readonly baseUrl = 'assets/data';
+  private readonly api = inject(ProfileApiService);
 
-  // Signals for each data type
   private readonly profileSignal = signal<Profile | null>(null);
   private readonly experienceSignal = signal<ExperienceData | null>(null);
   private readonly projectsSignal = signal<ProjectData | null>(null);
@@ -44,7 +52,6 @@ export class ConfigDataService {
   private readonly timelineSignal = signal<TimelineData | null>(null);
   private readonly contactSignal = signal<Contact | null>(null);
 
-  // Readonly views
   readonly profile = this.profileSignal.asReadonly();
   readonly experience = this.experienceSignal.asReadonly();
   readonly projects = this.projectsSignal.asReadonly();
@@ -55,140 +62,123 @@ export class ConfigDataService {
   readonly timeline = this.timelineSignal.asReadonly();
   readonly contact = this.contactSignal.asReadonly();
 
-  /** Keys that have been fetched successfully - prevents refetching on every navigation. */
-  private readonly loaded = new Set<DataKey>();
-  /** Keys with a request currently in flight - prevents duplicate parallel requests. */
-  private readonly pending = new Set<DataKey>();
-  /** Keys whose last fetch failed, so templates can show a retry affordance. */
-  private readonly errorsSignal = signal<ReadonlySet<DataKey>>(new Set());
+  /** True once the profile has been fetched successfully. */
+  private loaded = false;
+  /** True while a request is in flight - collapses concurrent callers into one request. */
+  private pending = false;
 
-  private readonly pendingCountSignal = signal<number>(0);
-  readonly isLoading = computed(() => this.pendingCountSignal() > 0);
+  private readonly errorSignal = signal<boolean>(false);
+  private readonly loadingSignal = signal<boolean>(false);
 
-  /** True when the given data file failed to load and no data is available. */
-  hasError(key: DataKey): boolean {
-    return this.errorsSignal().has(key);
+  readonly isLoading = computed(() => this.loadingSignal());
+  readonly hasFailed = computed(() => this.errorSignal());
+
+  /** True when the profile failed to load and no data is available. */
+  hasError(_key?: DataKey): boolean {
+    return this.errorSignal();
   }
 
-  readonly profileError = computed(() => this.errorsSignal().has('profile'));
-  readonly experienceError = computed(() => this.errorsSignal().has('experience'));
-  readonly projectsError = computed(() => this.errorsSignal().has('projects'));
-  readonly achievementsError = computed(() => this.errorsSignal().has('achievements'));
-  readonly coursesError = computed(() => this.errorsSignal().has('courses'));
-  readonly managementError = computed(() => this.errorsSignal().has('management'));
-  readonly skillsError = computed(() => this.errorsSignal().has('skills'));
-  readonly timelineError = computed(() => this.errorsSignal().has('timeline'));
-  readonly contactError = computed(() => this.errorsSignal().has('contact'));
+  readonly profileError = computed(() => this.errorSignal());
+  readonly experienceError = computed(() => this.errorSignal());
+  readonly projectsError = computed(() => this.errorSignal());
+  readonly achievementsError = computed(() => this.errorSignal());
+  readonly coursesError = computed(() => this.errorSignal());
+  readonly managementError = computed(() => this.errorSignal());
+  readonly skillsError = computed(() => this.errorSignal());
+  readonly timelineError = computed(() => this.errorSignal());
+  readonly contactError = computed(() => this.errorSignal());
 
+  // Every loadX() delegates to the same request, so components keep calling exactly what
+  // they called when each section had its own JSON file.
   loadProfile(force = false): void {
-    this.load('profile', this.profileSignal, force);
+    this.load(force);
   }
 
   loadExperience(force = false): void {
-    this.load('experience', this.experienceSignal, force);
+    this.load(force);
   }
 
   loadProjects(force = false): void {
-    this.load('projects', this.projectsSignal, force);
+    this.load(force);
   }
 
   loadAchievements(force = false): void {
-    this.load('achievements', this.achievementsSignal, force);
+    this.load(force);
   }
 
   loadCourses(force = false): void {
-    this.load('courses', this.coursesSignal, force);
+    this.load(force);
   }
 
   loadManagement(force = false): void {
-    this.load('management', this.managementSignal, force);
+    this.load(force);
   }
 
   loadSkills(force = false): void {
-    this.load('skills', this.skillsSignal, force);
+    this.load(force);
   }
 
   loadTimeline(force = false): void {
-    this.load('timeline', this.timelineSignal, force);
+    this.load(force);
   }
 
   loadContact(force = false): void {
-    this.load('contact', this.contactSignal, force);
+    this.load(force);
   }
 
-  /** Load every data file. Cached keys are skipped unless `force` is set. */
   loadAllData(force = false): void {
-    this.loadProfile(force);
-    this.loadExperience(force);
-    this.loadProjects(force);
-    this.loadAchievements(force);
-    this.loadCourses(force);
-    this.loadManagement(force);
-    this.loadSkills(force);
-    this.loadTimeline(force);
-    this.loadContact(force);
+    this.load(force);
   }
 
-  /** Discards the cache so the next load() call refetches from the network. */
-  invalidate(key?: DataKey): void {
-    if (key) {
-      this.loaded.delete(key);
-    } else {
-      this.loaded.clear();
-    }
+  /** Discards the cache so the next load() refetches. Used after an admin edit. */
+  invalidate(): void {
+    this.loaded = false;
   }
 
   /**
-   * Fetches a data file once and caches the result. Repeat calls are no-ops while
-   * the data is already present or a request is in flight, unless `force` is set.
+   * Fetches the whole profile once and fans it out into the nine signals.
+   * Repeat calls are no-ops while data is present or a request is in flight.
    */
-  private load<T>(key: DataKey, target: WritableSignal<T | null>, force: boolean): void {
-    if (this.pending.has(key)) {
+  private load(force: boolean): void {
+    if (this.pending) {
       return;
     }
-    if (this.loaded.has(key) && !force) {
+    if (this.loaded && !force) {
       return;
     }
 
-    this.pending.add(key);
-    this.pendingCountSignal.update(count => count + 1);
-    this.clearError(key);
+    this.pending = true;
+    this.loadingSignal.set(true);
+    this.errorSignal.set(false);
 
-    this.http
-      .get<T>(`${this.baseUrl}/${key}.json`)
+    this.api
+      .getPublicProfile()
       .pipe(
         tap(data => {
-          target.set(data);
-          this.loaded.add(key);
+          this.profileSignal.set(data.person);
+          this.contactSignal.set(data.contact);
+          // The API returns bare arrays; the frontend models wrap them. Wrapping happens
+          // here, in one place, so the component-facing shapes are unchanged.
+          this.experienceSignal.set({ experiences: data.experiences });
+          this.projectsSignal.set({ projects: data.projects });
+          this.achievementsSignal.set({ achievements: data.achievements });
+          this.coursesSignal.set({ courses: data.courses });
+          this.timelineSignal.set({ events: data.timelineEvents });
+          this.managementSignal.set({ responsibilities: data.managementRoles });
+          // skills already arrives as { categories: [...] }, matching SkillData.
+          this.skillsSignal.set(data.skills);
+          this.loaded = true;
         }),
         catchError(error => {
-          console.error(`Error loading ${key}:`, error);
-          this.setError(key);
+          console.error('Error loading profile:', error);
+          this.errorSignal.set(true);
           return of(null);
         }),
         finalize(() => {
-          this.pending.delete(key);
-          this.pendingCountSignal.update(count => Math.max(0, count - 1));
+          this.pending = false;
+          this.loadingSignal.set(false);
         })
       )
       .subscribe();
-  }
-
-  private setError(key: DataKey): void {
-    this.errorsSignal.update(current => {
-      if (current.has(key)) return current;
-      const next = new Set(current);
-      next.add(key);
-      return next;
-    });
-  }
-
-  private clearError(key: DataKey): void {
-    this.errorsSignal.update(current => {
-      if (!current.has(key)) return current;
-      const next = new Set(current);
-      next.delete(key);
-      return next;
-    });
   }
 }

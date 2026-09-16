@@ -1,0 +1,110 @@
+<div class="page-head">
+  <div>
+    <h1>Contact information</h1>
+    <p class="subtitle">Shown on the contact page and in the footer.</p>
+  </div>
+</div>
+
+@if (error(); as message) {
+  <div class="alert alert-danger"><i class="fas fa-circle-exclamation me-2"></i>{{ message }}</div>
+}
+@if (saved()) {
+  <div class="alert alert-success"><i class="fas fa-circle-check me-2"></i>Contact information saved.</div>
+}
+
+@if (loading()) {
+  <div class="loading-state">
+    <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading…</span></div>
+    <p class="mt-3">Loading contact information…</p>
+  </div>
+} @else {
+  <form [formGroup]="form" (ngSubmit)="save()" novalidate>
+    <div class="card">
+      <div class="field-row">
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" type="email" formControlName="email"
+                 [class.invalid]="form.controls.email.touched && form.controls.email.invalid">
+          @if (form.controls.email.touched && form.controls.email.invalid) {
+            <small class="error">Enter a valid email address.</small>
+          }
+        </div>
+        <div class="field">
+          <label for="linkedin">LinkedIn URL</label>
+          <input id="linkedin" type="url" formControlName="linkedin">
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="phone">Phone</label>
+          <input id="phone" type="text" formControlName="phone">
+        </div>
+        <div class="field">
+          <label for="whatsapp">WhatsApp</label>
+          <input id="whatsapp" type="text" formControlName="whatsapp">
+          <small class="hint">Digits are extracted automatically for the wa.me link.</small>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="location">Location</label>
+          <input id="location" type="text" formControlName="location">
+        </div>
+        <div class="field">
+          <label for="birthday">Birthday</label>
+          <input id="birthday" type="text" formControlName="birthday">
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="muchskills">MuchSkills URL</label>
+        <input id="muchskills" type="url" formControlName="muchskills">
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="page-head">
+        <div>
+          <h2 class="section-title">Social links</h2>
+          <p class="subtitle">Order here is the order shown on the site.</p>
+        </div>
+        <button type="button" class="btn btn-secondary btn-sm" (click)="addLink()">
+          <i class="fas fa-plus"></i>Add link
+        </button>
+      </div>
+
+      @if (socialLinks.length === 0) {
+        <p class="empty-state">No social links yet.</p>
+      } @else {
+        <div class="item-list" formArrayName="socialLinks">
+          @for (link of socialLinks.controls; track $index; let i = $index) {
+            <div class="link-row" [formGroupName]="i">
+              <input type="text" formControlName="platform" placeholder="Platform (e.g. GitHub)" aria-label="Platform">
+              <input type="url" formControlName="url" placeholder="https://…" aria-label="URL">
+              <input type="text" formControlName="icon" placeholder="Icon class (optional)" aria-label="Icon">
+              <button type="button" class="btn btn-danger btn-sm" (click)="removeLink(i)"
+                      [attr.aria-label]="'Remove link ' + (i + 1)">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="row-actions">
+      <button type="submit" class="btn btn-primary" [disabled]="saving()">
+        @if (saving()) {
+          <span class="spinner-border spinner-border-sm"></span>Saving…
+        } @else {
+          <i class="fas fa-floppy-disk"></i>Save changes
+        }
+      </button>
+      <button type="button" class="btn btn-secondary" [disabled]="saving()" (click)="load()">
+        <i class="fas fa-rotate-left"></i>Discard
+      </button>
+    </div>
+  </form>
+}

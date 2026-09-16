@@ -1,0 +1,103 @@
+<div class="page-head">
+  <div>
+    <h1>Profile details</h1>
+    <p class="subtitle">The headline information shown on the home page.</p>
+  </div>
+</div>
+
+@if (error(); as message) {
+  <div class="alert alert-danger"><i class="fas fa-circle-exclamation me-2"></i>{{ message }}</div>
+}
+@if (saved()) {
+  <div class="alert alert-success"><i class="fas fa-circle-check me-2"></i>Profile saved.</div>
+}
+
+@if (loading()) {
+  <div class="loading-state">
+    <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading…</span></div>
+    <p class="mt-3">Loading profile…</p>
+  </div>
+} @else {
+  <form class="card" [formGroup]="form" (ngSubmit)="save()" novalidate>
+    <div class="field-row">
+      <div class="field">
+        <label for="name">Full name</label>
+        <input id="name" type="text" formControlName="name"
+               [class.invalid]="form.controls.name.touched && form.controls.name.invalid">
+        @if (form.controls.name.touched && form.controls.name.invalid) {
+          <small class="error">Name is required.</small>
+        }
+      </div>
+
+      <div class="field">
+        <label for="title">Professional title</label>
+        <input id="title" type="text" formControlName="title"
+               [class.invalid]="form.controls.title.touched && form.controls.title.invalid">
+        @if (form.controls.title.touched && form.controls.title.invalid) {
+          <small class="error">Title is required.</small>
+        }
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="summary">Summary</label>
+      <textarea id="summary" rows="5" formControlName="summary"
+                [class.invalid]="form.controls.summary.touched && form.controls.summary.invalid"></textarea>
+      <small class="hint">Shown in the "About Me" section.</small>
+    </div>
+
+    <div class="field">
+      <label for="tagline">Tagline</label>
+      <input id="tagline" type="text" formControlName="tagline">
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label for="location">Location</label>
+        <input id="location" type="text" formControlName="location">
+      </div>
+
+      <div class="field">
+        <label for="years">Years of experience</label>
+        <input id="years" type="number" min="0" max="80" formControlName="yearsOfExperience"
+               [class.invalid]="form.controls.yearsOfExperience.touched && form.controls.yearsOfExperience.invalid">
+        @if (form.controls.yearsOfExperience.touched && form.controls.yearsOfExperience.invalid) {
+          <small class="error">Must be between 0 and 80.</small>
+        }
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="avatar">Avatar path</label>
+      <input id="avatar" type="text" formControlName="avatar">
+      <small class="hint">A path relative to the frontend, e.g. /assets/images/profile-image.jpg</small>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label for="linkedin">LinkedIn URL</label>
+        <input id="linkedin" type="url" formControlName="linkedin" placeholder="https://www.linkedin.com/in/…">
+        <small class="hint">Optional. Must include https:// if set.</small>
+      </div>
+
+      <div class="field">
+        <label for="birthday">Birthday</label>
+        <input id="birthday" type="text" formControlName="birthday" placeholder="June 26">
+        <small class="hint">Free text, matching the existing format.</small>
+      </div>
+    </div>
+
+    <div class="row-actions">
+      <button type="submit" class="btn btn-primary" [disabled]="saving()">
+        @if (saving()) {
+          <span class="spinner-border spinner-border-sm"></span>Saving…
+        } @else {
+          <i class="fas fa-floppy-disk"></i>Save changes
+        }
+      </button>
+      <button type="button" class="btn btn-secondary" [disabled]="saving()" (click)="load()">
+        <i class="fas fa-rotate-left"></i>Discard
+      </button>
+    </div>
+  </form>
+}

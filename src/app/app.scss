@@ -595,3 +595,13 @@
   }
 }
 
+
+
+/* The admin area supplies its own full-height layout, so the public main-content
+   padding and max-width must not apply to it. */
+.main-content.admin-content {
+  padding: 0;
+  margin: 0;
+  max-width: none;
+  min-height: 100vh;
+}

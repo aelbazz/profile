@@ -31,9 +31,16 @@ export class ManagementComponent implements OnInit {
     return mgmt ? mgmt.responsibilities.filter(r => r.level === 'high') : [];
   }
 
+  /**
+   * Roles rendered in the second section.
+   *
+   * This used to filter for `level === 'low'` only, which meant the one record stored as
+   * 'medium' matched neither section and rendered nowhere. Anything that is not 'high'
+   * belongs here, so no role can be silently dropped again.
+   */
   getLowLevelResponsibilities(): ManagementResponsibility[] {
     const mgmt = this.management();
-    return mgmt ? mgmt.responsibilities.filter(r => r.level === 'low') : [];
+    return mgmt ? mgmt.responsibilities.filter(r => r.level !== 'high') : [];
   }
 }
 

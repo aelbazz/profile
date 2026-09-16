@@ -1,6 +1,7 @@
 export interface ManagementResponsibility {
   id: string;
-  level: 'high' | 'low';
+  /** The API models all three. Existing data uses 'high' and 'medium'. */
+  level: 'high' | 'medium' | 'low';
   title: string;
   organization: string;
   startDate: string;

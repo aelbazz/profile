@@ -3,3 +3,4 @@ export * from './pdf-export.service';
 export * from './file-download.service';
 export * from './skill-icon.service';
 
+export * from './profile-api.service';

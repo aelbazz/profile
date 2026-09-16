@@ -9,7 +9,9 @@ import {
   inject,
   signal
 } from '@angular/core';
-import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { filter, map, startWith } from 'rxjs/operators';
 import { ConfigDataService } from './core/services';
 
 interface NavItem {
@@ -32,6 +34,22 @@ const SCROLL_TOP_THRESHOLD = 300;
 export class AppComponent implements OnInit {
   private readonly configService = inject(ConfigDataService);
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
+  private readonly router = inject(Router);
+
+  /**
+   * The admin area brings its own sidebar, top bar and layout, so the public navbar,
+   * banner, footer and scroll-to-top button are suppressed there.
+   */
+  private readonly currentUrl = toSignal(
+    this.router.events.pipe(
+      filter((event): event is NavigationEnd => event instanceof NavigationEnd),
+      map(event => event.urlAfterRedirects),
+      startWith(this.router.url)
+    ),
+    { initialValue: this.router.url }
+  );
+
+  readonly isAdminArea = computed(() => this.currentUrl().startsWith('/admin'));
 
   private static readonly IN_PROGRESS_BANNER_KEY = 'hideInProgressBanner';
 
@@ -68,7 +86,9 @@ export class AppComponent implements OnInit {
   readonly linkedinUrl = computed(() => this.profile()?.linkedin || '#');
 
   ngOnInit(): void {
-    this.configService.loadProfile();
+    if (!this.isAdminArea()) {
+      this.configService.loadProfile();
+    }
     this.restoreInProgressBannerState();
   }
 

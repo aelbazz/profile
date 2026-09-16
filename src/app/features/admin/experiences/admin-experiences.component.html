@@ -1,0 +1,271 @@
+<div class="page-head">
+  <div>
+    <h1>Experience</h1>
+    <p class="subtitle">Work history, responsibilities and technologies.</p>
+  </div>
+  @if (editingId() === null) {
+    <button type="button" class="btn btn-primary" (click)="startCreate()">
+      <i class="fas fa-plus"></i>Add experience
+    </button>
+  }
+</div>
+
+@if (error(); as message) {
+  <div class="alert alert-danger"><i class="fas fa-circle-exclamation me-2"></i>{{ message }}</div>
+}
+@if (notice(); as message) {
+  <div class="alert alert-success"><i class="fas fa-circle-check me-2"></i>{{ message }}</div>
+}
+
+<!-- ============================= FORM ============================= -->
+@if (editingId() !== null) {
+  <form class="card" [formGroup]="form" (ngSubmit)="save()" novalidate>
+    <h2 class="section-title">
+      {{ editingId() ? 'Edit experience' : 'New experience' }}
+    </h2>
+
+    <div class="field-row">
+      <div class="field">
+        <label for="company">Company</label>
+        <input id="company" type="text" formControlName="company"
+               [class.invalid]="form.controls.company.touched && form.controls.company.invalid">
+        @if (form.controls.company.touched && form.controls.company.invalid) {
+          <small class="error">Company is required.</small>
+        }
+      </div>
+      <div class="field">
+        <label for="position">Position</label>
+        <input id="position" type="text" formControlName="position"
+               [class.invalid]="form.controls.position.touched && form.controls.position.invalid">
+        @if (form.controls.position.touched && form.controls.position.invalid) {
+          <small class="error">Position is required.</small>
+        }
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label for="companyFullName">Company full name</label>
+        <input id="companyFullName" type="text" formControlName="companyFullName">
+      </div>
+      <div class="field">
+        <label for="location">Location</label>
+        <input id="location" type="text" formControlName="location"
+               [class.invalid]="form.controls.location.touched && form.controls.location.invalid">
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label for="startDate">Start date</label>
+        <input id="startDate" type="text" formControlName="startDate" placeholder="Jan 2024"
+               [class.invalid]="form.controls.startDate.touched && form.controls.startDate.invalid">
+        <small class="hint">Free text, matching the existing format.</small>
+      </div>
+      <div class="field">
+        <label for="endDate">End date</label>
+        <input id="endDate" type="text" formControlName="endDate" placeholder="Dec 2025">
+        <small class="hint">Leave blank for a current role.</small>
+      </div>
+    </div>
+
+    <label class="check">
+      <input type="checkbox" formControlName="isCurrent"> This is my current role
+    </label>
+
+    <div class="field">
+      <label for="description">Description</label>
+      <textarea id="description" rows="3" formControlName="description"
+                [class.invalid]="form.controls.description.touched && form.controls.description.invalid"></textarea>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label for="companyWebsite">Company website</label>
+        <input id="companyWebsite" type="url" formControlName="companyWebsite" placeholder="https://…">
+      </div>
+      <div class="field">
+        <label for="companyLogo">Company logo path</label>
+        <input id="companyLogo" type="text" formControlName="companyLogo" placeholder="/assets/images/logos/…">
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="companyDescription">Company description</label>
+      <textarea id="companyDescription" rows="2" formControlName="companyDescription"></textarea>
+    </div>
+
+    <!-- Responsibilities -->
+    <div class="child-block">
+      <div class="child-head">
+        <h3>Responsibilities</h3>
+        <button type="button" class="btn btn-secondary btn-sm" (click)="addResponsibility()">
+          <i class="fas fa-plus"></i>Add
+        </button>
+      </div>
+      @if (responsibilities.length === 0) {
+        <p class="empty-state">No responsibilities yet.</p>
+      } @else {
+        <div class="item-list" formArrayName="responsibilities">
+          @for (control of responsibilities.controls; track $index; let i = $index) {
+            <div class="item-row">
+              <textarea rows="2" [formControlName]="i" [attr.aria-label]="'Responsibility ' + (i + 1)"></textarea>
+              <button type="button" class="btn btn-danger btn-sm" (click)="removeAt(responsibilities, i)"
+                      [attr.aria-label]="'Remove responsibility ' + (i + 1)">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Achievements -->
+    <div class="child-block">
+      <div class="child-head">
+        <h3>Achievements</h3>
+        <button type="button" class="btn btn-secondary btn-sm" (click)="addAchievement()">
+          <i class="fas fa-plus"></i>Add
+        </button>
+      </div>
+      @if (achievements.length === 0) {
+        <p class="empty-state">No achievements yet.</p>
+      } @else {
+        <div class="item-list" formArrayName="achievements">
+          @for (control of achievements.controls; track $index; let i = $index) {
+            <div class="item-row">
+              <textarea rows="2" [formControlName]="i" [attr.aria-label]="'Achievement ' + (i + 1)"></textarea>
+              <button type="button" class="btn btn-danger btn-sm" (click)="removeAt(achievements, i)"
+                      [attr.aria-label]="'Remove achievement ' + (i + 1)">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          }
+        </div>
+      }
+    </div>
+
+    <!-- Technologies -->
+    <div class="child-block">
+      <div class="child-head">
+        <h3>Technologies</h3>
+        <button type="button" class="btn btn-secondary btn-sm" (click)="addTechnology()">
+          <i class="fas fa-plus"></i>Add
+        </button>
+      </div>
+      <p class="hint mb-2">
+        Typing a technology that already exists reuses it — it is never duplicated.
+      </p>
+      @if (technologies.length === 0) {
+        <p class="empty-state">No technologies yet.</p>
+      } @else {
+        <div class="tech-list" formArrayName="technologies">
+          @for (control of technologies.controls; track $index; let i = $index) {
+            <div class="tech-row">
+              <input type="text" [formControlName]="i" [attr.aria-label]="'Technology ' + (i + 1)">
+              <button type="button" class="btn btn-danger btn-sm" (click)="removeAt(technologies, i)"
+                      [attr.aria-label]="'Remove technology ' + (i + 1)">
+                <i class="fas fa-xmark"></i>
+              </button>
+            </div>
+          }
+        </div>
+      }
+    </div>
+
+    <label class="check">
+      <input type="checkbox" formControlName="isPublished"> Visible on the public site
+    </label>
+
+    <div class="row-actions">
+      <button type="submit" class="btn btn-primary" [disabled]="saving()">
+        @if (saving()) {
+          <span class="spinner-border spinner-border-sm"></span>Saving…
+        } @else {
+          <i class="fas fa-floppy-disk"></i>{{ editingId() ? 'Save changes' : 'Create' }}
+        }
+      </button>
+      <button type="button" class="btn btn-secondary" [disabled]="saving()" (click)="cancelEdit()">
+        Cancel
+      </button>
+    </div>
+  </form>
+}
+
+<!-- ============================= LIST ============================= -->
+@if (editingId() === null) {
+  @if (loading()) {
+    <div class="loading-state">
+      <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading…</span></div>
+      <p class="mt-3">Loading experience…</p>
+    </div>
+  } @else if (items(); as rows) {
+    @if (rows.length === 0) {
+      <div class="card empty-state">
+        <p>No experience recorded yet.</p>
+        <button type="button" class="btn btn-primary" (click)="startCreate()">
+          <i class="fas fa-plus"></i>Add the first one
+        </button>
+      </div>
+    } @else {
+      <div class="card table-scroll">
+        <table class="list-table">
+          <thead>
+            <tr>
+              <th>Position</th>
+              <th>Company</th>
+              <th>Period</th>
+              <th>Details</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of rows; track item.id) {
+              <tr>
+                <td>
+                  <strong>{{ item.position }}</strong>
+                  <div class="row-meta">{{ item.legacyId }}</div>
+                </td>
+                <td>{{ item.company }}</td>
+                <td class="nowrap">{{ item.startDate }} – {{ item.endDate || 'Present' }}</td>
+                <td class="nowrap">
+                  {{ item.responsibilities.length }} resp ·
+                  {{ item.technologies.length }} tech
+                </td>
+                <td>
+                  <button type="button"
+                          class="badge"
+                          [class.badge-published]="item.isPublished"
+                          [class.badge-draft]="!item.isPublished"
+                          (click)="togglePublished(item)"
+                          [attr.aria-label]="item.isPublished ? 'Unpublish' : 'Publish'">
+                    {{ item.isPublished ? 'Published' : 'Draft' }}
+                  </button>
+                </td>
+                <td>
+                  @if (confirmDeleteId() === item.id) {
+                    <div class="row-actions">
+                      <button type="button" class="btn btn-danger btn-sm" [disabled]="saving()"
+                              (click)="confirmDelete(item.id)">Confirm</button>
+                      <button type="button" class="btn btn-secondary btn-sm" (click)="cancelDelete()">Cancel</button>
+                    </div>
+                  } @else {
+                    <div class="row-actions">
+                      <button type="button" class="btn btn-secondary btn-sm" (click)="startEdit(item)">
+                        <i class="fas fa-pen"></i>Edit
+                      </button>
+                      <button type="button" class="btn btn-danger btn-sm" (click)="askDelete(item.id)">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
+                  }
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+  }
+}

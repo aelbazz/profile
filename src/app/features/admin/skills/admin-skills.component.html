@@ -1,0 +1,136 @@
+<div class="page-head">
+  <div>
+    <h1>Skills</h1>
+    <p class="subtitle">
+      Grouped into categories. Level 0 means unranked and renders as a plain grey tag.
+    </p>
+  </div>
+</div>
+
+@if (error(); as message) {
+  <div class="alert alert-danger"><i class="fas fa-circle-exclamation me-2"></i>{{ message }}</div>
+}
+@if (notice(); as message) {
+  <div class="alert alert-success"><i class="fas fa-circle-check me-2"></i>{{ message }}</div>
+}
+
+<div class="card">
+  <div class="create-row">
+    <input
+      type="text"
+      placeholder="New category name"
+      aria-label="New category name"
+      [ngModel]="newCategoryName()"
+      (ngModelChange)="newCategoryName.set($event)"
+      (keyup.enter)="addCategory()">
+    <button type="button" class="btn btn-primary" [disabled]="busy() || !newCategoryName().trim()"
+            (click)="addCategory()">
+      <i class="fas fa-plus"></i>Add category
+    </button>
+  </div>
+</div>
+
+@if (loading()) {
+  <div class="loading-state">
+    <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading…</span></div>
+    <p class="mt-3">Loading skills…</p>
+  </div>
+} @else if (categories(); as cats) {
+  @if (cats.length === 0) {
+    <div class="card empty-state"><p>No skill categories yet.</p></div>
+  } @else {
+    @for (category of cats; track category.id) {
+      <div class="card category-card">
+        <div class="category-head">
+          <button type="button" class="category-toggle" (click)="toggleCategory(category.id)"
+                  [attr.aria-expanded]="expandedId() === category.id">
+            <i class="fas" [class.fa-chevron-down]="expandedId() === category.id"
+               [class.fa-chevron-right]="expandedId() !== category.id"></i>
+            <span class="category-name">{{ category.name }}</span>
+            <span class="skill-count">{{ category.skills.length }}</span>
+          </button>
+
+          <div class="row-actions">
+            <button type="button"
+                    class="badge"
+                    [class.badge-published]="category.isPublished"
+                    [class.badge-draft]="!category.isPublished"
+                    (click)="toggleCategoryPublished(category)">
+              {{ category.isPublished ? 'Published' : 'Draft' }}
+            </button>
+
+            @if (confirmDeleteCategoryId() === category.id) {
+              <span class="delete-warning">Delete {{ category.skills.length }} skill(s)?</span>
+              <button type="button" class="btn btn-danger btn-sm" [disabled]="busy()"
+                      (click)="deleteCategory(category.id)">Confirm</button>
+              <button type="button" class="btn btn-secondary btn-sm" (click)="cancelDeleteCategory()">Cancel</button>
+            } @else {
+              <button type="button" class="btn btn-danger btn-sm" (click)="askDeleteCategory(category.id)">
+                <i class="fas fa-trash"></i>
+              </button>
+            }
+          </div>
+        </div>
+
+        @if (expandedId() === category.id) {
+          <div class="category-body">
+            @if (category.skills.length === 0) {
+              <p class="empty-state">No skills in this category yet.</p>
+            } @else {
+              <div class="skill-rows">
+                @for (skill of category.skills; track skill.id) {
+                  <div class="skill-row">
+                    <span class="skill-name">{{ skill.name }}</span>
+                    @if (skill.since) {
+                      <span class="skill-since">since {{ skill.since }}</span>
+                    }
+                    <select
+                      class="level-select"
+                      [attr.aria-label]="'Level for ' + skill.name"
+                      [ngModel]="skill.level"
+                      (ngModelChange)="changeLevel(skill, $event)">
+                      @for (level of levels; track level) {
+                        <option [value]="level">{{ level }} — {{ tierName(level) }}</option>
+                      }
+                    </select>
+                    <button type="button" class="btn btn-danger btn-sm" [disabled]="busy()"
+                            (click)="deleteSkill(skill)" [attr.aria-label]="'Delete ' + skill.name">
+                      <i class="fas fa-xmark"></i>
+                    </button>
+                  </div>
+                }
+              </div>
+            }
+
+            <div class="add-skill-row">
+              <input
+                type="text"
+                placeholder="Skill name"
+                aria-label="New skill name"
+                [ngModel]="newSkillName()"
+                (ngModelChange)="newSkillName.set($event)"
+                (keyup.enter)="addSkill(category.id)">
+              <select aria-label="New skill level" [ngModel]="newSkillLevel()"
+                      (ngModelChange)="newSkillLevel.set(+$event)">
+                @for (level of levels; track level) {
+                  <option [value]="level">{{ level }} — {{ tierName(level) }}</option>
+                }
+              </select>
+              <input
+                type="number"
+                placeholder="Since"
+                aria-label="Year first used"
+                min="1900" max="2200"
+                [ngModel]="newSkillSince()"
+                (ngModelChange)="newSkillSince.set($event ? +$event : null)">
+              <button type="button" class="btn btn-primary btn-sm"
+                      [disabled]="busy() || !newSkillName().trim()" (click)="addSkill(category.id)">
+                <i class="fas fa-plus"></i>Add skill
+              </button>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  }
+}

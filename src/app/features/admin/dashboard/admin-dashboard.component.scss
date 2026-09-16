@@ -1,0 +1,45 @@
+@use '../admin-page.scss';
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.stat-card {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 1.1rem;
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  border-radius: 10px;
+  color: var(--admin-text);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+    color: var(--admin-text);
+  }
+}
+
+.stat-icon {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(99, 102, 241, 0.13);
+  color: var(--admin-accent);
+}
+
+.stat-body { display: flex; flex-direction: column; min-width: 0; }
+.stat-count { font-size: 1.5rem; font-weight: 700; line-height: 1.1; }
+.stat-label { font-size: 0.82rem; color: var(--admin-muted); }
+
+.section-title { font-size: 1rem; margin: 0 0 0.9rem; color: var(--admin-text); }
+.quick-links { display: flex; flex-wrap: wrap; gap: 0.6rem; }

@@ -1,0 +1,109 @@
+@use '../admin-page.scss';
+
+.create-row {
+  display: flex;
+  gap: 0.5rem;
+
+  input {
+    flex: 1;
+    padding: 0.55rem 0.7rem;
+    border: 1px solid var(--admin-border);
+    border-radius: 7px;
+    font-size: 0.9rem;
+    background: var(--admin-surface);
+    color: var(--admin-text);
+  }
+}
+
+.category-card { padding: 0; overflow: hidden; }
+
+.category-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 1.1rem;
+  flex-wrap: wrap;
+}
+
+.category-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--admin-text);
+  font-size: 0.95rem;
+  cursor: pointer;
+
+  i { color: var(--admin-muted); width: 12px; }
+}
+
+.category-name { font-weight: 600; }
+
+.skill-count {
+  background: rgba(99, 102, 241, 0.14);
+  color: var(--admin-accent);
+  border-radius: 999px;
+  padding: 0.1rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.category-body {
+  padding: 0 1.1rem 1.1rem;
+  border-top: 1px solid var(--admin-border);
+}
+
+.skill-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin: 0.9rem 0;
+}
+
+.skill-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem 0.55rem;
+  border-radius: 7px;
+  background: var(--admin-bg-subtle);
+}
+
+.skill-name { flex: 1; font-size: 0.88rem; color: var(--admin-text); }
+.skill-since { font-size: 0.75rem; color: var(--admin-muted); }
+
+.level-select {
+  padding: 0.3rem 0.45rem;
+  border: 1px solid var(--admin-border);
+  border-radius: 6px;
+  font-size: 0.8rem;
+  background: var(--admin-surface);
+  color: var(--admin-text);
+  min-width: 165px;
+}
+
+.add-skill-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-top: 0.9rem;
+  border-top: 1px dashed var(--admin-border);
+
+  input[type='text'] { flex: 1; min-width: 160px; }
+  input[type='number'] { width: 100px; }
+
+  input, select {
+    padding: 0.4rem 0.55rem;
+    border: 1px solid var(--admin-border);
+    border-radius: 6px;
+    font-size: 0.85rem;
+    background: var(--admin-surface);
+    color: var(--admin-text);
+  }
+}
+
+.badge { border: none; cursor: pointer; }
+.delete-warning { font-size: 0.8rem; color: #dc2626; align-self: center; }

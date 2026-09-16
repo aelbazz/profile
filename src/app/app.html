@@ -1,3 +1,4 @@
+@if (!isAdminArea()) {
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm">
   <div class="container">
@@ -57,12 +58,15 @@
     </div>
   </div>
 }
+}
 
 <!-- Main Content -->
-<main class="main-content" [class.with-banner]="showInProgressBanner()">
+<main class="main-content" [class.with-banner]="showInProgressBanner() && !isAdminArea()"
+      [class.admin-content]="isAdminArea()">
   <router-outlet></router-outlet>
 </main>
 
+@if (!isAdminArea()) {
 <!-- Scroll to Top Button -->
 <button 
   class="scroll-to-top" 
@@ -134,3 +138,4 @@
     </div>
   </div>
 </footer>
+}

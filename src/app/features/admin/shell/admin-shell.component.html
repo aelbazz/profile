@@ -1,0 +1,60 @@
+<div class="admin-layout" [class.sidebar-open]="sidebarOpen()">
+  <aside class="admin-sidebar">
+    <div class="sidebar-header">
+      <i class="fas fa-shield-halved"></i>
+      <span>Admin</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      @for (item of navItems; track item.path) {
+        <a
+          class="sidebar-link"
+          [routerLink]="item.path"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: item.path === '/admin' }"
+          (click)="closeSidebar()">
+          <i [class]="item.icon"></i>
+          <span>{{ item.label }}</span>
+        </a>
+      }
+    </nav>
+
+    <div class="sidebar-footer">
+      <a class="sidebar-link" routerLink="/" (click)="closeSidebar()">
+        <i class="fas fa-arrow-left"></i>
+        <span>Back to site</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Closes the drawer when tapping the dimmed area on mobile. -->
+  @if (sidebarOpen()) {
+    <div class="sidebar-backdrop" (click)="closeSidebar()"></div>
+  }
+
+  <div class="admin-main">
+    <header class="admin-topbar">
+      <button
+        type="button"
+        class="sidebar-toggle"
+        [attr.aria-expanded]="sidebarOpen()"
+        [attr.aria-label]="sidebarOpen() ? 'Close admin menu' : 'Open admin menu'"
+        (click)="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <div class="topbar-user">
+        <span class="user-name">
+          <i class="fas fa-user-shield me-2"></i>{{ displayName() }}
+        </span>
+        <button type="button" class="logout-btn" (click)="logout()">
+          <i class="fas fa-right-from-bracket me-2"></i>Sign out
+        </button>
+      </div>
+    </header>
+
+    <main class="admin-content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

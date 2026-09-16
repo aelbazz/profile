@@ -2,20 +2,32 @@ import { TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { ConfigDataService } from './config-data.service';
+import { environment } from '../../../environments/environment';
 
 describe('ConfigDataService', () => {
   let service: ConfigDataService;
   let httpMock: HttpTestingController;
 
-  const PROFILE_URL = 'assets/data/profile.json';
-  const profileFixture = {
-    name: 'Ahmed Mohsen Albaz',
-    title: 'Staff Engineer',
-    summary: 'Summary',
-    location: 'Riyadh, Saudi Arabia',
-    yearsOfExperience: 13,
-    avatar: '/assets/images/profile-image.jpg',
-    tagline: 'Tagline'
+  const PROFILE_URL = `${environment.apiBaseUrl}/public/profile`;
+
+  const response = {
+    person: {
+      name: 'Ahmed Mohsen Albaz',
+      title: 'Staff Engineer',
+      summary: 'Summary',
+      location: 'Riyadh, Saudi Arabia',
+      yearsOfExperience: 13,
+      avatar: '/assets/images/profile-image.jpg',
+      tagline: 'Tagline'
+    },
+    contact: { email: 'a@b.com', phone: '+1', whatsapp: '+1', linkedin: 'https://x', socialLinks: [] },
+    experiences: [{ id: 'exp1', responsibilities: ['R1'], technologies: ['Angular'] }],
+    projects: [{ id: 'proj1', highlights: ['H1'], technologies: ['Angular'] }],
+    achievements: [{ id: 'ach1' }],
+    courses: [{ id: 'edu1', skills: ['S1'] }],
+    timelineEvents: [{ id: 'evt1' }],
+    managementRoles: [{ id: 'mgmt1', keyResponsibilities: ['K1'], achievements: ['A1'] }],
+    skills: { categories: [{ category: 'Frontend', skills: [{ name: 'Angular', level: 9 }] }] }
   };
 
   beforeEach(() => {
@@ -26,80 +38,89 @@ describe('ConfigDataService', () => {
     httpMock = TestBed.inject(HttpTestingController);
   });
 
-  afterEach(() => {
-    httpMock.verify();
-  });
+  afterEach(() => httpMock.verify());
 
-  it('should populate the signal on a successful load', () => {
+  it('populates every section from one request', () => {
     service.loadProfile();
-    httpMock.expectOne(PROFILE_URL).flush(profileFixture);
+    httpMock.expectOne(PROFILE_URL).flush(response);
 
     expect(service.profile()?.name).toBe('Ahmed Mohsen Albaz');
-    expect(service.profileError()).toBe(false);
+    expect(service.contact()?.email).toBe('a@b.com');
+    expect(service.experience()?.experiences.length).toBe(1);
+    expect(service.projects()?.projects.length).toBe(1);
+    expect(service.achievements()?.achievements.length).toBe(1);
+    expect(service.courses()?.courses.length).toBe(1);
+    expect(service.timeline()?.events.length).toBe(1);
+    expect(service.management()?.responsibilities.length).toBe(1);
+    expect(service.skills()?.categories.length).toBe(1);
   });
 
-  it('should not refetch data that is already cached', () => {
-    service.loadProfile();
-    httpMock.expectOne(PROFILE_URL).flush(profileFixture);
+  it('wraps bare API arrays into the shapes the frontend models expect', () => {
+    service.loadAllData();
+    httpMock.expectOne(PROFILE_URL).flush(response);
 
+    // The API returns `timelineEvents`; the frontend model is `{ events: [...] }`.
+    expect(service.timeline()).toEqual({ events: response.timelineEvents });
+    // `managementRoles` -> `{ responsibilities: [...] }`.
+    expect(service.management()).toEqual({ responsibilities: response.managementRoles });
+    // skills passes through untouched - it already matches SkillData.
+    expect(service.skills()).toEqual(response.skills);
+  });
+
+  it('issues only one request no matter which loadX() is called', () => {
     service.loadProfile();
+    service.loadSkills();
+    service.loadExperience();
+
+    httpMock.expectOne(PROFILE_URL).flush(response);
     httpMock.expectNone(PROFILE_URL);
   });
 
-  it('should collapse duplicate parallel calls into one request', () => {
+  it('does not refetch once loaded', () => {
     service.loadProfile();
-    service.loadProfile();
-    service.loadProfile();
+    httpMock.expectOne(PROFILE_URL).flush(response);
 
-    httpMock.expectOne(PROFILE_URL).flush(profileFixture);
+    service.loadProjects();
+    httpMock.expectNone(PROFILE_URL);
   });
 
-  it('should refetch when forced', () => {
+  it('refetches when forced', () => {
     service.loadProfile();
-    httpMock.expectOne(PROFILE_URL).flush(profileFixture);
+    httpMock.expectOne(PROFILE_URL).flush(response);
 
     service.loadProfile(true);
-    httpMock.expectOne(PROFILE_URL).flush({ ...profileFixture, name: 'Updated' });
-
-    expect(service.profile()?.name).toBe('Updated');
+    httpMock.expectOne(PROFILE_URL).flush(response);
   });
 
-  it('should refetch after the cache is invalidated', () => {
+  it('refetches after invalidate()', () => {
     service.loadProfile();
-    httpMock.expectOne(PROFILE_URL).flush(profileFixture);
+    httpMock.expectOne(PROFILE_URL).flush(response);
 
-    service.invalidate('profile');
+    service.invalidate();
     service.loadProfile();
-    httpMock.expectOne(PROFILE_URL).flush(profileFixture);
+    httpMock.expectOne(PROFILE_URL).flush(response);
   });
 
-  it('should flag an error and stay retryable when a load fails', () => {
+  it('flags an error and stays retryable when the request fails', () => {
     service.loadProfile();
-    httpMock
-      .expectOne(PROFILE_URL)
-      .flush('not found', { status: 404, statusText: 'Not Found' });
+    httpMock.expectOne(PROFILE_URL).flush('down', { status: 503, statusText: 'Service Unavailable' });
 
     expect(service.profile()).toBeNull();
     expect(service.profileError()).toBe(true);
+    expect(service.skillsError()).toBe(true);
     expect(service.isLoading()).toBe(false);
 
-    // A failed key is not cached, so a plain retry re-issues the request.
+    // A failed load is not cached, so a plain retry re-issues the request.
     service.loadProfile();
-    httpMock.expectOne(PROFILE_URL).flush(profileFixture);
-
+    httpMock.expectOne(PROFILE_URL).flush(response);
     expect(service.profileError()).toBe(false);
-    expect(service.profile()?.name).toBe('Ahmed Mohsen Albaz');
   });
 
-  it('should track loading across concurrent requests', () => {
+  it('tracks loading state', () => {
     service.loadProfile();
-    service.loadSkills();
     expect(service.isLoading()).toBe(true);
 
-    httpMock.expectOne(PROFILE_URL).flush(profileFixture);
-    expect(service.isLoading()).toBe(true);
-
-    httpMock.expectOne('assets/data/skills.json').flush({ categories: [] });
+    httpMock.expectOne(PROFILE_URL).flush(response);
     expect(service.isLoading()).toBe(false);
   });
 });

@@ -1,0 +1,65 @@
+@use '../admin-page.scss';
+
+.create-row {
+  display: flex;
+  gap: 0.5rem;
+
+  input {
+    flex: 1;
+    padding: 0.55rem 0.7rem;
+    border: 1px solid var(--admin-border);
+    border-radius: 7px;
+    font-size: 0.9rem;
+    background: var(--admin-surface);
+    color: var(--admin-text);
+
+    &:focus {
+      outline: none;
+      border-color: var(--admin-accent);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.18);
+    }
+  }
+}
+
+.list-head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.search-input {
+  flex: 1;
+  min-width: 200px;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid var(--admin-border);
+  border-radius: 7px;
+  font-size: 0.875rem;
+  background: var(--admin-surface);
+  color: var(--admin-text);
+}
+
+.inline-input {
+  width: 100%;
+  padding: 0.35rem 0.5rem;
+  border: 1px solid var(--admin-accent);
+  border-radius: 6px;
+  background: var(--admin-surface);
+  color: var(--admin-text);
+}
+
+.count-note { font-size: 0.82rem; color: var(--admin-muted); }
+.row-meta { font-size: 0.74rem; color: var(--admin-muted); margin-top: 0.1rem; }
+.nowrap { white-space: nowrap; }
+
+.usage {
+  display: inline-block;
+  margin-right: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--admin-muted);
+
+  &.unused { font-style: italic; }
+}
+
+.delete-warning { font-size: 0.8rem; color: #dc2626; align-self: center; }
