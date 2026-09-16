@@ -45,7 +45,10 @@ describe('PageHeaderComponent', () => {
     component.icon = 'fas fa-briefcase';
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.page-title i')?.className).toContain('fas fa-briefcase');
+    // Angular normalises class order, so assert on the individual tokens.
+    const icon = compiled.querySelector('.page-title i');
+    expect(icon?.classList.contains('fas')).toBe(true);
+    expect(icon?.classList.contains('fa-briefcase')).toBe(true);
   });
 
   it('should not render icon when not provided', () => {

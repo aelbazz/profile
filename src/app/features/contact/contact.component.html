@@ -52,7 +52,7 @@
               title="WhatsApp"
               description="Chat instantly"
               [href]="getWhatsAppLink(contactData.whatsapp)"
-              target="_blank">
+              target="_blank" rel="noopener noreferrer">
             </app-action-card>
           </div>
           
@@ -64,7 +64,7 @@
               title="LinkedIn"
               description="Professional network"
               [href]="contactData.linkedin"
-              target="_blank">
+              target="_blank" rel="noopener noreferrer">
             </app-action-card>
           </div>
         </div>
@@ -96,7 +96,7 @@
             @for (social of socialLinksFiltered(); track social.platform) {
               <a 
                 [href]="social.url" 
-                target="_blank" 
+                target="_blank" rel="noopener noreferrer" 
                 class="social-card glass-card"
                 [class]="'social-card-' + social.platform.toLowerCase()">
                 <div class="social-card-icon">
@@ -129,14 +129,7 @@
       </div>
     </div>
   } @else {
-    <div class="container">
-      <div class="text-center py-5">
-        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
-          <span class="visually-hidden">Loading...</span>
-        </div>
-        <p class="mt-4 text-muted fs-5">Loading contact information...</p>
-      </div>
-    </div>
+    <app-data-state label="contact information" [hasError]="contactError()" (retry)="reload()" />
   }
 </div>
 

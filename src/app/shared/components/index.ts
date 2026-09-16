@@ -6,3 +6,4 @@ export * from './timeline-item/timeline-item.component';
 export * from './action-card/action-card.component';
 export * from './experience-card/experience-card.component';
 
+export * from './data-state/data-state.component';
