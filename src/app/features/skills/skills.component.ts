@@ -1,13 +1,13 @@
 import { Component, OnInit, ChangeDetectionStrategy, inject, signal, computed } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ConfigDataService, SkillIconService } from '../../core/services';
-import { PageHeaderComponent } from '../../shared/components';
+import { PageHeaderComponent, DataStateComponent } from '../../shared/components';
 import { Skill, SkillData } from '../../core/models';
 
 @Component({
   selector: 'app-skills',
   standalone: true,
-  imports: [PageHeaderComponent, FormsModule],
+  imports: [PageHeaderComponent, FormsModule, DataStateComponent],
   templateUrl: './skills.component.html',
   styleUrls: ['./skills.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -17,6 +17,7 @@ export class SkillsComponent implements OnInit {
   private readonly skillIconService = inject(SkillIconService);
 
   readonly skills = this.configService.skills;
+  readonly skillsError = this.configService.skillsError;
   readonly searchTerm = signal<string>('');
   readonly selectedCategory = signal<string | null>(null);
 
@@ -78,6 +79,11 @@ export class SkillsComponent implements OnInit {
 
   ngOnInit(): void {
     this.configService.loadSkills();
+  }
+
+  /** Refetches this section after a failed load. */
+  reload(): void {
+    this.configService.loadSkills(true);
   }
 
   onSearchChange(value: string): void {

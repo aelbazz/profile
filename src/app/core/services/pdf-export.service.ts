@@ -33,22 +33,19 @@ export class PdfExportService {
       const imgWidth = 210; // A4 width in mm
       const pageHeight = 297; // A4 height in mm
       const imgHeight = (canvas.height * imgWidth) / canvas.width;
-      let heightLeft = imgHeight;
 
       const contentDataURL = canvas.toDataURL('image/png');
       const pdf = new jsPDF('p', 'mm', 'a4');
-      let position = 0;
 
-      // Add first page
-      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
-      heightLeft -= pageHeight;
+      // Slide the same image up by one page height per page. Rounding guards against
+      // a trailing blank page when the content divides almost exactly into A4 pages.
+      const pageCount = Math.max(1, Math.ceil((imgHeight - 0.01) / pageHeight));
 
-      // Add additional pages if content is longer than one page
-      while (heightLeft >= 0) {
-        position = heightLeft - imgHeight;
-        pdf.addPage();
-        pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight);
-        heightLeft -= pageHeight;
+      for (let page = 0; page < pageCount; page++) {
+        if (page > 0) {
+          pdf.addPage();
+        }
+        pdf.addImage(contentDataURL, 'PNG', 0, -page * pageHeight, imgWidth, imgHeight);
       }
 
       pdf.save(fileName);

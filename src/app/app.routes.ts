@@ -43,8 +43,20 @@ export const routes: Routes = [
     title: 'Skills'
   },
   {
+    path: 'timeline',
+    loadComponent: () =>
+      import('./features/timeline/timeline.component').then(m => m.TimelineComponent),
+    title: 'Career Timeline'
+  },
+  {
+    path: 'management',
+    loadComponent: () =>
+      import('./features/management/management.component').then(m => m.ManagementComponent),
+    title: 'Management Experience'
+  },
+  {
     path: 'contact',
-    loadComponent: () => 
+    loadComponent: () =>
       import('./features/contact/contact.component').then(m => m.ContactComponent),
     title: 'Contact'
   },

@@ -1,11 +1,11 @@
 import { Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
 import { ConfigDataService } from '../../core/services';
-import { PageHeaderComponent } from '../../shared/components';
+import { PageHeaderComponent, DataStateComponent } from '../../shared/components';
 
 @Component({
   selector: 'app-achievements',
   standalone: true,
-  imports: [PageHeaderComponent],
+  imports: [PageHeaderComponent, DataStateComponent],
   templateUrl: './achievements.component.html',
   styleUrls: ['./achievements.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -14,9 +14,15 @@ export class AchievementsComponent implements OnInit {
   private readonly configService = inject(ConfigDataService);
   
   readonly achievements = this.configService.achievements;
+  readonly achievementsError = this.configService.achievementsError;
 
   ngOnInit(): void {
     this.configService.loadAchievements();
+  }
+
+  /** Refetches this section after a failed load. */
+  reload(): void {
+    this.configService.loadAchievements(true);
   }
 
   getCategoryIcon(category: string): string {

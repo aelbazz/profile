@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, inject, computed } from '@angular/core';
 import { ConfigDataService, FileDownloadService } from '../../core/services';
-import { ActionCardComponent } from '../../shared/components';
+import { ActionCardComponent, DataStateComponent } from '../../shared/components';
 
 /** Platforms already shown in Quick Actions – hide from Social section to avoid repetition */
 const QUICK_ACTION_PLATFORMS = new Set(['LinkedIn']);
@@ -8,7 +8,7 @@ const QUICK_ACTION_PLATFORMS = new Set(['LinkedIn']);
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [ActionCardComponent],
+  imports: [ActionCardComponent, DataStateComponent],
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -18,6 +18,7 @@ export class ContactComponent implements OnInit {
   private readonly fileDownloadService = inject(FileDownloadService);
 
   readonly contact = this.configService.contact;
+  readonly contactError = this.configService.contactError;
 
   /** Social links excluding those already in Quick Actions */
   readonly socialLinksFiltered = computed(() => {
@@ -28,6 +29,11 @@ export class ContactComponent implements OnInit {
 
   ngOnInit(): void {
     this.configService.loadContact();
+  }
+
+  /** Refetches this section after a failed load. */
+  reload(): void {
+    this.configService.loadContact(true);
   }
 
   getWhatsAppLink(phone: string): string {

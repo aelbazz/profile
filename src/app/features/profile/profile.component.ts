@@ -3,12 +3,12 @@ import { Location } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ConfigDataService, PdfExportService, FileDownloadService, SkillIconService } from '../../core/services';
 import { Achievement, Skill, SkillData } from '../../core/models';
-import { ExperienceCardComponent } from '../../shared/components';
+import { ExperienceCardComponent, DataStateComponent } from '../../shared/components';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [RouterLink, ExperienceCardComponent],
+  imports: [RouterLink, ExperienceCardComponent, DataStateComponent],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -21,6 +21,7 @@ export class ProfileComponent implements OnInit {
   private readonly skillIconService = inject(SkillIconService);
 
   readonly profile = this.configService.profile;
+  readonly profileError = this.configService.profileError;
   
   /**
    * Get the avatar URL with proper base href handling
@@ -81,6 +82,15 @@ export class ProfileComponent implements OnInit {
     this.configService.loadExperience();
     this.configService.loadAchievements();
     this.configService.loadProjects();
+  }
+
+  /** Refetches every section shown on this page after a failed load. */
+  reload(): void {
+    this.configService.loadProfile(true);
+    this.configService.loadSkills(true);
+    this.configService.loadExperience(true);
+    this.configService.loadAchievements(true);
+    this.configService.loadProjects(true);
   }
 
   async exportToPdf(): Promise<void> {

@@ -5,18 +5,16 @@
       <i class="fas fa-user-circle me-2"></i>
       <span class="brand-text">{{ title }}</span>
     </a>
-    <button 
-      class="navbar-toggler border-0" 
-      type="button" 
-      data-bs-toggle="collapse" 
-      data-bs-target="#navbarNav"
-      aria-controls="navbarNav" 
-      [attr.aria-expanded]="isNavbarCollapsed"
-      aria-label="Toggle navigation"
+    <button
+      class="navbar-toggler border-0"
+      type="button"
+      aria-controls="navbarNav"
+      [attr.aria-expanded]="!isNavbarCollapsed()"
+      [attr.aria-label]="isNavbarCollapsed() ? 'Open navigation menu' : 'Close navigation menu'"
       (click)="toggleNavbar()">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNav" [class.show]="!isNavbarCollapsed">
+    <div class="collapse navbar-collapse" id="navbarNav" [class.show]="!isNavbarCollapsed()">
       <ul class="navbar-nav ms-auto">
         @for (item of navItems; track item.path) {
           <li class="nav-item">
@@ -68,7 +66,7 @@
 <!-- Scroll to Top Button -->
 <button 
   class="scroll-to-top" 
-  [class.show]="showScrollTop"
+  [class.show]="showScrollTop()"
   (click)="scrollToTop()"
   aria-label="Scroll to top">
   <i class="fas fa-arrow-up"></i>
@@ -114,11 +112,11 @@
         </ul>
       </div>
       
-      @if (profile(); as profileData) {
+      @if (profile()) {
         <div class="footer-section">
           <h6 class="footer-title">Connect</h6>
           <div class="footer-social">
-            <a [href]="linkedinUrl()" target="_blank" class="social-link" title="LinkedIn">
+            <a [href]="linkedinUrl()" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn">
               <i class="fab fa-linkedin"></i>
             </a>
           </div>
@@ -131,7 +129,7 @@
         <i class="far fa-copyright me-1"></i>{{ currentYear }} {{ authorName() }}. All rights reserved.
       </p>
       <p class="mb-0">
-        Built with <i class="fas fa-heart text-danger pulse"></i> using Angular {{ getAngularVersion() }}
+        Built with <i class="fas fa-heart text-danger pulse"></i> using Angular {{ angularVersion }}
       </p>
     </div>
   </div>

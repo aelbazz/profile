@@ -89,12 +89,7 @@
       </div>
     }
   } @else {
-    <div class="loading-state">
-      <div class="spinner-border" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-      <p>Loading skills...</p>
-    </div>
+    <app-data-state label="skills" [hasError]="skillsError()" (retry)="reload()" />
   }
 </div>
 
