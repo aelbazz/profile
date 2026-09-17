@@ -7,4 +7,9 @@
 export const environment = {
   production: false,
   apiBaseUrl: 'http://localhost:3333/api/v1',
+  /**
+   * Which profile this deployment shows. Every profile is a tenant, so one build serves
+   * one person; the API exposes the others at /public/profile/<their slug>.
+   */
+  profileSlug: 'default',
 };

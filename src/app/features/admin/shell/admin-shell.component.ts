@@ -22,6 +22,8 @@ export class AdminShellComponent {
 
   readonly user = this.auth.user;
   readonly displayName = computed(() => this.user()?.name || this.user()?.email || 'Administrator');
+  /** Which profile this session edits. Every profile is a separate tenant. */
+  readonly tenantSlug = this.auth.tenantSlug;
   readonly sidebarOpen = signal(false);
 
   readonly navItems: readonly AdminNavItem[] = [

@@ -43,10 +43,14 @@ export class ProfileApiService {
   /**
    * Fetches the entire profile in one request, replacing the nine separate JSON files.
    *
+   * The slug selects the tenant. It comes from the build environment rather than the URL,
+   * so this deployment always shows one person - the API serves every other profile at its
+   * own slug for anyone who wants to host them.
+   *
    * Caching is left to the browser: the response carries an ETag and Cache-Control, so a
    * repeat load costs a 304 with an empty body.
    */
-  getPublicProfile(): Observable<PublicProfileResponse> {
-    return this.http.get<PublicProfileResponse>(`${this.baseUrl}/public/profile`);
+  getPublicProfile(slug: string = environment.profileSlug): Observable<PublicProfileResponse> {
+    return this.http.get<PublicProfileResponse>(`${this.baseUrl}/public/profile/${slug}`);
   }
 }

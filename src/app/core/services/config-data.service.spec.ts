@@ -8,7 +8,8 @@ describe('ConfigDataService', () => {
   let service: ConfigDataService;
   let httpMock: HttpTestingController;
 
-  const PROFILE_URL = `${environment.apiBaseUrl}/public/profile`;
+  // The tenant slug is part of the path now: every profile is a separate tenant.
+  const PROFILE_URL = `${environment.apiBaseUrl}/public/profile/${environment.profileSlug}`;
 
   const response = {
     person: {

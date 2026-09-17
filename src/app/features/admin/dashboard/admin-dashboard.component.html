@@ -1,7 +1,12 @@
 <div class="page-head">
   <div>
     <h1>Dashboard</h1>
-    <p class="subtitle">Everything on the public site is managed from here.</p>
+    <p class="subtitle">
+      Everything on the public site is managed from here.
+      @if (tenantSlug(); as slug) {
+        You are editing the <strong>{{ slug }}</strong> profile.
+      }
+    </p>
   </div>
   <a class="btn btn-secondary" routerLink="/" target="_blank" rel="noopener noreferrer">
     <i class="fas fa-up-right-from-square"></i>View site

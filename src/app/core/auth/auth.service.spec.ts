@@ -12,7 +12,13 @@ describe('AuthService', () => {
   const loginResponse = {
     accessToken: 'jwt.token.value',
     expiresIn: 604800,
-    user: { id: 'u1', email: 'admin@example.com', name: 'Admin' }
+    user: {
+      id: 'u1',
+      email: 'admin@example.com',
+      name: 'Admin',
+      personId: 'tenant-1',
+      personSlug: 'ahmed'
+    }
   };
 
   beforeEach(() => {
@@ -86,6 +92,15 @@ describe('AuthService', () => {
     TestBed.inject(HttpTestingController).verify();
   });
 
+  it('exposes the tenant the session manages', () => {
+    service.login('admin@example.com', 'password123').subscribe();
+    httpMock.expectOne(LOGIN_URL).flush(loginResponse);
+
+    // Display only - the API derives the tenant from the token on every request.
+    expect(service.tenantSlug()).toBe('ahmed');
+    expect(service.user()?.personId).toBe('tenant-1');
+  });
+
   it('clears everything on logout', () => {
     service.login('admin@example.com', 'password123').subscribe();
     httpMock.expectOne(LOGIN_URL).flush(loginResponse);
@@ -95,6 +110,7 @@ describe('AuthService', () => {
     expect(service.isAuthenticated()).toBe(false);
     expect(service.token).toBeNull();
     expect(service.user()).toBeNull();
+    expect(service.tenantSlug()).toBeNull();
     expect(localStorage.getItem('admin.accessToken')).toBeNull();
     expect(localStorage.getItem('admin.user')).toBeNull();
   });

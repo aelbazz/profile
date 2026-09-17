@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/cor
 import { RouterLink } from '@angular/router';
 import { forkJoin } from 'rxjs';
 import { AdminApiService } from '../../../core/services/admin-api.service';
+import { AuthService } from '../../../core/auth';
 
 interface StatCard {
   readonly label: string;
@@ -20,6 +21,9 @@ interface StatCard {
 })
 export class AdminDashboardComponent {
   private readonly api = inject(AdminApiService);
+  private readonly auth = inject(AuthService);
+
+  readonly tenantSlug = this.auth.tenantSlug;
 
   readonly stats = signal<StatCard[] | null>(null);
   readonly loadFailed = signal(false);

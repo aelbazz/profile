@@ -7,6 +7,10 @@ export interface AdminUser {
   id: string;
   email: string;
   name: string | null;
+  /** The profile (tenant) this administrator manages. Assigned by the API, never chosen. */
+  personId: string;
+  /** That profile's public slug. */
+  personSlug: string;
 }
 
 interface LoginResponse {
@@ -36,6 +40,12 @@ export class AuthService {
 
   readonly user = this.userSignal.asReadonly();
   readonly isAuthenticated = computed(() => this.tokenSignal() !== null);
+
+  /**
+   * Slug of the profile this session manages. Display only - the API derives the tenant
+   * from the token on every request and ignores anything the client claims.
+   */
+  readonly tenantSlug = computed(() => this.userSignal()?.personSlug ?? null);
 
   /** Read synchronously by the interceptor on every outgoing request. */
   get token(): string | null {

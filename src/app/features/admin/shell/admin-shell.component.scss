@@ -57,6 +57,24 @@
   i { color: var(--admin-accent); }
 }
 
+.sidebar-title {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+  min-width: 0;
+}
+
+/* Makes it unmistakable which tenant a session is editing, since several profiles can
+   share one deployment. */
+.tenant-slug {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--admin-accent);
+  text-transform: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .sidebar-nav {
   flex: 1;
   padding: 0.75rem 0;
