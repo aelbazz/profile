@@ -61,7 +61,10 @@ export const routes: Routes = [
     title: 'Contact'
   },
   {
-    path: 'admin',
+    // Route path is "client" (the person who owns a tenant's content), matching the
+    // backend's /api/v1/tenant/* namespace. The component/file names underneath keep
+    // saying "admin" internally - that renaming is cosmetic and left for a later pass.
+    path: 'client',
     loadChildren: () => import('./features/admin/admin.routes').then(m => m.ADMIN_ROUTES)
   },
   {

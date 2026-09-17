@@ -16,7 +16,7 @@
           class="sidebar-link"
           [routerLink]="item.path"
           routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: item.path === '/admin' }"
+          [routerLinkActiveOptions]="{ exact: item.path === '/client' }"
           (click)="closeSidebar()">
           <i [class]="item.icon"></i>
           <span>{{ item.label }}</span>

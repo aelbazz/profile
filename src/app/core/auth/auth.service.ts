@@ -3,14 +3,17 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
+export type UserRole = 'ADMIN' | 'COORDINATOR' | 'CLIENT';
+
 export interface AdminUser {
   id: string;
   email: string;
   name: string | null;
-  /** The profile (tenant) this administrator manages. Assigned by the API, never chosen. */
-  personId: string;
-  /** That profile's public slug. */
-  personSlug: string;
+  role: UserRole;
+  /** Set only for role CLIENT - the tenant this user manages. Assigned by the API, never chosen. */
+  tenantId: string | null;
+  /** That tenant's public slug. Set only for role CLIENT. */
+  tenantSlug: string | null;
 }
 
 interface LoginResponse {
@@ -42,10 +45,10 @@ export class AuthService {
   readonly isAuthenticated = computed(() => this.tokenSignal() !== null);
 
   /**
-   * Slug of the profile this session manages. Display only - the API derives the tenant
+   * Slug of the tenant this session manages. Display only - the API derives the tenant
    * from the token on every request and ignores anything the client claims.
    */
-  readonly tenantSlug = computed(() => this.userSignal()?.personSlug ?? null);
+  readonly tenantSlug = computed(() => this.userSignal()?.tenantSlug ?? null);
 
   /** Read synchronously by the interceptor on every outgoing request. */
   get token(): string | null {

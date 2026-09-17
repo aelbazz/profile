@@ -199,192 +199,192 @@ export class AdminApiService {
   // -- person (singleton) -----------------------------------------------------
 
   getPerson(): Observable<AdminPerson> {
-    return this.http.get<AdminPerson>(`${this.base}/person`);
+    return this.http.get<AdminPerson>(`${this.base}/tenant/profile`);
   }
 
   updatePerson(body: Partial<AdminPerson>): Observable<AdminPerson> {
-    return this.http.patch<AdminPerson>(`${this.base}/person`, body);
+    return this.http.patch<AdminPerson>(`${this.base}/tenant/profile`, body);
   }
 
   // -- contact (singleton) ----------------------------------------------------
 
   getContact(): Observable<AdminContact> {
-    return this.http.get<AdminContact>(`${this.base}/contact`);
+    return this.http.get<AdminContact>(`${this.base}/tenant/contact`);
   }
 
   updateContact(body: unknown): Observable<AdminContact> {
-    return this.http.patch<AdminContact>(`${this.base}/contact`, body);
+    return this.http.patch<AdminContact>(`${this.base}/tenant/contact`, body);
   }
 
   // -- experiences ------------------------------------------------------------
 
   getExperiences(): Observable<AdminExperience[]> {
-    return this.http.get<AdminExperience[]>(`${this.base}/experiences`);
+    return this.http.get<AdminExperience[]>(`${this.base}/tenant/experiences`);
   }
 
   getExperience(id: string): Observable<AdminExperience> {
-    return this.http.get<AdminExperience>(`${this.base}/experiences/${id}`);
+    return this.http.get<AdminExperience>(`${this.base}/tenant/experiences/${id}`);
   }
 
   createExperience(body: unknown): Observable<AdminExperience> {
-    return this.http.post<AdminExperience>(`${this.base}/experiences`, body);
+    return this.http.post<AdminExperience>(`${this.base}/tenant/experiences`, body);
   }
 
   updateExperience(id: string, body: unknown): Observable<AdminExperience> {
-    return this.http.patch<AdminExperience>(`${this.base}/experiences/${id}`, body);
+    return this.http.patch<AdminExperience>(`${this.base}/tenant/experiences/${id}`, body);
   }
 
   deleteExperience(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.base}/experiences/${id}`);
+    return this.http.delete<void>(`${this.base}/tenant/experiences/${id}`);
   }
 
   reorderExperiences(items: ReorderItem[]): Observable<void> {
-    return this.http.patch<void>(`${this.base}/experiences/reorder`, { items });
+    return this.http.patch<void>(`${this.base}/tenant/experiences/reorder`, { items });
   }
 
   // -- projects ---------------------------------------------------------------
 
   getProjects(): Observable<AdminProject[]> {
-    return this.http.get<AdminProject[]>(`${this.base}/projects`);
+    return this.http.get<AdminProject[]>(`${this.base}/tenant/projects`);
   }
 
   getProject(id: string): Observable<AdminProject> {
-    return this.http.get<AdminProject>(`${this.base}/projects/${id}`);
+    return this.http.get<AdminProject>(`${this.base}/tenant/projects/${id}`);
   }
 
   createProject(body: unknown): Observable<AdminProject> {
-    return this.http.post<AdminProject>(`${this.base}/projects`, body);
+    return this.http.post<AdminProject>(`${this.base}/tenant/projects`, body);
   }
 
   updateProject(id: string, body: unknown): Observable<AdminProject> {
-    return this.http.patch<AdminProject>(`${this.base}/projects/${id}`, body);
+    return this.http.patch<AdminProject>(`${this.base}/tenant/projects/${id}`, body);
   }
 
   deleteProject(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.base}/projects/${id}`);
+    return this.http.delete<void>(`${this.base}/tenant/projects/${id}`);
   }
 
   reorderProjects(items: ReorderItem[]): Observable<void> {
-    return this.http.patch<void>(`${this.base}/projects/reorder`, { items });
+    return this.http.patch<void>(`${this.base}/tenant/projects/reorder`, { items });
   }
 
   // -- achievements -----------------------------------------------------------
 
   getAchievements(): Observable<AdminAchievement[]> {
-    return this.http.get<AdminAchievement[]>(`${this.base}/achievements`);
+    return this.http.get<AdminAchievement[]>(`${this.base}/tenant/achievements`);
   }
 
   createAchievement(body: unknown): Observable<AdminAchievement> {
-    return this.http.post<AdminAchievement>(`${this.base}/achievements`, body);
+    return this.http.post<AdminAchievement>(`${this.base}/tenant/achievements`, body);
   }
 
   updateAchievement(id: string, body: unknown): Observable<AdminAchievement> {
-    return this.http.patch<AdminAchievement>(`${this.base}/achievements/${id}`, body);
+    return this.http.patch<AdminAchievement>(`${this.base}/tenant/achievements/${id}`, body);
   }
 
   deleteAchievement(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.base}/achievements/${id}`);
+    return this.http.delete<void>(`${this.base}/tenant/achievements/${id}`);
   }
 
   // -- courses ----------------------------------------------------------------
 
   getCourses(): Observable<AdminCourse[]> {
-    return this.http.get<AdminCourse[]>(`${this.base}/courses`);
+    return this.http.get<AdminCourse[]>(`${this.base}/tenant/courses`);
   }
 
   createCourse(body: unknown): Observable<AdminCourse> {
-    return this.http.post<AdminCourse>(`${this.base}/courses`, body);
+    return this.http.post<AdminCourse>(`${this.base}/tenant/courses`, body);
   }
 
   updateCourse(id: string, body: unknown): Observable<AdminCourse> {
-    return this.http.patch<AdminCourse>(`${this.base}/courses/${id}`, body);
+    return this.http.patch<AdminCourse>(`${this.base}/tenant/courses/${id}`, body);
   }
 
   deleteCourse(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.base}/courses/${id}`);
+    return this.http.delete<void>(`${this.base}/tenant/courses/${id}`);
   }
 
   // -- timeline ---------------------------------------------------------------
 
   getTimelineEvents(): Observable<AdminTimelineEvent[]> {
-    return this.http.get<AdminTimelineEvent[]>(`${this.base}/timeline-events`);
+    return this.http.get<AdminTimelineEvent[]>(`${this.base}/tenant/timeline-events`);
   }
 
   createTimelineEvent(body: unknown): Observable<AdminTimelineEvent> {
-    return this.http.post<AdminTimelineEvent>(`${this.base}/timeline-events`, body);
+    return this.http.post<AdminTimelineEvent>(`${this.base}/tenant/timeline-events`, body);
   }
 
   updateTimelineEvent(id: string, body: unknown): Observable<AdminTimelineEvent> {
-    return this.http.patch<AdminTimelineEvent>(`${this.base}/timeline-events/${id}`, body);
+    return this.http.patch<AdminTimelineEvent>(`${this.base}/tenant/timeline-events/${id}`, body);
   }
 
   deleteTimelineEvent(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.base}/timeline-events/${id}`);
+    return this.http.delete<void>(`${this.base}/tenant/timeline-events/${id}`);
   }
 
   // -- management roles -------------------------------------------------------
 
   getManagementRoles(): Observable<AdminManagementRole[]> {
-    return this.http.get<AdminManagementRole[]>(`${this.base}/management-roles`);
+    return this.http.get<AdminManagementRole[]>(`${this.base}/tenant/management-roles`);
   }
 
   createManagementRole(body: unknown): Observable<AdminManagementRole> {
-    return this.http.post<AdminManagementRole>(`${this.base}/management-roles`, body);
+    return this.http.post<AdminManagementRole>(`${this.base}/tenant/management-roles`, body);
   }
 
   updateManagementRole(id: string, body: unknown): Observable<AdminManagementRole> {
-    return this.http.patch<AdminManagementRole>(`${this.base}/management-roles/${id}`, body);
+    return this.http.patch<AdminManagementRole>(`${this.base}/tenant/management-roles/${id}`, body);
   }
 
   deleteManagementRole(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.base}/management-roles/${id}`);
+    return this.http.delete<void>(`${this.base}/tenant/management-roles/${id}`);
   }
 
   // -- technologies -----------------------------------------------------------
 
   getTechnologies(): Observable<AdminTechnology[]> {
-    return this.http.get<AdminTechnology[]>(`${this.base}/technologies`);
+    return this.http.get<AdminTechnology[]>(`${this.base}/tenant/technologies`);
   }
 
   createTechnology(name: string): Observable<AdminTechnology> {
-    return this.http.post<AdminTechnology>(`${this.base}/technologies`, { name });
+    return this.http.post<AdminTechnology>(`${this.base}/tenant/technologies`, { name });
   }
 
   updateTechnology(id: string, name: string): Observable<AdminTechnology> {
-    return this.http.patch<AdminTechnology>(`${this.base}/technologies/${id}`, { name });
+    return this.http.patch<AdminTechnology>(`${this.base}/tenant/technologies/${id}`, { name });
   }
 
   deleteTechnology(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.base}/technologies/${id}`);
+    return this.http.delete<void>(`${this.base}/tenant/technologies/${id}`);
   }
 
   // -- skills -----------------------------------------------------------------
 
   getSkillCategories(): Observable<AdminSkillCategory[]> {
-    return this.http.get<AdminSkillCategory[]>(`${this.base}/skill-categories`);
+    return this.http.get<AdminSkillCategory[]>(`${this.base}/tenant/skill-categories`);
   }
 
   createSkillCategory(body: unknown): Observable<AdminSkillCategory> {
-    return this.http.post<AdminSkillCategory>(`${this.base}/skill-categories`, body);
+    return this.http.post<AdminSkillCategory>(`${this.base}/tenant/skill-categories`, body);
   }
 
   updateSkillCategory(id: string, body: unknown): Observable<AdminSkillCategory> {
-    return this.http.patch<AdminSkillCategory>(`${this.base}/skill-categories/${id}`, body);
+    return this.http.patch<AdminSkillCategory>(`${this.base}/tenant/skill-categories/${id}`, body);
   }
 
   deleteSkillCategory(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.base}/skill-categories/${id}`);
+    return this.http.delete<void>(`${this.base}/tenant/skill-categories/${id}`);
   }
 
   addSkill(categoryId: string, body: unknown): Observable<AdminSkill> {
-    return this.http.post<AdminSkill>(`${this.base}/skill-categories/${categoryId}/skills`, body);
+    return this.http.post<AdminSkill>(`${this.base}/tenant/skill-categories/${categoryId}/skills`, body);
   }
 
   updateSkill(skillId: string, body: unknown): Observable<AdminSkill> {
-    return this.http.patch<AdminSkill>(`${this.base}/skill-categories/skills/${skillId}`, body);
+    return this.http.patch<AdminSkill>(`${this.base}/tenant/skill-categories/skills/${skillId}`, body);
   }
 
   deleteSkill(skillId: string): Observable<void> {
-    return this.http.delete<void>(`${this.base}/skill-categories/skills/${skillId}`);
+    return this.http.delete<void>(`${this.base}/tenant/skill-categories/skills/${skillId}`);
   }
 }

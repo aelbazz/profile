@@ -3,7 +3,7 @@ import { CanActivateFn, Router } from '@angular/router';
 import { AuthService } from './auth.service';
 
 /**
- * Gate for every /admin route except the login page.
+ * Gate for every /client route except the login page.
  *
  * This is a UX guard, not a security boundary - it only decides which screen to show.
  * Authorisation is enforced by the API, which rejects every mutation without a valid token
@@ -17,7 +17,7 @@ export const authGuard: CanActivateFn = (_route, state) => {
     return true;
   }
 
-  return router.createUrlTree(['/admin/login'], {
+  return router.createUrlTree(['/client/login'], {
     queryParams: { redirect: state.url }
   });
 };

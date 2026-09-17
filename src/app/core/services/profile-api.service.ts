@@ -15,12 +15,15 @@ import {
 } from '../models';
 
 /**
- * The complete public profile, as returned by GET /api/v1/public/profile.
+ * The complete public profile, as returned by GET /api/v1/public/tenants/:slug/profile.
  *
  * Each member reuses the existing frontend model: the API was deliberately shaped to match
- * them, so nothing here needs a translation layer.
+ * them, so nothing here needs a translation layer. `tenant`, `theme` and `settings` are new
+ * with the SaaS backend and unused by any component yet - they're typed as optional so this
+ * interface doesn't lie about what's actually consumed today.
  */
 export interface PublicProfileResponse {
+  tenant?: { slug: string; name: string };
   person: Profile;
   contact: Contact | null;
   experiences: Experience[];
@@ -30,6 +33,8 @@ export interface PublicProfileResponse {
   timelineEvents: TimelineEvent[];
   managementRoles: ManagementResponsibility[];
   skills: SkillData;
+  theme?: Record<string, unknown>;
+  settings?: Record<string, unknown>;
 }
 
 /**
@@ -51,6 +56,6 @@ export class ProfileApiService {
    * repeat load costs a 304 with an empty body.
    */
   getPublicProfile(slug: string = environment.profileSlug): Observable<PublicProfileResponse> {
-    return this.http.get<PublicProfileResponse>(`${this.baseUrl}/public/profile/${slug}`);
+    return this.http.get<PublicProfileResponse>(`${this.baseUrl}/public/tenants/${slug}/profile`);
   }
 }

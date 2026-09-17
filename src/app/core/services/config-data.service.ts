@@ -30,7 +30,7 @@ export type DataKey =
  * Backing store for every profile section.
  *
  * Data now comes from the backend rather than nine static JSON files: one call to
- * GET /api/v1/public/profile populates all nine signals. The public surface is unchanged -
+ * GET /api/v1/public/tenants/:slug/profile populates all nine signals. The public surface is unchanged -
  * same signals, same loadX() methods, same error signals - so no component needed editing.
  *
  * Because a single request feeds everything, the per-section error signals all reflect that

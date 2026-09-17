@@ -27,17 +27,17 @@ export class AdminShellComponent {
   readonly sidebarOpen = signal(false);
 
   readonly navItems: readonly AdminNavItem[] = [
-    { path: '/admin', label: 'Dashboard', icon: 'fas fa-gauge-high' },
-    { path: '/admin/person', label: 'Profile', icon: 'fas fa-user' },
-    { path: '/admin/contact', label: 'Contact', icon: 'fas fa-address-card' },
-    { path: '/admin/experiences', label: 'Experience', icon: 'fas fa-briefcase' },
-    { path: '/admin/projects', label: 'Projects', icon: 'fas fa-folder-open' },
-    { path: '/admin/skills', label: 'Skills', icon: 'fas fa-code' },
-    { path: '/admin/technologies', label: 'Technologies', icon: 'fas fa-microchip' },
-    { path: '/admin/achievements', label: 'Achievements', icon: 'fas fa-trophy' },
-    { path: '/admin/courses', label: 'Courses', icon: 'fas fa-graduation-cap' },
-    { path: '/admin/timeline', label: 'Timeline', icon: 'fas fa-history' },
-    { path: '/admin/management', label: 'Management', icon: 'fas fa-users-cog' }
+    { path: '/client', label: 'Dashboard', icon: 'fas fa-gauge-high' },
+    { path: '/client/person', label: 'Profile', icon: 'fas fa-user' },
+    { path: '/client/contact', label: 'Contact', icon: 'fas fa-address-card' },
+    { path: '/client/experiences', label: 'Experience', icon: 'fas fa-briefcase' },
+    { path: '/client/projects', label: 'Projects', icon: 'fas fa-folder-open' },
+    { path: '/client/skills', label: 'Skills', icon: 'fas fa-code' },
+    { path: '/client/technologies', label: 'Technologies', icon: 'fas fa-microchip' },
+    { path: '/client/achievements', label: 'Achievements', icon: 'fas fa-trophy' },
+    { path: '/client/courses', label: 'Courses', icon: 'fas fa-graduation-cap' },
+    { path: '/client/timeline', label: 'Timeline', icon: 'fas fa-history' },
+    { path: '/client/management', label: 'Management', icon: 'fas fa-users-cog' }
   ];
 
   toggleSidebar(): void {
@@ -50,6 +50,6 @@ export class AdminShellComponent {
 
   logout(): void {
     this.auth.logout();
-    void this.router.navigate(['/admin/login']);
+    void this.router.navigate(['/client/login']);
   }
 }

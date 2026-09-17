@@ -49,14 +49,14 @@ export class AdminDashboardComponent {
       next: data => {
         const skillCount = data.skills.reduce((total, c) => total + c.skills.length, 0);
         this.stats.set([
-          { label: 'Experience', count: data.experiences.length, icon: 'fas fa-briefcase', link: '/admin/experiences' },
-          { label: 'Projects', count: data.projects.length, icon: 'fas fa-folder-open', link: '/admin/projects' },
-          { label: 'Skills', count: skillCount, icon: 'fas fa-code', link: '/admin/skills' },
-          { label: 'Technologies', count: data.technologies.length, icon: 'fas fa-microchip', link: '/admin/technologies' },
-          { label: 'Achievements', count: data.achievements.length, icon: 'fas fa-trophy', link: '/admin/achievements' },
-          { label: 'Courses', count: data.courses.length, icon: 'fas fa-graduation-cap', link: '/admin/courses' },
-          { label: 'Timeline events', count: data.timeline.length, icon: 'fas fa-history', link: '/admin/timeline' },
-          { label: 'Management roles', count: data.management.length, icon: 'fas fa-users-cog', link: '/admin/management' }
+          { label: 'Experience', count: data.experiences.length, icon: 'fas fa-briefcase', link: '/client/experiences' },
+          { label: 'Projects', count: data.projects.length, icon: 'fas fa-folder-open', link: '/client/projects' },
+          { label: 'Skills', count: skillCount, icon: 'fas fa-code', link: '/client/skills' },
+          { label: 'Technologies', count: data.technologies.length, icon: 'fas fa-microchip', link: '/client/technologies' },
+          { label: 'Achievements', count: data.achievements.length, icon: 'fas fa-trophy', link: '/client/achievements' },
+          { label: 'Courses', count: data.courses.length, icon: 'fas fa-graduation-cap', link: '/client/courses' },
+          { label: 'Timeline events', count: data.timeline.length, icon: 'fas fa-history', link: '/client/timeline' },
+          { label: 'Management roles', count: data.management.length, icon: 'fas fa-users-cog', link: '/client/management' }
         ]);
       },
       error: () => this.loadFailed.set(true)

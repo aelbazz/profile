@@ -52,7 +52,7 @@ export class AdminLoginComponent {
       next: () => {
         const redirect = this.route.snapshot.queryParamMap.get('redirect');
         // Only follow an in-app path. An absolute URL here would be an open redirect.
-        const target = redirect?.startsWith('/') ? redirect : '/admin';
+        const target = redirect?.startsWith('/') ? redirect : '/client';
         void this.router.navigateByUrl(target);
       },
       error: (error: HttpErrorResponse) => {

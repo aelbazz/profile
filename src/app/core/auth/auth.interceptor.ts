@@ -29,7 +29,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
       // failed public read, a validation error - must not log the admin out.
       if (error.status === 401 && isApiRequest && token) {
         auth.logout();
-        void router.navigate(['/admin/login'], {
+        void router.navigate(['/client/login'], {
           queryParams: { reason: 'expired', redirect: router.url }
         });
       }

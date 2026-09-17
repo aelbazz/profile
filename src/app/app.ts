@@ -49,7 +49,7 @@ export class AppComponent implements OnInit {
     { initialValue: this.router.url }
   );
 
-  readonly isAdminArea = computed(() => this.currentUrl().startsWith('/admin'));
+  readonly isAdminArea = computed(() => this.currentUrl().startsWith('/client'));
 
   private static readonly IN_PROGRESS_BANNER_KEY = 'hideInProgressBanner';
 

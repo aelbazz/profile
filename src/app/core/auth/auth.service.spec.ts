@@ -16,8 +16,9 @@ describe('AuthService', () => {
       id: 'u1',
       email: 'admin@example.com',
       name: 'Admin',
-      personId: 'tenant-1',
-      personSlug: 'ahmed'
+      role: 'CLIENT',
+      tenantId: 'tenant-1',
+      tenantSlug: 'ahmed'
     }
   };
 
@@ -98,7 +99,7 @@ describe('AuthService', () => {
 
     // Display only - the API derives the tenant from the token on every request.
     expect(service.tenantSlug()).toBe('ahmed');
-    expect(service.user()?.personId).toBe('tenant-1');
+    expect(service.user()?.tenantId).toBe('tenant-1');
   });
 
   it('clears everything on logout', () => {
