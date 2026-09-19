@@ -3,7 +3,6 @@ import {
   Component,
   ElementRef,
   HostListener,
-  OnInit,
   VERSION,
   computed,
   inject,
@@ -12,13 +11,16 @@ import {
 import { NavigationEnd, Router, RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { filter, map, startWith } from 'rxjs/operators';
-import { ConfigDataService } from './core/services';
+import { PLATFORM_BRANDING } from './core/config/platform-branding.config';
 
 interface NavItem {
   readonly path: string;
   readonly label: string;
   readonly icon: string;
 }
+
+/** Which chrome this component should render around the routed content. */
+type LayoutMode = 'marketing' | 'tenant' | 'admin';
 
 /** Scroll offset (px) past which the back-to-top button appears. */
 const SCROLL_TOP_THRESHOLD = 300;
@@ -31,14 +33,15 @@ const SCROLL_TOP_THRESHOLD = 300;
   styleUrls: ['./app.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AppComponent implements OnInit {
-  private readonly configService = inject(ConfigDataService);
+export class AppComponent {
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly router = inject(Router);
 
   /**
-   * The admin area brings its own sidebar, top bar and layout, so the public navbar,
-   * banner, footer and scroll-to-top button are suppressed there.
+   * This component renders the Portfolio marketing chrome (navbar/footer) only for the
+   * marketing routes. A tenant's own profile gets its own chrome from
+   * TenantProfileShellComponent, and the client portal from AdminShellComponent - this
+   * component renders neither, just a bare <router-outlet> for those two.
    */
   private readonly currentUrl = toSignal(
     this.router.events.pipe(
@@ -49,69 +52,36 @@ export class AppComponent implements OnInit {
     { initialValue: this.router.url }
   );
 
-  readonly isAdminArea = computed(() => this.currentUrl().startsWith('/client'));
+  private static readonly MARKETING_PATHS = new Set(['', 'about', 'services', 'contact']);
 
-  private static readonly IN_PROGRESS_BANNER_KEY = 'hideInProgressBanner';
+  readonly layoutMode = computed<LayoutMode>(() => {
+    const firstSegment = this.currentUrl().split('/')[1]?.split(/[?#]/)[0] ?? '';
+    if (firstSegment === 'client') {
+      return 'admin';
+    }
+    return AppComponent.MARKETING_PATHS.has(firstSegment) ? 'marketing' : 'tenant';
+  });
 
-  readonly title = 'Albaz Portfolio';
+  readonly isAdminArea = computed(() => this.layoutMode() === 'admin');
+
+  readonly title = PLATFORM_BRANDING.name;
+  readonly tagline = PLATFORM_BRANDING.tagline;
+  readonly socialLinks = PLATFORM_BRANDING.socialLinks;
   readonly currentYear = new Date().getFullYear();
   readonly angularVersion = VERSION.full;
 
   readonly showScrollTop = signal(false);
   readonly isNavbarCollapsed = signal(true);
-  readonly showInProgressBanner = signal(true);
 
   /** Guards the scroll handler so state updates at most once per animation frame. */
   private scrollFrameQueued = false;
 
-  // Main navigation items - streamlined for better UX
   readonly navItems: readonly NavItem[] = [
-    { path: '/profile', label: 'Home', icon: 'fas fa-user' },
-    { path: '/experience', label: 'Experience', icon: 'fas fa-briefcase' },
-    { path: '/projects', label: 'Projects', icon: 'fas fa-folder-open' },
-    { path: '/skills', label: 'Skills', icon: 'fas fa-code' },
+    { path: '/', label: 'Home', icon: 'fas fa-house' },
+    { path: '/about', label: 'About', icon: 'fas fa-circle-info' },
+    { path: '/services', label: 'Services', icon: 'fas fa-layer-group' },
     { path: '/contact', label: 'Contact', icon: 'fas fa-envelope' }
   ];
-
-  // Secondary navigation items (shown in the footer)
-  readonly secondaryNavItems: readonly NavItem[] = [
-    { path: '/achievements', label: 'Achievements', icon: 'fas fa-trophy' },
-    { path: '/courses', label: 'Courses', icon: 'fas fa-graduation-cap' },
-    { path: '/timeline', label: 'Timeline', icon: 'fas fa-history' },
-    { path: '/management', label: 'Management', icon: 'fas fa-users-cog' }
-  ];
-
-  readonly profile = this.configService.profile;
-  readonly authorName = computed(() => this.profile()?.name || 'Author');
-  readonly linkedinUrl = computed(() => this.profile()?.linkedin || '#');
-
-  ngOnInit(): void {
-    if (!this.isAdminArea()) {
-      this.configService.loadProfile();
-    }
-    this.restoreInProgressBannerState();
-  }
-
-  /** Restores the dismissed state of the in-progress banner from a previous visit. */
-  private restoreInProgressBannerState(): void {
-    try {
-      if (localStorage.getItem(AppComponent.IN_PROGRESS_BANNER_KEY) === 'true') {
-        this.showInProgressBanner.set(false);
-      }
-    } catch {
-      // Storage unavailable (private browsing, blocked cookies) - keep the banner visible.
-    }
-  }
-
-  /** Dismisses the in-progress banner and remembers the choice. */
-  dismissInProgressBanner(): void {
-    this.showInProgressBanner.set(false);
-    try {
-      localStorage.setItem(AppComponent.IN_PROGRESS_BANNER_KEY, 'true');
-    } catch {
-      // Storage unavailable - the banner simply reappears on the next visit.
-    }
-  }
 
   @HostListener('window:scroll')
   onWindowScroll(): void {

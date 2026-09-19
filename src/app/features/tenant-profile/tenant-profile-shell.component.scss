@@ -1,0 +1,40 @@
+@use '../../shared/styles/public-chrome';
+
+.tenant-main {
+  min-height: calc(100vh - 250px);
+  padding-top: 70px; // Space for the fixed navbar this shell renders above
+  animation: fadeIn 0.5s ease-in;
+}
+
+@media (max-width: 768px) {
+  .tenant-main {
+    padding-top: 58px;
+  }
+}
+
+.tenant-not-found {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  text-align: center;
+  padding: 2rem;
+
+  i {
+    font-size: 3rem;
+    color: var(--bs-secondary);
+  }
+
+  h1 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  p {
+    color: var(--bs-body-color);
+    margin: 0 0 0.5rem;
+  }
+}

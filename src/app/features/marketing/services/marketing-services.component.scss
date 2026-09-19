@@ -1,0 +1,23 @@
+.page-hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 4rem 1rem;
+
+  h1 {
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+
+  .lead {
+    color: rgba(255, 255, 255, 0.9);
+  }
+}
+
+.section {
+  padding: 4rem 0;
+}
+
+.service-icon {
+  font-size: 1.75rem;
+  color: var(--bs-primary);
+}

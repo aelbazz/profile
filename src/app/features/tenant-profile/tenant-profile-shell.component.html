@@ -1,0 +1,115 @@
+@if (hasFailed() && !isLoading()) {
+  <div class="tenant-not-found">
+    <i class="fas fa-user-slash"></i>
+    <h1>Profile not found</h1>
+    <p>There's no {{ platformName }} profile at this address.</p>
+    <a routerLink="/" class="btn btn-primary">Go to {{ platformName }}</a>
+  </div>
+} @else {
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" [routerLink]="'/' + slug()">
+        <i class="fas fa-user-circle me-2"></i>
+        <span class="brand-text">{{ authorName() }}</span>
+      </a>
+      <button
+        class="navbar-toggler border-0"
+        type="button"
+        aria-controls="tenantNavbarNav"
+        [attr.aria-expanded]="!isNavbarCollapsed()"
+        [attr.aria-label]="isNavbarCollapsed() ? 'Open navigation menu' : 'Close navigation menu'"
+        (click)="toggleNavbar()">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="tenantNavbarNav" [class.show]="!isNavbarCollapsed()">
+        <ul class="navbar-nav ms-auto">
+          @for (item of navItems(); track item.path) {
+            <li class="nav-item">
+              <a
+                class="nav-link"
+                [routerLink]="item.path"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: item.path === '/' + slug() }"
+                (click)="collapseNavbar()">
+                <i [class]="item.icon"></i>
+                <span class="nav-text">{{ item.label }}</span>
+              </a>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="tenant-main">
+    <router-outlet></router-outlet>
+  </main>
+
+  <button
+    class="scroll-to-top"
+    [class.show]="showScrollTop()"
+    (click)="scrollToTop()"
+    aria-label="Scroll to top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <div class="footer-brand">
+            <i class="fas fa-user-circle"></i>
+            <span>{{ authorName() }}</span>
+          </div>
+          <p class="footer-tagline">Professional Portfolio & Profile</p>
+        </div>
+
+        <div class="footer-section">
+          <h6 class="footer-title">Quick Links</h6>
+          <ul class="footer-links">
+            @for (item of navItems(); track item.path) {
+              <li>
+                <a [routerLink]="item.path" (click)="scrollToTop()">
+                  <i [class]="item.icon + ' me-2'"></i>{{ item.label }}
+                </a>
+              </li>
+            }
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h6 class="footer-title">More</h6>
+          <ul class="footer-links">
+            @for (item of secondaryNavItems(); track item.path) {
+              <li>
+                <a [routerLink]="item.path" (click)="scrollToTop()">
+                  <i [class]="item.icon + ' me-2'"></i>{{ item.label }}
+                </a>
+              </li>
+            }
+          </ul>
+        </div>
+
+        @if (linkedinUrl()) {
+          <div class="footer-section">
+            <h6 class="footer-title">Connect</h6>
+            <div class="footer-social">
+              <a [href]="linkedinUrl()" target="_blank" rel="noopener noreferrer" class="social-link" title="LinkedIn">
+                <i class="fab fa-linkedin"></i>
+              </a>
+            </div>
+          </div>
+        }
+      </div>
+
+      <div class="footer-bottom">
+        <p class="mb-0">
+          <i class="far fa-copyright me-1"></i>{{ currentYear }} {{ authorName() }}. All rights reserved.
+        </p>
+        <p class="mb-0">
+          Built on {{ platformName }} using Angular {{ angularVersion }}
+        </p>
+      </div>
+    </div>
+  </footer>
+}

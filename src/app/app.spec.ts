@@ -21,7 +21,7 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     await fixture.whenStable();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.navbar-brand')?.textContent).toContain('Albaz Portfolio');
+    expect(compiled.querySelector('.navbar-brand')?.textContent).toContain('Portfolio');
   });
 
   it('should start with the mobile menu collapsed', () => {

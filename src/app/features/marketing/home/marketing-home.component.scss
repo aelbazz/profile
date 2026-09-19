@@ -1,0 +1,150 @@
+.hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 5rem 1rem 6rem;
+}
+
+.hero-eyebrow {
+  display: inline-block;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  padding: 0.35rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin-bottom: 1.25rem;
+}
+
+.hero-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  max-width: 44rem;
+  margin: 0 auto 1.25rem;
+  line-height: 1.2;
+}
+
+.hero-subtitle {
+  font-size: 1.15rem;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 38rem;
+  margin: 0 auto 2rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.section {
+  padding: 4rem 0;
+}
+
+.audience-pill {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.5rem 1rem;
+  border-radius: 12px;
+  background: var(--bs-secondary-bg);
+  height: 100%;
+
+  i {
+    font-size: 1.75rem;
+    color: var(--bs-primary);
+  }
+
+  span {
+    font-weight: 600;
+    color: var(--bs-heading-color);
+  }
+}
+
+.benefit-icon {
+  font-size: 1.75rem;
+  color: var(--bs-primary);
+}
+
+.how-it-works {
+  background: var(--bs-secondary-bg);
+}
+
+.step-card {
+  height: 100%;
+  padding: 1.5rem;
+  background: var(--bs-body-bg);
+  border-radius: 12px;
+  border: 1px solid var(--bs-border-color);
+}
+
+.step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.feature-tile {
+  padding: 1.25rem 0.5rem;
+
+  i {
+    font-size: 1.5rem;
+    color: var(--bs-primary);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+}
+
+.first-client-banner {
+  text-align: center;
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 2.5rem;
+  border-radius: 16px;
+  background: var(--bs-secondary-bg);
+
+  > i {
+    font-size: 1.5rem;
+    color: var(--bs-primary);
+    opacity: 0.5;
+  }
+}
+
+.first-client-intro {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--bs-heading-color);
+}
+
+.first-client-body {
+  color: var(--bs-body-color);
+  margin-bottom: 1.5rem;
+}
+
+.first-client-name {
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.cta-section {
+  background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+  color: white;
+  padding: 4rem 1rem;
+
+  h2 {
+    font-weight: 700;
+  }
+
+  p {
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 1.5rem;
+  }
+}

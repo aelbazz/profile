@@ -1,0 +1,108 @@
+<!-- Hero -->
+<section class="hero">
+  <div class="container text-center">
+    <span class="hero-eyebrow">{{ hero.eyebrow }}</span>
+    <h1 class="hero-title">{{ hero.title }}</h1>
+    <p class="hero-subtitle">{{ hero.subtitle }}</p>
+    <div class="hero-actions">
+      <a [routerLink]="hero.primaryCta.link" class="btn btn-primary btn-lg">{{ hero.primaryCta.label }}</a>
+      <a [routerLink]="hero.secondaryCta.link" class="btn btn-outline-light btn-lg">{{ hero.secondaryCta.label }}</a>
+    </div>
+  </div>
+</section>
+
+<!-- What is Portfolio -->
+<section class="container section">
+  <app-section-header
+    title="What is {{ platformName }}?"
+    subtitle="A platform that gives you a professional public profile, without the overhead of building or maintaining a website."
+    icon="fas fa-circle-question" />
+  <div class="row g-4 mt-2">
+    @for (audience of audiences; track audience.label) {
+      <div class="col-6 col-md-3 text-center">
+        <div class="audience-pill">
+          <i [class]="audience.icon"></i>
+          <span>{{ audience.label }}</span>
+        </div>
+      </div>
+    }
+  </div>
+</section>
+
+<!-- Key Benefits -->
+<section class="container section">
+  <app-section-header
+    title="Why use {{ platformName }}"
+    subtitle="Everything you need for a strong professional presence, none of the overhead."
+    icon="fas fa-star" />
+  <div class="row g-4 mt-2">
+    @for (benefit of benefits; track benefit.title) {
+      <div class="col-md-6 col-lg-4">
+        <div class="card h-100 p-4">
+          <i [class]="benefit.icon + ' benefit-icon'"></i>
+          <h3 class="h5 mt-3">{{ benefit.title }}</h3>
+          <p class="text-muted mb-0">{{ benefit.description }}</p>
+        </div>
+      </div>
+    }
+  </div>
+</section>
+
+<!-- How it works -->
+<section class="section how-it-works">
+  <div class="container">
+    <app-section-header title="How it works" subtitle="From first message to a live profile." icon="fas fa-route" />
+    <div class="row g-4 mt-2">
+      @for (item of howItWorks; track item.step) {
+        <div class="col-md-6 col-lg-3">
+          <div class="step-card">
+            <div class="step-number">{{ item.step }}</div>
+            <h3 class="h6">{{ item.title }}</h3>
+            <p class="text-muted mb-0">{{ item.description }}</p>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="container section">
+  <app-section-header
+    title="What you can showcase"
+    subtitle="Every section a professional profile needs."
+    icon="fas fa-layer-group" />
+  <div class="row g-4 mt-2">
+    @for (feature of features; track feature.title) {
+      <div class="col-6 col-md-4 col-lg-2 text-center">
+        <div class="feature-tile">
+          <i [class]="feature.icon"></i>
+          <h4 class="h6 mb-1">{{ feature.title }}</h4>
+          <p class="small text-muted mb-0">{{ feature.description }}</p>
+        </div>
+      </div>
+    }
+  </div>
+</section>
+
+<!-- First client -->
+<section class="container section">
+  <div class="first-client-banner">
+    <i class="fas fa-quote-left"></i>
+    <p class="first-client-intro">{{ firstClient.intro }}</p>
+    <p class="first-client-body">
+      <a [routerLink]="firstClient.link" class="first-client-name">{{ firstClient.name }}</a>
+      {{ firstClient.description }}
+    </p>
+    <a [routerLink]="firstClient.link" class="btn btn-outline-primary">View the profile</a>
+  </div>
+</section>
+
+<!-- Call to action -->
+<section class="cta-section">
+  <div class="container text-center">
+    <h2>Ready to build your profile?</h2>
+    <p>Get in touch and we'll set up your {{ platformName }} profile.</p>
+    <a routerLink="/contact" class="btn btn-light btn-lg">Get Started</a>
+  </div>
+</section>

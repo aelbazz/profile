@@ -1,0 +1,40 @@
+.page-hero {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 4rem 1rem;
+
+  h1 {
+    font-weight: 800;
+    margin-bottom: 1rem;
+  }
+
+  .lead {
+    color: rgba(255, 255, 255, 0.9);
+  }
+}
+
+.section {
+  padding: 4rem 0;
+}
+
+.honeypot-field {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.success-panel {
+  text-align: center;
+  padding: 3rem 2rem;
+  border-radius: 16px;
+  background: var(--bs-secondary-bg);
+
+  i {
+    font-size: 2.5rem;
+    color: var(--bs-success);
+    margin-bottom: 1rem;
+  }
+}

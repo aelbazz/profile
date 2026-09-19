@@ -1,0 +1,27 @@
+<div class="page-hero">
+  <div class="container text-center">
+    <h1>About {{ platformName }}</h1>
+    <p class="lead">{{ content.intro }}</p>
+  </div>
+</div>
+
+<div class="container section">
+  <div class="row g-5">
+    <div class="col-md-6">
+      <app-section-header [title]="content.purpose.title" icon="fas fa-bullseye" />
+      <p>{{ content.purpose.body }}</p>
+    </div>
+    <div class="col-md-6">
+      <app-section-header [title]="content.vision.title" icon="fas fa-eye" />
+      <p>{{ content.vision.body }}</p>
+    </div>
+    <div class="col-md-6">
+      <app-section-header [title]="content.problem.title" icon="fas fa-lightbulb" />
+      <p>{{ content.problem.body }}</p>
+    </div>
+    <div class="col-md-6">
+      <app-section-header [title]="content.approach.title" icon="fas fa-puzzle-piece" />
+      <p>{{ content.approach.body }}</p>
+    </div>
+  </div>
+</div>

@@ -10,8 +10,7 @@ import {
   TimelineData,
   Contact
 } from '../models';
-import { catchError, finalize, tap } from 'rxjs/operators';
-import { of } from 'rxjs';
+import { Observable, catchError, finalize, map, of, tap } from 'rxjs';
 import { ProfileApiService } from './profile-api.service';
 
 /** Identifies a section of the profile. Kept for the per-section error API. */
@@ -26,15 +25,27 @@ export type DataKey =
   | 'timeline'
   | 'contact';
 
+/** Result of a load attempt, for the caller (the tenant-profile resolver) to act on. */
+export interface LoadProfileResult {
+  success: boolean;
+  /** Set only when the backend served the data under a different, canonical slug - a
+   *  rename redirect. Null on every ordinary load, successful or not. */
+  redirectSlug: string | null;
+}
+
 /**
- * Backing store for every profile section.
+ * Backing store for one tenant's profile sections at a time.
  *
- * Data now comes from the backend rather than nine static JSON files: one call to
- * GET /api/v1/public/tenants/:slug/profile populates all nine signals. The public surface is unchanged -
- * same signals, same loadX() methods, same error signals - so no component needed editing.
+ * Data comes from the backend: one call to GET /api/v1/public/tenants/:slug/profile
+ * populates all nine signals. The frontend serves every tenant from the same build now, so
+ * this service is keyed by slug - switching tenants (a real navigation between two profiles,
+ * not just a page reload) discards the previous tenant's data before fetching the new one,
+ * so a stale response can never be mistaken for the newly-requested tenant's data.
  *
- * Because a single request feeds everything, the per-section error signals all reflect that
- * one request. That is deliberate: a partial failure is no longer possible.
+ * Actual loading is driven by TenantProfileResolver, once per tenant-slug navigation - not
+ * by these components' own ngOnInit calls. The loadX() methods below stay only as
+ * backward-compatible replays of whatever tenant is already loaded, since every profile
+ * section component still calls one on init.
  */
 @Injectable({
   providedIn: 'root'
@@ -62,7 +73,9 @@ export class ConfigDataService {
   readonly timeline = this.timelineSignal.asReadonly();
   readonly contact = this.contactSignal.asReadonly();
 
-  /** True once the profile has been fetched successfully. */
+  /** Slug the currently-held data belongs to. Null before the first successful load. */
+  private currentSlug: string | null = null;
+  /** True once a profile has been fetched successfully for `currentSlug`. */
   private loaded = false;
   /** True while a request is in flight - collapses concurrent callers into one request. */
   private pending = false;
@@ -88,46 +101,69 @@ export class ConfigDataService {
   readonly timelineError = computed(() => this.errorSignal());
   readonly contactError = computed(() => this.errorSignal());
 
-  // Every loadX() delegates to the same request, so components keep calling exactly what
-  // they called when each section had its own JSON file.
-  loadProfile(force = false): void {
-    this.load(force);
-  }
+  /**
+   * Fetches one tenant's whole profile and fans it out into the nine signals. A no-op if
+   * that exact slug is already loaded (unless `force`); a genuine tenant switch resets every
+   * signal before the new request lands, so nothing renders tenant A's data under tenant B's
+   * URL even momentarily.
+   *
+   * Callers that supersede an in-flight call (rapid navigation between two tenants) should
+   * subscribe via a Router `ResolveFn`, whose subscription Angular cancels automatically
+   * when a newer navigation starts - see TenantProfileResolver.
+   */
+  loadProfile$(slug: string, force = false): Observable<LoadProfileResult> {
+    if (this.pending) {
+      return of({ success: this.loaded, redirectSlug: null });
+    }
+    if (this.loaded && this.currentSlug === slug && !force) {
+      return of({ success: true, redirectSlug: null });
+    }
 
-  loadExperience(force = false): void {
-    this.load(force);
-  }
+    if (this.currentSlug !== slug) {
+      this.resetSignals();
+    }
 
-  loadProjects(force = false): void {
-    this.load(force);
-  }
+    this.currentSlug = slug;
+    this.pending = true;
+    this.loadingSignal.set(true);
+    this.errorSignal.set(false);
 
-  loadAchievements(force = false): void {
-    this.load(force);
-  }
-
-  loadCourses(force = false): void {
-    this.load(force);
-  }
-
-  loadManagement(force = false): void {
-    this.load(force);
-  }
-
-  loadSkills(force = false): void {
-    this.load(force);
-  }
-
-  loadTimeline(force = false): void {
-    this.load(force);
-  }
-
-  loadContact(force = false): void {
-    this.load(force);
-  }
-
-  loadAllData(force = false): void {
-    this.load(force);
+    return this.api.getPublicProfile(slug).pipe(
+      tap(({ profile, currentSlug }) => {
+        this.profileSignal.set(profile.person);
+        this.contactSignal.set(profile.contact);
+        // The API returns bare arrays; the frontend models wrap them. Wrapping happens
+        // here, in one place, so the component-facing shapes are unchanged.
+        this.experienceSignal.set({ experiences: profile.experiences });
+        this.projectsSignal.set({ projects: profile.projects });
+        this.achievementsSignal.set({ achievements: profile.achievements });
+        this.coursesSignal.set({ courses: profile.courses });
+        this.timelineSignal.set({ events: profile.timelineEvents });
+        this.managementSignal.set({ responsibilities: profile.managementRoles });
+        // skills already arrives as { categories: [...] }, matching SkillData.
+        this.skillsSignal.set(profile.skills);
+        this.loaded = true;
+        // A renamed slug: keep tracking under the canonical one, so a later request for the
+        // retired slug is treated as a genuine switch rather than a false cache hit.
+        if (currentSlug && currentSlug !== slug) {
+          this.currentSlug = currentSlug;
+        }
+      }),
+      map(({ currentSlug }) => ({
+        success: true,
+        redirectSlug: currentSlug && currentSlug !== slug ? currentSlug : null
+      })),
+      catchError(error => {
+        console.error('Error loading profile:', error);
+        this.errorSignal.set(true);
+        this.loaded = false;
+        return of({ success: false, redirectSlug: null });
+      }),
+      finalize(() => {
+        this.pending = false;
+        this.loadingSignal.set(false);
+      })
+    );
   }
 
   /** Discards the cache so the next load() refetches. Used after an admin edit. */
@@ -135,50 +171,65 @@ export class ConfigDataService {
     this.loaded = false;
   }
 
-  /**
-   * Fetches the whole profile once and fans it out into the nine signals.
-   * Repeat calls are no-ops while data is present or a request is in flight.
-   */
-  private load(force: boolean): void {
-    if (this.pending) {
-      return;
-    }
-    if (this.loaded && !force) {
-      return;
-    }
+  private resetSignals(): void {
+    this.profileSignal.set(null);
+    this.experienceSignal.set(null);
+    this.projectsSignal.set(null);
+    this.achievementsSignal.set(null);
+    this.coursesSignal.set(null);
+    this.managementSignal.set(null);
+    this.skillsSignal.set(null);
+    this.timelineSignal.set(null);
+    this.contactSignal.set(null);
+    this.loaded = false;
+  }
 
-    this.pending = true;
-    this.loadingSignal.set(true);
-    this.errorSignal.set(false);
+  // Back-compat: every profile-section component still calls one of these from ngOnInit.
+  // By the time they mount, TenantProfileResolver has already loaded the right tenant, so
+  // these just replay that same load (a no-op unless `force` or nothing has loaded yet).
+  private replay(force: boolean): void {
+    if (this.currentSlug) {
+      this.loadProfile$(this.currentSlug, force).subscribe();
+    }
+  }
 
-    this.api
-      .getPublicProfile()
-      .pipe(
-        tap(data => {
-          this.profileSignal.set(data.person);
-          this.contactSignal.set(data.contact);
-          // The API returns bare arrays; the frontend models wrap them. Wrapping happens
-          // here, in one place, so the component-facing shapes are unchanged.
-          this.experienceSignal.set({ experiences: data.experiences });
-          this.projectsSignal.set({ projects: data.projects });
-          this.achievementsSignal.set({ achievements: data.achievements });
-          this.coursesSignal.set({ courses: data.courses });
-          this.timelineSignal.set({ events: data.timelineEvents });
-          this.managementSignal.set({ responsibilities: data.managementRoles });
-          // skills already arrives as { categories: [...] }, matching SkillData.
-          this.skillsSignal.set(data.skills);
-          this.loaded = true;
-        }),
-        catchError(error => {
-          console.error('Error loading profile:', error);
-          this.errorSignal.set(true);
-          return of(null);
-        }),
-        finalize(() => {
-          this.pending = false;
-          this.loadingSignal.set(false);
-        })
-      )
-      .subscribe();
+  loadProfile(force = false): void {
+    this.replay(force);
+  }
+
+  loadExperience(force = false): void {
+    this.replay(force);
+  }
+
+  loadProjects(force = false): void {
+    this.replay(force);
+  }
+
+  loadAchievements(force = false): void {
+    this.replay(force);
+  }
+
+  loadCourses(force = false): void {
+    this.replay(force);
+  }
+
+  loadManagement(force = false): void {
+    this.replay(force);
+  }
+
+  loadSkills(force = false): void {
+    this.replay(force);
+  }
+
+  loadTimeline(force = false): void {
+    this.replay(force);
+  }
+
+  loadContact(force = false): void {
+    this.replay(force);
+  }
+
+  loadAllData(force = false): void {
+    this.replay(force);
   }
 }

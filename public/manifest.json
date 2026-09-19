@@ -1,7 +1,7 @@
 {
-  "name": "Ahmed Albaz - Staff Engineer Portfolio",
-  "short_name": "Ahmed Albaz",
-  "description": "Strategic Staff Engineer & Technical Lead with 13+ years of experience",
+  "name": "Portfolio",
+  "short_name": "Portfolio",
+  "description": "Professional portfolio websites for people who want a stronger online presence.",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",

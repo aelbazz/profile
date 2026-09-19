@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /client/
+Allow: /
+
+Sitemap: https://aelbazz.github.io/profile/sitemap.xml

@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import {
   Achievement,
@@ -38,6 +38,16 @@ export interface PublicProfileResponse {
 }
 
 /**
+ * `getPublicProfile`'s result, plus the slug the backend actually served the data under.
+ * The two differ only when the requested slug has been renamed and the backend redirected
+ * via history - see PublicProfileService.resolveBySlug on the API side.
+ */
+export interface PublicProfileResult {
+  profile: PublicProfileResponse;
+  currentSlug: string | null;
+}
+
+/**
  * Sole owner of the public API URL. Components never reference it.
  */
 @Injectable({ providedIn: 'root' })
@@ -46,16 +56,25 @@ export class ProfileApiService {
   private readonly baseUrl = environment.apiBaseUrl;
 
   /**
-   * Fetches the entire profile in one request, replacing the nine separate JSON files.
-   *
-   * The slug selects the tenant. It comes from the build environment rather than the URL,
-   * so this deployment always shows one person - the API serves every other profile at its
-   * own slug for anyone who wants to host them.
+   * Fetches one tenant's entire profile in one request, replacing the nine separate JSON
+   * files this app used to ship. The slug is the tenant's public URL segment - every tenant
+   * is served by the same build now, so there is no build-time default: the caller (the
+   * tenant-profile route resolver) always knows the slug from the URL.
    *
    * Caching is left to the browser: the response carries an ETag and Cache-Control, so a
-   * repeat load costs a 304 with an empty body.
+   * repeat load costs a 304 with an empty body. `X-Tenant-Slug-Current` is read from the
+   * response so a caller can detect a slug rename and update the URL accordingly.
    */
-  getPublicProfile(slug: string = environment.profileSlug): Observable<PublicProfileResponse> {
-    return this.http.get<PublicProfileResponse>(`${this.baseUrl}/public/tenants/${slug}/profile`);
+  getPublicProfile(slug: string): Observable<PublicProfileResult> {
+    return this.http
+      .get<PublicProfileResponse>(`${this.baseUrl}/public/tenants/${slug}/profile`, {
+        observe: 'response'
+      })
+      .pipe(
+        map(response => ({
+          profile: response.body as PublicProfileResponse,
+          currentSlug: response.headers.get('X-Tenant-Slug-Current')
+        }))
+      );
   }
 }

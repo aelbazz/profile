@@ -45,6 +45,16 @@
     --bs-body-color: #dee2e6;
     --bs-body-bg: #1a1a1a;
     --bs-border-color: #495057;
+    /* Bootstrap's own dark-theme value for .text-muted and every other utility built on
+       this variable. Without it, .text-muted stays near-black (its light-mode value) on a
+       now-dark background - Bootstrap only swaps this under [data-bs-theme="dark"], which
+       this app never sets, since it follows the OS via prefers-color-scheme instead. */
+    --bs-secondary-color: rgba(222, 226, 230, 0.75);
+    /* A dark elevated-surface tone. Left at its light-mode value, any card/panel using this
+       as a background (e.g. the marketing site's benefit cards, the contact form's success
+       panel) would combine a light background with the light text colors above - both
+       chosen for a dark page background - and become unreadable. */
+    --bs-secondary-bg: #26262a;
   }
 }
 
