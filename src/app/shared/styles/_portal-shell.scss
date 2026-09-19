@@ -1,0 +1,207 @@
+// Shared layout for a sidebar+topbar admin-style portal - used by both AdminShellComponent
+// (the client control panel, /client/*) and PlatformAdminShellComponent (/admin/*). `@use`d
+// rather than duplicated: the two portals' chrome should look like the same product family,
+// even though their nav content and "who am I" display differ enough to keep as separate
+// components rather than one shared, conditionally-branching one.
+:host {
+  --admin-bg: #f1f5f9;
+  --admin-surface: #ffffff;
+  --admin-border: #e2e8f0;
+  --admin-text: #0f172a;
+  --admin-muted: #64748b;
+  --admin-sidebar-bg: #1e293b;
+  --admin-sidebar-text: #cbd5e1;
+  --admin-accent: #6366f1;
+
+  display: block;
+}
+
+@media (prefers-color-scheme: dark) {
+  :host {
+    --admin-bg: #0f172a;
+    --admin-surface: #1e293b;
+    --admin-border: #334155;
+    --admin-text: #f1f5f9;
+    --admin-muted: #94a3b8;
+    --admin-sidebar-bg: #020617;
+  }
+}
+
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  background: var(--admin-bg);
+  color: var(--admin-text);
+}
+
+.admin-sidebar {
+  width: 250px;
+  flex-shrink: 0;
+  background: var(--admin-sidebar-bg);
+  color: var(--admin-sidebar-text);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.5rem 1.25rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
+  i { color: var(--admin-accent); }
+}
+
+.sidebar-title {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+  min-width: 0;
+}
+
+.tenant-slug {
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--admin-accent);
+  text-transform: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 0.75rem 0;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.7rem 1.25rem;
+  color: var(--admin-sidebar-text);
+  font-size: 0.925rem;
+  border-left: 3px solid transparent;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+
+  i { width: 18px; text-align: center; }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+  }
+
+  &.active {
+    background: rgba(99, 102, 241, 0.15);
+    border-left-color: var(--admin-accent);
+    color: #fff;
+    font-weight: 600;
+  }
+}
+
+.sidebar-footer {
+  padding: 0.75rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sidebar-backdrop {
+  display: none;
+}
+
+.admin-main {
+  flex: 1;
+  min-width: 0; // lets wide tables scroll instead of stretching the layout
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.85rem 1.5rem;
+  background: var(--admin-surface);
+  border-bottom: 1px solid var(--admin-border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.sidebar-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.15rem;
+  color: var(--admin-text);
+  padding: 0.4rem 0.6rem;
+  border-radius: 6px;
+
+  &:hover { background: var(--admin-bg); }
+}
+
+.topbar-user {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-left: auto;
+}
+
+.user-name {
+  font-size: 0.9rem;
+  color: var(--admin-muted);
+}
+
+.logout-btn {
+  background: none;
+  border: 1px solid var(--admin-border);
+  color: var(--admin-text);
+  padding: 0.45rem 0.9rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  transition: all 0.15s ease;
+
+  &:hover {
+    background: #ef4444;
+    border-color: #ef4444;
+    color: #fff;
+  }
+}
+
+.admin-content {
+  flex: 1;
+  padding: 1.75rem;
+}
+
+@media (max-width: 991px) {
+  .admin-sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 1050;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+  }
+
+  .admin-layout.sidebar-open .admin-sidebar {
+    transform: translateX(0);
+  }
+
+  .sidebar-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1040;
+  }
+
+  .sidebar-toggle { display: block; }
+
+  .admin-content { padding: 1rem; }
+}

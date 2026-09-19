@@ -1,0 +1,153 @@
+<div class="page-head">
+  <div>
+    <h1>Tenants</h1>
+    <p class="subtitle">Every client on the platform - add new ones, and control their lifecycle.</p>
+  </div>
+  <button type="button" class="btn btn-primary" (click)="toggleCreateForm()">
+    <i class="fas fa-plus"></i>{{ showCreateForm() ? 'Cancel' : 'Add a client' }}
+  </button>
+</div>
+
+@if (showCreateForm()) {
+  <div class="card">
+    @if (createdCredentials(); as creds) {
+      <div class="alert alert-success">
+        <i class="fas fa-circle-check me-2"></i>
+        Client created. Login: <strong>{{ creds.email }}</strong> / <strong>{{ creds.password }}</strong>
+        - this password is shown once and not stored anywhere.
+      </div>
+    }
+    @if (createError(); as message) {
+      <div class="alert alert-danger">{{ message }}</div>
+    }
+
+    <form [formGroup]="createForm" (ngSubmit)="submitCreate()" novalidate>
+      <div class="field-row">
+        <div class="field">
+          <label for="t-name">Name *</label>
+          <input id="t-name" type="text" formControlName="name"
+                 [class.invalid]="createForm.controls.name.touched && createForm.controls.name.invalid" />
+        </div>
+        <div class="field">
+          <label for="t-slug">Slug</label>
+          <input id="t-slug" type="text" formControlName="slug" placeholder="auto-generated from name" />
+          <span class="hint">Public address: yourdomain.com/&lt;slug&gt;</span>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="t-email">Client email *</label>
+          <input id="t-email" type="email" formControlName="clientEmail"
+                 [class.invalid]="createForm.controls.clientEmail.touched && createForm.controls.clientEmail.invalid" />
+        </div>
+        <div class="field">
+          <label for="t-password">Client password *</label>
+          <input id="t-password" type="text" formControlName="clientPassword"
+                 [class.invalid]="createForm.controls.clientPassword.touched && createForm.controls.clientPassword.invalid" />
+          <span class="hint">At least 8 characters. Shown to you once after creation.</span>
+        </div>
+      </div>
+      <div class="field">
+        <label for="t-plan">Plan</label>
+        <select id="t-plan" formControlName="planId">
+          <option value="">Platform default</option>
+          @for (plan of plans(); track plan.id) {
+            <option [value]="plan.id">{{ plan.name }} - {{ plan.price }} {{ plan.currency }}/{{ plan.billingInterval | lowercase }}</option>
+          }
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="creating()">
+        @if (creating()) {
+          <span class="spinner-border spinner-border-sm me-2"></span>Creating…
+        } @else {
+          Create client
+        }
+      </button>
+    </form>
+  </div>
+}
+
+@if (rowError(); as message) {
+  <div class="alert alert-danger">{{ message }}</div>
+}
+
+@if (loadError(); as message) {
+  <div class="alert alert-danger">
+    {{ message }}
+    <button type="button" class="btn btn-sm btn-secondary ms-2" (click)="load()">Retry</button>
+  </div>
+} @else if (loading()) {
+  <div class="loading-state">
+    <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading…</span></div>
+  </div>
+} @else if (rows().length === 0) {
+  <div class="empty-state">No tenants yet. Add the first client to get started.</div>
+} @else {
+  <div class="card table-scroll">
+    <table class="list-table">
+      <thead>
+        <tr>
+          <th>Client</th>
+          <th>Slug</th>
+          <th>Status</th>
+          <th>Plan</th>
+          <th>Subscription</th>
+          <th>Days left</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (tenant of rows(); track tenant.id) {
+          <tr>
+            <td>
+              <div>{{ tenant.name }}</div>
+              @if (tenant.clientEmail) {
+                <div class="hint">{{ tenant.clientEmail }}</div>
+              }
+            </td>
+            <td>/{{ tenant.slug }}</td>
+            <td>
+              <span class="badge" [class.badge-published]="tenant.status === 'ACTIVE'" [class.badge-draft]="tenant.status !== 'ACTIVE'">
+                {{ tenant.status }}
+              </span>
+            </td>
+            <td>{{ tenant.planName ?? '-' }}</td>
+            <td>{{ tenant.subscriptionStatus ?? '-' }}</td>
+            <td>
+              @if (tenant.daysRemaining !== null) {
+                <span [class.text-danger]="tenant.daysRemaining <= 7">{{ tenant.daysRemaining }}</span>
+              } @else {
+                -
+              }
+            </td>
+            <td>
+              @if (resetPasswordFor(); as reset) {
+                @if (reset.tenantId === tenant.id) {
+                  <div class="hint">New password: <strong>{{ reset.password }}</strong></div>
+                }
+              }
+              <div class="row-actions">
+                @for (next of nextStatuses(tenant.status); track next) {
+                  <button
+                    type="button"
+                    class="btn btn-sm btn-secondary"
+                    [disabled]="busyRowId() === tenant.id"
+                    (click)="changeStatus(tenant, next)">
+                    {{ next === 'ACTIVE' ? 'Activate' : next === 'SUSPENDED' ? 'Suspend' : 'Archive' }}
+                  </button>
+                }
+                <button
+                  type="button"
+                  class="btn btn-sm btn-secondary"
+                  [disabled]="busyRowId() === tenant.id"
+                  (click)="resetAccess(tenant)">
+                  Reset password
+                </button>
+              </div>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}

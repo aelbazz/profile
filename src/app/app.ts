@@ -20,7 +20,7 @@ interface NavItem {
 }
 
 /** Which chrome this component should render around the routed content. */
-type LayoutMode = 'marketing' | 'tenant' | 'admin';
+type LayoutMode = 'marketing' | 'tenant' | 'portal';
 
 /** Scroll offset (px) past which the back-to-top button appears. */
 const SCROLL_TOP_THRESHOLD = 300;
@@ -40,8 +40,9 @@ export class AppComponent {
   /**
    * This component renders the Portfolio marketing chrome (navbar/footer) only for the
    * marketing routes. A tenant's own profile gets its own chrome from
-   * TenantProfileShellComponent, and the client portal from AdminShellComponent - this
-   * component renders neither, just a bare <router-outlet> for those two.
+   * TenantProfileShellComponent, the client control panel from AdminShellComponent, and the
+   * platform-admin portal from PlatformAdminShellComponent - this component renders none of
+   * those, just a bare <router-outlet> for all three.
    */
   private readonly currentUrl = toSignal(
     this.router.events.pipe(
@@ -53,16 +54,20 @@ export class AppComponent {
   );
 
   private static readonly MARKETING_PATHS = new Set(['', 'about', 'services', 'contact']);
+  private static readonly PORTAL_PATHS = new Set(['client', 'admin']);
 
   readonly layoutMode = computed<LayoutMode>(() => {
     const firstSegment = this.currentUrl().split('/')[1]?.split(/[?#]/)[0] ?? '';
-    if (firstSegment === 'client') {
-      return 'admin';
+    if (AppComponent.PORTAL_PATHS.has(firstSegment)) {
+      return 'portal';
     }
     return AppComponent.MARKETING_PATHS.has(firstSegment) ? 'marketing' : 'tenant';
   });
 
-  readonly isAdminArea = computed(() => this.layoutMode() === 'admin');
+  /** Drives the bare, chrome-free layout in app.html/app.scss - kept under its original
+   *  name (".admin-content") to avoid an unrelated CSS rename, even though it now also
+   *  covers the platform-admin portal, not just the client one. */
+  readonly isAdminArea = computed(() => this.layoutMode() === 'portal');
 
   readonly title = PLATFORM_BRANDING.name;
   readonly tagline = PLATFORM_BRANDING.tagline;

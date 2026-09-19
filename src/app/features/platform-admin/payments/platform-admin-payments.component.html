@@ -1,0 +1,98 @@
+<div class="page-head">
+  <div>
+    <h1>Payments</h1>
+    <p class="subtitle">Income recorded across every tenant. No payment gateway is connected yet - these are logged manually.</p>
+  </div>
+  <button type="button" class="btn btn-primary" (click)="toggleForm()">
+    <i class="fas fa-plus"></i>{{ showForm() ? 'Cancel' : 'Record a payment' }}
+  </button>
+</div>
+
+@if (showForm()) {
+  <div class="card">
+    @if (formError(); as message) {
+      <div class="alert alert-danger">{{ message }}</div>
+    }
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+      <div class="field">
+        <label for="pay-tenant">Tenant *</label>
+        <select id="pay-tenant" formControlName="tenantId">
+          <option value="" disabled>Select a tenant</option>
+          @for (tenant of tenants(); track tenant.id) {
+            <option [value]="tenant.id">{{ tenant.name }} (/{{ tenant.slug }})</option>
+          }
+        </select>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="pay-amount">Amount *</label>
+          <input id="pay-amount" type="number" min="0.01" step="0.01" formControlName="amount" />
+        </div>
+        <div class="field">
+          <label for="pay-currency">Currency</label>
+          <input id="pay-currency" type="text" formControlName="currency" maxlength="3" />
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="pay-provider">Provider</label>
+          <input id="pay-provider" type="text" formControlName="provider" />
+          <span class="hint">"manual" until a real payment processor is integrated.</span>
+        </div>
+        <div class="field">
+          <label for="pay-txn">Transaction reference</label>
+          <input id="pay-txn" type="text" formControlName="providerTransactionId" />
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="saving()">
+        @if (saving()) {
+          <span class="spinner-border spinner-border-sm me-2"></span>Recording…
+        } @else {
+          Record payment
+        }
+      </button>
+    </form>
+  </div>
+}
+
+@if (loadError(); as message) {
+  <div class="alert alert-danger">
+    {{ message }}
+    <button type="button" class="btn btn-sm btn-secondary ms-2" (click)="load()">Retry</button>
+  </div>
+} @else if (loading()) {
+  <div class="loading-state">
+    <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading…</span></div>
+  </div>
+} @else if (payments().length === 0) {
+  <div class="empty-state">No payments recorded yet.</div>
+} @else {
+  <div class="card table-scroll">
+    <table class="list-table">
+      <thead>
+        <tr>
+          <th>Tenant</th>
+          <th>Amount</th>
+          <th>Status</th>
+          <th>Provider</th>
+          <th>Recorded</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (payment of payments(); track payment.id) {
+          <tr>
+            <td>{{ payment.tenantSlug ? '/' + payment.tenantSlug : payment.tenantId }}</td>
+            <td>{{ payment.amount }} {{ payment.currency }}</td>
+            <td>
+              <span class="badge" [class.badge-published]="payment.status === 'PAID'" [class.badge-draft]="payment.status !== 'PAID'">
+                {{ payment.status }}
+              </span>
+            </td>
+            <td>{{ payment.provider }}</td>
+            <td>{{ payment.createdAt | date: 'medium' }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}

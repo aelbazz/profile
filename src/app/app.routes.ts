@@ -1,8 +1,9 @@
 import { Routes } from '@angular/router';
 
 // Route order matters: the Router matches these top-to-bottom, not by specificity. Every
-// literal path (the four marketing routes, 'profile', 'client') must be registered before
-// the ':tenantSlug' param route, or a marketing route would be swallowed as a tenant slug.
+// literal path (the four marketing routes, 'profile', 'client', 'admin') must be registered
+// before the ':tenantSlug' param route, or a marketing route would be swallowed as a tenant
+// slug.
 export const routes: Routes = [
   {
     path: '',
@@ -50,6 +51,16 @@ export const routes: Routes = [
     // saying "admin" internally - that renaming is cosmetic and left for a later pass.
     path: 'client',
     loadChildren: () => import('./features/admin/admin.routes').then(m => m.ADMIN_ROUTES)
+  },
+  {
+    // The Portfolio platform's own admin portal (Role.ADMIN) - tenants, plans, billing,
+    // contact inbox. A sibling of 'client', not nested under it - see
+    // features/platform-admin/platform-admin.routes.ts.
+    path: 'admin',
+    loadChildren: () =>
+      import('./features/platform-admin/platform-admin.routes').then(
+        m => m.PLATFORM_ADMIN_ROUTES
+      )
   },
   {
     // Every tenant's public profile, resolved at runtime from this segment - see

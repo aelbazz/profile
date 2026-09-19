@@ -1,0 +1,89 @@
+<div class="page-head">
+  <div>
+    <h1>Contact Inbox</h1>
+    <p class="subtitle">Inquiries submitted through the Portfolio marketing site's contact form.</p>
+  </div>
+</div>
+
+<div class="filter-tabs">
+  @for (filter of statusFilters; track filter) {
+    <button
+      type="button"
+      class="filter-tab"
+      [class.active]="activeFilter() === filter"
+      (click)="setFilter(filter)">
+      {{ filter === 'ALL' ? 'All' : filter | titlecase }}
+    </button>
+  }
+</div>
+
+@if (loadError(); as message) {
+  <div class="alert alert-danger">
+    {{ message }}
+    <button type="button" class="btn btn-sm btn-secondary ms-2" (click)="load()">Retry</button>
+  </div>
+} @else if (loading()) {
+  <div class="loading-state">
+    <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading…</span></div>
+  </div>
+} @else if (submissions().length === 0) {
+  <div class="empty-state">No submissions here.</div>
+} @else {
+  <div class="card table-scroll">
+    <table class="list-table">
+      <thead>
+        <tr>
+          <th>From</th>
+          <th>Subject</th>
+          <th>Status</th>
+          <th>Received</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (submission of submissions(); track submission.id) {
+          <tr>
+            <td>
+              <div>{{ submission.name }}</div>
+              <div class="hint">{{ submission.email }}</div>
+            </td>
+            <td>
+              <button type="button" class="link-btn" (click)="toggleExpanded(submission.id)">
+                {{ submission.subject }}
+              </button>
+              @if (expandedId() === submission.id) {
+                <p class="message-preview">{{ submission.message }}</p>
+                @if (submission.phone) {
+                  <p class="hint">Phone: {{ submission.phone }}</p>
+                }
+                @if (submission.company) {
+                  <p class="hint">Company: {{ submission.company }}</p>
+                }
+              }
+            </td>
+            <td>
+              <span
+                class="badge"
+                [class.badge-published]="submission.status === 'RESOLVED'"
+                [class.badge-draft]="submission.status !== 'RESOLVED'">
+                {{ submission.status }}
+              </span>
+            </td>
+            <td>{{ submission.createdAt | date: 'medium' }}</td>
+            <td>
+              <select
+                class="status-select"
+                [disabled]="busyId() === submission.id"
+                [value]="submission.status"
+                (change)="updateStatus(submission, $any($event.target).value)">
+                @for (status of statusOptions; track status) {
+                  <option [value]="status">{{ status | titlecase }}</option>
+                }
+              </select>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}
