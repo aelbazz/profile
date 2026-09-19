@@ -47,6 +47,39 @@ export interface AdminContact {
   socialLinks: AdminSocialLink[];
 }
 
+export interface AdminTheme {
+  primaryColor: string;
+  secondaryColor: string;
+  accentColor: string;
+  backgroundColor: string;
+  textColor: string;
+  headingColor: string;
+  fontFamily: string;
+  borderRadius: string;
+  layout: string;
+  designSystem: string;
+  darkMode: boolean;
+  customCss: string | null;
+}
+
+export interface DesignSystemOption {
+  id: string;
+  label: string;
+  description: string;
+  /** Layout ids this design system supports - filters the layout picker in the UI. */
+  layouts: string[];
+}
+
+export interface LayoutOption {
+  id: string;
+  label: string;
+}
+
+export interface DesignRegistry {
+  designSystems: DesignSystemOption[];
+  layouts: LayoutOption[];
+}
+
 export interface AdminExperience {
   id: string;
   legacyId: string;
@@ -214,6 +247,22 @@ export class AdminApiService {
 
   updateContact(body: unknown): Observable<AdminContact> {
     return this.http.patch<AdminContact>(`${this.base}/tenant/contact`, body);
+  }
+
+  // -- theme / branding (singleton) --------------------------------------------
+
+  getTheme(): Observable<AdminTheme> {
+    return this.http.get<AdminTheme>(`${this.base}/tenant/theme`);
+  }
+
+  updateTheme(body: Partial<AdminTheme>): Observable<AdminTheme> {
+    return this.http.patch<AdminTheme>(`${this.base}/tenant/theme`, body);
+  }
+
+  /** Public, platform-wide config (not tenant-scoped) - co-located here since this admin
+   *  page is its only consumer today. */
+  getDesignRegistry(): Observable<DesignRegistry> {
+    return this.http.get<DesignRegistry>(`${this.base}/design-registry`);
   }
 
   // -- experiences ------------------------------------------------------------

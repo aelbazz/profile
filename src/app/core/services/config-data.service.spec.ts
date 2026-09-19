@@ -29,7 +29,21 @@ describe('ConfigDataService', () => {
     courses: [{ id: 'edu1', skills: ['S1'] }],
     timelineEvents: [{ id: 'evt1' }],
     managementRoles: [{ id: 'mgmt1', keyResponsibilities: ['K1'], achievements: ['A1'] }],
-    skills: { categories: [{ category: 'Frontend', skills: [{ name: 'Angular', level: 9 }] }] }
+    skills: { categories: [{ category: 'Frontend', skills: [{ name: 'Angular', level: 9 }] }] },
+    theme: {
+      primaryColor: '#ff0000',
+      secondaryColor: '#64748b',
+      accentColor: '#06b6d4',
+      backgroundColor: '#ffffff',
+      textColor: '#334155',
+      headingColor: '#0f172a',
+      fontFamily: 'Inter, sans-serif',
+      borderRadius: '0.5rem',
+      layout: 'sidebar',
+      designSystem: 'creative',
+      darkMode: false,
+      customCss: null
+    }
   };
 
   const otherTenantResponse = {
@@ -142,6 +156,33 @@ describe('ConfigDataService', () => {
 
     httpMock.expectOne(urlFor(OTHER_SLUG)).flush(otherTenantResponse);
     expect(service.profile()?.name).toBe('Someone Else');
+  });
+
+  it('populates theme from the response, and resets to defaults on a tenant switch', () => {
+    service.loadProfile$(SLUG).subscribe();
+    httpMock.expectOne(urlFor(SLUG)).flush(response);
+    expect(service.theme().designSystem).toBe('creative');
+    expect(service.theme().layout).toBe('sidebar');
+    expect(service.theme().primaryColor).toBe('#ff0000');
+
+    service.loadProfile$(OTHER_SLUG).subscribe();
+    // Reset immediately, before the new response lands - same guarantee as `profile()`.
+    expect(service.theme().designSystem).toBe('modern');
+    expect(service.theme().layout).toBe('classic');
+
+    httpMock.expectOne(urlFor(OTHER_SLUG)).flush(otherTenantResponse);
+    // otherTenantResponse reuses `response`'s theme via spread, so it stays 'creative'.
+    expect(service.theme().designSystem).toBe('creative');
+  });
+
+  it('falls back to the default theme when the response omits one', () => {
+    const { theme: _omitted, ...responseWithoutTheme } = response;
+    service.loadProfile$(SLUG).subscribe();
+    httpMock.expectOne(urlFor(SLUG)).flush(responseWithoutTheme);
+
+    expect(service.theme().designSystem).toBe('modern');
+    expect(service.theme().layout).toBe('classic');
+    expect(service.theme().primaryColor).toBe('#6366f1');
   });
 
   it('reports a redirect when the backend serves the data under a different, canonical slug', () => {

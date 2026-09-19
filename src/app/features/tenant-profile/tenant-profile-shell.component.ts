@@ -2,12 +2,17 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  HostBinding,
   HostListener,
+  OnDestroy,
+  Renderer2,
   VERSION,
   computed,
+  effect,
   inject,
   signal
 } from '@angular/core';
+import { DOCUMENT, NgStyle } from '@angular/common';
 import { ActivatedRoute, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
@@ -29,6 +34,13 @@ const SCROLL_TOP_THRESHOLD = 300;
  * (default -> albaz, say) or switching to a different tenant entirely both just work,
  * since every link here is derived from the resolved route param, not typed literally.
  *
+ * Also where a tenant's chosen design system, layout and branding colors actually take
+ * effect: `data-design-system` is a real host attribute (so `:host-context(...)` in shared
+ * components like CardComponent can key off it), and the tenant's colors are applied as
+ * inline `--bs-*` custom properties on the template root - the same variables every shared
+ * component already reads, so they take effect everywhere inside this shell's
+ * <router-outlet> without those components needing any changes.
+ *
  * Deliberately independent from AppComponent's own navbar/footer (the Portfolio marketing
  * chrome) and from AdminShellComponent (the client portal) - each of the three layouts owns
  * its own chrome outright, matching the pattern AdminShellComponent already established.
@@ -36,15 +48,17 @@ const SCROLL_TOP_THRESHOLD = 300;
 @Component({
   selector: 'app-tenant-profile-shell',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, RouterLinkActive],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, NgStyle],
   templateUrl: './tenant-profile-shell.component.html',
   styleUrl: './tenant-profile-shell.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TenantProfileShellComponent {
+export class TenantProfileShellComponent implements OnDestroy {
   private readonly route = inject(ActivatedRoute);
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly configData = inject(ConfigDataService);
+  private readonly renderer = inject(Renderer2);
+  private readonly document = inject(DOCUMENT);
 
   readonly platformName = PLATFORM_BRANDING.name;
   readonly currentYear = new Date().getFullYear();
@@ -60,6 +74,64 @@ export class TenantProfileShellComponent {
   readonly profile = this.configData.profile;
   readonly isLoading = this.configData.isLoading;
   readonly hasFailed = this.configData.hasFailed;
+  readonly theme = this.configData.theme;
+
+  readonly layout = computed(() => this.theme().layout);
+  readonly designSystem = computed(() => this.theme().designSystem);
+
+  /** A real DOM attribute on this component's host element, so
+   *  `:host-context([data-design-system="creative"])` in shared components (Card, Badge,
+   *  SectionHeader) matches - those components render inside this shell's <router-outlet>,
+   *  which is a real descendant of this host regardless of Angular's view encapsulation. */
+  @HostBinding('attr.data-design-system') get designSystemAttr(): string {
+    return this.designSystem();
+  }
+
+  readonly cssVariables = computed(() => {
+    const t = this.theme();
+    return {
+      '--bs-primary': t.primaryColor,
+      '--bs-secondary': t.secondaryColor,
+      '--bs-info': t.accentColor,
+      '--bs-body-bg': t.backgroundColor,
+      '--bs-body-color': t.textColor,
+      '--bs-heading-color': t.headingColor,
+      '--bs-font-sans-serif': t.fontFamily,
+      '--tenant-accent': t.accentColor,
+      '--tenant-radius': t.borderRadius
+    };
+  });
+
+  /**
+   * Tenant-authored CSS, injected as a real <style> element rather than bound in the
+   * template: Angular's compiler intercepts a literal <style> tag found in a .html template
+   * file and tries to compile it as this component's own stylesheet at build time, so a
+   * live `{{ }}` binding inside one is never evaluated at runtime. Renderer2 sidesteps the
+   * template compiler entirely - this creates a plain DOM node the browser treats exactly
+   * like any other <style> tag: it can change appearance, and cannot execute script.
+   */
+  private customStyleEl: HTMLStyleElement | null = null;
+
+  constructor() {
+    effect(() => this.applyCustomCss(this.theme().customCss));
+  }
+
+  ngOnDestroy(): void {
+    this.applyCustomCss(null);
+  }
+
+  private applyCustomCss(css: string | null): void {
+    if (this.customStyleEl) {
+      this.renderer.removeChild(this.document.head, this.customStyleEl);
+      this.customStyleEl = null;
+    }
+    if (css) {
+      const style = this.renderer.createElement('style') as HTMLStyleElement;
+      this.renderer.appendChild(style, this.renderer.createText(css));
+      this.renderer.appendChild(this.document.head, style);
+      this.customStyleEl = style;
+    }
+  }
 
   readonly authorName = computed(() => this.profile()?.name || this.slug());
   readonly linkedinUrl = computed(() => this.profile()?.linkedin || null);
@@ -86,6 +158,8 @@ export class TenantProfileShellComponent {
   });
 
   readonly showScrollTop = signal(false);
+  /** Mobile menu open/closed - shared between the classic navbar-collapse and the sidebar's
+   *  own off-canvas toggle, since only one layout is ever rendered at a time. */
   readonly isNavbarCollapsed = signal(true);
   private scrollFrameQueued = false;
 
@@ -106,10 +180,17 @@ export class TenantProfileShellComponent {
     if (this.isNavbarCollapsed()) {
       return;
     }
-    const navbar = this.host.nativeElement.querySelector('.navbar');
-    if (navbar && !navbar.contains(event.target as Node)) {
-      this.collapseNavbar();
+    const target = event.target as Node;
+    const navbar = this.host.nativeElement.querySelector('.navbar, .tenant-sidebar');
+    // The sidebar's own toggle button is a sibling of .tenant-sidebar, not a child of it
+    // (unlike the classic layout's .navbar-toggler, which is inside .navbar) - without this,
+    // its own (click) handler opens the sidebar and this same click's document-level bubble
+    // immediately closes it again.
+    const toggle = this.host.nativeElement.querySelector('.tenant-sidebar-toggle');
+    if (navbar?.contains(target) || toggle?.contains(target)) {
+      return;
     }
+    this.collapseNavbar();
   }
 
   @HostListener('document:keydown.escape')

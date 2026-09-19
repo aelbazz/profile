@@ -7,5 +7,14 @@
   &:hover {
     transform: scale(1.05);
   }
+
+  // Always fully pill-shaped under the "creative" design system, regardless of the `pill`
+  // input - see TenantProfileShellComponent for where data-design-system is set.
+  :host-context([data-design-system='creative']) & {
+    border-radius: 999px;
+    padding: 0.5em 1em;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
 }
 

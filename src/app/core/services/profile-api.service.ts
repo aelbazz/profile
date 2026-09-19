@@ -11,6 +11,7 @@ import {
   Profile,
   Project,
   SkillData,
+  TenantTheme,
   TimelineEvent
 } from '../models';
 
@@ -18,9 +19,10 @@ import {
  * The complete public profile, as returned by GET /api/v1/public/tenants/:slug/profile.
  *
  * Each member reuses the existing frontend model: the API was deliberately shaped to match
- * them, so nothing here needs a translation layer. `tenant`, `theme` and `settings` are new
- * with the SaaS backend and unused by any component yet - they're typed as optional so this
- * interface doesn't lie about what's actually consumed today.
+ * them, so nothing here needs a translation layer. `tenant` and `settings` are new with the
+ * SaaS backend and unused by any component yet - `settings` stays typed as an optional
+ * `Record` so this interface doesn't lie about what's consumed today; `theme` is now a real
+ * type since TenantProfileShellComponent applies it.
  */
 export interface PublicProfileResponse {
   tenant?: { slug: string; name: string };
@@ -33,7 +35,7 @@ export interface PublicProfileResponse {
   timelineEvents: TimelineEvent[];
   managementRoles: ManagementResponsibility[];
   skills: SkillData;
-  theme?: Record<string, unknown>;
+  theme?: TenantTheme;
   settings?: Record<string, unknown>;
 }
 

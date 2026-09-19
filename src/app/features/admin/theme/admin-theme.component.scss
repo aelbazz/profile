@@ -1,0 +1,13 @@
+@use '../admin-page.scss';
+
+.section-title {
+  font-size: 1rem;
+  margin: 0 0 0.9rem;
+  color: var(--admin-text);
+}
+
+input[type='color'] {
+  height: 2.5rem;
+  padding: 0.25rem;
+  cursor: pointer;
+}

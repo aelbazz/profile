@@ -8,10 +8,28 @@ import {
   ManagementData,
   SkillData,
   TimelineData,
-  Contact
+  Contact,
+  TenantTheme
 } from '../models';
 import { Observable, catchError, finalize, map, of, tap } from 'rxjs';
 import { ProfileApiService } from './profile-api.service';
+
+/** Mirrors the backend's own fallback (public.service.ts) so a tenant with no customised
+ *  theme - or a response that omits it entirely - never leaves the page unstyled. */
+const DEFAULT_THEME: TenantTheme = {
+  primaryColor: '#6366f1',
+  secondaryColor: '#64748b',
+  accentColor: '#06b6d4',
+  backgroundColor: '#ffffff',
+  textColor: '#334155',
+  headingColor: '#0f172a',
+  fontFamily: 'Inter, sans-serif',
+  borderRadius: '0.5rem',
+  layout: 'classic',
+  designSystem: 'modern',
+  darkMode: false,
+  customCss: null
+};
 
 /** Identifies a section of the profile. Kept for the per-section error API. */
 export type DataKey =
@@ -62,6 +80,7 @@ export class ConfigDataService {
   private readonly skillsSignal = signal<SkillData | null>(null);
   private readonly timelineSignal = signal<TimelineData | null>(null);
   private readonly contactSignal = signal<Contact | null>(null);
+  private readonly themeSignal = signal<TenantTheme>(DEFAULT_THEME);
 
   readonly profile = this.profileSignal.asReadonly();
   readonly experience = this.experienceSignal.asReadonly();
@@ -72,6 +91,9 @@ export class ConfigDataService {
   readonly skills = this.skillsSignal.asReadonly();
   readonly timeline = this.timelineSignal.asReadonly();
   readonly contact = this.contactSignal.asReadonly();
+  /** Always populated (falls back to DEFAULT_THEME) - never null, so consumers don't need
+   *  an extra "no theme yet" branch alongside the loading/error states. */
+  readonly theme = this.themeSignal.asReadonly();
 
   /** Slug the currently-held data belongs to. Null before the first successful load. */
   private currentSlug: string | null = null;
@@ -142,6 +164,7 @@ export class ConfigDataService {
         this.managementSignal.set({ responsibilities: profile.managementRoles });
         // skills already arrives as { categories: [...] }, matching SkillData.
         this.skillsSignal.set(profile.skills);
+        this.themeSignal.set(profile.theme ?? DEFAULT_THEME);
         this.loaded = true;
         // A renamed slug: keep tracking under the canonical one, so a later request for the
         // retired slug is treated as a genuine switch rather than a false cache hit.
@@ -181,6 +204,7 @@ export class ConfigDataService {
     this.skillsSignal.set(null);
     this.timelineSignal.set(null);
     this.contactSignal.set(null);
+    this.themeSignal.set(DEFAULT_THEME);
     this.loaded = false;
   }
 

@@ -30,6 +30,7 @@ export class AdminShellComponent {
     { path: '/client', label: 'Dashboard', icon: 'fas fa-gauge-high' },
     { path: '/client/person', label: 'Profile', icon: 'fas fa-user' },
     { path: '/client/contact', label: 'Contact', icon: 'fas fa-address-card' },
+    { path: '/client/theme', label: 'Branding', icon: 'fas fa-palette' },
     { path: '/client/experiences', label: 'Experience', icon: 'fas fa-briefcase' },
     { path: '/client/projects', label: 'Projects', icon: 'fas fa-folder-open' },
     { path: '/client/skills', label: 'Skills', icon: 'fas fa-code' },

@@ -35,5 +35,24 @@
   .card-body {
     padding: 1.5rem;
   }
+
+  // Bolder, more expressive skin when rendered inside a tenant shell whose design system is
+  // "creative" - see TenantProfileShellComponent, which sets this as a real host attribute.
+  :host-context([data-design-system='creative']) & {
+    border-radius: var(--tenant-radius, 0.75rem);
+    border: none;
+    border-top: 4px solid var(--tenant-accent, var(--bs-info));
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+
+    &:hover {
+      transform: translateY(-6px) scale(1.01);
+      box-shadow: 0 16px 28px -8px rgba(0, 0, 0, 0.22);
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+  }
 }
 

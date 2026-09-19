@@ -36,6 +36,11 @@ export const ADMIN_ROUTES: Routes = [
         title: 'Admin · Contact'
       },
       {
+        path: 'theme',
+        loadComponent: () => import('./theme/admin-theme.component').then(m => m.AdminThemeComponent),
+        title: 'Admin · Branding'
+      },
+      {
         path: 'experiences',
         loadComponent: () =>
           import('./experiences/admin-experiences.component').then(m => m.AdminExperiencesComponent),
