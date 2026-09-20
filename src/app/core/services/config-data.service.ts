@@ -81,6 +81,10 @@ export class ConfigDataService {
   private readonly timelineSignal = signal<TimelineData | null>(null);
   private readonly contactSignal = signal<Contact | null>(null);
   private readonly themeSignal = signal<TenantTheme>(DEFAULT_THEME);
+  /** sectionKey -> shows publicly, in the client's own display order. Empty until a profile
+   *  has loaded; a missing key (an older cached response) is treated as shown - see
+   *  TenantProfileShellComponent.navItems. */
+  private readonly sectionsSignal = signal<Record<string, boolean>>({});
 
   readonly profile = this.profileSignal.asReadonly();
   readonly experience = this.experienceSignal.asReadonly();
@@ -94,6 +98,7 @@ export class ConfigDataService {
   /** Always populated (falls back to DEFAULT_THEME) - never null, so consumers don't need
    *  an extra "no theme yet" branch alongside the loading/error states. */
   readonly theme = this.themeSignal.asReadonly();
+  readonly sections = this.sectionsSignal.asReadonly();
 
   /** Slug the currently-held data belongs to. Null before the first successful load. */
   private currentSlug: string | null = null;
@@ -165,6 +170,7 @@ export class ConfigDataService {
         // skills already arrives as { categories: [...] }, matching SkillData.
         this.skillsSignal.set(profile.skills);
         this.themeSignal.set(profile.theme ?? DEFAULT_THEME);
+        this.sectionsSignal.set(profile.sections ?? {});
         this.loaded = true;
         // A renamed slug: keep tracking under the canonical one, so a later request for the
         // retired slug is treated as a genuine switch rather than a false cache hit.
@@ -205,6 +211,7 @@ export class ConfigDataService {
     this.timelineSignal.set(null);
     this.contactSignal.set(null);
     this.themeSignal.set(DEFAULT_THEME);
+    this.sectionsSignal.set({});
     this.loaded = false;
   }
 

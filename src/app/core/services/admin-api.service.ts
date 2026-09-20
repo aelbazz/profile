@@ -220,6 +220,45 @@ export interface ReorderItem {
   sortOrder: number;
 }
 
+export interface AvatarInfo {
+  url: string;
+  source: 'DEFAULT' | 'CUSTOM';
+}
+
+export interface SectionInfo {
+  sectionKey: string;
+  label: string;
+  enabled: boolean;
+  displayOrder: number;
+  itemCount: number;
+}
+
+export interface SectionOrderEntry {
+  sectionKey: string;
+  displayOrder: number;
+}
+
+export interface DashboardSummary {
+  tenant: { id: string; name: string; status: string };
+  person: { name: string; title: string; avatar: string; avatarSource: 'DEFAULT' | 'CUSTOM' };
+  publicSite: { slug: string; url: string; isPublished: boolean };
+  appearance: { designSystem: string; layout: string; primaryColor: string };
+  sections: Array<{ sectionKey: string; label: string; enabled: boolean; itemCount: number }>;
+  statistics: {
+    experience: number;
+    projects: number;
+    skills: number;
+    achievements: number;
+    courses: number;
+    timeline: number;
+    management: number;
+  };
+}
+
+export interface PublishStatus {
+  isPublished: boolean;
+}
+
 /**
  * Every admin write goes through here. Components never build a URL or touch HttpClient.
  * The bearer token is attached by authInterceptor, not by this service.
@@ -263,6 +302,53 @@ export class AdminApiService {
    *  page is its only consumer today. */
   getDesignRegistry(): Observable<DesignRegistry> {
     return this.http.get<DesignRegistry>(`${this.base}/design-registry`);
+  }
+
+  // -- avatar -------------------------------------------------------------------
+
+  getAvatar(): Observable<AvatarInfo> {
+    return this.http.get<AvatarInfo>(`${this.base}/tenant/profile/avatar`);
+  }
+
+  /** No explicit Content-Type - the browser sets the multipart boundary itself. */
+  uploadAvatar(file: File): Observable<AvatarInfo> {
+    const formData = new FormData();
+    formData.append('file', file);
+    return this.http.post<AvatarInfo>(`${this.base}/tenant/profile/avatar`, formData);
+  }
+
+  deleteAvatar(): Observable<AvatarInfo> {
+    return this.http.delete<AvatarInfo>(`${this.base}/tenant/profile/avatar`);
+  }
+
+  // -- section visibility ---------------------------------------------------------
+
+  getSections(): Observable<SectionInfo[]> {
+    return this.http.get<SectionInfo[]>(`${this.base}/tenant/sections`);
+  }
+
+  updateSection(sectionKey: string, enabled: boolean): Observable<SectionInfo[]> {
+    return this.http.patch<SectionInfo[]>(`${this.base}/tenant/sections/${sectionKey}`, { enabled });
+  }
+
+  reorderSections(sections: SectionOrderEntry[]): Observable<SectionInfo[]> {
+    return this.http.patch<SectionInfo[]>(`${this.base}/tenant/sections/reorder`, { sections });
+  }
+
+  // -- dashboard --------------------------------------------------------------
+
+  getDashboard(): Observable<DashboardSummary> {
+    return this.http.get<DashboardSummary>(`${this.base}/tenant/dashboard`);
+  }
+
+  // -- publish status -----------------------------------------------------------
+
+  getPublishStatus(): Observable<PublishStatus> {
+    return this.http.get<PublishStatus>(`${this.base}/tenant/publish-status`);
+  }
+
+  updatePublishStatus(isPublished: boolean): Observable<PublishStatus> {
+    return this.http.patch<PublishStatus>(`${this.base}/tenant/publish-status`, { isPublished });
   }
 
   // -- experiences ------------------------------------------------------------

@@ -18,6 +18,38 @@
     <p class="mt-3">Loading profile…</p>
   </div>
 } @else {
+  <div class="card avatar-card">
+    <label>Avatar</label>
+    <div class="avatar-row">
+      <img [src]="avatar()?.url" alt="Current avatar" class="avatar-preview">
+      <div class="avatar-actions">
+        <span class="badge" [class.badge-published]="avatar()?.source === 'CUSTOM'"
+              [class.badge-draft]="avatar()?.source !== 'CUSTOM'">
+          {{ avatar()?.source === 'CUSTOM' ? 'Custom' : 'Default' }}
+        </span>
+        <label class="btn btn-secondary btn-sm" [class.disabled]="avatarBusy()">
+          @if (avatarBusy()) {
+            <span class="spinner-border spinner-border-sm"></span>Working…
+          } @else {
+            <i class="fas fa-upload"></i>Upload photo
+          }
+          <input type="file" accept="image/jpeg,image/png,image/webp" hidden
+                 [disabled]="avatarBusy()" (change)="onAvatarSelected($event)">
+        </label>
+        @if (avatar()?.source === 'CUSTOM') {
+          <button type="button" class="btn btn-danger btn-sm" [disabled]="avatarBusy()"
+                  (click)="removeAvatar()">
+            <i class="fas fa-trash"></i>Remove
+          </button>
+        }
+      </div>
+    </div>
+    <small class="hint">JPEG, PNG or WebP only. SVG uploads are rejected for security.</small>
+    @if (avatarError(); as message) {
+      <small class="error">{{ message }}</small>
+    }
+  </div>
+
   <form class="card" [formGroup]="form" (ngSubmit)="save()" novalidate>
     <div class="field-row">
       <div class="field">
@@ -65,12 +97,6 @@
           <small class="error">Must be between 0 and 80.</small>
         }
       </div>
-    </div>
-
-    <div class="field">
-      <label for="avatar">Avatar path</label>
-      <input id="avatar" type="text" formControlName="avatar">
-      <small class="hint">A path relative to the frontend, e.g. /assets/images/profile-image.jpg</small>
     </div>
 
     <div class="field-row">

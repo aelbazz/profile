@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { forkJoin } from 'rxjs';
-import { AdminApiService } from '../../../core/services/admin-api.service';
-import { AuthService } from '../../../core/auth';
+import { HttpErrorResponse } from '@angular/common/http';
+import { AdminApiService, DashboardSummary } from '../../../core/services/admin-api.service';
+import { describeApiError } from '../admin-error';
 
 interface StatCard {
   readonly label: string;
@@ -11,6 +11,12 @@ interface StatCard {
   readonly link: string;
 }
 
+/**
+ * One aggregated call (GET tenant/dashboard) replaces what used to be eight separate
+ * content-count requests. `publicSite.url` comes from the backend (built from
+ * FRONTEND_PUBLIC_URL + the tenant's slug) rather than being constructed here - see
+ * docs/SAAS-ARCHITECTURE.md §14.
+ */
 @Component({
   selector: 'app-admin-dashboard',
   standalone: true,
@@ -21,12 +27,13 @@ interface StatCard {
 })
 export class AdminDashboardComponent {
   private readonly api = inject(AdminApiService);
-  private readonly auth = inject(AuthService);
 
-  readonly tenantSlug = this.auth.tenantSlug;
+  readonly dashboard = signal<DashboardSummary | null>(null);
+  readonly loadFailed = signal(false);
+  readonly publishBusy = signal(false);
+  readonly publishError = signal<string | null>(null);
 
   readonly stats = signal<StatCard[] | null>(null);
-  readonly loadFailed = signal(false);
 
   constructor() {
     this.load();
@@ -34,32 +41,42 @@ export class AdminDashboardComponent {
 
   load(): void {
     this.loadFailed.set(false);
+    this.dashboard.set(null);
     this.stats.set(null);
 
-    forkJoin({
-      experiences: this.api.getExperiences(),
-      projects: this.api.getProjects(),
-      technologies: this.api.getTechnologies(),
-      achievements: this.api.getAchievements(),
-      courses: this.api.getCourses(),
-      timeline: this.api.getTimelineEvents(),
-      management: this.api.getManagementRoles(),
-      skills: this.api.getSkillCategories()
-    }).subscribe({
+    this.api.getDashboard().subscribe({
       next: data => {
-        const skillCount = data.skills.reduce((total, c) => total + c.skills.length, 0);
+        this.dashboard.set(data);
         this.stats.set([
-          { label: 'Experience', count: data.experiences.length, icon: 'fas fa-briefcase', link: '/client/experiences' },
-          { label: 'Projects', count: data.projects.length, icon: 'fas fa-folder-open', link: '/client/projects' },
-          { label: 'Skills', count: skillCount, icon: 'fas fa-code', link: '/client/skills' },
-          { label: 'Technologies', count: data.technologies.length, icon: 'fas fa-microchip', link: '/client/technologies' },
-          { label: 'Achievements', count: data.achievements.length, icon: 'fas fa-trophy', link: '/client/achievements' },
-          { label: 'Courses', count: data.courses.length, icon: 'fas fa-graduation-cap', link: '/client/courses' },
-          { label: 'Timeline events', count: data.timeline.length, icon: 'fas fa-history', link: '/client/timeline' },
-          { label: 'Management roles', count: data.management.length, icon: 'fas fa-users-cog', link: '/client/management' }
+          { label: 'Experience', count: data.statistics.experience, icon: 'fas fa-briefcase', link: '/client/experiences' },
+          { label: 'Projects', count: data.statistics.projects, icon: 'fas fa-folder-open', link: '/client/projects' },
+          { label: 'Skills', count: data.statistics.skills, icon: 'fas fa-code', link: '/client/skills' },
+          { label: 'Achievements', count: data.statistics.achievements, icon: 'fas fa-trophy', link: '/client/achievements' },
+          { label: 'Courses', count: data.statistics.courses, icon: 'fas fa-graduation-cap', link: '/client/courses' },
+          { label: 'Timeline events', count: data.statistics.timeline, icon: 'fas fa-history', link: '/client/timeline' },
+          { label: 'Management roles', count: data.statistics.management, icon: 'fas fa-users-cog', link: '/client/management' }
         ]);
       },
       error: () => this.loadFailed.set(true)
+    });
+  }
+
+  togglePublish(): void {
+    const current = this.dashboard();
+    if (!current || this.publishBusy()) return;
+
+    this.publishBusy.set(true);
+    this.publishError.set(null);
+
+    this.api.updatePublishStatus(!current.publicSite.isPublished).subscribe({
+      next: status => {
+        this.dashboard.update(d => (d ? { ...d, publicSite: { ...d.publicSite, isPublished: status.isPublished } } : d));
+        this.publishBusy.set(false);
+      },
+      error: (e: HttpErrorResponse) => {
+        this.publishError.set(describeApiError(e));
+        this.publishBusy.set(false);
+      }
     });
   }
 }

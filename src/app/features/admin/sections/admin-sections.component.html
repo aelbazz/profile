@@ -1,0 +1,45 @@
+<div class="page-head">
+  <div>
+    <h1>Sections</h1>
+    <p class="subtitle">Choose which sections show on your public site, and in what order.</p>
+  </div>
+</div>
+
+@if (error(); as message) {
+  <div class="alert alert-danger"><i class="fas fa-circle-exclamation me-2"></i>{{ message }}</div>
+}
+
+@if (loading()) {
+  <div class="loading-state">
+    <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading…</span></div>
+    <p class="mt-3">Loading sections…</p>
+  </div>
+} @else {
+  <div class="card section-list">
+    @for (section of sections(); track trackSection($index, section); let i = $index; let last = $last) {
+      <div class="section-row">
+        <div class="section-order">
+          <button type="button" class="order-btn" [disabled]="busy() || i === 0"
+                  aria-label="Move up" (click)="moveUp(i)">
+            <i class="fas fa-chevron-up"></i>
+          </button>
+          <button type="button" class="order-btn" [disabled]="busy() || last"
+                  aria-label="Move down" (click)="moveDown(i)">
+            <i class="fas fa-chevron-down"></i>
+          </button>
+        </div>
+
+        <div class="section-info">
+          <span class="section-label">{{ section.label }}</span>
+          <span class="section-count">{{ section.itemCount }} item{{ section.itemCount === 1 ? '' : 's' }}</span>
+        </div>
+
+        <label class="toggle">
+          <input type="checkbox" [checked]="section.enabled" [disabled]="busy()"
+                 (change)="toggle(section)">
+          <span>Show on my site</span>
+        </label>
+      </div>
+    }
+  </div>
+}

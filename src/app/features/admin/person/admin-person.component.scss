@@ -1,1 +1,36 @@
 @use "../admin-page.scss";
+
+.avatar-card {
+  > label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+    color: var(--admin-text);
+  }
+}
+
+.avatar-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.avatar-preview {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--admin-border);
+  background: var(--admin-bg-subtle);
+}
+
+.avatar-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+
+  label.btn.disabled { opacity: 0.6; pointer-events: none; }
+}

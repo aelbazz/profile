@@ -41,6 +41,12 @@ export const ADMIN_ROUTES: Routes = [
         title: 'Admin · Branding'
       },
       {
+        path: 'sections',
+        loadComponent: () =>
+          import('./sections/admin-sections.component').then(m => m.AdminSectionsComponent),
+        title: 'Admin · Sections'
+      },
+      {
         path: 'experiences',
         loadComponent: () =>
           import('./experiences/admin-experiences.component').then(m => m.AdminExperiencesComponent),

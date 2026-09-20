@@ -35,6 +35,9 @@ export interface PublicProfileResponse {
   timelineEvents: TimelineEvent[];
   managementRoles: ManagementResponsibility[];
   skills: SkillData;
+  /** sectionKey -> whether it shows publicly, in the client's own display order. Drives which
+   *  nav items TenantProfileShellComponent renders - see ConfigDataService.sections. */
+  sections?: Record<string, boolean>;
   theme?: TenantTheme;
   settings?: Record<string, unknown>;
 }

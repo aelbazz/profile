@@ -23,6 +23,9 @@ interface NavItem {
   readonly path: string;
   readonly label: string;
   readonly icon: string;
+  /** Matches a ClientSection.sectionKey on the backend - see section-registry.ts. Drives
+   *  whether this link shows at all, and in what order, from the public profile response. */
+  readonly sectionKey: string;
 }
 
 /** Scroll offset (px) past which the back-to-top button appears. */
@@ -136,25 +139,46 @@ export class TenantProfileShellComponent implements OnDestroy {
   readonly authorName = computed(() => this.profile()?.name || this.slug());
   readonly linkedinUrl = computed(() => this.profile()?.linkedin || null);
 
+  /** sectionKey -> shown publicly. Backend also empties a disabled section's own content
+   *  (see PublicProfileService), so a direct URL to a hidden section's route still renders
+   *  cleanly empty rather than stale data - hiding the nav link is presentation only. */
+  private readonly sections = this.configData.sections;
+
+  /** A key absent from the map (profile not loaded yet, or an older cached response before
+   *  this field existed) is treated as shown, never hidden. */
+  private isSectionShown(key: string): boolean {
+    const map = this.sections();
+    return key in map ? map[key] : true;
+  }
+
+  /** Preserves the client's own display order (ClientSection.displayOrder, as returned) for
+   *  whichever items pass the shown-filter, rather than a fixed hardcoded order. */
+  private orderBySection(items: readonly NavItem[]): readonly NavItem[] {
+    const order = Object.keys(this.sections());
+    return [...items]
+      .filter(item => this.isSectionShown(item.sectionKey))
+      .sort((a, b) => order.indexOf(a.sectionKey) - order.indexOf(b.sectionKey));
+  }
+
   readonly navItems = computed<readonly NavItem[]>(() => {
     const base = `/${this.slug()}`;
-    return [
-      { path: base, label: 'Home', icon: 'fas fa-user' },
-      { path: `${base}/experience`, label: 'Experience', icon: 'fas fa-briefcase' },
-      { path: `${base}/projects`, label: 'Projects', icon: 'fas fa-folder-open' },
-      { path: `${base}/skills`, label: 'Skills', icon: 'fas fa-code' },
-      { path: `${base}/contact`, label: 'Contact', icon: 'fas fa-envelope' }
-    ];
+    return this.orderBySection([
+      { path: base, label: 'Home', icon: 'fas fa-user', sectionKey: 'profile' },
+      { path: `${base}/experience`, label: 'Experience', icon: 'fas fa-briefcase', sectionKey: 'experience' },
+      { path: `${base}/projects`, label: 'Projects', icon: 'fas fa-folder-open', sectionKey: 'projects' },
+      { path: `${base}/skills`, label: 'Skills', icon: 'fas fa-code', sectionKey: 'skills' },
+      { path: `${base}/contact`, label: 'Contact', icon: 'fas fa-envelope', sectionKey: 'contact' }
+    ]);
   });
 
   readonly secondaryNavItems = computed<readonly NavItem[]>(() => {
     const base = `/${this.slug()}`;
-    return [
-      { path: `${base}/achievements`, label: 'Achievements', icon: 'fas fa-trophy' },
-      { path: `${base}/courses`, label: 'Courses', icon: 'fas fa-graduation-cap' },
-      { path: `${base}/timeline`, label: 'Timeline', icon: 'fas fa-history' },
-      { path: `${base}/management`, label: 'Management', icon: 'fas fa-users-cog' }
-    ];
+    return this.orderBySection([
+      { path: `${base}/achievements`, label: 'Achievements', icon: 'fas fa-trophy', sectionKey: 'achievements' },
+      { path: `${base}/courses`, label: 'Courses', icon: 'fas fa-graduation-cap', sectionKey: 'courses' },
+      { path: `${base}/timeline`, label: 'Timeline', icon: 'fas fa-history', sectionKey: 'timeline' },
+      { path: `${base}/management`, label: 'Management', icon: 'fas fa-users-cog', sectionKey: 'management' }
+    ]);
   });
 
   readonly showScrollTop = signal(false);
