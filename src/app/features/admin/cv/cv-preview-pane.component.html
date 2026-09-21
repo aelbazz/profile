@@ -1,0 +1,154 @@
+@if (loading) {
+  <div class="loading-state">
+    <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading…</span></div>
+    <p class="mt-3">Building preview…</p>
+  </div>
+} @else if (document) {
+  <div class="cv-page">
+    <header class="cv-header">
+      <h2 class="cv-name">{{ document.header.fullName }}</h2>
+      <p class="cv-headline">{{ document.header.headline }}</p>
+
+      @if (document.header.location || document.header.contacts.length) {
+        <div class="cv-contact-line">
+          @if (document.header.location) {
+            <span>{{ document.header.location }}</span>
+          }
+          @for (contact of document.header.contacts; track contact.label) {
+            <span>
+              {{ contact.label }}:
+              @if (contact.href) {
+                <a [href]="contact.href" target="_blank" rel="noopener noreferrer">{{ contact.value }}</a>
+              } @else {
+                {{ contact.value }}
+              }
+            </span>
+          }
+        </div>
+      }
+    </header>
+
+    @if (document.summary) {
+      <section class="cv-section">
+        <h3>Professional Summary</h3>
+        <p class="cv-summary">{{ document.summary }}</p>
+      </section>
+    }
+
+    @if (document.sectionOrder.length === 0) {
+      <div class="empty-state">
+        Every section is either disabled or has no content yet - nothing will appear on the
+        exported CV.
+      </div>
+    }
+
+    @for (key of document.sectionOrder; track key) {
+      <section class="cv-section">
+        <h3>{{ cvSectionLabel(key) }}</h3>
+
+        @switch (key) {
+          @case ('experience') {
+            @for (entry of document.experience; track entry.organization + entry.role + entry.dateRange) {
+              <article class="cv-entry">
+                <div class="cv-entry-head">
+                  <strong>{{ entry.organization }}</strong>
+                  <span class="cv-entry-date">{{ entry.dateRange }}</span>
+                </div>
+                <div class="cv-entry-sub">{{ entry.role }}@if (entry.location) { &middot; {{ entry.location }} }</div>
+                @if (entry.bullets.length) {
+                  <ul>
+                    @for (bullet of entry.bullets; track bullet) {
+                      <li>{{ bullet }}</li>
+                    }
+                  </ul>
+                }
+                @if (entry.technologies.length) {
+                  <div class="cv-tech"><strong>Technologies:</strong> {{ entry.technologies.join(', ') }}</div>
+                }
+              </article>
+            }
+          }
+          @case ('skills') {
+            @for (group of document.skills; track group.category) {
+              <div class="cv-skill-group"><strong>{{ group.category }}:</strong> {{ group.skills.join(', ') }}</div>
+            }
+          }
+          @case ('projects') {
+            @for (project of document.projects; track project.name + project.dateRange) {
+              <article class="cv-entry">
+                <div class="cv-entry-head">
+                  <strong>{{ project.name }}</strong>
+                  <span class="cv-entry-date">{{ project.dateRange }}</span>
+                </div>
+                @if (project.role) {
+                  <div class="cv-entry-sub">{{ project.role }}</div>
+                }
+                <p>{{ project.description }}</p>
+                @if (project.technologies.length) {
+                  <div class="cv-tech"><strong>Technologies:</strong> {{ project.technologies.join(', ') }}</div>
+                }
+                @if (project.highlights.length) {
+                  <ul>
+                    @for (highlight of project.highlights; track highlight) {
+                      <li>{{ highlight }}</li>
+                    }
+                  </ul>
+                }
+              </article>
+            }
+          }
+          @case ('education') {
+            @for (entry of document.education; track entry.title + entry.date) {
+              <article class="cv-entry">
+                <div class="cv-entry-head">
+                  <strong>{{ entry.title }}</strong>
+                  <span class="cv-entry-date">{{ entry.date }}</span>
+                </div>
+                @if (entry.subtitle) {
+                  <div class="cv-entry-sub">{{ entry.subtitle }}</div>
+                }
+                @if (entry.description) {
+                  <p>{{ entry.description }}</p>
+                }
+              </article>
+            }
+          }
+          @case ('courses') {
+            @for (entry of document.certifications; track entry.title + entry.date) {
+              <article class="cv-entry">
+                <div class="cv-entry-head">
+                  <strong>{{ entry.title }}</strong>
+                  <span class="cv-entry-date">{{ entry.date }}</span>
+                </div>
+                @if (entry.provider) {
+                  <div class="cv-entry-sub">{{ entry.provider }}</div>
+                }
+                @if (entry.skills.length) {
+                  <div class="cv-tech">{{ entry.skills.join(', ') }}</div>
+                }
+              </article>
+            }
+          }
+          @case ('achievements') {
+            @for (entry of document.achievements; track entry.title + entry.date) {
+              <article class="cv-entry">
+                <div class="cv-entry-head">
+                  <strong>{{ entry.title }}</strong>
+                  <span class="cv-entry-date">{{ entry.date }}</span>
+                </div>
+                @if (entry.organization) {
+                  <div class="cv-entry-sub">{{ entry.organization }}</div>
+                }
+                @if (entry.description) {
+                  <p>{{ entry.description }}</p>
+                }
+              </article>
+            }
+          }
+        }
+      </section>
+    }
+  </div>
+} @else {
+  <div class="empty-state">Select a CV version to preview it.</div>
+}

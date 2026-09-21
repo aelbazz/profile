@@ -1,0 +1,107 @@
+@use "../admin-page.scss";
+
+:host {
+  display: block;
+  height: 100%;
+}
+
+.cv-page {
+  background: var(--admin-surface);
+  border: 1px solid var(--admin-border);
+  border-radius: 10px;
+  padding: 2rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--admin-text);
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.cv-header {
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--admin-border);
+}
+
+.cv-name {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.cv-headline {
+  margin: 0.2rem 0 0;
+  font-size: 1rem;
+  color: var(--admin-muted);
+}
+
+.cv-contact-line {
+  margin-top: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 0.9rem;
+  font-size: 0.8rem;
+  color: var(--admin-muted);
+
+  a { color: var(--admin-accent); }
+}
+
+.cv-section {
+  margin-bottom: 1.25rem;
+
+  h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin: 0 0 0.6rem;
+    color: var(--admin-text);
+  }
+}
+
+.cv-summary { margin: 0; }
+
+.cv-entry {
+  margin-bottom: 0.9rem;
+
+  &:last-child { margin-bottom: 0; }
+
+  p { margin: 0.3rem 0; }
+
+  ul {
+    margin: 0.3rem 0 0;
+    padding-left: 1.1rem;
+
+    li { margin-bottom: 0.15rem; }
+  }
+}
+
+.cv-entry-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.cv-entry-date {
+  color: var(--admin-muted);
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.cv-entry-sub {
+  font-style: italic;
+  color: var(--admin-muted);
+  font-size: 0.8rem;
+}
+
+.cv-tech {
+  margin-top: 0.3rem;
+  font-size: 0.78rem;
+  color: var(--admin-muted);
+}
+
+.cv-skill-group {
+  margin-bottom: 0.35rem;
+  font-size: 0.85rem;
+}

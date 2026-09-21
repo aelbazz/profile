@@ -33,25 +33,16 @@
               </div>
             </div>
             <div class="d-flex flex-wrap gap-3">
-              <button 
-                class="btn btn-light btn-lg shadow-lg"
-                (click)="downloadCV()">
-                <i class="fas fa-download me-2"></i>
-                Download CV
-              </button>
-              <!-- <button 
-                class="btn btn-outline-light btn-lg"
-                (click)="exportToPdf()"
-                [disabled]="isExporting()">
-                @if (isExporting()) {
-                  <span class="spinner-border spinner-border-sm me-2"></span>
-                  Exporting...
-                } @else {
-                  <i class="fas fa-file-pdf me-2"></i>
-                  Export Profile
-                }
-              </button> -->
-              <a 
+              @if (cvDownloadUrl(); as href) {
+                <a
+                  class="btn btn-light btn-lg shadow-lg"
+                  [href]="href"
+                  download>
+                  <i class="fas fa-download me-2"></i>
+                  Download CV
+                </a>
+              }
+              <a
                 [href]="profileData.linkedin" 
                 target="_blank" rel="noopener noreferrer"
                 class="btn btn-info btn-lg text-white">

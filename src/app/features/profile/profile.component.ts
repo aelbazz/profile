@@ -1,7 +1,8 @@
-import { Component, OnInit, ChangeDetectionStrategy, inject, signal, computed } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, inject, computed } from '@angular/core';
 import { Location } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { ConfigDataService, PdfExportService, FileDownloadService, SkillIconService } from '../../core/services';
+import { environment } from '../../../environments/environment';
+import { ConfigDataService, SkillIconService } from '../../core/services';
 import { Achievement, Skill, SkillData } from '../../core/models';
 import { ExperienceCardComponent, DataStateComponent } from '../../shared/components';
 
@@ -15,14 +16,20 @@ import { ExperienceCardComponent, DataStateComponent } from '../../shared/compon
 })
 export class ProfileComponent implements OnInit {
   private readonly configService = inject(ConfigDataService);
-  private readonly pdfService = inject(PdfExportService);
-  private readonly fileDownloadService = inject(FileDownloadService);
   private readonly location = inject(Location);
   private readonly skillIconService = inject(SkillIconService);
 
   readonly profile = this.configService.profile;
   readonly profileError = this.configService.profileError;
-  
+
+  /** The public, per-tenant, always up-to-date CV download - replaces the old hardcoded
+   *  static-file button that served every tenant the same file (file-download.service.ts,
+   *  now deleted). Null until the tenant slug has loaded. */
+  readonly cvDownloadUrl = computed(() => {
+    const slug = this.configService.tenantSlug();
+    return slug ? `${environment.apiBaseUrl}/public/tenants/${slug}/cv?format=pdf` : null;
+  });
+
   /**
    * Get the avatar URL with proper base href handling
    */
@@ -37,8 +44,6 @@ export class ProfileComponent implements OnInit {
   readonly experience = this.configService.experience;
   readonly achievements = this.configService.achievements;
   readonly projects = this.configService.projects;
-  
-  isExporting = signal(false);
 
   /**
    * Sorted skills with categories sorted (technical first) and skills sorted within each category
@@ -91,21 +96,6 @@ export class ProfileComponent implements OnInit {
     this.configService.loadExperience(true);
     this.configService.loadAchievements(true);
     this.configService.loadProjects(true);
-  }
-
-  async exportToPdf(): Promise<void> {
-    this.isExporting.set(true);
-    try {
-      await this.pdfService.exportToPdf('profile-export', 'my-professional-profile.pdf');
-    } catch (error) {
-      console.error('Failed to export PDF:', error);
-    } finally {
-      this.isExporting.set(false);
-    }
-  }
-
-  downloadCV(): void {
-    this.fileDownloadService.downloadCV();
   }
 
   public getAchievementIcon(category: string): string {

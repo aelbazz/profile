@@ -20,5 +20,9 @@ describe('ProfileComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('has no CV download URL until a tenant has loaded', () => {
+    expect(component.cvDownloadUrl()).toBeNull();
+  });
 });
 

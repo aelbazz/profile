@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, inject, computed } from '@angular/core';
-import { ConfigDataService, FileDownloadService } from '../../core/services';
+import { environment } from '../../../environments/environment';
+import { ConfigDataService } from '../../core/services';
 import { ActionCardComponent, DataStateComponent } from '../../shared/components';
 
 /** Platforms already shown in Quick Actions – hide from Social section to avoid repetition */
@@ -15,10 +16,15 @@ const QUICK_ACTION_PLATFORMS = new Set(['LinkedIn']);
 })
 export class ContactComponent implements OnInit {
   private readonly configService = inject(ConfigDataService);
-  private readonly fileDownloadService = inject(FileDownloadService);
 
   readonly contact = this.configService.contact;
   readonly contactError = this.configService.contactError;
+
+  /** Same public, per-tenant CV download as ProfileComponent - see its cvDownloadUrl. */
+  readonly cvDownloadUrl = computed(() => {
+    const slug = this.configService.tenantSlug();
+    return slug ? `${environment.apiBaseUrl}/public/tenants/${slug}/cv?format=pdf` : null;
+  });
 
   /** Social links excluding those already in Quick Actions */
   readonly socialLinksFiltered = computed(() => {
@@ -43,10 +49,6 @@ export class ContactComponent implements OnInit {
 
   getMailtoLink(email: string): string {
     return `mailto:${email}`;
-  }
-
-  downloadCV(): void {
-    this.fileDownloadService.downloadCV();
   }
 
   getSocialIcon(platform: string): string {

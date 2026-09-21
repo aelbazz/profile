@@ -100,6 +100,11 @@ export class ConfigDataService {
   readonly theme = this.themeSignal.asReadonly();
   readonly sections = this.sectionsSignal.asReadonly();
 
+  private readonly tenantSlugSignal = signal<string | null>(null);
+  /** The currently-loaded tenant's slug - e.g. for building the public, per-tenant CV
+   *  download URL (`public/tenants/:slug/cv`). Null before the first successful load. */
+  readonly tenantSlug = this.tenantSlugSignal.asReadonly();
+
   /** Slug the currently-held data belongs to. Null before the first successful load. */
   private currentSlug: string | null = null;
   /** True once a profile has been fetched successfully for `currentSlug`. */
@@ -151,6 +156,7 @@ export class ConfigDataService {
     }
 
     this.currentSlug = slug;
+    this.tenantSlugSignal.set(slug);
     this.pending = true;
     this.loadingSignal.set(true);
     this.errorSignal.set(false);
@@ -176,6 +182,7 @@ export class ConfigDataService {
         // retired slug is treated as a genuine switch rather than a false cache hit.
         if (currentSlug && currentSlug !== slug) {
           this.currentSlug = currentSlug;
+          this.tenantSlugSignal.set(currentSlug);
         }
       }),
       map(({ currentSlug }) => ({
@@ -212,6 +219,7 @@ export class ConfigDataService {
     this.contactSignal.set(null);
     this.themeSignal.set(DEFAULT_THEME);
     this.sectionsSignal.set({});
+    this.tenantSlugSignal.set(null);
     this.loaded = false;
   }
 

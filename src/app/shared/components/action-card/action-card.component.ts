@@ -19,6 +19,9 @@ export class ActionCardComponent {
   @Input() href?: string;
   @Input() target?: string;
   @Input() type: 'button' | 'link' = 'button';
+  /** For type="link": renders the anchor's `download` attribute so the browser saves the
+   *  file instead of navigating, e.g. the CV download link. */
+  @Input() download?: string | null;
   
   @Output() clicked = new EventEmitter<void>();
 

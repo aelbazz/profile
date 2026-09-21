@@ -12,9 +12,10 @@
     }
   </button>
 } @else {
-  <a 
-    [href]="href" 
+  <a
+    [href]="href"
     [target]="target"
+    [attr.download]="download"
     class="action-card glass-card"
     [ngClass]="'action-card-' + variant">
     <div class="action-icon">

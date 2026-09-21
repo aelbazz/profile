@@ -1,0 +1,116 @@
+<div class="card">
+  <h4 class="panel-title">Details</h4>
+
+  <div class="field">
+    <label for="cv-name">Version name</label>
+    <input id="cv-name" type="text" [(ngModel)]="nameDraft" [disabled]="busy" maxlength="200">
+  </div>
+
+  <div class="field">
+    <label for="cv-title">CV headline</label>
+    <input id="cv-title" type="text" [(ngModel)]="titleDraft" [disabled]="busy" maxlength="300"
+           placeholder="Leave blank to use your profile title">
+    <span class="hint">Overrides your profile title for this CV only.</span>
+  </div>
+
+  <div class="field">
+    <label for="cv-summary">Professional summary</label>
+    <textarea id="cv-summary" [(ngModel)]="summaryDraft" [disabled]="busy" maxlength="5000"
+              placeholder="Leave blank to use your profile summary"></textarea>
+    <span class="hint">Overrides your profile summary for this CV only.</span>
+  </div>
+
+  <button type="button" class="btn btn-primary btn-sm" [disabled]="busy || !detailsDirty || !nameDraft.trim()"
+          (click)="saveDetails()">
+    <i class="fas fa-check"></i> Save details
+  </button>
+</div>
+
+<div class="card">
+  <h4 class="panel-title">Contact information</h4>
+  <p class="panel-hint">Choose which of your contact details appear on this CV.</p>
+
+  <div class="toggle-grid">
+    @for (toggle of contactToggles; track toggle.field) {
+      <label class="check">
+        <input type="checkbox" [checked]="version[toggle.field]" [disabled]="busy"
+               (change)="toggleContact(toggle.field)">
+        {{ toggle.label }}
+      </label>
+    }
+  </div>
+</div>
+
+<div class="card">
+  <h4 class="panel-title">Experience options</h4>
+
+  <label class="check">
+    <input type="checkbox" [checked]="version.includeManagement" [disabled]="busy"
+           (change)="toggleManagement()">
+    Include management/leadership roles in Professional Experience
+  </label>
+</div>
+
+<div class="card">
+  <h4 class="panel-title">Sections</h4>
+  <p class="panel-hint">Choose which sections appear, and in what order. A section with no items never shows on the export, even when enabled.</p>
+
+  <div class="section-list">
+    @for (entry of version.sectionConfig; track trackSectionEntry($index, entry); let i = $index; let last = $last) {
+      <div class="section-row">
+        <div class="section-order">
+          <button type="button" class="order-btn" [disabled]="busy || i === 0"
+                  aria-label="Move up" (click)="moveSection(i, -1)">
+            <i class="fas fa-chevron-up"></i>
+          </button>
+          <button type="button" class="order-btn" [disabled]="busy || last"
+                  aria-label="Move down" (click)="moveSection(i, 1)">
+            <i class="fas fa-chevron-down"></i>
+          </button>
+        </div>
+        <span class="section-label">{{ cvSectionLabel(entry.key) }}</span>
+        <label class="toggle">
+          <input type="checkbox" [checked]="entry.enabled" [disabled]="busy"
+                 (change)="toggleSection(entry)">
+          <span>Show</span>
+        </label>
+      </div>
+    }
+  </div>
+</div>
+
+@if (experiences.length) {
+  <div class="card">
+    <h4 class="panel-title">Experience items</h4>
+    <p class="panel-hint">Excluding an item here only affects this CV - it stays visible on your public site.</p>
+
+    <div class="item-checklist">
+      @for (exp of experiences; track exp.id) {
+        <label class="check">
+          <input type="checkbox" [checked]="isExperienceIncluded(exp.id)" [disabled]="busy"
+                 (change)="toggleExperience(exp.id)">
+          {{ exp.company }} &middot; {{ exp.position }}
+          <span class="item-date">{{ exp.startDate }} - {{ exp.endDate || 'Present' }}</span>
+        </label>
+      }
+    </div>
+  </div>
+}
+
+@if (projects.length) {
+  <div class="card">
+    <h4 class="panel-title">Project items</h4>
+    <p class="panel-hint">Excluding an item here only affects this CV - it stays visible on your public site.</p>
+
+    <div class="item-checklist">
+      @for (project of projects; track project.id) {
+        <label class="check">
+          <input type="checkbox" [checked]="isProjectIncluded(project.id)" [disabled]="busy"
+                 (change)="toggleProject(project.id)">
+          {{ project.name }}
+          <span class="item-date">{{ project.startDate }} - {{ project.endDate || 'Present' }}</span>
+        </label>
+      }
+    </div>
+  </div>
+}

@@ -68,6 +68,7 @@ export class AdminShellComponent {
     { path: '/client/projects', label: 'Projects', icon: 'fas fa-folder-open' },
     { path: '/client/skills', label: 'Skills', icon: 'fas fa-code' },
     { path: '/client/technologies', label: 'Technologies', icon: 'fas fa-microchip' },
+    { path: '/client/cv', label: 'CV Builder', icon: 'fas fa-file-arrow-down' },
     { path: '/client/achievements', label: 'Achievements', icon: 'fas fa-trophy' },
     { path: '/client/courses', label: 'Courses', icon: 'fas fa-graduation-cap' },
     { path: '/client/timeline', label: 'Timeline', icon: 'fas fa-history' },

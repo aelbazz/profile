@@ -72,6 +72,11 @@ export const ADMIN_ROUTES: Routes = [
           ),
         title: 'Admin · Technologies'
       },
+      {
+        path: 'cv',
+        loadComponent: () => import('./cv/admin-cv.component').then(m => m.AdminCvComponent),
+        title: 'Admin · CV Builder'
+      },
       // These four share one config-driven component; `entity` selects the config.
       {
         path: 'achievements',

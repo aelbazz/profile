@@ -1,0 +1,101 @@
+<div class="page-head">
+  <div>
+    <h1>CV Builder</h1>
+    <p class="subtitle">
+      Generate an ATS-optimized PDF or Word CV from your existing profile. Nothing here
+      changes what shows on your public site.
+    </p>
+  </div>
+</div>
+
+@if (error(); as message) {
+  <div class="alert alert-danger"><i class="fas fa-circle-exclamation me-2"></i>{{ message }}</div>
+}
+@if (notice(); as message) {
+  <div class="alert alert-success"><i class="fas fa-circle-check me-2"></i>{{ message }}</div>
+}
+
+@if (loading()) {
+  <div class="loading-state">
+    <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading…</span></div>
+    <p class="mt-3">Loading your CV versions…</p>
+  </div>
+} @else {
+  <div class="card version-bar">
+    <div class="version-pills">
+      @for (version of versions(); track trackVersion($index, version)) {
+        <button type="button" class="version-pill" [class.active]="version.id === selectedId()"
+                [disabled]="busy()" (click)="selectVersion(version.id)">
+          {{ version.name }}
+          @if (version.isDefault) {
+            <i class="fas fa-star" title="Default - used by your public Download CV button"></i>
+          }
+        </button>
+      }
+      <button type="button" class="btn btn-secondary btn-sm" [disabled]="busy()" (click)="createVersion()">
+        <i class="fas fa-plus"></i> New version
+      </button>
+    </div>
+
+    @if (currentVersion(); as version) {
+      <div class="version-actions">
+        <button type="button" class="btn btn-secondary btn-sm" [disabled]="busy() || version.isDefault"
+                (click)="setDefault(version.id)">
+          <i class="fas fa-star"></i> Set as default
+        </button>
+
+        @if (confirmDeleteId() === version.id) {
+          <span class="delete-warning">Delete this version?</span>
+          <button type="button" class="btn btn-danger btn-sm" [disabled]="busy()"
+                  (click)="confirmDelete(version.id)">Confirm</button>
+          <button type="button" class="btn btn-secondary btn-sm" (click)="cancelDelete()">Cancel</button>
+        } @else {
+          <button type="button" class="btn btn-danger btn-sm"
+                  [disabled]="busy() || versions().length <= 1 || version.isDefault"
+                  [title]="version.isDefault ? 'Set a different version as default before deleting this one' : ''"
+                  (click)="askDelete(version.id)">
+            <i class="fas fa-trash"></i> Delete
+          </button>
+        }
+
+        <span class="spacer"></span>
+
+        <button type="button" class="btn btn-primary btn-sm" [disabled]="downloading() !== null"
+                (click)="download('pdf')">
+          @if (downloading() === 'pdf') {
+            <span class="spinner-border spinner-border-sm"></span> Preparing…
+          } @else {
+            <i class="fas fa-file-pdf"></i> Download PDF
+          }
+        </button>
+        <button type="button" class="btn btn-secondary btn-sm" [disabled]="downloading() !== null"
+                (click)="download('docx')">
+          @if (downloading() === 'docx') {
+            <span class="spinner-border spinner-border-sm"></span> Preparing…
+          } @else {
+            <i class="fas fa-file-word"></i> Download DOCX
+          }
+        </button>
+      </div>
+    }
+  </div>
+
+  @if (currentVersion(); as version) {
+    <div class="builder-layout">
+      <div class="builder-config">
+        <app-cv-config-panel
+          [version]="version"
+          [experiences]="experiences()"
+          [projects]="projects()"
+          [busy]="busy()"
+          (save)="onConfigSave($event)">
+        </app-cv-config-panel>
+      </div>
+      <div class="builder-preview">
+        <app-cv-preview-pane [document]="previewDoc()" [loading]="previewLoading()"></app-cv-preview-pane>
+      </div>
+    </div>
+  } @else {
+    <div class="empty-state">No CV versions yet.</div>
+  }
+}

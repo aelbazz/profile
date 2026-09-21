@@ -267,6 +267,110 @@ export interface PreferencesInfo {
   themeMode: string;
 }
 
+// -- CV export ----------------------------------------------------------------
+
+export interface CvSectionConfigEntry {
+  key: string;
+  enabled: boolean;
+}
+
+/** Matches the backend's raw CvVersion row (no response DTO serialization is applied) - see
+ *  cv-version.service.ts. Used for both the list and single-version endpoints, same as
+ *  AdminExperience above. */
+export interface CvVersion {
+  id: string;
+  name: string;
+  isDefault: boolean;
+  templateId: string;
+  cvTitle: string | null;
+  cvSummary: string | null;
+  includePhone: boolean;
+  includeEmail: boolean;
+  includeLinkedin: boolean;
+  includeGithub: boolean;
+  includePortfolio: boolean;
+  includeManagement: boolean;
+  sectionConfig: CvSectionConfigEntry[];
+  excludedExperienceIds: string[];
+  excludedProjectIds: string[];
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CvContactLine {
+  label: string;
+  value: string;
+  href?: string;
+}
+
+export interface CvHeader {
+  fullName: string;
+  headline: string;
+  location: string | null;
+  contacts: CvContactLine[];
+}
+
+export interface CvExperienceEntry {
+  organization: string;
+  role: string;
+  location: string | null;
+  dateRange: string;
+  bullets: string[];
+  technologies: string[];
+}
+
+export interface CvSkillGroup {
+  category: string;
+  skills: string[];
+}
+
+export interface CvProjectEntry {
+  name: string;
+  role: string;
+  dateRange: string;
+  description: string;
+  highlights: string[];
+  technologies: string[];
+  githubUrl: string | null;
+  liveUrl: string | null;
+}
+
+export interface CvEducationEntry {
+  title: string;
+  subtitle: string | null;
+  date: string;
+  description: string;
+}
+
+export interface CvCertificationEntry {
+  title: string;
+  provider: string;
+  date: string;
+  skills: string[];
+}
+
+export interface CvAchievementEntry {
+  title: string;
+  organization: string | null;
+  date: string;
+  description: string;
+}
+
+/** The one normalized CV model - the exact shape the PDF/DOCX are built from. See
+ *  cv-document.model.ts on the backend. */
+export interface CvDocument {
+  meta: { title: string; author: string; subject: string; creator: string };
+  header: CvHeader;
+  summary: string | null;
+  sectionOrder: string[];
+  experience: CvExperienceEntry[];
+  skills: CvSkillGroup[];
+  projects: CvProjectEntry[];
+  education: CvEducationEntry[];
+  certifications: CvCertificationEntry[];
+  achievements: CvAchievementEntry[];
+}
+
 /**
  * Every admin write goes through here. Components never build a URL or touch HttpClient.
  * The bearer token is attached by authInterceptor, not by this service.
@@ -539,5 +643,41 @@ export class AdminApiService {
 
   deleteSkill(skillId: string): Observable<void> {
     return this.http.delete<void>(`${this.base}/tenant/skill-categories/skills/${skillId}`);
+  }
+
+  // -- CV export ----------------------------------------------------------------
+
+  getCvVersions(): Observable<CvVersion[]> {
+    return this.http.get<CvVersion[]>(`${this.base}/tenant/cv/versions`);
+  }
+
+  createCvVersion(body: unknown): Observable<CvVersion> {
+    return this.http.post<CvVersion>(`${this.base}/tenant/cv/versions`, body);
+  }
+
+  getCvVersion(id: string): Observable<CvVersion> {
+    return this.http.get<CvVersion>(`${this.base}/tenant/cv/versions/${id}`);
+  }
+
+  updateCvVersion(id: string, body: unknown): Observable<CvVersion> {
+    return this.http.patch<CvVersion>(`${this.base}/tenant/cv/versions/${id}`, body);
+  }
+
+  deleteCvVersion(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.base}/tenant/cv/versions/${id}`);
+  }
+
+  setDefaultCvVersion(id: string): Observable<CvVersion> {
+    return this.http.patch<CvVersion>(`${this.base}/tenant/cv/versions/${id}/set-default`, {});
+  }
+
+  getCvPreview(id: string): Observable<CvDocument> {
+    return this.http.get<CvDocument>(`${this.base}/tenant/cv/versions/${id}/preview`);
+  }
+
+  downloadCvVersion(id: string, format: 'pdf' | 'docx'): Observable<Blob> {
+    return this.http.get(`${this.base}/tenant/cv/versions/${id}/download?format=${format}`, {
+      responseType: 'blob'
+    });
   }
 }
