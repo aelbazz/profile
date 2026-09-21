@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../../core/auth';
+import { AdminApiService } from '../../../core/services/admin-api.service';
+import { ThemeMode, ThemeService } from '../../../core/services/theme.service';
 
 interface PlatformAdminNavItem {
   readonly path: string;
@@ -26,10 +28,22 @@ interface PlatformAdminNavItem {
 export class PlatformAdminShellComponent {
   private readonly auth = inject(AuthService);
   private readonly router = inject(Router);
+  private readonly api = inject(AdminApiService);
+  private readonly themeService = inject(ThemeService);
 
   readonly user = this.auth.user;
   readonly displayName = computed(() => this.user()?.name || this.user()?.email || 'Administrator');
   readonly sidebarOpen = signal(false);
+
+  constructor() {
+    // No switcher here (out of this portal's current scope), but this shell shares
+    // _portal-shell.scss's tokens with the client portal, so it still needs to resolve this
+    // admin's own saved preference rather than being stuck on a stale bootstrap guess left
+    // over from a different user's session in the same browser - see ThemeService.
+    this.api.getPreferences().subscribe({
+      next: prefs => this.themeService.applyTheme((prefs.themeMode as ThemeMode) || 'light')
+    });
+  }
 
   readonly navItems: readonly PlatformAdminNavItem[] = [
     { path: '/admin', label: 'Dashboard', icon: 'fas fa-gauge-high' },

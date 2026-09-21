@@ -76,6 +76,31 @@
     </div>
 
     <div class="card">
+      <h2 class="section-title">My Website Theme</h2>
+      <p class="subtitle">Light or dark, for visitors to your public profile. Independent from your own Control Portal theme.</p>
+
+      <div class="theme-mode-picker">
+        <label [class.selected]="form.controls.themeMode.value === 'light'">
+          <input type="radio" formControlName="themeMode" value="light">
+          <i class="fas fa-sun"></i> Light
+        </label>
+        <label [class.selected]="form.controls.themeMode.value === 'dark'">
+          <input type="radio" formControlName="themeMode" value="dark">
+          <i class="fas fa-moon"></i> Dark
+        </label>
+      </div>
+
+      <div class="theme-preview-row">
+        <app-theme-preview-card mode="light" [theme]="previewTheme()"
+                                 [selected]="themeMode() === 'light'"
+                                 (click)="selectThemeMode('light')" />
+        <app-theme-preview-card mode="dark" [theme]="previewTheme()"
+                                 [selected]="themeMode() === 'dark'"
+                                 (click)="selectThemeMode('dark')" />
+      </div>
+    </div>
+
+    <div class="card">
       <h2 class="section-title">Typography &amp; advanced</h2>
       <div class="field-row">
         <div class="field">
@@ -86,10 +111,6 @@
           <label for="borderRadius">Corner radius</label>
           <input id="borderRadius" type="text" formControlName="borderRadius" placeholder="0.5rem">
         </div>
-      </div>
-      <div class="check">
-        <input id="darkMode" type="checkbox" formControlName="darkMode">
-        <label for="darkMode">Prefer dark mode</label>
       </div>
       <div class="field">
         <label for="customCss">Custom CSS</label>

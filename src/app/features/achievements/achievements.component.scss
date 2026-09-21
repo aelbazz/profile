@@ -7,14 +7,14 @@
 
 // Achievement Card
 .achievement-card {
-  background: white;
+  background: var(--color-surface);
   border-radius: 12px;
   padding: 2rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   border-left: 4px solid #667eea;
   transition: all 0.3s ease;
   color: var(--bs-body-color);
-  
+
   &:hover {
     box-shadow: 0 4px 16px rgba(102, 126, 234, 0.2);
     transform: translateY(-2px);
@@ -37,10 +37,9 @@
     border-left-color: #10b981;
   }
   
-  @media (prefers-color-scheme: dark) {
-    background: rgba(30, 30, 30, 0.95);
+  :root[data-theme='dark'] & {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    
+
     &:hover {
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
     }
@@ -54,11 +53,7 @@
   align-items: center;
   margin-bottom: 1.5rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid #e2e8f0;
-  
-  @media (prefers-color-scheme: dark) {
-    border-bottom-color: var(--bs-border-color);
-  }
+  border-bottom: 1px solid var(--bs-border-color);
 }
 
 // Category Icon
@@ -162,11 +157,7 @@
 // Achievement Action
 .achievement-action {
   padding-top: 1rem;
-  border-top: 1px solid #e2e8f0;
-  
-  @media (prefers-color-scheme: dark) {
-    border-top-color: var(--bs-border-color);
-  }
+  border-top: 1px solid var(--bs-border-color);
 }
 
 .action-link {

@@ -56,6 +56,24 @@
       }
     })();
   </script>
+  <script>
+    // Portal-only bootstrap guess (see ThemeService) - paints the last-known Control Portal
+    // theme before Angular loads, avoiding a flash on a hard refresh of any /client/** or
+    // /admin/** route. Harmless everywhere else: the public tenant site always applies its
+    // own server-confirmed themeMode before anything paints (the profile resolver blocks
+    // route activation until that data is ready), and the marketing site has no theme
+    // switching, so 'light' is simply always correct there too. Overwritten the instant a
+    // real preference loads - see ThemeService.applyTheme().
+    (function () {
+      var mode = 'light';
+      try {
+        if (localStorage.getItem('portal.themeMode') === 'dark') mode = 'dark';
+      } catch (e) {
+        // Storage unavailable - default light renders instead.
+      }
+      document.documentElement.setAttribute('data-theme', mode);
+    })();
+  </script>
 </head>
 <body>
   <app-root></app-root>

@@ -11,17 +11,15 @@
 }
 
 .accordion-item {
-  border: 1px solid rgba(0, 0, 0, 0.125);
+  border: 1px solid var(--bs-border-color);
   border-radius: 0.5rem !important;
   overflow: hidden;
 
   &:hover {
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
   }
-  
-  @media (prefers-color-scheme: dark) {
-    border-color: var(--bs-border-color);
-    
+
+  :root[data-theme='dark'] & {
     &:hover {
       box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.4) !important;
     }

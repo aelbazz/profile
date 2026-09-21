@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { AuthService } from '../../../core/auth';
+import { AdminApiService } from '../../../core/services/admin-api.service';
+import { ThemeMode, ThemeService } from '../../../core/services/theme.service';
 
 interface AdminNavItem {
   readonly path: string;
@@ -19,12 +21,42 @@ interface AdminNavItem {
 export class AdminShellComponent {
   private readonly auth = inject(AuthService);
   private readonly router = inject(Router);
+  private readonly api = inject(AdminApiService);
+  private readonly themeService = inject(ThemeService);
 
   readonly user = this.auth.user;
   readonly displayName = computed(() => this.user()?.name || this.user()?.email || 'Administrator');
   /** Which profile this session edits. Every profile is a separate tenant. */
   readonly tenantSlug = this.auth.tenantSlug;
   readonly sidebarOpen = signal(false);
+
+  /** The Control Portal's own theme - independent of this tenant's public-site theme
+   *  (set separately, on the Branding page). See ThemeService. */
+  readonly themeMode = this.themeService.mode;
+  readonly themeError = signal<string | null>(null);
+
+  constructor() {
+    // Single init point for the whole portal: covers both "just logged in" (login always
+    // redirects into /client/**) and "hard refresh with a valid session" (this component
+    // mounts fresh either way). A failed load just keeps the bootstrap guess already painted.
+    this.api.getPreferences().subscribe({
+      next: prefs => this.themeService.applyTheme((prefs.themeMode as ThemeMode) || 'light')
+    });
+  }
+
+  toggleTheme(): void {
+    const previous = this.themeMode();
+    const next: ThemeMode = previous === 'dark' ? 'light' : 'dark';
+    this.themeService.setTheme(next); // optimistic: DOM + cache immediately
+    this.themeError.set(null);
+
+    this.api.updatePreferences(next).subscribe({
+      error: () => {
+        this.themeService.applyTheme(previous); // revert
+        this.themeError.set('Could not save your theme preference. Try again.');
+      }
+    });
+  }
 
   readonly navItems: readonly AdminNavItem[] = [
     { path: '/client', label: 'Dashboard', icon: 'fas fa-gauge-high' },

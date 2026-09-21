@@ -27,7 +27,7 @@ const DEFAULT_THEME: TenantTheme = {
   borderRadius: '0.5rem',
   layout: 'classic',
   designSystem: 'modern',
-  darkMode: false,
+  themeMode: 'light',
   customCss: null
 };
 

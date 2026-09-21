@@ -2,6 +2,7 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
+import { PORTAL_THEME_STORAGE_KEY } from '../services/theme.service';
 
 export type UserRole = 'ADMIN' | 'COORDINATOR' | 'CLIENT';
 
@@ -74,6 +75,9 @@ export class AuthService {
     try {
       localStorage.removeItem(TOKEN_KEY);
       localStorage.removeItem(USER_KEY);
+      // Avoids leaking this user's portal theme as the next login's bootstrap guess on a
+      // shared machine - see ThemeService/index.html's inline bootstrap script.
+      localStorage.removeItem(PORTAL_THEME_STORAGE_KEY);
     } catch {
       // Storage unavailable; clearing the signals is what actually ends the session.
     }

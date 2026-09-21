@@ -5,7 +5,7 @@
 }
 
 .glass-card {
-  background: rgba(255, 255, 255, 0.95);
+  background: color-mix(in srgb, var(--color-surface) 95%, transparent);
   backdrop-filter: blur(10px);
   border-radius: 20px;
   padding: 2rem;
@@ -19,8 +19,7 @@
     box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
   }
 
-  @media (prefers-color-scheme: dark) {
-    background: rgba(30, 30, 30, 0.95);
+  :root[data-theme='dark'] & {
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
 
@@ -64,7 +63,10 @@
   flex-shrink: 0;
   background: rgba(102, 126, 234, 0.06);
 
-  @media (prefers-color-scheme: dark) {
+  // A white backing plate specifically in dark mode: imported LinkedIn company logos are
+  // often transparent PNGs designed for a light background and would be illegible without
+  // one - not a themed surface color, so this stays a literal white rather than a token.
+  :root[data-theme='dark'] & {
     background: #fff;
   }
 }
@@ -89,8 +91,7 @@
     font-size: 0.9rem;
   }
 
-  @media (prefers-color-scheme: dark) {
-    color: var(--bs-body-color);
+  :root[data-theme='dark'] & {
     border-top-color: rgba(255, 255, 255, 0.08);
   }
 }

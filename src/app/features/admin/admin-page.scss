@@ -2,24 +2,16 @@
 // @use so the tokens and building blocks are defined once.
 
 :host {
-  --admin-surface: #ffffff;
-  --admin-border: #e2e8f0;
-  --admin-text: #0f172a;
-  --admin-muted: #64748b;
-  --admin-accent: #6366f1;
-  --admin-bg-subtle: #f8fafc;
+  // Sourced from the global semantic tokens (_tokens.scss) rather than their own palette, so
+  // this responds to the explicit portal theme preference, not just the OS - see ThemeService.
+  --admin-surface: var(--color-surface);
+  --admin-border: var(--color-border);
+  --admin-text: var(--color-text-primary);
+  --admin-muted: var(--color-text-secondary);
+  --admin-accent: var(--color-primary);
+  --admin-bg-subtle: var(--color-surface-elevated);
 
   display: block;
-}
-
-@media (prefers-color-scheme: dark) {
-  :host {
-    --admin-surface: #1e293b;
-    --admin-border: #334155;
-    --admin-text: #f1f5f9;
-    --admin-muted: #94a3b8;
-    --admin-bg-subtle: #0f172a;
-  }
 }
 
 .page-head {
@@ -201,8 +193,8 @@
   margin-bottom: 1rem;
 }
 
-.alert-danger { background: rgba(239, 68, 68, 0.12); color: #dc2626; }
-.alert-success { background: rgba(16, 185, 129, 0.12); color: #059669; }
+.alert-danger { background: var(--color-danger-surface); color: var(--color-danger); }
+.alert-success { background: var(--color-success-surface); color: var(--color-success); }
 
 .empty-state, .loading-state {
   text-align: center;

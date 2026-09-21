@@ -7,7 +7,7 @@
 
 // Course Card
 .course-card {
-  background: white;
+  background: var(--color-surface);
   border-radius: 12px;
   padding: 2rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -16,16 +16,15 @@
   display: flex;
   flex-direction: column;
   color: var(--bs-body-color);
-  
+
   &:hover {
     box-shadow: 0 4px 16px rgba(102, 126, 234, 0.2);
     transform: translateY(-2px);
   }
-  
-  @media (prefers-color-scheme: dark) {
-    background: rgba(30, 30, 30, 0.95);
+
+  :root[data-theme='dark'] & {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-    
+
     &:hover {
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
     }
@@ -38,11 +37,7 @@
   gap: 1.25rem;
   margin-bottom: 1.5rem;
   padding-bottom: 1.25rem;
-  border-bottom: 1px solid #e2e8f0;
-  
-  @media (prefers-color-scheme: dark) {
-    border-bottom-color: var(--bs-border-color);
-  }
+  border-bottom: 1px solid var(--bs-border-color);
 }
 
 .course-icon {
@@ -166,11 +161,7 @@
   gap: 1rem;
   margin-top: 1.5rem;
   padding-top: 1.5rem;
-  border-top: 1px solid #e2e8f0;
-  
-  @media (prefers-color-scheme: dark) {
-    border-top-color: var(--bs-border-color);
-  }
+  border-top: 1px solid var(--bs-border-color);
 }
 
 .action-link {
@@ -183,31 +174,34 @@
   font-weight: 600;
   font-size: 0.9rem;
   transition: all 0.3s ease;
-  background: #f7fafc;
+  background: var(--color-surface-elevated);
   color: var(--bs-body-color);
-  border: 1px solid #e2e8f0;
-  
+  border: 1px solid var(--bs-border-color);
+
   &:hover {
-    background: #edf2f7;
+    background: var(--color-border);
     color: var(--bs-heading-color);
     transform: translateY(-1px);
   }
-  
+
   &.primary {
     background: #667eea;
     color: white;
     border-color: #667eea;
-    
+
     &:hover {
       background: #5568d3;
       color: white;
     }
   }
-  
-  @media (prefers-color-scheme: dark) {
+
+  // :not(.primary): a plain ancestor-attribute selector like :root[data-theme='dark'] &
+  // would actually out-specificity .action-link.primary (three simple selectors vs two),
+  // which the old @media form never did (a media query adds no specificity) - excluding
+  // .primary here keeps its own fixed blue background winning in dark mode, same as before.
+  :root[data-theme='dark'] &:not(.primary) {
     background: rgba(255, 255, 255, 0.05);
-    border-color: var(--bs-border-color);
-    
+
     &:hover {
       background: rgba(255, 255, 255, 0.1);
     }

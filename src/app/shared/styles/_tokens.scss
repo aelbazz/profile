@@ -1,0 +1,52 @@
+// Semantic design tokens - the single source of truth for color. Every component reads one
+// of these; none hardcodes a color that needs to differ between light and dark. The selector
+// matches ANY element carrying data-theme, not just :root, so a nested [data-theme] wrapper
+// (the branding page's live preview cards) can re-scope these tokens locally on top of
+// whatever <html> is already set to - custom property values inherit through the cascade
+// regardless of Angular's view encapsulation.
+
+[data-theme='light'] {
+  --color-background: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-elevated: #f8fafc;
+  --color-text-primary: #334155;
+  --color-text-secondary: #64748b;
+  --color-text-heading: #0f172a;
+  --color-muted: #64748b;
+  --color-border: #e2e8f0;
+  --color-primary: #6366f1;
+  --color-primary-contrast: #ffffff;
+  --color-icon: var(--color-text-secondary);
+  --color-link: #667eea;
+  --color-focus-ring: #667eea;
+  --color-input-bg: var(--color-surface);
+  --color-danger: #ef4444;
+  --color-danger-surface: rgba(239, 68, 68, 0.12);
+  --color-success: #10b981;
+  --color-success-surface: rgba(16, 185, 129, 0.12);
+  --color-warning: #f59e0b;
+  --color-warning-surface: rgba(245, 158, 11, 0.12);
+}
+
+[data-theme='dark'] {
+  --color-background: #0f172a;
+  --color-surface: #1e293b;
+  --color-surface-elevated: #334155;
+  --color-text-primary: #e2e8f0;
+  --color-text-secondary: #94a3b8;
+  --color-text-heading: #f8fafc;
+  --color-muted: #94a3b8;
+  --color-border: #334155;
+  --color-primary: #6366f1;
+  --color-primary-contrast: #ffffff;
+  --color-icon: var(--color-text-secondary);
+  --color-link: #8b9cf0;
+  --color-focus-ring: #8b9cf0;
+  --color-input-bg: var(--color-surface);
+  --color-danger: #f87171;
+  --color-danger-surface: rgba(248, 113, 113, 0.18);
+  --color-success: #34d399;
+  --color-success-surface: rgba(52, 211, 153, 0.18);
+  --color-warning: #fbbf24;
+  --color-warning-surface: rgba(251, 191, 36, 0.18);
+}

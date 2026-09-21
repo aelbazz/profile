@@ -10,12 +10,13 @@ import {
   LayoutOption
 } from '../../../core/services/admin-api.service';
 import { ConfigDataService } from '../../../core/services';
+import { ThemePreviewCardComponent } from '../../../shared/components/theme-preview-card/theme-preview-card.component';
 import { describeApiError } from '../admin-error';
 
 @Component({
   selector: 'app-admin-theme',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, ThemePreviewCardComponent],
   templateUrl: './admin-theme.component.html',
   styleUrls: ['./admin-theme.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -36,7 +37,7 @@ export class AdminThemeComponent {
     headingColor: '#0f172a',
     fontFamily: 'Inter, sans-serif',
     borderRadius: '0.5rem',
-    darkMode: false,
+    themeMode: 'light' as 'light' | 'dark',
     customCss: ''
   });
 
@@ -68,6 +69,19 @@ export class AdminThemeComponent {
     return reg ? reg.layouts.filter(l => supported.includes(l.id)) : [];
   });
 
+  /** Same reactive-signal-over-valueChanges pattern as selectedDesignSystem above, one per
+   *  color field the preview cards need - required under OnPush for the preview to update
+   *  live as the client edits the form, before saving. */
+  private readonly previewThemeMode = toSignal(this.form.controls.themeMode.valueChanges, {
+    initialValue: this.form.controls.themeMode.value
+  });
+  private readonly previewPrimaryColor = toSignal(this.form.controls.primaryColor.valueChanges, {
+    initialValue: this.form.controls.primaryColor.value
+  });
+
+  readonly previewTheme = computed(() => ({ primaryColor: this.previewPrimaryColor() }));
+  readonly themeMode = computed(() => this.previewThemeMode());
+
   constructor() {
     this.load();
 
@@ -80,6 +94,10 @@ export class AdminThemeComponent {
         this.form.controls.layout.setValue(layouts[0].id);
       }
     });
+  }
+
+  selectThemeMode(mode: 'light' | 'dark'): void {
+    this.form.controls.themeMode.setValue(mode);
   }
 
   load(): void {
@@ -100,7 +118,7 @@ export class AdminThemeComponent {
           headingColor: theme.headingColor,
           fontFamily: theme.fontFamily,
           borderRadius: theme.borderRadius,
-          darkMode: theme.darkMode,
+          themeMode: theme.themeMode === 'dark' ? 'dark' : 'light',
           customCss: theme.customCss ?? ''
         });
         this.loading.set(false);
@@ -132,7 +150,7 @@ export class AdminThemeComponent {
         headingColor: raw.headingColor,
         fontFamily: raw.fontFamily,
         borderRadius: raw.borderRadius,
-        darkMode: raw.darkMode,
+        themeMode: raw.themeMode,
         customCss: raw.customCss.trim() || undefined
       })
       .subscribe({

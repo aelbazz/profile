@@ -58,7 +58,9 @@ export interface AdminTheme {
   borderRadius: string;
   layout: string;
   designSystem: string;
-  darkMode: boolean;
+  /** 'light' | 'dark' today, validated backend-side against a registry - see
+   *  GET /design-registry's themeModes. */
+  themeMode: string;
   customCss: string | null;
 }
 
@@ -78,6 +80,7 @@ export interface LayoutOption {
 export interface DesignRegistry {
   designSystems: DesignSystemOption[];
   layouts: LayoutOption[];
+  themeModes: string[];
 }
 
 export interface AdminExperience {
@@ -253,10 +256,15 @@ export interface DashboardSummary {
     timeline: number;
     management: number;
   };
+  preferences: { themeMode: string };
 }
 
 export interface PublishStatus {
   isPublished: boolean;
+}
+
+export interface PreferencesInfo {
+  themeMode: string;
 }
 
 /**
@@ -349,6 +357,16 @@ export class AdminApiService {
 
   updatePublishStatus(isPublished: boolean): Observable<PublishStatus> {
     return this.http.patch<PublishStatus>(`${this.base}/tenant/publish-status`, { isPublished });
+  }
+
+  // -- preferences (Control Portal theme - independent of tenant/theme) -----------
+
+  getPreferences(): Observable<PreferencesInfo> {
+    return this.http.get<PreferencesInfo>(`${this.base}/preferences`);
+  }
+
+  updatePreferences(themeMode: string): Observable<PreferencesInfo> {
+    return this.http.patch<PreferencesInfo>(`${this.base}/preferences`, { themeMode });
   }
 
   // -- experiences ------------------------------------------------------------

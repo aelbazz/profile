@@ -4,27 +4,20 @@
 // even though their nav content and "who am I" display differ enough to keep as separate
 // components rather than one shared, conditionally-branching one.
 :host {
-  --admin-bg: #f1f5f9;
-  --admin-surface: #ffffff;
-  --admin-border: #e2e8f0;
-  --admin-text: #0f172a;
-  --admin-muted: #64748b;
+  // Sourced from the global semantic tokens (_tokens.scss), same as admin-page.scss - so
+  // this responds to the explicit portal theme preference, not just the OS.
+  --admin-bg: var(--color-background);
+  --admin-surface: var(--color-surface);
+  --admin-border: var(--color-border);
+  --admin-text: var(--color-text-primary);
+  --admin-muted: var(--color-text-secondary);
+  --admin-accent: var(--color-primary);
+  // The sidebar stays a fixed dark chrome regardless of theme - it was already the same
+  // color in both light and dark mode before this change.
   --admin-sidebar-bg: #1e293b;
   --admin-sidebar-text: #cbd5e1;
-  --admin-accent: #6366f1;
 
   display: block;
-}
-
-@media (prefers-color-scheme: dark) {
-  :host {
-    --admin-bg: #0f172a;
-    --admin-surface: #1e293b;
-    --admin-border: #334155;
-    --admin-text: #f1f5f9;
-    --admin-muted: #94a3b8;
-    --admin-sidebar-bg: #020617;
-  }
 }
 
 .admin-layout {
@@ -169,9 +162,9 @@
   transition: all 0.15s ease;
 
   &:hover {
-    background: #ef4444;
-    border-color: #ef4444;
-    color: #fff;
+    background: var(--color-danger);
+    border-color: var(--color-danger);
+    color: var(--color-primary-contrast);
   }
 }
 

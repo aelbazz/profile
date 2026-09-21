@@ -17,6 +17,8 @@ import { ActivatedRoute, RouterLink, RouterLinkActive, RouterOutlet } from '@ang
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 import { ConfigDataService } from '../../core/services/config-data.service';
+import { ThemeService, ThemeMode } from '../../core/services/theme.service';
+import { accessibleDarkVariant } from '../../shared/utils/color-contrast.util';
 import { PLATFORM_BRANDING } from '../../core/config/platform-branding.config';
 
 interface NavItem {
@@ -60,6 +62,7 @@ export class TenantProfileShellComponent implements OnDestroy {
   private readonly route = inject(ActivatedRoute);
   private readonly host = inject<ElementRef<HTMLElement>>(ElementRef);
   private readonly configData = inject(ConfigDataService);
+  private readonly themeService = inject(ThemeService);
   private readonly renderer = inject(Renderer2);
   private readonly document = inject(DOCUMENT);
 
@@ -90,17 +93,28 @@ export class TenantProfileShellComponent implements OnDestroy {
     return this.designSystem();
   }
 
+  /**
+   * `backgroundColor`/`textColor`/`headingColor` are light-mode-only customization: in dark
+   * mode the fixed, accessible tokens from _tokens.scss take over instead (a client's chosen
+   * light-page colors would very likely fail contrast against a dark one), signalled here by
+   * binding `null` - NgStyle removes the inline override entirely when a value is null/undefined,
+   * letting `:root[data-theme='dark']`'s own values apply. The three brand colors
+   * (primary/secondary/accent) DO still apply in both modes - they're the client's actual
+   * branding, not page chrome - but get an accessible-contrast variant computed against the
+   * fixed dark surface color when dark mode would otherwise make the original hard to read.
+   */
   readonly cssVariables = computed(() => {
     const t = this.theme();
+    const isDark = t.themeMode === 'dark';
     return {
-      '--bs-primary': t.primaryColor,
-      '--bs-secondary': t.secondaryColor,
-      '--bs-info': t.accentColor,
-      '--bs-body-bg': t.backgroundColor,
-      '--bs-body-color': t.textColor,
-      '--bs-heading-color': t.headingColor,
+      '--bs-primary': isDark ? accessibleDarkVariant(t.primaryColor) : t.primaryColor,
+      '--bs-secondary': isDark ? accessibleDarkVariant(t.secondaryColor) : t.secondaryColor,
+      '--bs-info': isDark ? accessibleDarkVariant(t.accentColor) : t.accentColor,
+      '--bs-body-bg': isDark ? null : t.backgroundColor,
+      '--bs-body-color': isDark ? null : t.textColor,
+      '--bs-heading-color': isDark ? null : t.headingColor,
       '--bs-font-sans-serif': t.fontFamily,
-      '--tenant-accent': t.accentColor,
+      '--tenant-accent': isDark ? accessibleDarkVariant(t.accentColor) : t.accentColor,
       '--tenant-radius': t.borderRadius
     };
   });
@@ -117,6 +131,12 @@ export class TenantProfileShellComponent implements OnDestroy {
 
   constructor() {
     effect(() => this.applyCustomCss(this.theme().customCss));
+    // The public site's own themeMode drives <html data-theme="...">, exclusively through
+    // ThemeService - never a @HostBinding here, since :root[data-theme='dark'] tokens in
+    // _tokens.scss need the attribute on the real document root, not this component's host.
+    // No flash risk: TenantProfileResolver already blocks this route from activating until
+    // the profile (and therefore themeMode) has loaded.
+    effect(() => this.themeService.applyTheme((this.theme().themeMode as ThemeMode) || 'light'));
   }
 
   ngOnDestroy(): void {

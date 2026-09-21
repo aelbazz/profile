@@ -16,6 +16,8 @@ export interface TenantTheme {
   borderRadius: string;
   layout: string;
   designSystem: string;
-  darkMode: boolean;
+  /** 'light' | 'dark' today, validated backend-side against a registry - see
+   *  GET /design-registry's themeModes. */
+  themeMode: string;
   customCss: string | null;
 }

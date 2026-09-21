@@ -41,7 +41,7 @@ describe('ConfigDataService', () => {
       borderRadius: '0.5rem',
       layout: 'sidebar',
       designSystem: 'creative',
-      darkMode: false,
+      themeMode: 'light',
       customCss: null
     }
   };

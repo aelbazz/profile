@@ -5,7 +5,7 @@
 
 // Glass Card Effect
 .glass-card {
-  background: rgba(255, 255, 255, 0.95);
+  background: color-mix(in srgb, var(--color-surface) 95%, transparent);
   backdrop-filter: blur(10px);
   border-radius: 20px;
   padding: 2rem;
@@ -13,17 +13,16 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   color: var(--bs-body-color);
-  
+
   &:hover {
     transform: translateY(-8px);
     box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
   }
-  
-  @media (prefers-color-scheme: dark) {
-    background: rgba(30, 30, 30, 0.95);
+
+  :root[data-theme='dark'] & {
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    
+
     &:hover {
       box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
     }

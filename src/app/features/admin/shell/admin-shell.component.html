@@ -49,6 +49,15 @@
       </button>
 
       <div class="topbar-user">
+        @if (themeError(); as msg) {
+          <span class="theme-error" role="alert">{{ msg }}</span>
+        }
+        <button type="button" class="theme-toggle" (click)="toggleTheme()"
+                [attr.aria-pressed]="themeMode() === 'dark'"
+                [attr.aria-label]="themeMode() === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'"
+                title="Control Portal theme">
+          <i class="fas" [class.fa-sun]="themeMode() === 'light'" [class.fa-moon]="themeMode() === 'dark'"></i>
+        </button>
         <span class="user-name">
           <i class="fas fa-user-shield me-2"></i>{{ displayName() }}
         </span>
